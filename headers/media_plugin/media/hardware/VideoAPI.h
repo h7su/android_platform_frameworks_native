@@ -226,6 +226,20 @@ static_assert(sizeof(HDRStaticInfo::Primaries1) == 4, "wrong struct size");
 static_assert(sizeof(HDRStaticInfo::Type1) == 24, "wrong struct size");
 static_assert(sizeof(HDRStaticInfo) == 25, "wrong struct size");
 
+constexpr float kNormDispPrimaries = 0.00002;
+constexpr float kNormDispLuminance = 0.0001;
+
+constexpr float kDispPrimXLow = 0;
+constexpr float kDispPrimXHigh = 1;
+constexpr float kDispPrimYLow = 0;
+constexpr float kDispPrimYHigh = 1;
+constexpr float kMaxDispLuminanceLow = 0;       // cd / m^2
+constexpr float kMaxDispLuminanceHigh = 65535;  // cd / m^2
+constexpr float kMinDispLuminanceLow = 0;       // cd / m^2
+constexpr float kMinDispLuminanceHigh = 6.5535; // cd / m^2
+constexpr uint16_t kContentLightLevelLow = 0;
+constexpr uint16_t kContentLightLevelHigh = 0XFFFF;
+
 #ifdef STRINGIFY_ENUMS
 
 inline static const char *asString(MediaImage::Type i, const char *def = "??") {
