@@ -23,6 +23,7 @@
 #include <binder/TextOutput.h>
 
 #include <android-base/macros.h>
+#include <cutils/properties.h>
 #include <cutils/sched_policy.h>
 #include <utils/CallStack.h>
 #include <utils/Log.h>
@@ -1031,8 +1032,15 @@ status_t IPCThreadState::waitForResponse(Parcel *reply, status_t *acquireResult)
             if (!reply && !acquireResult) goto finish;
             break;
 
-        case BR_TRANSACTION_PENDING_FROZEN:
+        case BR_TRANSACTION_PENDING_FROZEN: {
             ALOGW("Sending oneway calls to frozen process.");
+            bool debugAsyncBinder = property_get_bool("ro.config.debug_async_binder", false);
+            ALOGW("Debug Async Binder: %d", debugAsyncBinder);
+            if (debugAsyncBinder) {
+                CallStack::logStack("oneway frozen", CallStack::getCurrent().get(),
+                                    ANDROID_LOG_ERROR);
+            }
+        }
             goto finish;
 
         case BR_DEAD_REPLY:
