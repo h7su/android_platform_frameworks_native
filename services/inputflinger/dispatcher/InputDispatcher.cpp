@@ -6755,13 +6755,6 @@ void InputDispatcher::cancelCurrentTouch() {
     mLooper->wake();
 }
 
-void InputDispatcher::requestRefreshConfiguration() {
-    InputDispatcherConfiguration config = mPolicy.getDispatcherConfiguration();
-
-    std::scoped_lock _l(mLock);
-    mConfig = config;
-}
-
 void InputDispatcher::setMonitorDispatchingTimeoutForTest(std::chrono::nanoseconds timeout) {
     std::scoped_lock _l(mLock);
     mMonitorDispatchingTimeout = timeout;
@@ -6871,6 +6864,13 @@ sp<WindowInfoHandle> InputDispatcher::findWallpaperWindowBelow(
         }
     }
     return nullptr;
+}
+
+void InputDispatcher::setKeyRepeatConfiguration(nsecs_t timeout, nsecs_t delay) {
+    std::scoped_lock _l(mLock);
+
+    mConfig.keyRepeatTimeout = timeout;
+    mConfig.keyRepeatDelay = delay;
 }
 
 } // namespace android::inputdispatcher
