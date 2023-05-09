@@ -24,12 +24,10 @@ use crate::sys;
 
 use std::convert::TryFrom;
 use std::ffi::{c_void, CStr, CString};
-use std::fs::File;
 use std::io::Write;
 use std::mem::ManuallyDrop;
 use std::ops::Deref;
 use std::os::raw::c_char;
-use std::os::unix::io::FromRawFd;
 use std::slice;
 use std::sync::Mutex;
 
@@ -340,9 +338,6 @@ impl<T: Remotable> InterfaceClassMethods for Binder<T> {
         if fd < 0 {
             return StatusCode::UNEXPECTED_NULL as status_t;
         }
-        // Safety: Our caller promised that fd is a file descriptor. We don't
-        // own this file descriptor, so we need to be careful not to drop it.
-        let mut file = unsafe { ManuallyDrop::new(File::from_raw_fd(fd)) };
 
         if args.is_null() && num_args != 0 {
             return StatusCode::UNEXPECTED_NULL as status_t;
@@ -367,7 +362,22 @@ impl<T: Remotable> InterfaceClassMethods for Binder<T> {
         // Safety: Our caller promised that the binder has a `T` pointer in its
         // user data.
         let binder: &T = unsafe { &*(object as *const T) };
-        let res = binder.on_dump(&mut *file, &args);
+
+        let res;
+        #[cfg(target_os = "trusty")]
+        {
+            // On Trusty, we send everything to the void for now
+            let mut sink = std::io::sink();
+            res = binder.on_dump(&mut sink, &args);
+        }
+        #[cfg(not(target_os = "trusty"))]
+        {
+            use std::os::fd::FromRawFd;
+            // Safety: Our caller promised that fd is a file descriptor. We don't
+            // own this file descriptor, so we need to be careful not to drop it.
+            let mut file = unsafe { ManuallyDrop::new(std::fs::File::from_raw_fd(fd)) };
+            res = binder.on_dump(&mut *file, &args);
+        };
 
         match res {
             Ok(()) => 0,
