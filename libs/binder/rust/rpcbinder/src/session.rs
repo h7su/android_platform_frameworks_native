@@ -17,11 +17,18 @@
 use binder::unstable_api::new_spibinder;
 use binder::{FromIBinder, SpIBinder, StatusCode, Strong};
 use foreign_types::{foreign_type, ForeignType, ForeignTypeRef};
+#[cfg(target_os = "trusty")]
+use std::ffi::CStr;
+#[cfg(not(target_os = "trusty"))]
 use std::ffi::CString;
-use std::os::{
-    raw::{c_int, c_void},
-    unix::io::{AsRawFd, BorrowedFd, RawFd},
-};
+use std::os::raw::{c_int, c_void};
+#[cfg(not(target_os = "trusty"))]
+use std::os::unix::io::{AsRawFd, BorrowedFd, RawFd};
+#[cfg(target_os = "trusty")]
+use tipc::Handle;
+
+#[cfg(target_os = "trusty")]
+type RawFd = i32;
 
 pub use binder_rpc_unstable_bindgen::ARpcSession_FileDescriptorTransportMode as FileDescriptorTransportMode;
 
@@ -87,6 +94,7 @@ impl RpcSessionRef {
     }
 
     /// Connects to an RPC Binder server over vsock for a particular interface.
+    #[cfg(not(target_os = "trusty"))]
     pub fn setup_vsock_client<T: FromIBinder + ?Sized>(
         &self,
         cid: u32,
@@ -106,6 +114,7 @@ impl RpcSessionRef {
 
     /// Connects to an RPC Binder server over a names Unix Domain Socket for
     /// a particular interface.
+    #[cfg(not(target_os = "trusty"))]
     pub fn setup_unix_domain_client<T: FromIBinder + ?Sized>(
         &self,
         socket_name: &str,
@@ -131,6 +140,7 @@ impl RpcSessionRef {
 
     /// Connects to an RPC Binder server over a bootstrap Unix Domain Socket
     /// for a particular interface.
+    #[cfg(not(target_os = "trusty"))]
     pub fn setup_unix_domain_bootstrap_client<T: FromIBinder + ?Sized>(
         &self,
         bootstrap_fd: BorrowedFd,
@@ -148,6 +158,7 @@ impl RpcSessionRef {
     }
 
     /// Connects to an RPC Binder server over inet socket at the given address and port.
+    #[cfg(not(target_os = "trusty"))]
     pub fn setup_inet_client<T: FromIBinder + ?Sized>(
         &self,
         address: &str,
@@ -171,6 +182,22 @@ impl RpcSessionRef {
             ))
         };
         Self::get_interface(service)
+    }
+
+    #[cfg(target_os = "trusty")]
+    pub fn setup_trusty_client<T: FromIBinder + ?Sized>(
+        &self,
+        port: &CStr,
+    ) -> Result<Strong<T>, StatusCode> {
+        self.setup_preconnected_client(|| {
+            let h =
+                Handle::connect(port).expect("Failed to connect to service port {SERVICE_PORT}");
+
+            // Do not close the handle at the end of the scope
+            let fd = h.as_raw_fd();
+            core::mem::forget(h);
+            Some(fd)
+        })
     }
 
     /// Connects to an RPC Binder server, using the given callback to get (and
