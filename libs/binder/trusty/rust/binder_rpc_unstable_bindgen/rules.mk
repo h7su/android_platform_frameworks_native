@@ -14,30 +14,26 @@
 #
 
 LOCAL_DIR := $(GET_LOCAL_DIR)
-LIBBINDER_DIR := $(LOCAL_DIR)/../..
+LIBBINDER_DIR := $(LOCAL_DIR)/../../..
 
 MODULE := $(LOCAL_DIR)
 
-MODULE_SRCS := $(LIBBINDER_DIR)/rust/src/lib.rs
+MODULE_SRCS := $(LOCAL_DIR)/lib.rs
 
-MODULE_CRATE_NAME := binder
+MODULE_CRATE_NAME := binder_rpc_unstable_bindgen
 
 MODULE_LIBRARY_DEPS += \
 	$(LIBBINDER_DIR)/trusty \
+	$(LIBBINDER_DIR)/trusty/binder_rpc_unstable \
 	$(LIBBINDER_DIR)/trusty/ndk \
 	$(LIBBINDER_DIR)/trusty/rust/binder_ndk_sys \
-	$(LIBBINDER_DIR)/trusty/rust/binder_rpc_unstable_bindgen \
-	external/rust/crates/downcast-rs \
 	trusty/user/base/lib/trusty-sys \
 
-# Use std::os::fd::OwnedFd as the inner type for ParcelFileDescriptor
-# on Trusty because std::fs::File is not fully implemented
-MODULE_RUSTFLAGS += \
-	--cfg 'feature="pfd_owned_fd"' \
+MODULE_BINDGEN_SRC_HEADER := $(LOCAL_DIR)/BinderBindings.hpp
 
-# Trusty does not have `ProcessState`, so there are a few
-# doc links in `IBinder` that are still broken.
-MODULE_RUSTFLAGS += \
-	--allow rustdoc::broken-intra-doc-links \
+MODULE_BINDGEN_FLAGS += \
+	--blocklist-type="AIBinder" \
+	--raw-line="use binder_ndk_sys::AIBinder;" \
+	--rustified-enum="ARpcSession_FileDescriptorTransportMode" \
 
 include make/library.mk
