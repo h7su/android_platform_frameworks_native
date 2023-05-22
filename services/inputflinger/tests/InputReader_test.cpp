@@ -2691,7 +2691,7 @@ TEST_F(InputDeviceTest, Configure_UniqueId_CorrectlyMatches) {
                                     NO_PORT, ViewportType::INTERNAL);
     unused += mDevice->configure(ARBITRARY_TIME, mFakePolicy->getReaderConfiguration(),
                                  InputReaderConfiguration::Change::DISPLAY_INFO);
-    ASSERT_EQ(DISPLAY_UNIQUE_ID, mDevice->getAssociatedDisplayUniqueId());
+    ASSERT_EQ(DISPLAY_UNIQUE_ID, mDevice->getAssociatedDisplayUniqueIdByPort());
 }
 
 /**
