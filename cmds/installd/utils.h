@@ -52,6 +52,8 @@ std::string create_data_app_path(const char* volume_uuid);
 
 std::string create_data_user_ce_path(const char* volume_uuid, userid_t userid);
 std::string create_data_user_de_path(const char* volume_uuid, userid_t userid);
+std::string create_data_storage_area_path(userid_t userid);
+std::string create_data_storage_area_fbe_keys_path(userid_t user);
 
 std::string create_data_user_ce_package_path(const char* volume_uuid,
         userid_t user, const char* package_name);
@@ -61,6 +63,8 @@ std::string create_data_user_de_package_path(const char* volume_uuid,
         userid_t user, const char* package_name);
 std::string create_data_user_ce_package_path_as_user_link(
         const char* volume_uuid, userid_t userid, const char* package_name);
+std::string create_data_storage_area_package_path(userid_t user, const char* package_name);
+std::string create_data_storage_area_fbe_keys_package_path(userid_t user, const char* package_name);
 
 std::string create_data_misc_sdk_sandbox_path(const char* volume_uuid, bool isCeData,
                                               userid_t userid);
