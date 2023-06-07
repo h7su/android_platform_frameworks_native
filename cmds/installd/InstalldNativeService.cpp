@@ -684,9 +684,8 @@ static bool chown_app_dir(const std::string& path, uid_t uid, uid_t previousUid,
         return false;
     }
     for (FTSENT* p; (p = fts_read(fts)) != nullptr;) {
-        if (p->fts_info == FTS_D && p->fts_level == 1
-            && (strcmp(p->fts_name, "cache") == 0
-                || strcmp(p->fts_name, "code_cache") == 0)) {
+        if (p->fts_info == FTS_D && p->fts_level == 1 && cacheGid != (gid_t)-1 &&
+            (strcmp(p->fts_name, "cache") == 0 || strcmp(p->fts_name, "code_cache") == 0)) {
             // Mark cache dirs
             p->fts_number = 1;
         } else {
@@ -812,6 +811,25 @@ static binder::Status createAppDataDirs(const std::string& path, int32_t uid, in
     return ok();
 }
 
+static binder::Status createStorageAreaDir(const std::string& path, int32_t uid,
+                                           int32_t previousUid, const std::string& seInfo,
+                                           long projectIdApp) {
+    bool dir_exists = access(path.c_str(), F_OK) == 0;
+
+    if (dir_exists && previousUid > 0 && previousUid != uid) {
+        if (!chown_app_dir(path, uid, previousUid, -1)) {
+            return error("Failed to chown " + path);
+        }
+    }
+    if (prepare_app_dir(path, 0700, uid, uid, projectIdApp)) {
+        return error("Failed to prepare " + path);
+    }
+    if (restorecon_app_data_lazy(path, seInfo, uid, dir_exists)) {
+        return error("Failed to restorecon " + path);
+    }
+    return ok();
+}
+
 binder::Status InstalldNativeService::createAppDataLocked(
         const std::optional<std::string>& uuid, const std::string& packageName, int32_t userId,
         int32_t flags, int32_t appId, int32_t previousAppId, const std::string& seInfo,
@@ -855,6 +873,15 @@ binder::Status InstalldNativeService::createAppDataLocked(
             return status;
         }
 
+        if (!uuid) {
+            // For internal storage only, create the app's storage_area directory.
+            auto path = create_data_storage_area_package_path(userId, pkgname);
+            status = createStorageAreaDir(path, uid, previousUid, seInfo, projectIdApp);
+            if (!status.isOk()) {
+                return status;
+            }
+        }
+
         // Remember inode numbers of cache directories so that we can clear
         // contents while CE storage is locked
         if (write_path_inode(path, "cache", kXattrInodeCache) ||
@@ -862,9 +889,12 @@ binder::Status InstalldNativeService::createAppDataLocked(
             return error("Failed to write_path_inode for " + path);
         }
 
-        // And return the CE inode of the top-level data directory so we can
-        // clear contents while CE storage is locked
-        if (ceDataInode != nullptr) {
+        // Return the inode of the app's top-level CE data directory ($data/user/$userId/$pkgName)
+        // so that we can clear its contents while CE storage is locked.
+        //
+        // We don't need to similarly remember the inode of /data/storage_area/$userId/$pkgName,
+        // since storage area encryption is applied deeper in the directory tree than CE is.
+        if (ceDataInode != nullptr) { 
             ino_t result;
             if (get_path_inode(path, &result) != 0) {
                 return error("Failed to get_path_inode for " + path);
@@ -2079,6 +2109,13 @@ binder::Status InstalldNativeService::destroyUserData(const std::optional<std::s
         if (delete_dir_contents_and_dir(sdk_sandbox_ce_path, true) != 0) {
             res = error("Failed to delete " + sdk_sandbox_ce_path);
         }
+        if (!uuid) {
+            // Contents only, as vold is responsible for the storage_area dir itself.
+            auto storage_area_path = create_data_storage_area_path(userId);
+            if (delete_dir_contents(storage_area_path, true)) {
+                res = error("Failed to delete contents of " + storage_area_path);
+            }
+        }
         path = findDataMediaPath(uuid, userId);
         // Contents only, as vold is responsible for the media dir itself.
         if (delete_dir_contents(path, true) != 0) {
@@ -2616,6 +2653,7 @@ binder::Status InstalldNativeService::getAppSize(const std::optional<std::string
     // /data/media/0/Android/data/com.example          UID u0_media_rw GID u0_a10_ext
     // /data/media/0/Android/data/com.example/cache    UID u0_media_rw GID u0_a10_ext_cache
     // /data/media/obb/com.example                     UID system
+    // /data/storage_area/0/com.example                UID u0_a10      GID u0_a10
 
     struct stats stats;
     struct stats extStats;
@@ -2681,6 +2719,11 @@ binder::Status InstalldNativeService::getAppSize(const std::optional<std::string
             }
 
             if (!uuid) {
+                atrace_pm_begin("storage_area");
+                auto storageAreaPath = create_data_storage_area_package_path(userId, pkgname);
+                collectManualStats(storageAreaPath, &stats);
+                atrace_pm_end();
+
                 atrace_pm_begin("profiles");
                 calculate_tree_size(
                         create_primary_current_profile_package_dir_path(userId, pkgname),
@@ -2920,6 +2963,11 @@ binder::Status InstalldNativeService::getUserSize(const std::optional<std::strin
         atrace_pm_end();
 
         if (!uuid) {
+            atrace_pm_begin("storage_area");
+            auto storageAreaPath = create_data_storage_area_path(userId);
+            collectManualStatsForUser(storageAreaPath, &stats);
+            atrace_pm_end();
+
             atrace_pm_begin("profile");
             auto userProfilePath = create_primary_cur_profile_dir_path(userId);
             calculate_tree_size(userProfilePath, &stats.dataSize);
