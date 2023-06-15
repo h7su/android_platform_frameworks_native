@@ -570,15 +570,15 @@ binder_status_t AIBinder_unlinkToDeath(AIBinder* binder, AIBinder_DeathRecipient
 }
 
 uid_t AIBinder_getCallingUid() {
-    return ::android::IPCThreadState::self()->getCallingUid();
+    return 0;  //::android::IPCThreadState::self()->getCallingUid();
 }
 
 pid_t AIBinder_getCallingPid() {
-    return ::android::IPCThreadState::self()->getCallingPid();
+    return 0;  //::android::IPCThreadState::self()->getCallingPid();
 }
 
 bool AIBinder_isHandlingTransaction() {
-    return ::android::IPCThreadState::self()->getServingStackPointer() != nullptr;
+    return false;  //::android::IPCThreadState::self()->getServingStackPointer() != nullptr;
 }
 
 void AIBinder_incStrong(AIBinder* binder) {
@@ -798,7 +798,7 @@ void AIBinder_setRequestingSid(AIBinder* binder, bool requestingSid) {
 }
 
 const char* AIBinder_getCallingSid() {
-    return ::android::IPCThreadState::self()->getCallingSid();
+    return nullptr;  //::android::IPCThreadState::self()->getCallingSid();
 }
 
 void AIBinder_setMinSchedulerPolicy(AIBinder* binder, int policy, int priority) {
