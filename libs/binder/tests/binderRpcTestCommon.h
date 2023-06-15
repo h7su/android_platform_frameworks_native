@@ -52,6 +52,7 @@
 
 #include "../OS.h"               // for testing UnixBootstrap clients
 #include "../RpcSocketAddress.h" // for testing preconnected clients
+#include "../Utils.h"            // TODO: this is probably not necessary (remove if not needed)
 #include "../vm_sockets.h"       // for VMADDR_*
 #endif                           // __TRUSTY__
 
