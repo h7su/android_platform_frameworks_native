@@ -1,0 +1,39 @@
+On host:
+- Build Docker image.
+```
+docker build -t linux-binder linux/
+```
+Enter the container:
+```
+docker run \
+    -it \
+    --rm \
+    -v /path/to/aosp-main/:/root/aosp \
+    -v /path/to/rpi-sysroot:/root/rpi-sysroot \
+    -w /root/aosp/frameworks/native/libs/binder/linux/ \
+    linux-binder \
+    bash
+```
+(In container) build by GCC:
+```
+RPI_SYSROOT=$HOME/rpi-sysroot/ cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DANDROID_BUILD_TOP=$HOME/aosp/ \
+    -DAIDL_BIN=$HOME/aosp/out/host/linux-x86/bin/aidl \
+    -DCMAKE_TOOLCHAIN_FILE=rpi-arm64-gcc-toolchain.cmake \
+    -B build-rpi-gcc && \
+    cmake --build build-rpi-gcc
+```
+(In container) build by LLVM (13 as an example):
+```
+LLVM_VERSION=13; \
+LLVM_PATH=/usr/lib/llvm-$LLVM_VERSION RPI_SYSROOT=$HOME/rpi-sysroot/ cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DANDROID_BUILD_TOP=$HOME/aosp/ \
+    -DAIDL_BIN=$HOME/aosp/out/host/linux-x86/bin/aidl \
+    -DCMAKE_TOOLCHAIN_FILE=rpi-arm64-llvm-toolchain.cmake \
+    -B build-rpi-llvm-$LLVM_VERSION && \
+    cmake --build build-rpi-llvm-$LLVM_VERSION
+```
+
+Copy the output directory to an arm64 RPi 4 board and run `./build-rpi-<toolchain name>/binder_rpc_test`
