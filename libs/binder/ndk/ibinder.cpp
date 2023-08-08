@@ -211,6 +211,9 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
         binder_status_t status = getClass()->onTransact(this, code, &in, &out);
         return PruneStatusT(status);
     } else if (code == SHELL_COMMAND_TRANSACTION && getClass()->handleShellCommand != nullptr) {
+#ifdef __TRUSTY__
+        LOG_ALWAYS_FATAL("Shell commands not supported");
+#else  // __TRUSTY
         int in = data.readFileDescriptor();
         int out = data.readFileDescriptor();
         int err = data.readFileDescriptor();
@@ -253,6 +256,7 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
             resultReceiver->send(status);
         }
         return status;
+#endif  // __TRUSTY__
     } else {
         return BBinder::onTransact(code, data, reply, flags);
     }
