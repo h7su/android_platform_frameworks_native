@@ -29,6 +29,8 @@
 
 #include <lib/tipc/tipc_srv.h>
 
+#include <binder_rpc_unstable.hpp>
+
 namespace android {
 
 /**
@@ -88,6 +90,29 @@ private:
     explicit RpcServerTrusty(std::unique_ptr<RpcTransportCtx> ctx, std::string&& portName,
                              std::shared_ptr<const PortAcl>&& portAcl, size_t msgMaxSize);
 
+    // Internal helper that creates the RpcServer.
+    // This is used both from here and Rust.
+    static sp<RpcServer> makeRpcServer(std::unique_ptr<RpcTransportCtx> ctx) {
+        auto rpcServer = sp<RpcServer>::make(std::move(ctx));
+
+        // TODO(b/266741352): follow-up to prevent needing this in the future
+        // Trusty needs to be set to the latest stable version that is in prebuilts there.
+        LOG_ALWAYS_FATAL_IF(!rpcServer->setProtocolVersion(0));
+
+        return rpcServer;
+    }
+
+    friend struct ::ARpcServerTrusty;
+    friend ::ARpcServerTrusty* ::ARpcServerTrusty_new(::AIBinder*);
+    friend ::ARpcServerTrusty* ::ARpcServerTrusty_newPerSession(::AIBinder* (*)(const void*, size_t,
+                                                                                void*),
+                                                                void*);
+    friend void ::ARpcServerTrusty_delete(::ARpcServerTrusty*);
+    friend int ::ARpcServerTrusty_handleConnect(::ARpcServerTrusty*, handle_t, const uuid*, void**);
+    friend int ::ARpcServerTrusty_handleMessage(void*);
+    friend void ::ARpcServerTrusty_handleDisconnect(void*);
+    friend void ::ARpcServerTrusty_handleChannelCleanup(void*);
+
     // The Rpc-specific context maintained for every open TIPC channel.
     struct ChannelContext {
         sp<RpcSession> session;
@@ -98,6 +123,11 @@ private:
     static int handleMessage(const tipc_port* port, handle_t chan, void* ctx);
     static void handleDisconnect(const tipc_port* port, handle_t chan, void* ctx);
     static void handleChannelCleanup(void* ctx);
+
+    static int handleConnectInternal(RpcServer* rpcServer, handle_t chan, const uuid* peer,
+                                     void** ctx_p);
+    static int handleMessageInternal(void* ctx);
+    static void handleDisconnectInternal(void* ctx);
 
     static constexpr tipc_srv_ops kTipcOps = {
             .on_connect = &handleConnect,

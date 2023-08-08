@@ -16,13 +16,20 @@
 
 #pragma once
 
-#include <sys/socket.h>
 #include <stdint.h>
+
+#ifdef __TRUSTY__
+#include <lib/tipc/tipc_srv.h>
+#include <lk/compiler.h>
+#else
+#include <sys/socket.h>
+#endif
 
 extern "C" {
 
 struct AIBinder;
 struct ARpcServer;
+struct ARpcServerTrusty;
 struct ARpcSession;
 
 enum class ARpcSession_FileDescriptorTransportMode {
@@ -31,6 +38,18 @@ enum class ARpcSession_FileDescriptorTransportMode {
     Trusty,
 };
 
+#ifdef __TRUSTY__
+struct ARpcServerTrusty* ARpcServerTrusty_new(struct AIBinder*);
+struct ARpcServerTrusty* ARpcServerTrusty_newPerSession(struct AIBinder* (*)(const void*,
+                                                                             size_t, void*),
+                                                        void*);
+void ARpcServerTrusty_delete(struct ARpcServerTrusty*);
+int ARpcServerTrusty_handleConnect(struct ARpcServerTrusty*, handle_t, const struct uuid*,
+                                   void**);
+int ARpcServerTrusty_handleMessage(void*);
+void ARpcServerTrusty_handleDisconnect(void*);
+void ARpcServerTrusty_handleChannelCleanup(void*);
+#else // __TRUSTY__
 // Starts an RPC server on a given port and a given root IBinder object.
 // The server will only accept connections from the given CID.
 // Set `cid` to VMADDR_CID_ANY to accept connections from any client.
@@ -90,9 +109,6 @@ void ARpcServer_join(ARpcServer* server);
 // This automatically calls ARpcServer_shutdown().
 void ARpcServer_free(ARpcServer* server);
 
-// Allocates a new RpcSession object and returns an opaque handle to it.
-[[nodiscard]] ARpcSession* ARpcSession_new();
-
 // Connects to an RPC server over vsock at a given CID on a given port.
 // Returns the root Binder object of the server.
 AIBinder* ARpcSession_setupVsockClient(ARpcSession* session, unsigned int cid,
@@ -111,6 +127,10 @@ AIBinder* ARpcSession_setupUnixDomainBootstrapClient(ARpcSession* session,
 // Connects to an RPC server over an INET socket at a given IP address on a given port.
 // Returns the root Binder object of the server.
 AIBinder* ARpcSession_setupInet(ARpcSession* session, const char* address, unsigned int port);
+#endif // __TRUSTY__
+
+// Allocates a new RpcSession object and returns an opaque handle to it.
+[[nodiscard]] ARpcSession* ARpcSession_new();
 
 // Connects to an RPC server with preconnected file descriptors.
 //
