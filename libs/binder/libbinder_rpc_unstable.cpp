@@ -21,7 +21,12 @@
 #include <binder/RpcSession.h>
 #include <binder/unique_fd.h>
 
-#ifndef __TRUSTY__
+#ifdef __TRUSTY__
+#include <binder/RpcServerTrusty.h>
+#include <binder/RpcTransportTipcTrusty.h>
+
+using android::RpcTransportCtxFactoryTipcTrusty;
+#else // __TRUSTY__
 #include <cutils/sockets.h>
 #endif
 
@@ -31,10 +36,12 @@
 
 using android::OK;
 using android::RpcServer;
+using android::RpcServerTrusty;
 using android::RpcSession;
 using android::sp;
 using android::status_t;
 using android::statusToString;
+using android::wp;
 using android::binder::unique_fd;
 
 // Opaque handle for RpcServer.
@@ -80,7 +87,89 @@ RpcSession::FileDescriptorTransportMode toTransportMode(
 
 extern "C" {
 
-#ifndef __TRUSTY__
+#ifdef __TRUSTY__
+struct ARpcServerTrusty {
+    sp<RpcServer> mRpcServer;
+
+    ARpcServerTrusty() = delete;
+    ARpcServerTrusty(sp<RpcServer> rpcServer) : mRpcServer(std::move(rpcServer)) {}
+};
+
+ARpcServerTrusty* ARpcServerTrusty_new(AIBinder* service) {
+    auto rpcTransportCtxFactory = RpcTransportCtxFactoryTipcTrusty::make();
+    if (rpcTransportCtxFactory == nullptr) {
+        return nullptr;
+    }
+
+    auto ctx = rpcTransportCtxFactory->newServerCtx();
+    if (ctx == nullptr) {
+        return nullptr;
+    }
+
+    auto rpcServer = RpcServerTrusty::makeRpcServer(std::move(ctx));
+    if (rpcServer == nullptr) {
+        return nullptr;
+    }
+    rpcServer->setRootObject(AIBinder_toPlatformBinder(service));
+
+    return new (std::nothrow) ARpcServerTrusty(std::move(rpcServer));
+}
+
+ARpcServerTrusty* ARpcServerTrusty_newPerSession(AIBinder* (*cb)(const void*, size_t, char*),
+                                                 char* cbArg, void (*cbArgDeleter)(char*)) {
+    std::shared_ptr<char> cbArgSp(cbArg, cbArgDeleter);
+
+    auto rpcTransportCtxFactory = RpcTransportCtxFactoryTipcTrusty::make();
+    if (rpcTransportCtxFactory == nullptr) {
+        return nullptr;
+    }
+
+    auto ctx = rpcTransportCtxFactory->newServerCtx();
+    if (ctx == nullptr) {
+        return nullptr;
+    }
+
+    auto rpcServer = RpcServerTrusty::makeRpcServer(std::move(ctx));
+    if (rpcServer == nullptr) {
+        return nullptr;
+    }
+
+    rpcServer->setPerSessionRootObject(
+            [cb, cbArgSp](wp<RpcSession> session, const void* addrPtr, size_t len) {
+                auto* aib = (*cb)(addrPtr, len, cbArgSp.get());
+                auto b = AIBinder_toPlatformBinder(aib);
+
+                // We have a new sp<IBinder> backed by the same binder, so we can
+                // finally release the AIBinder* from the callback
+                AIBinder_decStrong(aib);
+
+                return b;
+            });
+
+    return new (std::nothrow) ARpcServerTrusty(std::move(rpcServer));
+}
+
+void ARpcServerTrusty_delete(ARpcServerTrusty* rstr) {
+    delete rstr;
+}
+
+int ARpcServerTrusty_handleConnect(ARpcServerTrusty* rstr, handle_t chan, const uuid* peer,
+                                   void** ctx_p) {
+    return RpcServerTrusty::handleConnectInternal(rstr->mRpcServer.get(), chan, peer, ctx_p);
+}
+
+int ARpcServerTrusty_handleMessage(void* ctx) {
+    return RpcServerTrusty::handleMessageInternal(ctx);
+}
+
+void ARpcServerTrusty_handleDisconnect(void* ctx) {
+    RpcServerTrusty::handleDisconnectInternal(ctx);
+}
+
+void ARpcServerTrusty_handleChannelCleanup(void* ctx) {
+    RpcServerTrusty::handleChannelCleanup(ctx);
+}
+#else  // __TRUSTY__
 ARpcServer* ARpcServer_newVsock(AIBinder* service, unsigned int cid, unsigned int port) {
     auto server = RpcServer::make();
 
