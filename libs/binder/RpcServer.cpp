@@ -175,6 +175,11 @@ status_t RpcServer::setupTrustyServer(tipc_hset* handleSet, std::string&& portNa
 int RpcServer::handleTipcConnect(const tipc_port* port, handle_t chan, const uuid* peer,
                                  void** ctx_p) {
     auto* server = reinterpret_cast<RpcServer*>(const_cast<void*>(port->priv));
+    return handleTipcConnectInternal(server, chan, peer, ctx_p);
+}
+
+int RpcServer::handleTipcConnectInternal(RpcServer* server, handle_t chan, const uuid* peer,
+                                         void** ctx_p) {
     server->mShutdownTrigger = FdTrigger::make();
     server->mConnectingThreads[rpc_this_thread::get_id()] = RpcMaybeThread();
 
@@ -225,6 +230,10 @@ int RpcServer::handleTipcConnect(const tipc_port* port, handle_t chan, const uui
 }
 
 int RpcServer::handleTipcMessage(const tipc_port* /*port*/, handle_t /*chan*/, void* ctx) {
+    return handleTipcMessageInternal(ctx);
+}
+
+int RpcServer::handleTipcMessageInternal(void* ctx) {
     auto* channelContext = reinterpret_cast<TipcChannelContext*>(ctx);
     LOG_ALWAYS_FATAL_IF(channelContext == nullptr,
                         "bad state: message received on uninitialized channel");
@@ -242,6 +251,10 @@ int RpcServer::handleTipcMessage(const tipc_port* /*port*/, handle_t /*chan*/, v
 }
 
 void RpcServer::handleTipcDisconnect(const tipc_port* /*port*/, handle_t /*chan*/, void* ctx) {
+    return handleTipcDisconnectInternal(ctx);
+}
+
+void RpcServer::handleTipcDisconnectInternal(void* ctx) {
     auto* channelContext = reinterpret_cast<TipcChannelContext*>(ctx);
     if (channelContext == nullptr) {
         // Connections marked "incoming" (outgoing from the server's side)

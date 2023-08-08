@@ -21,7 +21,11 @@
 #include <binder/RpcSession.h>
 #include <binder/unique_fd.h>
 
-#ifndef __TRUSTY__
+#ifdef __TRUSTY__
+#include <binder/RpcTransportTipcTrusty.h>
+
+using android::RpcTransportCtxFactoryTipcTrusty;
+#else // __TRUSTY__
 #include <cutils/sockets.h>
 #endif
 
@@ -35,6 +39,7 @@ using android::RpcSession;
 using android::sp;
 using android::status_t;
 using android::statusToString;
+using android::wp;
 using android::binder::unique_fd;
 
 // Opaque handle for RpcServer.
@@ -80,7 +85,44 @@ RpcSession::FileDescriptorTransportMode toTransportMode(
 
 extern "C" {
 
-#ifndef __TRUSTY__
+#ifdef __TRUSTY__
+ARpcServer* ARpcServer_newTrusty(AIBinder* service) {
+    auto rpcTransportCtxFactory = RpcTransportCtxFactoryTipcTrusty::make();
+    if (rpcTransportCtxFactory == nullptr) {
+        return nullptr;
+    }
+
+    auto server = RpcServer::make(std::move(rpcTransportCtxFactory));
+    if (server == nullptr) {
+        return nullptr;
+    }
+
+    // TODO(b/266741352): follow-up to prevent needing this in the future
+    // Trusty needs to be set to the latest stable version that is in prebuilts there.
+    LOG_ALWAYS_FATAL_IF(!server->setProtocolVersion(0));
+
+    server->setRootObject(AIBinder_toPlatformBinder(service));
+    return createObjectHandle<ARpcServer>(server);
+}
+
+int ARpcServer_handleTipcConnect(ARpcServer* handle, handle_t chan, const uuid* peer,
+                                 void** ctx_p) {
+    auto server = handleToStrongPointer<RpcServer>(handle);
+    return RpcServer::handleTipcConnectInternal(server.get(), chan, peer, ctx_p);
+}
+
+int ARpcServer_handleTipcMessage(void* ctx) {
+    return RpcServer::handleTipcMessageInternal(ctx);
+}
+
+void ARpcServer_handleTipcDisconnect(void* ctx) {
+    RpcServer::handleTipcDisconnectInternal(ctx);
+}
+
+void ARpcServer_handleTipcChannelCleanup(void* ctx) {
+    RpcServer::handleTipcChannelCleanup(ctx);
+}
+#else  // __TRUSTY__
 ARpcServer* ARpcServer_newVsock(AIBinder* service, unsigned int cid, unsigned int port) {
     auto server = RpcServer::make();
 
@@ -180,9 +222,11 @@ bool ARpcServer_shutdown(ARpcServer* handle) {
 }
 
 void ARpcServer_free(ARpcServer* handle) {
+#ifndef __TRUSTY__
     // Ignore the result of ARpcServer_shutdown - either it had been called
     // earlier, or the RpcServer destructor will panic.
     (void)ARpcServer_shutdown(handle);
+#endif // __TRUSTY__
     freeObjectHandle<RpcServer>(handle);
 }
 

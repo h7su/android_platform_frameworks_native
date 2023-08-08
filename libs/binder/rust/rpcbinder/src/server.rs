@@ -18,8 +18,11 @@ use crate::session::FileDescriptorTransportMode;
 use binder::{unstable_api::AsNative, SpIBinder};
 use binder_rpc_unstable_bindgen::ARpcServer;
 use foreign_types::{foreign_type, ForeignType, ForeignTypeRef};
-use std::ffi::CString;
 use std::io::{Error, ErrorKind};
+
+#[cfg(not(target_os = "trusty"))]
+use std::ffi::CString;
+#[cfg(not(target_os = "trusty"))]
 use std::os::unix::io::{IntoRawFd, OwnedFd};
 
 foreign_type! {
@@ -38,6 +41,7 @@ unsafe impl Send for RpcServer {}
 /// SAFETY: The underlying C++ RpcServer class is thread-safe.
 unsafe impl Sync for RpcServer {}
 
+#[cfg(not(target_os = "trusty"))]
 impl RpcServer {
     /// Creates a binder RPC server, serving the supplied binder service implementation on the given
     /// vsock port. Only connections from the given CID are accepted.
@@ -119,7 +123,22 @@ impl RpcServer {
             ))
         }
     }
+}
 
+#[cfg(target_os = "trusty")]
+impl RpcServer {
+    /// Creates a binder RPC server that can be added to a tipc Dispatcher.
+    pub fn new_trusty(mut service: SpIBinder) -> Result<RpcServer, Error> {
+        let service = service.as_native_mut();
+
+        // SAFETY: Takes ownership of the returned handle, which has correct refcount.
+        unsafe {
+            Self::checked_from_ptr(binder_rpc_unstable_bindgen::ARpcServer_newTrusty(service))
+        }
+    }
+}
+
+impl RpcServer {
     unsafe fn checked_from_ptr(ptr: *mut ARpcServer) -> Result<RpcServer, Error> {
         if ptr.is_null() {
             return Err(Error::new(ErrorKind::Other, "Failed to start server"));
@@ -146,7 +165,10 @@ impl RpcServerRef {
             )
         }
     }
+}
 
+#[cfg(not(target_os = "trusty"))]
+impl RpcServer {
     /// Starts a new background thread and calls join(). Returns immediately.
     pub fn start(&self) {
         // SAFETY: RpcServerRef wraps a valid pointer to an ARpcServer.
@@ -169,5 +191,66 @@ impl RpcServerRef {
         } else {
             Err(Error::from(ErrorKind::UnexpectedEof))
         }
+    }
+}
+
+#[cfg(target_os = "trusty")]
+pub struct RpcServerConnection {
+    ctx: *mut std::ffi::c_void,
+}
+
+#[cfg(target_os = "trusty")]
+impl Drop for RpcServerConnection {
+    fn drop(&mut self) {
+        // We do not need to close handle_fd since we do not own it.
+        unsafe {
+            binder_rpc_unstable_bindgen::ARpcServer_handleTipcChannelCleanup(self.ctx);
+        }
+    }
+}
+
+#[cfg(target_os = "trusty")]
+impl tipc::UnbufferedService for RpcServer {
+    type Connection = RpcServerConnection;
+
+    fn on_connect(
+        &self,
+        _port: &tipc::PortCfg,
+        handle: &tipc::Handle,
+        peer: &tipc::Uuid,
+    ) -> tipc::Result<tipc::ConnectResult<Self::Connection>> {
+        let mut conn = RpcServerConnection { ctx: std::ptr::null_mut() };
+        let rc = unsafe {
+            binder_rpc_unstable_bindgen::ARpcServer_handleTipcConnect(
+                self.as_ptr(),
+                handle.as_raw_fd(),
+                peer.as_ptr().cast(),
+                &mut conn.ctx,
+            )
+        };
+        if rc < 0 {
+            Err(tipc::TipcError::from_uapi(rc.into()))
+        } else {
+            Ok(tipc::ConnectResult::Accept(conn))
+        }
+    }
+
+    fn on_message(
+        &self,
+        conn: &Self::Connection,
+        _handle: &tipc::Handle,
+        buffer: &mut [u8],
+    ) -> tipc::Result<tipc::MessageResult> {
+        assert!(buffer.is_empty());
+        let rc = unsafe { binder_rpc_unstable_bindgen::ARpcServer_handleTipcMessage(conn.ctx) };
+        if rc < 0 {
+            Err(tipc::TipcError::from_uapi(rc.into()))
+        } else {
+            Ok(tipc::MessageResult::MaintainConnection)
+        }
+    }
+
+    fn on_disconnect(&self, conn: &Self::Connection) {
+        unsafe { binder_rpc_unstable_bindgen::ARpcServer_handleTipcDisconnect(conn.ctx) };
     }
 }
