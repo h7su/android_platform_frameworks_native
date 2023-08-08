@@ -244,6 +244,7 @@ cc_defaults {
 
     header_libs: [
         "libbinder_headers_base",
+        "libbinder_rpc_unstable_headers",
         "liblog_stub",
         "trusty_mock_headers",
     ],
@@ -624,6 +625,15 @@ aidl_interface {
 }
 
 // TODO(b/184872979): remove once the Rust API is created.
+cc_library_headers {
+    name: "libbinder_rpc_unstable_headers",
+    host_supported: true,
+    export_include_dirs: ["include_rpc_unstable"],
+    visibility: [
+        ":__subpackages__",
+    ],
+}
+
 cc_library {
     name: "libbinder_rpc_unstable",
     srcs: ["libbinder_rpc_unstable.cpp"],
@@ -634,7 +644,9 @@ cc_library {
         "liblog",
         "libutils",
     ],
-    export_include_dirs: ["include_rpc_unstable"],
+    header_libs: [
+        "libbinder_rpc_unstable_headers",
+    ],
 
     // enumerate stable entry points, for apex use
     stubs: {
