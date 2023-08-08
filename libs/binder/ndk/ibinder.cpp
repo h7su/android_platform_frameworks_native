@@ -40,6 +40,12 @@ using ::android::String16;
 using ::android::String8;
 using ::android::wp;
 
+#ifdef __TRUSTY__
+constexpr bool kEnableShellCommands = false;
+#else
+constexpr bool kEnableShellCommands = true;
+#endif
+
 namespace ABBinderTag {
 
 static const void* kId = "ABBinder";
@@ -211,6 +217,11 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
         binder_status_t status = getClass()->onTransact(this, code, &in, &out);
         return PruneStatusT(status);
     } else if (code == SHELL_COMMAND_TRANSACTION && getClass()->handleShellCommand != nullptr) {
+        if constexpr (!kEnableShellCommands) {
+            ALOGE("Shell commands not supported");
+            return STATUS_INVALID_OPERATION;
+        }
+
         int in = data.readFileDescriptor();
         int out = data.readFileDescriptor();
         int err = data.readFileDescriptor();
