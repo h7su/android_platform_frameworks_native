@@ -231,6 +231,7 @@ cc_library_headers {
     export_include_dirs: [
         "trusty/include",
         "trusty/include_mock",
+        "trusty/include_rust",
     ],
 
     visibility: [

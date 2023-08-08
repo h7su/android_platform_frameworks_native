@@ -55,6 +55,7 @@ MODULE_SRCS := \
 
 MODULE_EXPORT_INCLUDES += \
 	$(LOCAL_DIR)/include \
+	$(LOCAL_DIR)/include_rust \
 	$(LIBLOG_STUB_DIR)/include \
 	$(LIBBINDER_DIR)/include \
 	$(LIBBASE_DIR)/include \
