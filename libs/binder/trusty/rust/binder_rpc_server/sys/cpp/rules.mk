@@ -1,4 +1,4 @@
-# Copyright (C) 2021 The Android Open Source Project
+# Copyright (C) 2023 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,26 +14,16 @@
 #
 
 LOCAL_DIR := $(GET_LOCAL_DIR)
+LIBBINDER_DIR := $(LOCAL_DIR)/../../../../..
 
 MODULE := $(LOCAL_DIR)
 
-LIBBINDER_NDK_DIR := frameworks/native/libs/binder/ndk
-
 MODULE_SRCS := \
-	$(LIBBINDER_NDK_DIR)/ibinder.cpp \
-	$(LIBBINDER_NDK_DIR)/libbinder.cpp \
-	$(LIBBINDER_NDK_DIR)/parcel.cpp \
-	$(LIBBINDER_NDK_DIR)/stability.cpp \
-	$(LIBBINDER_NDK_DIR)/status.cpp \
-
-MODULE_EXPORT_INCLUDES += \
-	$(LOCAL_DIR)/include \
-	$(LIBBINDER_NDK_DIR)/include_cpp \
-	$(LIBBINDER_NDK_DIR)/include_ndk \
-	$(LIBBINDER_NDK_DIR)/include_platform \
+	$(LOCAL_DIR)/RpcServerTrustyRust.cpp \
 
 MODULE_LIBRARY_DEPS += \
+	$(LIBBINDER_DIR)/trusty \
+	$(LIBBINDER_DIR)/trusty/ndk \
 	trusty/user/base/lib/libstdc++-trusty \
-	frameworks/native/libs/binder/trusty \
 
 include make/library.mk
