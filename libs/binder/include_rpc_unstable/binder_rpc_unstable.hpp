@@ -16,8 +16,13 @@
 
 #pragma once
 
-#include <sys/socket.h>
 #include <stdint.h>
+
+#ifdef __TRUSTY__
+#include <lib/tipc/tipc_srv.h>
+#else
+#include <sys/socket.h>
+#endif
 
 extern "C" {
 
@@ -31,6 +36,14 @@ enum class ARpcSession_FileDescriptorTransportMode {
     Trusty,
 };
 
+#ifdef __TRUSTY__
+struct ARpcServer* ARpcServer_newTrusty(struct AIBinder*);
+int ARpcServer_handleTipcConnect(struct ARpcServer*, handle_t, const struct uuid*,
+                                 void**);
+int ARpcServer_handleTipcMessage(void*);
+void ARpcServer_handleTipcDisconnect(void*);
+void ARpcServer_handleTipcChannelCleanup(void*);
+#else // __TRUSTY__
 // Starts an RPC server on a given port and a given root IBinder object.
 // The server will only accept connections from the given CID.
 // Set `cid` to VMADDR_CID_ANY to accept connections from any client.
@@ -66,6 +79,7 @@ enum class ARpcSession_FileDescriptorTransportMode {
 // could not be started.
 [[nodiscard]] ARpcServer* ARpcServer_newInet(AIBinder* service, const char* address,
                                              unsigned int port);
+#endif // __TRUSTY__
 
 // Sets the list of supported file descriptor transport modes of this RPC server.
 void ARpcServer_setSupportedFileDescriptorTransportModes(
@@ -93,6 +107,7 @@ void ARpcServer_free(ARpcServer* server);
 // Allocates a new RpcSession object and returns an opaque handle to it.
 [[nodiscard]] ARpcSession* ARpcSession_new();
 
+#ifndef __TRUSTY__
 // Connects to an RPC server over vsock at a given CID on a given port.
 // Returns the root Binder object of the server.
 AIBinder* ARpcSession_setupVsockClient(ARpcSession* session, unsigned int cid,
@@ -111,6 +126,7 @@ AIBinder* ARpcSession_setupUnixDomainBootstrapClient(ARpcSession* session,
 // Connects to an RPC server over an INET socket at a given IP address on a given port.
 // Returns the root Binder object of the server.
 AIBinder* ARpcSession_setupInet(ARpcSession* session, const char* address, unsigned int port);
+#endif // __TRUSTY__
 
 // Connects to an RPC server with preconnected file descriptors.
 //
