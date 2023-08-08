@@ -29,6 +29,7 @@
 
 #ifdef TRUSTY_USERSPACE
 #include <lib/tipc/tipc_srv.h>
+#include <binder_rpc_unstable.hpp>
 #endif
 
 namespace android {
@@ -345,10 +346,19 @@ private:
         sp<RpcSession::RpcConnection> connection;
     };
 
+    friend int ::ARpcServer_handleTipcConnect(::ARpcServer*, handle_t, const uuid*, void**);
+    friend int ::ARpcServer_handleTipcMessage(void*);
+    friend void ::ARpcServer_handleTipcDisconnect(void*);
+    friend void ::ARpcServer_handleTipcChannelCleanup(void*);
+
     static int handleTipcConnect(const tipc_port* port, handle_t chan, const uuid* peer,
                                  void** ctx_p);
+    static int handleTipcConnectInternal(RpcServer* server, handle_t chan, const uuid* peer,
+                                         void** ctx_p);
     static int handleTipcMessage(const tipc_port* port, handle_t chan, void* ctx);
+    static int handleTipcMessageInternal(void* ctx);
     static void handleTipcDisconnect(const tipc_port* port, handle_t chan, void* ctx);
+    static void handleTipcDisconnectInternal(void* ctx);
     static void handleTipcChannelCleanup(void* ctx);
 
     static constexpr tipc_srv_ops kTipcOps = {
