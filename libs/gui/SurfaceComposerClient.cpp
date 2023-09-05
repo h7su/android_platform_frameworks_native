@@ -370,31 +370,6 @@ void TransactionCompletedListener::onTransactionCompleted(ListenerStats listener
         }
     }
     for (const auto& transactionStats : listenerStats.transactionStats) {
-        // handle on commit callbacks
-        for (auto callbackId : transactionStats.callbackIds) {
-            if (callbackId.type != CallbackId::Type::ON_COMMIT) {
-                continue;
-            }
-            auto& [callbackFunction, callbackSurfaceControls] = callbacksMap[callbackId];
-            if (!callbackFunction) {
-                ALOGE("cannot call null callback function, skipping");
-                continue;
-            }
-            std::vector<SurfaceControlStats> surfaceControlStats;
-            for (const auto& surfaceStats : transactionStats.surfaceStats) {
-                surfaceControlStats
-                        .emplace_back(callbacksMap[callbackId]
-                                              .surfaceControls[surfaceStats.surfaceControl],
-                                      transactionStats.latchTime, surfaceStats.acquireTimeOrFence,
-                                      transactionStats.presentFence,
-                                      surfaceStats.previousReleaseFence, surfaceStats.transformHint,
-                                      surfaceStats.eventStats,
-                                      surfaceStats.currentMaxAcquiredBufferCount);
-            }
-
-            callbackFunction(transactionStats.latchTime, transactionStats.presentFence,
-                             surfaceControlStats);
-        }
 
         // handle on complete callbacks
         for (auto callbackId : transactionStats.callbackIds) {
@@ -441,6 +416,32 @@ void TransactionCompletedListener::onTransactionCompleted(ListenerStats listener
                                  surfaceStats.currentMaxAcquiredBufferCount);
                     }
                 }
+            }
+
+            callbackFunction(transactionStats.latchTime, transactionStats.presentFence,
+                             surfaceControlStats);
+        }
+
+        // handle on commit callbacks
+        for (auto callbackId : transactionStats.callbackIds) {
+            if (callbackId.type != CallbackId::Type::ON_COMMIT) {
+                continue;
+            }
+            auto& [callbackFunction, callbackSurfaceControls] = callbacksMap[callbackId];
+            if (!callbackFunction) {
+                ALOGE("cannot call null callback function, skipping");
+                continue;
+            }
+            std::vector<SurfaceControlStats> surfaceControlStats;
+            for (const auto& surfaceStats : transactionStats.surfaceStats) {
+                surfaceControlStats
+                        .emplace_back(callbacksMap[callbackId]
+                                              .surfaceControls[surfaceStats.surfaceControl],
+                                      transactionStats.latchTime, surfaceStats.acquireTimeOrFence,
+                                      transactionStats.presentFence,
+                                      surfaceStats.previousReleaseFence, surfaceStats.transformHint,
+                                      surfaceStats.eventStats,
+                                      surfaceStats.currentMaxAcquiredBufferCount);
             }
 
             callbackFunction(transactionStats.latchTime, transactionStats.presentFence,
