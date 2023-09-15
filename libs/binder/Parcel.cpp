@@ -183,6 +183,11 @@ Parcel::RpcFields::RpcFields(const sp<RpcSession>& session) : mSession(session) 
 
 status_t Parcel::finishFlattenBinder(const sp<IBinder>& binder)
 {
+    if (!isForRpc() && binder) {
+        status_t status = writeString16(binder->getInterfaceDescriptor());
+        if (status != OK) return status;
+    }
+
     internal::Stability::tryMarkCompilationUnit(binder.get());
     int16_t rep = internal::Stability::getRepr(binder.get());
     return writeInt32(rep);
@@ -191,6 +196,19 @@ status_t Parcel::finishFlattenBinder(const sp<IBinder>& binder)
 status_t Parcel::finishUnflattenBinder(
     const sp<IBinder>& binder, sp<IBinder>* out) const
 {
+    if (!isForRpc() && binder) {
+        String16 descriptor;
+        status_t status = readString16(&descriptor);
+        if (status != OK) return status;
+
+        // ignore descriptor on local binders, though we could tell
+        // if it was corrupted
+        if (BpBinder* remote = binder->remoteBinder(); remote != nullptr) {
+            status = remote->getPrivateAccessor().setDescriptor(descriptor);
+            if (status != OK) return status;
+        }
+    }
+
     int32_t stability;
     status_t status = readInt32(&stability);
     if (status != OK) return status;
