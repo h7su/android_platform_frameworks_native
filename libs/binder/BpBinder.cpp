@@ -280,6 +280,23 @@ bool BpBinder::isDescriptorCached() const {
     return mDescriptorCache.c_str() != kDescriptorUninit.c_str();
 }
 
+status_t BpBinder::setDescriptor(const String16& desc) {
+    Mutex::Autolock _l(mLock);
+
+    // if cached
+    if (mDescriptorCache.c_str() != kDescriptorUninit.c_str()) {
+        if (mDescriptorCache != desc) {
+            ALOGE("Binder descriptor changed! %s -> %s", String8(mDescriptorCache).c_str(),
+                  String8(desc).c_str());
+            return BAD_VALUE;
+        }
+    } else {
+        mDescriptorCache = desc;
+    }
+
+    return OK;
+}
+
 const String16& BpBinder::getInterfaceDescriptor() const
 {
     if (!isDescriptorCached()) {
