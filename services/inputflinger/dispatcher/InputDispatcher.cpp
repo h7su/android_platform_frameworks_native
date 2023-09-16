@@ -402,6 +402,9 @@ std::unique_ptr<DispatchEntry> createDispatchEntry(
         combinedMotionEntry->injectionState->refCount += 1;
     }
 
+    combinedMotionEntry->readTime = motionEntry.readTime;
+    combinedMotionEntry->dispatchTime = motionEntry.dispatchTime;
+
     std::unique_ptr<DispatchEntry> dispatchEntry =
             std::make_unique<DispatchEntry>(std::move(combinedMotionEntry), inputTargetFlags,
                                             firstPointerTransform, inputTarget.displayTransform,
@@ -1063,6 +1066,7 @@ void InputDispatcher::dispatchOnceInnerLocked(nsecs_t* nextWakeupTime) {
                     dropReason = DropReason::BLOCKED;
                 }
             }
+            motionEntry->dispatchTime = now();
             done = dispatchMotionLocked(currentTime, motionEntry, &dropReason, nextWakeupTime);
             break;
         }
@@ -3245,6 +3249,8 @@ void InputDispatcher::prepareDispatchCycleLocked(nsecs_t currentTime,
                       connection->getInputChannelName().c_str());
                 logOutboundMotionDetails("  ", *splitMotionEntry);
             }
+            splitMotionEntry->readTime = originalMotionEntry.readTime;
+            splitMotionEntry->dispatchTime = originalMotionEntry.dispatchTime;
             enqueueDispatchEntriesLocked(currentTime, connection, std::move(splitMotionEntry),
                                          inputTarget);
             return;
@@ -3586,6 +3592,7 @@ status_t InputDispatcher::publishMotionEvent(Connection& connection,
                                 motionEntry.yPrecision, motionEntry.xCursorPosition,
                                 motionEntry.yCursorPosition, dispatchEntry.rawTransform,
                                 motionEntry.downTime, motionEntry.eventTime,
+                                motionEntry.readTime, motionEntry.dispatchTime, 0,
                                 motionEntry.pointerCount, motionEntry.pointerProperties,
                                 usingCoords);
 }
@@ -4354,6 +4361,18 @@ bool InputDispatcher::shouldSendKeyToInputFilterLocked(const NotifyKeyArgs& args
 }
 
 void InputDispatcher::notifyMotion(const NotifyMotionArgs& args) {
+    if (ATRACE_ENABLED()) {
+        std::string messageId = StringPrintf("notifyMotion(id=0x%" PRIx32 ")", args.id);
+        ATRACE_NAME(messageId.c_str());
+        for (uint32_t i = 0; i < args.pointerCount; i++) {
+            std::string messagePointer =
+                    StringPrintf("Pointer %d: id=%d, x=%f, y=%f", i,
+                        args.pointerProperties[i].id,
+                        args.pointerCoords[i].getAxisValue(AMOTION_EVENT_AXIS_X),
+                        args.pointerCoords[i].getAxisValue(AMOTION_EVENT_AXIS_Y));
+            ATRACE_NAME(messagePointer.c_str());
+        }
+    }
     if (debugInboundEventDetails()) {
         ALOGD("notifyMotion - id=%" PRIx32 " eventTime=%" PRId64 ", deviceId=%d, source=%s, "
               "displayId=%" PRId32 ", policyFlags=0x%x, "
@@ -4464,6 +4483,8 @@ void InputDispatcher::notifyMotion(const NotifyMotionArgs& args) {
                                               args.downTime, args.getPointerCount(),
                                               args.pointerProperties.data(),
                                               args.pointerCoords.data());
+
+        newEntry->readTime = args.readTime;
 
         if (args.id != android::os::IInputConstants::INVALID_INPUT_EVENT_ID &&
             IdGenerator::getSource(args.id) == IdGenerator::Source::INPUT_READER &&

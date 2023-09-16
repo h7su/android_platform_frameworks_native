@@ -129,6 +129,10 @@ struct InputMessage {
             uint8_t empty2[3];                   // 3 bytes to fill gap created by classification
             int32_t edgeFlags;
             nsecs_t downTime __attribute__((aligned(8)));
+            nsecs_t readTime __attribute__((aligned(8)));
+            nsecs_t dispatchTime __attribute__((aligned(8)));
+            nsecs_t sendTime __attribute__((aligned(8)));
+            nsecs_t receiveTime __attribute__((aligned(8)));
             float dsdx; // Begin window transform
             float dtdx; //
             float dtdy; //
@@ -369,7 +373,9 @@ public:
                                 MotionClassification classification, const ui::Transform& transform,
                                 float xPrecision, float yPrecision, float xCursorPosition,
                                 float yCursorPosition, const ui::Transform& rawTransform,
-                                nsecs_t downTime, nsecs_t eventTime, uint32_t pointerCount,
+                                nsecs_t downTime, nsecs_t eventTime,
+                                nsecs_t readTime, nsecs_t dispatchTime, nsecs_t sendTime,
+                                uint32_t pointerCount,
                                 const PointerProperties* pointerProperties,
                                 const PointerCoords* pointerCoords);
 

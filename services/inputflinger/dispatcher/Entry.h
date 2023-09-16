@@ -174,6 +174,9 @@ struct MotionEntry : EventEntry {
     float xCursorPosition;
     float yCursorPosition;
     nsecs_t downTime;
+    nsecs_t readTime;
+    nsecs_t dispatchTime;
+    nsecs_t sendTime;
     uint32_t pointerCount;
     PointerProperties pointerProperties[MAX_POINTERS];
     PointerCoords pointerCoords[MAX_POINTERS];
