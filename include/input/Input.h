@@ -677,6 +677,22 @@ public:
 
     inline void setDownTime(nsecs_t downTime) { mDownTime = downTime; }
 
+    inline nsecs_t getReadTime() const { return mReadTime; }
+
+    inline void setReadTime(nsecs_t readTime) { mReadTime = readTime; }
+
+    inline nsecs_t getDispatchTime() const { return mDispatchTime; }
+
+    inline void setDispatchTime(nsecs_t dispatchTime) { mDispatchTime = dispatchTime; }
+
+    inline nsecs_t getSendTime() const { return mSendTime; }
+
+    inline void setSendTime(nsecs_t receiveTime) { mSendTime = receiveTime; }
+
+    inline nsecs_t getReceiveTime() const { return mReceiveTime; }
+
+    inline void setReceiveTime(nsecs_t receiveTime) { mReceiveTime = receiveTime; }
+
     inline size_t getPointerCount() const { return mPointerProperties.size(); }
 
     inline const PointerProperties* getPointerProperties(size_t pointerIndex) const {
@@ -922,6 +938,10 @@ protected:
     float mRawYCursorPosition;
     ui::Transform mRawTransform;
     nsecs_t mDownTime;
+    nsecs_t mReadTime = 0;
+    nsecs_t mDispatchTime;
+    nsecs_t mSendTime;
+    nsecs_t mReceiveTime;
     std::vector<PointerProperties> mPointerProperties;
     std::vector<nsecs_t> mSampleEventTimes;
     std::vector<PointerCoords> mSamplePointerCoords;

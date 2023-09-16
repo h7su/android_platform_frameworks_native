@@ -561,6 +561,10 @@ void MotionEvent::copyFrom(const MotionEvent* other, bool keepHistory) {
     mRawYCursorPosition = other->mRawYCursorPosition;
     mRawTransform = other->mRawTransform;
     mDownTime = other->mDownTime;
+    mReadTime = other->mReadTime;
+    mDispatchTime = other->mDispatchTime;
+    mSendTime = other->mSendTime;
+    mReceiveTime = other->mReceiveTime;
     mPointerProperties = other->mPointerProperties;
 
     if (keepHistory) {

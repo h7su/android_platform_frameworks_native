@@ -291,6 +291,10 @@ void InputMessage::getSanitizedCopy(InputMessage* msg) const {
             // nsecs_t downTime
             msg->body.motion.downTime = body.motion.downTime;
 
+            msg->body.motion.readTime = body.motion.readTime;
+            msg->body.motion.dispatchTime = body.motion.dispatchTime;
+            msg->body.motion.sendTime = body.motion.sendTime;
+
             msg->body.motion.dsdx = body.motion.dsdx;
             msg->body.motion.dtdx = body.motion.dtdx;
             msg->body.motion.dtdy = body.motion.dtdy;
@@ -614,6 +618,7 @@ status_t InputPublisher::publishMotionEvent(
         MotionClassification classification, const ui::Transform& transform, float xPrecision,
         float yPrecision, float xCursorPosition, float yCursorPosition,
         const ui::Transform& rawTransform, nsecs_t downTime, nsecs_t eventTime,
+        nsecs_t readTime, nsecs_t dispatchTime, nsecs_t sendTime,
         uint32_t pointerCount, const PointerProperties* pointerProperties,
         const PointerCoords* pointerCoords) {
     if (ATRACE_ENABLED()) {
@@ -695,6 +700,10 @@ status_t InputPublisher::publishMotionEvent(
         msg.body.motion.pointers[i].properties.copyFrom(pointerProperties[i]);
         msg.body.motion.pointers[i].coords.copyFrom(pointerCoords[i]);
     }
+
+    msg.body.motion.readTime = readTime;
+    msg.body.motion.dispatchTime = dispatchTime;
+    msg.body.motion.sendTime = systemTime(SYSTEM_TIME_MONOTONIC);
 
     return mChannel->sendMessage(&msg);
 }
@@ -882,6 +891,7 @@ status_t InputConsumer::consume(InputEventFactoryInterface* factory, bool consum
             }
 
             case InputMessage::Type::MOTION: {
+                mMsg.body.motion.receiveTime = systemTime(SYSTEM_TIME_MONOTONIC);
                 ssize_t batchIndex = findBatch(mMsg.body.motion.deviceId, mMsg.body.motion.source);
                 if (batchIndex >= 0) {
                     Batch& batch = mBatches[batchIndex];
@@ -1474,6 +1484,11 @@ void InputConsumer::initializeMotionEvent(MotionEvent* event, const InputMessage
                       msg->body.motion.xCursorPosition, msg->body.motion.yCursorPosition,
                       displayTransform, msg->body.motion.downTime, msg->body.motion.eventTime,
                       pointerCount, pointerProperties, pointerCoords);
+
+    event->setReadTime(msg->body.motion.readTime);
+    event->setDispatchTime(msg->body.motion.dispatchTime);
+    event->setSendTime(msg->body.motion.sendTime);
+    event->setReceiveTime(msg->body.motion.receiveTime);
 }
 
 void InputConsumer::initializeTouchModeEvent(TouchModeEvent* event, const InputMessage* msg) {
