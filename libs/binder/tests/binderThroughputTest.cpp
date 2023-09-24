@@ -202,10 +202,6 @@ void worker_fx(int num,
     sp<BinderWorkerService> service = new BinderWorkerService;
     serviceMgr->addService(generateServiceName(num), service);
 
-    srand(num);
-    p.signal();
-    p.wait();
-
     // If client/server pairs, then half the workers are
     // servers and half are clients
     int server_count = cs_pair ? worker_count / 2 : worker_count;
@@ -219,6 +215,10 @@ void worker_fx(int num,
             continue;
         workers.push_back(serviceMgr->waitForService(generateServiceName(i)));
     }
+
+    srand(num);
+    p.signal();
+    p.wait();
 
     // Run the benchmark if client
     ProcResults results(iterations);
