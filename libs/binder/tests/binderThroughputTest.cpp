@@ -207,10 +207,15 @@ void worker_fx(int num,
     p.signal();
     p.wait();
 
-    // Run the benchmark if client
     ProcResults results;
     chrono::time_point<chrono::high_resolution_clock> start, end;
-    for (int i = 0; (!cs_pair || num >= server_count) && i < iterations; i++) {
+
+    // Skip the benchmark if server
+    if (cs_pair && num < server_count) {
+        goto done;
+    }
+
+    for (int i = 0; i < iterations; i++) {
         Parcel data, reply;
         int target = cs_pair ? num % server_count : rand() % workers.size();
         int sz = payload_size;
@@ -232,6 +237,7 @@ void worker_fx(int num,
         }
     }
 
+done:
     // Signal completion to master and wait.
     p.signal();
     p.wait();
