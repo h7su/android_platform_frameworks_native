@@ -76,6 +76,9 @@ const char* k_coreServicesProp = "ro.atrace.core.services";
 
 const char* kVendorCategoriesPath = "/vendor/etc/atrace/atrace_categories.txt";
 
+const char* k_renderstageCategory = "renderstage";
+const char* k_surfaceworkloadCategory = "surfaceworkload";
+
 typedef enum { OPT, REQ } requiredness;
 
 struct TracingCategory {
@@ -129,6 +132,8 @@ static const TracingCategory k_categories[] = {
     { "aidl",       "AIDL calls",               ATRACE_TAG_AIDL, { } },
     { "nnapi",      "NNAPI",                    ATRACE_TAG_NNAPI, { } },
     { "rro",        "Runtime Resource Overlay", ATRACE_TAG_RRO, { } },
+    { k_renderstageCategory,"GPU RenderStage",  ATRACE_TAG_GPU_RENDERSTAGE, { } },
+    { k_surfaceworkloadCategory, "GPU Surface Workload", ATRACE_TAG_GPU_RENDERSTAGE, { }},
     { k_coreServiceCategory, "Core services", 0, { } },
     { k_pdxServiceCategory, "PDX services", 0, { } },
     { "sched",      "CPU Scheduling",   0, {
