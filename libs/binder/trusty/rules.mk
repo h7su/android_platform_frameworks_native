@@ -70,6 +70,9 @@ MODULE_EXPORT_INCLUDES += \
 
 MODULE_EXPORT_COMPILEFLAGS += \
 	-DBINDER_RPC_SINGLE_THREADED \
+	-DBINDER_DISABLE_NATIVE_HANDLE \
+	-DBINDER_DISABLE_BLOB \
+	-DBINDER_NO_LIBBASE \
 	-D__ANDROID_VNDK__ \
 
 # libbinder has some deprecated declarations that we want to produce warnings
