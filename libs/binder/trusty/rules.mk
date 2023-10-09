@@ -57,6 +57,7 @@ MODULE_SRCS := \
 
 MODULE_EXPORT_INCLUDES += \
 	$(LOCAL_DIR)/include \
+	$(LIBBINDER_DIR)/include_liblog_stub \
 	$(LIBBINDER_DIR)/include \
 	$(LIBBASE_DIR)/include \
 	$(LIBCUTILS_DIR)/include \
@@ -70,6 +71,9 @@ MODULE_EXPORT_INCLUDES += \
 
 MODULE_EXPORT_COMPILEFLAGS += \
 	-DBINDER_RPC_SINGLE_THREADED \
+	-DBINDER_DISABLE_NATIVE_HANDLE \
+	-DBINDER_DISABLE_BLOB \
+	-DBINDER_NO_LIBBASE \
 	-D__ANDROID_VNDK__ \
 
 # libbinder has some deprecated declarations that we want to produce warnings
