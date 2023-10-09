@@ -125,6 +125,7 @@ aidl_interface {
     vendor_available: true,
     host_supported: true,
     unstable: true,
+    gen_trace: false,
     srcs: [
         "BinderRpcTestClientInfo.aidl",
         "BinderRpcTestServerConfig.aidl",
@@ -137,6 +138,12 @@ aidl_interface {
     backend: {
         java: {
             enabled: false,
+        },
+        cpp: {
+            gen_trace: false, // TODO: why do I need to repeat it here?
+        },
+        ndk: {
+            gen_trace: false, // TODO: same, again
         },
     },
 }
