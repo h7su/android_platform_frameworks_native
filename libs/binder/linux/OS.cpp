@@ -26,7 +26,8 @@
 namespace android::binder::os {
 
 uint64_t GetThreadId() {
-    return gettid();
+    // return gettid();
+    return 0; // TODO
 }
 
 bool report_sysprop_change() {
