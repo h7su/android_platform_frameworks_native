@@ -22,8 +22,36 @@ package {
 }
 
 cc_library_headers {
-    name: "libbinder_headers",
+    name: "libbinder_headers_base",
     export_include_dirs: ["include"],
+    vendor_available: true,
+    recovery_available: true,
+    host_supported: true,
+
+    header_libs: [
+        "libbinder_headers_platform_shared",
+    ],
+    export_header_lib_headers: [
+        "libbinder_headers_platform_shared",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.media",
+        "com.android.media.swcodec",
+    ],
+    min_sdk_version: "29",
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    visibility: [
+        ":__subpackages__",
+    ],
+}
+
+cc_library_headers {
+    name: "libbinder_headers",
     vendor_available: true,
     recovery_available: true,
     host_supported: true,
@@ -32,13 +60,13 @@ cc_library_headers {
 
     header_libs: [
         "libbase_headers",
-        "libbinder_headers_platform_shared",
+        "libbinder_headers_base",
         "libcutils_headers",
         "libutils_headers",
     ],
     export_header_lib_headers: [
         "libbase_headers",
-        "libbinder_headers_platform_shared",
+        "libbinder_headers_base",
         "libcutils_headers",
         "libutils_headers",
     ],
@@ -87,6 +115,7 @@ cc_defaults {
         "RpcSession.cpp",
         "RpcServer.cpp",
         "RpcState.cpp",
+        "RpcTransportRaw.cpp",
         "Stability.cpp",
         "Status.cpp",
         "TextOutput.cpp",
@@ -94,17 +123,8 @@ cc_defaults {
         "file.cpp",
     ],
 
-    shared_libs: [
-        "libcutils",
-        "libutils",
-    ],
-
-    static_libs: [
-        "libbase",
-    ],
-
     header_libs: [
-        "libbinder_headers",
+        "libbinder_headers_base",
     ],
 }
 
@@ -120,7 +140,6 @@ cc_defaults {
     srcs: [
         "OS_android.cpp",
         "OS_unix_base.cpp",
-        "RpcTransportRaw.cpp",
     ],
 
     target: {
@@ -154,11 +173,18 @@ cc_defaults {
     },
 
     shared_libs: [
+        "libcutils",
         "liblog",
+        "libutils",
+    ],
+
+    static_libs: [
+        "libbase",
     ],
 
     header_libs: [
         "jni_headers",
+        "libbinder_headers",
     ],
 
     export_header_lib_headers: [
@@ -215,11 +241,21 @@ cc_defaults {
     host_supported: true,
 
     header_libs: [
+        "libbinder_headers",
         "trusty_mock_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
     ],
 
     cflags: [
         "-DBINDER_RPC_SINGLE_THREADED",
+        "-DBINDER_DISABLE_NATIVE_HANDLE",
+        "-DBINDER_DISABLE_BLOB",
+        "-DBINDER_NO_LIBBASE",
         // Trusty libbinder uses vendor stability for its binders
         "-D__ANDROID_VNDK__",
         "-U__ANDROID__",
@@ -255,9 +291,6 @@ cc_library_shared {
         "trusty/RpcTransportTipcTrusty.cpp",
         "trusty/TrustyStatus.cpp",
         "trusty/socket.cpp",
-    ],
-    shared_libs: [
-        "liblog",
     ],
 }
 
@@ -345,6 +378,64 @@ cc_library {
     },
 
     afdo: true,
+}
+
+cc_library_headers {
+    name: "liblog_stub",
+    export_include_dirs: ["include_liblog_stub"],
+    vendor_available: true,
+    recovery_available: true,
+    host_supported: true,
+
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
+    visibility: [
+        ":__subpackages__",
+        "//system/core/libutils/binder", // TODO: liblog_stub should probably live in liblog?
+    ],
+}
+
+cc_library_host_shared {
+    name: "libbinder_sdk",
+
+    defaults: [
+        "libbinder_common_defaults",
+    ],
+
+    shared_libs: [
+        "libutils_binder_sdk",
+    ],
+
+    cflags: [
+        "-DBINDER_DISABLE_NATIVE_HANDLE",
+        "-DBINDER_DISABLE_BLOB",
+        "-DBINDER_NO_LIBBASE",
+    ],
+
+    header_libs: [
+        "liblog_stub",
+    ],
+
+    srcs: [
+        "OS_linux.cpp",
+        "OS_unix_base.cpp",
+    ],
+
+    visibility: [
+        ":__subpackages__",
+    ],
+
+    target: {
+        host: {
+            enabled: true,
+        },
+        windows: {
+            enabled: false,
+        },
+    },
 }
 
 cc_library_static {
