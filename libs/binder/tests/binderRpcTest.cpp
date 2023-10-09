@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+#include <android/log.h>
 #ifndef __ANDROID_VENDOR__
 // only used on NDK tests outside of vendor
 #include <aidl/IBinderRpcTest.h>
