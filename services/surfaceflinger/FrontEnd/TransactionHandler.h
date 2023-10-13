@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <list>
 #include <semaphore.h>
 #include <cstdint>
 #include <vector>
@@ -72,10 +73,11 @@ private:
     int flushPendingTransactionQueues(std::vector<TransactionState>&, TransactionFlushState&);
     void applyUnsignaledBufferTransaction(std::vector<TransactionState>&, TransactionFlushState&);
     void popTransactionFromPending(std::vector<TransactionState>&, TransactionFlushState&,
-                                   std::queue<TransactionState>&);
+                                   TransactionState&);
     TransactionReadiness applyFilters(TransactionFlushState&);
-    std::unordered_map<sp<IBinder>, std::queue<TransactionState>, IListenerHash>
-            mPendingTransactionQueues;
+
+    std::list<TransactionState> mPendingTransactionQueues;
+
     LocklessQueue<TransactionState> mLocklessTransactionQueue;
     std::atomic<size_t> mPendingTransactionCount = 0;
     ftl::SmallVector<TransactionFilter, 2> mTransactionReadyFilters;
