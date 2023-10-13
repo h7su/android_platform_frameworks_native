@@ -40,7 +40,7 @@ std::vector<TransactionState> TransactionHandler::flushTransactions() {
             break;
         }
         auto transaction = maybeTransaction.value();
-        mPendingTransactionQueues[transaction.applyToken].emplace(std::move(transaction));
+        mPendingTransactionQueues.emplace(mPendingTransactionQueues.end(), std::move(transaction));
     }
 
     // Collect transaction that are ready to be applied.
@@ -84,26 +84,24 @@ void TransactionHandler::applyUnsignaledBufferTransaction(
         return;
     }
 
-    auto it = mPendingTransactionQueues.find(flushState.queueWithUnsignaledBuffer);
-    LOG_ALWAYS_FATAL_IF(it == mPendingTransactionQueues.end(),
-                        "Could not find queue with unsignaled buffer!");
+    auto it = mPendingTransactionQueues.begin();
+    while (it != mPendingTransactionQueues.end()) {
+        auto& transaction = *it;
 
-    auto& queue = it->second;
-    popTransactionFromPending(transactions, flushState, queue);
-    if (queue.empty()) {
-        it = mPendingTransactionQueues.erase(it);
+        if (transaction.applyToken.get() == flushState.queueWithUnsignaledBuffer.get()) {
+            popTransactionFromPending(transactions, flushState, transaction);
+            it = mPendingTransactionQueues.erase(it);
+        }
     }
 }
 
 void TransactionHandler::popTransactionFromPending(std::vector<TransactionState>& transactions,
                                                    TransactionFlushState& flushState,
-                                                   std::queue<TransactionState>& queue) {
-    auto& transaction = queue.front();
+                                                   TransactionState& transaction) {
     // Transaction is ready move it from the pending queue.
     flushState.firstTransaction = false;
     removeFromStalledTransactions(transaction.id);
     transactions.emplace_back(std::move(transaction));
-    queue.pop();
 
     auto& readyToApplyTransaction = transactions.back();
     readyToApplyTransaction.traverseStatesWithBuffers([&](const layer_state_t& state) {
@@ -148,27 +146,25 @@ int TransactionHandler::flushPendingTransactionQueues(std::vector<TransactionSta
     int transactionsPendingBarrier = 0;
     auto it = mPendingTransactionQueues.begin();
     while (it != mPendingTransactionQueues.end()) {
-        auto& [applyToken, queue] = *it;
-        while (!queue.empty()) {
-            auto& transaction = queue.front();
-            flushState.transaction = &transaction;
-            auto ready = applyFilters(flushState);
-            if (ready == TransactionReadiness::NotReadyBarrier) {
-                transactionsPendingBarrier++;
-                break;
-            } else if (ready == TransactionReadiness::NotReady) {
-                break;
-            } else if (ready == TransactionReadiness::NotReadyUnsignaled) {
-                // We maybe able to latch this transaction if it's the only transaction
-                // ready to be applied.
-                flushState.queueWithUnsignaledBuffer = applyToken;
-                break;
-            }
+        auto& transaction = *it;
+
+        flushState.transaction = &transaction;
+        auto ready = applyFilters(flushState);
+
+        if (ready == TransactionReadiness::NotReadyBarrier) {
+            transactionsPendingBarrier++;
+        } else if (ready == TransactionReadiness::NotReady) {
+            //Do nothing
+        } else if (ready == TransactionReadiness::NotReadyUnsignaled) {
+            // We maybe able to latch this transaction if it's the only transaction
+            // ready to be applied.
+            flushState.queueWithUnsignaledBuffer = transaction.applyToken;
+        } else if (ready == TransactionReadiness::Ready) {
             // ready == TransactionReadiness::Ready
-            popTransactionFromPending(transactions, flushState, queue);
+            popTransactionFromPending(transactions, flushState, transaction);
         }
 
-        if (queue.empty()) {
+        if (ready == TransactionReadiness::Ready) {
             it = mPendingTransactionQueues.erase(it);
         } else {
             it = std::next(it, 1);
