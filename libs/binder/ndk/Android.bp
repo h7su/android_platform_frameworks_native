@@ -32,6 +32,33 @@ license {
     ],
 }
 
+cc_library_host_shared {
+    name: "libbinder_ndk_core",
+    export_include_dirs: [
+        "include_cpp",
+        "include_ndk",
+        "include_platform",
+    ],
+    srcs: [
+        "ibinder.cpp",
+        "libbinder.cpp",
+        "parcel.cpp",
+        "stability.cpp",
+        "status.cpp",
+        "service_manager.cpp",
+    ],
+    static_libs: [
+       // "libbase",
+    ],
+    header_libs: [
+        "liblog_stub",
+    ],
+    shared_libs: [
+        "libbinder_sdk",
+        "libutils_binder_sdk",
+    ],
+}
+
 cc_library {
     name: "libbinder_ndk",
 
