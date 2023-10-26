@@ -18,7 +18,7 @@
 
 #include <stdint.h>
 
-#if __has_include(<cutils/trace.h>)
+#ifndef BINDER_DISABLE_CUTILS_TRACE
 #include <cutils/trace.h>
 #endif
 
