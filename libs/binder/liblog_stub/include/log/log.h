@@ -61,7 +61,7 @@ int __android_log_print(int prio, const char* tag, const char* fmt, ...)
         }                                                                      \
         IF_ALOG(priority, tag) {                                               \
             __android_log_print(ANDROID_##priority, tag,                       \
-                                tag ": " fmt "\n" __VA_OPT__(, ) __VA_ARGS__); \
+                                "%s: " fmt "\n", (tag) __VA_OPT__(, ) __VA_ARGS__); \
         }                                                                      \
         if constexpr (ANDROID_##priority == ANDROID_LOG_FATAL) std::abort();   \
     } while (false)
