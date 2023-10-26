@@ -188,6 +188,32 @@ cc_library_static {
     ],
 }
 
+cc_library_host_static {
+    name: "libbinder_tls_test_utils_sdk",
+    vendor_available: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    defaults: [
+        "binder_test_defaults",
+        "libbinder_tls_shared_deps_sdk",
+    ],
+    static_libs: [
+        //"libbinder_tls_static",
+    ],
+    srcs: [
+        "RpcTlsTestUtils.cpp",
+    ],
+    export_include_dirs: [
+        "include_tls_test_utils",
+    ],
+    visibility: [
+        ":__subpackages__",
+    ],
+}
+
 cc_library_static {
     name: "libbinder_test_utils",
     host_supported: true,
@@ -203,6 +229,29 @@ cc_library_static {
     shared_libs: [
         "libbase",
         "liblog",
+    ],
+    srcs: [
+        "FileUtils.cpp",
+    ],
+    visibility: [
+        ":__subpackages__",
+    ],
+}
+
+cc_library_static {
+    name: "libbinder_test_utils_sdk",
+    host_supported: true,
+    vendor_available: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    defaults: [
+        "binder_test_defaults",
+    ],
+    header_libs: [
+        "liblog_stub",
     ],
     srcs: [
         "FileUtils.cpp",
@@ -234,9 +283,45 @@ cc_defaults {
 }
 
 cc_defaults {
+    name: "binderRpcTest_common_defaults_sdk",
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    defaults: [
+        "binder_test_defaults",
+    ],
+
+    static_libs: [
+        "libbinder_test_utils_sdk",
+        "libbinder_tls_test_utils_sdk",
+        "binderRpcTestIface-cpp",
+        "binderRpcTestIface-ndk",
+    ],
+    shared_libs: [
+        "libbinder_tls_sdk",
+    ],
+}
+
+cc_defaults {
     name: "binderRpcTest_service_defaults",
     defaults: [
         "binderRpcTest_common_defaults",
+    ],
+    gtest: false,
+    auto_gen_config: false,
+    srcs: [
+        "binderRpcTestCommon.cpp",
+        "binderRpcTestService.cpp",
+    ],
+}
+
+cc_defaults {
+    name: "binderRpcTest_service_defaults_sdk",
+    defaults: [
+        "binderRpcTest_common_defaults_sdk",
     ],
     gtest: false,
     auto_gen_config: false,
@@ -284,6 +369,47 @@ cc_defaults {
         "binder_rpc_test_service_no_kernel",
         "binder_rpc_test_service_single_threaded",
         "binder_rpc_test_service_single_threaded_no_kernel",
+    ],
+}
+
+cc_defaults {
+    name: "binderRpcTest_defaults_sdk",
+    target: {
+        android: {
+            test_suites: ["vts"],
+        },
+    },
+    defaults: [
+        "binderRpcTest_common_defaults_sdk",
+    ],
+
+    srcs: [
+        "binderRpcTest.cpp",
+        "binderRpcTestCommon.cpp",
+        "binderRpcUniversalTests.cpp",
+    ],
+
+    // This test uses a lot of resources and takes a long time. Due to
+    // design of several tests, it is also very sensitive to resource
+    // contention on the device. b/276820894
+    test_options: {
+        unit_test: false,
+        test_runner_options: [
+            {
+                name: "native-test-timeout",
+                value: "10m",
+            },
+        ],
+    },
+
+    test_suites: ["general-tests"],
+    require_root: true,
+
+    data_bins: [
+        "binder_rpc_test_service_sdk",
+        //"binder_rpc_test_service_no_kernel",
+        //"binder_rpc_test_service_single_threaded",
+        //"binder_rpc_test_service_single_threaded_no_kernel",
     ],
 }
 
@@ -344,6 +470,16 @@ cc_test {
     ],
     static_libs: [
         "libbinder_rpc_no_kernel",
+    ],
+}
+
+cc_test_host {
+    name: "binder_rpc_test_service_sdk",
+    defaults: [
+        "binderRpcTest_service_defaults_sdk",
+    ],
+    shared_libs: [
+        "libbinder_sdk",
     ],
 }
 
@@ -437,6 +573,17 @@ cc_test {
         "libbinder_on_trusty_mock",
         "binderRpcTestService_on_trusty_mock",
         "binderRpcTest_on_trusty_mock",
+    ],
+}
+
+cc_test_host {
+    name: "binderRpcTestSdk",
+    defaults: [
+        "binderRpcTest_defaults_sdk",
+        //"binderRpcTest_shared_defaults",
+    ],
+    shared_libs: [
+        "libbinder_tls_sdk",
     ],
 }
 
