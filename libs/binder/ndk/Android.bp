@@ -32,6 +32,45 @@ license {
     ],
 }
 
+cc_library_host_shared {
+    name: "libbinder_ndk_sdk",
+
+    recovery_available: true,
+
+    export_include_dirs: [
+        "include_cpp",
+        "include_ndk",
+        "include_platform",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+
+    srcs: [
+        "ibinder.cpp",
+        //"ibinder_jni.cpp",
+        "libbinder.cpp",
+        "parcel.cpp",
+        //"parcel_jni.cpp",
+        //"persistable_bundle.cpp",
+        //"process.cpp",
+        "stability.cpp",
+        "status.cpp",
+        //"service_manager.cpp",
+    ],
+
+    shared_libs: [
+        "libbinder_sdk",
+        "libutils_binder_sdk",
+    ],
+    header_libs: [
+        "liblog_stub",
+    ],
+}
+
 cc_library {
     name: "libbinder_ndk",
 
