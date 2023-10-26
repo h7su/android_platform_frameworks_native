@@ -32,6 +32,17 @@ license {
     ],
 }
 
+cc_library_headers {
+    name: "libbinder_ndk_headers2",
+    export_include_dirs: [
+        "include_cpp",
+        "include_ndk",
+        "include_platform",
+    ],
+    host_supported: true,
+    recovery_available: true,
+}
+
 cc_library {
     name: "libbinder_ndk",
 

@@ -23,6 +23,7 @@
 
 using ::android::internal::Stability;
 
+#if 0
 #ifdef __ANDROID_VNDK__
 #error libbinder_ndk should only be built in a system context
 #endif
@@ -33,6 +34,7 @@ using ::android::internal::Stability;
 
 #ifdef __ANDROID_NDK__
 #error libbinder_ndk should only be built in a system context
+#endif
 #endif
 
 // explicit extern because symbol is only declared in header when __ANDROID_VENDOR__
