@@ -347,6 +347,17 @@ cc_test {
     ],
 }
 
+cc_test_host {
+    name: "binder_rpc_test_service_sdk",
+    defaults: [
+        "binderRpcTest_service_defaults",
+        "binderRpcTest_static_defaults",
+    ],
+    shared_libs: [
+        "libbinder_sdk",
+    ],
+}
+
 cc_test {
     name: "binder_rpc_test_service_single_threaded",
     defaults: [
