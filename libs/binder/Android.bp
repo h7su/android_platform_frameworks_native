@@ -42,6 +42,9 @@ cc_library_headers {
     ],
     min_sdk_version: "29",
     target: {
+        host: {
+            enabled: true,
+        },
         darwin: {
             enabled: false,
         },
@@ -77,10 +80,64 @@ cc_library_headers {
     ],
     min_sdk_version: "29",
     target: {
+        host: {
+            enabled: true,
+        },
         darwin: {
             enabled: false,
         },
     },
+}
+
+cc_library_cmake_snapshot {
+    name: "binder_cmake_tstlib",
+    cc_libs: [
+        "libbinder_sdk",
+        "libbinder_headers_base",
+        "libbinder_headers_platform_shared",
+        "libbinder_ndk_core",
+        "libbinder_tls_sdk",
+        "liblog_stub",
+        "libutils_binder_sdk",
+        "libbase_headers",
+        "libbinder_testlib",
+        "binderRpcTestIface-cpp",
+    ],
+    cflags: [
+        "-DNDEBUG",
+        "-DBINDER_DISABLE_BLOB",
+        "-DBINDER_DISABLE_NATIVE_HANDLE",
+        "-DBINDER_NO_LIBBASE",
+        "-fPIC",
+        "-Wno-attributes",
+        "-Wno-unknown-pragmas",
+        "-Wno-missing-field-initializers",
+        "-Wno-strict-aliasing",
+        "-Wno-unused-variable",
+        "-Wno-deprecated",
+        "-Wno-sign-compare",
+        "-Wno-sequence-point",
+        "-Wno-pessimizing-move",
+        "-Wno-unused-result",
+        "-Wno-format",
+        "-Wno-psabi",
+    ],
+    subdirectories: [
+        {
+            name: "boringssl",
+            path: "external/boringssl",
+        },
+    ],
+    android_libname_to_cmake: [
+        {
+            android_lib: "libssl",
+            cmake_libs: ["ssl"],
+        },
+        {
+            android_lib: "libcrypto",
+            cmake_libs: ["crypto"],
+        },
+    ],
 }
 
 // These interfaces are android-specific implementation unrelated to binder
@@ -122,6 +179,10 @@ cc_defaults {
         "Utils.cpp",
         "file.cpp",
     ],
+
+    //shared_libs: [
+    //    "libutils_binder",
+    //],
 
     header_libs: [
         "libbinder_headers_base",
@@ -324,6 +385,29 @@ cc_defaults {
     ],
 }
 
+cc_library_host_shared {
+    name: "libbinder_testlib",
+    srcs: [
+        "tests/RpcTlsTestUtils.cpp",
+    ],
+    export_include_dirs: [
+        "tests/include_tls_test_utils",
+        "include_tls",
+    ],
+    header_libs: [
+        "libbase_headers",
+    ],
+    static_libs: [
+        "binderRpcTestIface-cpp",
+    ],
+    shared_libs: [
+        "libbinder_sdk",
+        "libbinder_ndk_core",
+        "libssl",
+        "libcrypto",
+    ],
+}
+
 cc_library {
     name: "libbinder",
     defaults: [
@@ -389,10 +473,6 @@ cc_library_host_shared {
         "libbinder_common_defaults",
     ],
 
-    shared_libs: [
-        "libutils_binder_sdk",
-    ],
-
     cflags: [
         "-DBINDER_ENABLE_LIBLOG_ASSERT",
         "-DBINDER_DISABLE_NATIVE_HANDLE",
@@ -404,6 +484,9 @@ cc_library_host_shared {
         "liblog_stub",
     ],
 
+    shared_libs: [
+        "libutils_binder_sdk",
+    ],
     srcs: [
         "OS_non_android_linux.cpp",
         "OS_unix_base.cpp",
@@ -505,27 +588,44 @@ cc_defaults {
 }
 
 cc_defaults {
-    name: "libbinder_tls_defaults",
-    defaults: ["libbinder_tls_shared_deps"],
+    name: "libbinder_tls_nodep_defaults",
     vendor_available: true,
     host_supported: true,
 
+    export_include_dirs: ["include_tls"],
+    srcs: [
+        "RpcTransportTls.cpp",
+        "RpcTlsUtils.cpp",
+    ],
+}
+
+cc_defaults {
+    name: "libbinder_tls_defaults",
+    defaults: [
+        "libbinder_tls_nodep_defaults",
+        "libbinder_tls_shared_deps",
+    ],
     header_libs: [
         "libbinder_headers",
     ],
     export_header_lib_headers: [
         "libbinder_headers",
     ],
-    export_shared_lib_headers: [
-        "libssl",
-    ],
-    export_include_dirs: ["include_tls"],
     static_libs: [
         "libbase",
     ],
-    srcs: [
-        "RpcTransportTls.cpp",
-        "RpcTlsUtils.cpp",
+}
+
+cc_library_host_shared {
+    name: "libbinder_tls_sdk",
+    defaults: ["libbinder_tls_nodep_defaults"],
+    shared_libs: [
+        "libbinder_sdk",
+        "libssl",
+        "libcrypto",
+    ],
+    header_libs: [
+        "liblog_stub",
     ],
 }
 
