@@ -49,10 +49,23 @@ cc_library_headers {
     ],
     min_sdk_version: "29",
     target: {
+        host: {
+            enabled: true,
+        },
         darwin: {
             enabled: false,
         },
     },
+}
+
+cc_library_cmake_snapshot {
+    name: "binder_cmake_tstlib",
+    cc_libs: [
+        "libbinder_sdk",
+        "libbinder_headers_base",
+        "liblog_stub",
+        "libutils_binder",
+    ],
 }
 
 // These interfaces are android-specific implementation unrelated to binder
