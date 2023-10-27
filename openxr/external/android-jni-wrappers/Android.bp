@@ -1,0 +1,16 @@
+filegroup {
+    name: "android-jni-wrappers-srcs",
+    srcs: [
+        "wrap/*.cpp",
+    ],
+}
+
+cc_library_headers {
+    name: "android-jni-wrappers_headers",
+    export_include_dirs: [
+        ".",
+    ],
+    visibility: [
+        "//frameworks/native/openxr:__subpackages__",
+    ],
+}

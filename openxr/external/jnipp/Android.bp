@@ -1,0 +1,16 @@
+filegroup {
+    name: "jnipp-srcs",
+    srcs: [
+        "jnipp.cpp",
+    ],
+}
+
+cc_library_headers {
+    name: "jnipp_headers",
+    export_include_dirs: [
+        ".",
+    ],
+    visibility: [
+        "//frameworks/native/openxr:__subpackages__",
+    ],
+}

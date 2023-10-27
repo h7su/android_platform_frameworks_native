@@ -1,0 +1,119 @@
+// Copyright (C) 2023 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_native_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-MIT
+    default_applicable_licenses: ["frameworks_native_license"],
+}
+
+ndk_headers {
+    name: "ndk_openxr_headers",
+    from: "include",
+    to: "",
+    srcs: [
+        "include/openxr/openxr.h",
+        "include/openxr/openxr_platform.h",
+        "include/openxr/openxr_platform_defines.h",
+        "include/openxr/openxr_reflection.h",
+        "include/openxr/openxr_reflection_parent_structs.h",
+        "include/openxr/openxr_reflection_structs.h",
+    ],
+    license: "include/openxr/LICENSE",
+}
+
+cc_library_headers {
+    name: "openxr_headers",
+    export_include_dirs: [
+        "include",
+    ],
+    host_supported: true,
+    vendor_available: true,
+    llndk: {
+        llndk_headers: true,
+    },
+}
+
+ndk_library {
+    name: "libopenxr",
+    symbol_file: "loader/openxr-loader.map.txt",
+    first_version: "31",
+    unversioned_until: "current",
+}
+
+cc_library_shared {
+    name: "libopenxr",
+    cflags: [
+        "-DAPI_NAME=\"OpenXR\"",
+        "-DXRLOADER_DISABLE_EXCEPTION_HANDLING",
+        "-DXR_OS_ANDROID",
+        "-DXR_USE_GRAPHICS_API_OPENGL_ES",
+        "-DXR_USE_GRAPHICS_API_VULKAN",
+        "-DXR_USE_PLATFORM_ANDROID",
+        "-Wextra",
+        "-fexceptions",
+        "-fno-builtin-memcmp",
+        "-fno-strict-aliasing",
+        "-fvisibility=hidden",
+    ],
+    local_include_dirs: [
+        ".",
+        "common",
+        "loader",
+    ],
+    srcs: [
+        ":android-jni-wrappers-srcs",
+        ":jnipp-srcs",
+        "common/filesystem_utils.cpp",
+        "common/object_info.cpp",
+        "loader/android_utilities.cpp",
+        "loader/api_layer_interface.cpp",
+        "loader/loader_core.cpp",
+        "loader/loader_instance.cpp",
+        "loader/loader_logger.cpp",
+        "loader/loader_logger_recorders.cpp",
+        "loader/manifest_file.cpp",
+        "loader/runtime_interface.cpp",
+        "loader/xr_generated_loader.cpp",
+        "xr_generated_dispatch_table.c",
+    ],
+    header_libs: [
+        "android-jni-wrappers_headers",
+        "jni_headers",
+        "jnipp_headers",
+        "openxr_headers",
+    ],
+    export_header_lib_headers: [
+        "openxr_headers",
+    ],
+    shared_libs: [
+        "libandroid",
+        "libEGL",
+        "liblog",
+        "libnativewindow",
+        "libvulkan",
+    ],
+    static_libs: [
+        "libc++fs",
+        "libjsoncpp",
+    ],
+    stubs: {
+        symbol_file: "loader/openxr-loader.map.txt",
+    },
+    version_script: "loader/openxr-loader.map.txt",
+}
