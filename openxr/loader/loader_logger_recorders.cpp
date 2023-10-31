@@ -20,13 +20,7 @@
 #include <iostream>
 #include <sstream>
 
-#ifdef __ANDROID__
-#include "android/log.h"
-#endif
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
+#include <android/log.h>
 
 // Anonymous namespace to keep these types private
 namespace {
@@ -96,7 +90,6 @@ class DebugUtilsLogRecorder : public LoaderLogRecorder {
    private:
     PFN_xrDebugUtilsMessengerCallbackEXT _user_callback;
 };
-#ifdef __ANDROID__
 
 class LogcatLoaderLogRecorder : public LoaderLogRecorder {
    public:
@@ -105,18 +98,6 @@ class LogcatLoaderLogRecorder : public LoaderLogRecorder {
     bool LogMessage(XrLoaderLogMessageSeverityFlagBits message_severity, XrLoaderLogMessageTypeFlags message_type,
                     const XrLoaderLogMessengerCallbackData* callback_data) override;
 };
-#endif
-
-#ifdef _WIN32
-// Output to debugger
-class DebuggerLoaderLogRecorder : public LoaderLogRecorder {
-   public:
-    DebuggerLoaderLogRecorder(void* user_data, XrLoaderLogMessageSeverityFlags flags);
-
-    bool LogMessage(XrLoaderLogMessageSeverityFlagBits message_severity, XrLoaderLogMessageTypeFlags message_type,
-                    const XrLoaderLogMessengerCallbackData* callback_data) override;
-};
-#endif
 
 // Unified stdout/stderr logger
 OstreamLoaderLogRecorder::OstreamLoaderLogRecorder(std::ostream& os, void* user_data, XrLoaderLogMessageSeverityFlags flags)
@@ -195,8 +176,6 @@ bool DebugUtilsLogRecorder::LogDebugUtilsMessage(XrDebugUtilsMessageSeverityFlag
     return (_user_callback(message_severity, message_type, callback_data, _user_data) == XR_TRUE);
 }
 
-#ifdef __ANDROID__
-
 static inline android_LogPriority LoaderToAndroidLogPriority(XrLoaderLogMessageSeverityFlags message_severity) {
     if (0 != (message_severity & XR_LOADER_LOG_MESSAGE_SEVERITY_ERROR_BIT)) {
         return ANDROID_LOG_ERROR;
@@ -232,31 +211,6 @@ bool LogcatLoaderLogRecorder::LogMessage(XrLoaderLogMessageSeverityFlagBits mess
     // don't want to do that for our internal logging.  Only let a user return true.
     return false;
 }
-#endif  // __ANDROID__
-
-#ifdef _WIN32
-// Unified stdout/stderr logger
-DebuggerLoaderLogRecorder::DebuggerLoaderLogRecorder(void* user_data, XrLoaderLogMessageSeverityFlags flags)
-    : LoaderLogRecorder(XR_LOADER_LOG_DEBUGGER, user_data, flags, 0xFFFFFFFFUL) {
-    // Automatically start
-    Start();
-}
-
-bool DebuggerLoaderLogRecorder::LogMessage(XrLoaderLogMessageSeverityFlagBits message_severity,
-                                           XrLoaderLogMessageTypeFlags message_type,
-                                           const XrLoaderLogMessengerCallbackData* callback_data) {
-    if (_active && 0 != (_message_severities & message_severity) && 0 != (_message_types & message_type)) {
-        std::stringstream ss;
-        OutputMessageToStream(ss, message_severity, message_type, callback_data);
-
-        OutputDebugStringA(ss.str().c_str());
-    }
-
-    // Return of "true" means that we should exit the application after the logged message.  We
-    // don't want to do that for our internal logging.  Only let a user return true.
-    return false;
-}
-#endif
 }  // namespace
 
 std::unique_ptr<LoaderLogRecorder> MakeStdOutLoaderLogRecorder(void* user_data, XrLoaderLogMessageSeverityFlags flags) {
@@ -276,16 +230,7 @@ std::unique_ptr<LoaderLogRecorder> MakeDebugUtilsLoaderLogRecorder(const XrDebug
     return recorder;
 }
 
-#ifdef __ANDROID__
 std::unique_ptr<LoaderLogRecorder> MakeLogcatLoaderLogRecorder() {
     std::unique_ptr<LoaderLogRecorder> recorder(new LogcatLoaderLogRecorder());
     return recorder;
 }
-#endif
-
-#ifdef _WIN32
-std::unique_ptr<LoaderLogRecorder> MakeDebuggerLoaderLogRecorder(void* user_data) {
-    std::unique_ptr<LoaderLogRecorder> recorder(new DebuggerLoaderLogRecorder(user_data, XR_LOADER_LOG_MESSAGE_SEVERITY_ERROR_BIT));
-    return recorder;
-}
-#endif

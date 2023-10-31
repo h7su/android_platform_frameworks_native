@@ -34,7 +34,6 @@
 #include "hex_and_handles.h"
 #include "loader_instance.hpp"
 #include "loader_logger.hpp"
-#include "loader_platform.hpp"
 #include "runtime_interface.hpp"
 #include "xr_generated_dispatch_table_core.h"
 
@@ -48,6 +47,8 @@
 #include <string>
 #include <unordered_map>
 
+
+#define LOADER_EXPORT __attribute__((visibility("default")))
 
 // Automatically generated instance trampolines and terminators
 extern "C" LOADER_EXPORT XRAPI_ATTR XrResult XRAPI_CALL xrGetInstanceProperties(

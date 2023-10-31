@@ -3,8 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 #pragma once
 
-#ifdef XR_USE_PLATFORM_ANDROID
-
 #include <memory>
 #include <android/asset_manager.h>
 
@@ -29,5 +27,3 @@ struct AAssetDirDeleter {
 
 using UniqueAsset = std::unique_ptr<AAsset, deleters::AAssetDeleter>;
 using UniqueAssetDir = std::unique_ptr<AAssetDir, deleters::AAssetDirDeleter>;
-
-#endif
