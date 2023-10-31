@@ -13,14 +13,6 @@
 #define USE_EXPERIMENTAL_FS 0
 #define USE_FINAL_FS 1
 
-#elif defined(_MSC_VER) && _MSC_VER >= 1900
-
-#if defined(_HAS_CXX17) && _HAS_CXX17
-// When MSC supports c++17 use <filesystem> package.
-#define USE_EXPERIMENTAL_FS 0
-#define USE_FINAL_FS 1
-#endif  // !_HAS_CXX17
-
 // GCC supports the experimental filesystem items starting in GCC 6
 #elif (__GNUC__ >= 6)
 #define USE_EXPERIMENTAL_FS 1

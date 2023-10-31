@@ -15,7 +15,6 @@
 
 #include <openxr/openxr.h>
 
-#include "loader_platform.hpp"
 #include "loader_interfaces.h"
 
 struct XrGeneratedDispatchTable;
@@ -23,8 +22,7 @@ struct XrGeneratedDispatchTable;
 class ApiLayerInterface {
    public:
     // Factory method
-    static XrResult LoadApiLayers(const std::string& openxr_command, uint32_t enabled_api_layer_count,
-                                  const char* const* enabled_api_layer_names,
+    static XrResult LoadApiLayers(const std::string& openxr_command,
                                   std::vector<std::unique_ptr<ApiLayerInterface>>& api_layer_interfaces);
     // Static queries
     static XrResult GetApiLayerProperties(const std::string& openxr_command, uint32_t incoming_count, uint32_t* outgoing_count,
@@ -32,7 +30,7 @@ class ApiLayerInterface {
     static XrResult GetInstanceExtensionProperties(const std::string& openxr_command, const char* layer_name,
                                                    std::vector<XrExtensionProperties>& extension_properties);
 
-    ApiLayerInterface(const std::string& layer_name, LoaderPlatformLibraryHandle layer_library,
+    ApiLayerInterface(const std::string& layer_name, void* layer_library,
                       std::vector<std::string>& supported_extensions, PFN_xrGetInstanceProcAddr get_instance_proc_addr,
                       PFN_xrCreateApiLayerInstance create_api_layer_instance);
     virtual ~ApiLayerInterface();
@@ -47,7 +45,7 @@ class ApiLayerInterface {
 
    private:
     std::string _layer_name;
-    LoaderPlatformLibraryHandle _layer_library;
+    void* _layer_library;
     PFN_xrGetInstanceProcAddr _get_instance_proc_addr;
     PFN_xrCreateApiLayerInstance _create_api_layer_instance;
     std::vector<std::string> _supported_extensions;
