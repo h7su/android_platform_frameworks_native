@@ -7,17 +7,12 @@
 // Initial Authors: Mark Young <marky@lunarg.com>, Dave Houlton <daveh@lunarg.com>
 //
 
-#if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-#define _CRT_SECURE_NO_WARNINGS
-#endif  // defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-
 #include "api_layer_interface.hpp"
 #include "exception_handling.hpp"
 #include "hex_and_handles.h"
 #include "loader_instance.hpp"
 #include "loader_logger_recorders.hpp"
 #include "loader_logger.hpp"
-#include "loader_platform.hpp"
 #include "runtime_interface.hpp"
 #include "xr_generated_dispatch_table_core.h"
 #include "xr_generated_loader.hpp"
@@ -31,6 +26,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+
+#define LOADER_EXPORT __attribute__((visibility("default")))
 
 // Global loader lock to:
 //   1. Ensure ActiveLoaderInstance get and set operations are done atomically.
@@ -74,13 +71,11 @@ inline bool IsMissingNullTerminator(const char (&str)[max_length]) {
 }
 
 // ---- Core 1.0 manual loader trampoline functions
-#ifdef XR_KHR_LOADER_INIT_SUPPORT  // platforms that support XR_KHR_loader_init.
 XRAPI_ATTR XrResult XRAPI_CALL LoaderXrInitializeLoaderKHR(const XrLoaderInitInfoBaseHeaderKHR *loaderInitInfo) XRLOADER_ABI_TRY {
     LoaderLogger::LogVerboseMessage("xrInitializeLoaderKHR", "Entering loader trampoline");
     return InitializeLoader(loaderInitInfo);
 }
 XRLOADER_ABI_CATCH_FALLBACK
-#endif
 
 static XRAPI_ATTR XrResult XRAPI_CALL LoaderXrEnumerateApiLayerProperties(uint32_t propertyCapacityInput,
                                                                           uint32_t *propertyCountOutput,
@@ -260,8 +255,7 @@ static XRAPI_ATTR XrResult XRAPI_CALL LoaderXrCreateInstance(const XrInstanceCre
             LoaderLogger::LogErrorMessage("xrCreateInstance", "Failed loading runtime information");
         } else {
             // Load the appropriate layers
-            result = ApiLayerInterface::LoadApiLayers("xrCreateInstance", info->enabledApiLayerCount, info->enabledApiLayerNames,
-                                                      api_layer_interfaces);
+            result = ApiLayerInterface::LoadApiLayers("xrCreateInstance", api_layer_interfaces);
             if (XR_FAILED(result)) {
                 LoaderLogger::LogErrorMessage("xrCreateInstance", "Failed loading layer information");
             }
@@ -757,12 +751,8 @@ XRAPI_ATTR XrResult XRAPI_CALL LoaderXrGetInstanceProcAddr(XrInstance instance, 
         *function = reinterpret_cast<PFN_xrVoidFunction>(LoaderXrGetInstanceProcAddr);
         return XR_SUCCESS;
     } else if (strcmp(name, "xrInitializeLoaderKHR") == 0) {
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
         *function = reinterpret_cast<PFN_xrVoidFunction>(LoaderXrInitializeLoaderKHR);
         return XR_SUCCESS;
-#else
-        return XR_ERROR_FUNCTION_UNSUPPORTED;
-#endif
     } else if (strcmp(name, "xrEnumerateApiLayerProperties") == 0) {
         *function = reinterpret_cast<PFN_xrVoidFunction>(LoaderXrEnumerateApiLayerProperties);
         return XR_SUCCESS;
@@ -842,8 +832,6 @@ LOADER_EXPORT XRAPI_ATTR XrResult XRAPI_CALL xrGetInstanceProcAddr(XrInstance in
     return LoaderXrGetInstanceProcAddr(instance, name, function);
 }
 
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
 LOADER_EXPORT XRAPI_ATTR XrResult XRAPI_CALL xrInitializeLoaderKHR(const XrLoaderInitInfoBaseHeaderKHR *loaderInitInfo) {
     return LoaderXrInitializeLoaderKHR(loaderInitInfo);
 }
-#endif

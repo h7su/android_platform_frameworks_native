@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include "loader_platform.hpp"
-
 #include <openxr/openxr.h>
 
 #include <string>
@@ -19,21 +17,14 @@
 #include <mutex>
 #include <memory>
 
-#ifdef XR_USE_PLATFORM_ANDROID
-#define XR_KHR_LOADER_INIT_SUPPORT
-#endif
-
 namespace Json {
 class Value;
 }
 
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
 //! Initialize loader, where required.
 XrResult InitializeLoader(const XrLoaderInitInfoBaseHeaderKHR* loaderInitInfo);
-XrResult GetPlatformRuntimeVirtualManifest(Json::Value& out_manifest);
 std::string GetAndroidNativeLibraryDir();
 void* Android_Get_Asset_Manager();
-#endif
 
 class RuntimeManifestFile;
 struct XrGeneratedDispatchTable;
@@ -67,7 +58,7 @@ class RuntimeInterface {
     RuntimeInterface& operator=(const RuntimeInterface&) = delete;
 
    private:
-    RuntimeInterface(LoaderPlatformLibraryHandle runtime_library, PFN_xrGetInstanceProcAddr get_instance_proc_addr);
+    RuntimeInterface(void* runtime_library, PFN_xrGetInstanceProcAddr get_instance_proc_addr);
     void SetSupportedExtensions(std::vector<std::string>& supported_extensions);
     static XrResult TryLoadingSingleRuntime(const std::string& openxr_command, std::unique_ptr<RuntimeManifestFile>& manifest_file);
 
@@ -76,7 +67,7 @@ class RuntimeInterface {
         return instance;
     }
 
-    LoaderPlatformLibraryHandle _runtime_library;
+    void* _runtime_library;
     PFN_xrGetInstanceProcAddr _get_instance_proc_addr;
     std::unordered_map<XrInstance, std::unique_ptr<XrGeneratedDispatchTable>> _dispatch_table_map;
     std::mutex _dispatch_table_mutex;

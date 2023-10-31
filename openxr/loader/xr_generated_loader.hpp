@@ -40,14 +40,14 @@
 
 #include "loader_instance.hpp"
 
-#include "loader_platform.hpp"
-
 
 #ifdef __cplusplus
 extern "C" { 
 #endif
 
 // Loader manually generated function prototypes
+
+#define LOADER_EXPORT __attribute__((visibility("default")))
 
 extern "C" LOADER_EXPORT XRAPI_ATTR XrResult XRAPI_CALL xrGetInstanceProperties(
     XrInstance                                  instance,

@@ -12,7 +12,6 @@
 #include "extra_algorithms.h"
 #include "hex_and_handles.h"
 #include "loader_logger_recorders.hpp"
-#include "platform_utils.hpp"
 
 #include <openxr/openxr.h>
 
@@ -25,9 +24,6 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-
-// For routing platform_utils.hpp messages into the LoaderLogger.
-void LogPlatformUtilsError(const std::string& message) { LoaderLogger::LogErrorMessage("platform_utils", message); }
 
 bool LoaderLogRecorder::LogDebugUtilsMessage(XrDebugUtilsMessageSeverityFlagsEXT /*message_severity*/,
                                              XrDebugUtilsMessageTypeFlagsEXT /*message_type*/,
@@ -102,23 +98,16 @@ XrDebugUtilsMessageTypeFlagsEXT LoaderLogMessageTypesToDebugUtilsMessageTypes(Xr
 }
 
 LoaderLogger::LoaderLogger() {
-    std::string debug_string = PlatformUtilsGetEnv("XR_LOADER_DEBUG");
+    std::string debug_string;
 
     // Add an error logger by default so that we at least get errors out to std::cerr.
     // Normally we enable stderr output. But if the XR_LOADER_DEBUG environment variable is
     // present as "none" then we don't.
     if (debug_string != "none") {
         AddLogRecorder(MakeStdErrLoaderLogRecorder(nullptr));
-#ifdef __ANDROID__
         // Add a logcat logger by default.
         AddLogRecorder(MakeLogcatLoaderLogRecorder());
-#endif  // __ANDROID__
     }
-
-#ifdef _WIN32
-    // Add an debugger logger by default so that we at least get errors out to the debugger.
-    AddLogRecorder(MakeDebuggerLoaderLogRecorder(nullptr));
-#endif
 
     // If the environment variable to enable loader debugging is set, then enable the
     // appropriate logging out to std::cout.

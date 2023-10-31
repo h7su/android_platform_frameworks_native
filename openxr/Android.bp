@@ -81,7 +81,6 @@ cc_library_shared {
         ":jnipp-srcs",
         "common/filesystem_utils.cpp",
         "common/object_info.cpp",
-        "loader/android_utilities.cpp",
         "loader/api_layer_interface.cpp",
         "loader/loader_core.cpp",
         "loader/loader_instance.cpp",

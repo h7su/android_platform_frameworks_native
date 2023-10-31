@@ -12,10 +12,11 @@
 #include "manifest_file.hpp"
 #include "loader_interfaces.h"
 #include "loader_logger.hpp"
-#include "loader_platform.hpp"
 #include "xr_generated_dispatch_table_core.h"
 
 #include <openxr/openxr.h>
+
+#include <dlfcn.h>
 
 #include <cstring>
 #include <memory>
@@ -25,17 +26,15 @@
 #include <utility>
 #include <vector>
 
-#ifdef XR_USE_PLATFORM_ANDROID
-#include "android_utilities.h"
 #include <android/asset_manager_jni.h>
+#include <jni.h>
+#include <jnipp.h>
 #include <json/value.h>
 
 // Needed for the loader init struct
 #include <xr_dependencies.h>
 #include <openxr/openxr_platform.h>
-#endif  // XR_USE_PLATFORM_ANDROID
 
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
 namespace {
 /*!
  * Stores a copy of the data passed to the xrInitializeLoaderKHR function in a singleton.
@@ -50,7 +49,6 @@ class LoaderInitData {
         return obj;
     }
 
-#ifdef XR_USE_PLATFORM_ANDROID
     /*!
      * Type alias for the platform-specific structure type.
      */
@@ -63,7 +61,6 @@ class LoaderInitData {
      * Android asset manager.
      */
     AAssetManager* _android_asset_manager;
-#endif
 
     /*!
      * Get our copy of the data, casted to pass to the runtime's matching method.
@@ -95,7 +92,6 @@ class LoaderInitData {
     bool _initialized = false;
 };
 
-#ifdef XR_USE_PLATFORM_ANDROID
 // Check and copy the Android-specific init data.
 XrResult LoaderInitData::initialize(const XrLoaderInitInfoBaseHeaderKHR* info) {
     if (info->type != XR_TYPE_LOADER_INIT_INFO_ANDROID_KHR) {
@@ -128,7 +124,6 @@ XrResult LoaderInitData::initialize(const XrLoaderInitInfoBaseHeaderKHR* info) {
     _initialized = true;
     return XR_SUCCESS;
 }
-#endif  // XR_USE_PLATFORM_ANDROID
 }  // namespace
 
 XrResult InitializeLoader(const XrLoaderInitInfoBaseHeaderKHR* loaderInitInfo) {
@@ -139,33 +134,11 @@ std::string GetAndroidNativeLibraryDir() { return LoaderInitData::instance()._na
 
 void* Android_Get_Asset_Manager() { return LoaderInitData::instance()._android_asset_manager; }
 
-#endif  // XR_KHR_LOADER_INIT_SUPPORT
-
-#ifdef XR_USE_PLATFORM_ANDROID
-XrResult GetPlatformRuntimeVirtualManifest(Json::Value& out_manifest) {
-    using wrap::android::content::Context;
-    auto& initData = LoaderInitData::instance();
-    if (!initData.initialized()) {
-        return XR_ERROR_INITIALIZATION_FAILED;
-    }
-    auto context = Context(reinterpret_cast<jobject>(initData.getData().applicationContext));
-    if (context.isNull()) {
-        return XR_ERROR_INITIALIZATION_FAILED;
-    }
-    Json::Value virtualManifest;
-    if (0 != openxr_android::getActiveRuntimeVirtualManifest(context, virtualManifest)) {
-        return XR_ERROR_INITIALIZATION_FAILED;
-    }
-    out_manifest = virtualManifest;
-    return XR_SUCCESS;
-}
-#endif  // XR_USE_PLATFORM_ANDROID
-
 XrResult RuntimeInterface::TryLoadingSingleRuntime(const std::string& openxr_command,
                                                    std::unique_ptr<RuntimeManifestFile>& manifest_file) {
-    LoaderPlatformLibraryHandle runtime_library = LoaderPlatformLibraryOpen(manifest_file->LibraryPath());
+    void* runtime_library = dlopen(manifest_file->LibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL);
     if (nullptr == runtime_library) {
-        std::string library_message = LoaderPlatformLibraryOpenError(manifest_file->LibraryPath());
+        std::string library_message = dlerror();
         std::string warning_message = "RuntimeInterface::LoadRuntime skipping manifest file ";
         warning_message += manifest_file->Filename();
         warning_message += ", failed to load with message \"";
@@ -174,43 +147,38 @@ XrResult RuntimeInterface::TryLoadingSingleRuntime(const std::string& openxr_com
         LoaderLogger::LogErrorMessage(openxr_command, warning_message);
         return XR_ERROR_FILE_ACCESS_ERROR;
     }
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
     if (!LoaderInitData::instance().initialized()) {
         LoaderLogger::LogErrorMessage(openxr_command, "RuntimeInterface::LoadRuntime skipping manifest file " +
                                                           manifest_file->Filename() +
                                                           " because xrInitializeLoaderKHR was not yet called.");
 
-        LoaderPlatformLibraryClose(runtime_library);
+        dlclose(runtime_library);
         return XR_ERROR_VALIDATION_FAILURE;
     }
-    bool forwardedInitLoader = false;
-    {
-        // If we have xrInitializeLoaderKHR exposed as an export, forward call to it.
-        const auto function_name = manifest_file->GetFunctionName("xrInitializeLoaderKHR");
-        auto initLoader =
-            reinterpret_cast<PFN_xrInitializeLoaderKHR>(LoaderPlatformLibraryGetProcAddr(runtime_library, function_name));
-        if (initLoader != nullptr) {
-            // we found the entry point one way or another.
-            LoaderLogger::LogInfoMessage(openxr_command,
-                                         "RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime before "
-                                         "calling xrNegotiateLoaderRuntimeInterface.");
-            XrResult res = initLoader(LoaderInitData::instance().getParam());
-            if (!XR_SUCCEEDED(res)) {
-                LoaderLogger::LogErrorMessage(openxr_command,
-                                              "RuntimeInterface::LoadRuntime forwarded call to xrInitializeLoaderKHR failed.");
 
-                LoaderPlatformLibraryClose(runtime_library);
-                return res;
-            }
-            forwardedInitLoader = true;
+    // If we have xrInitializeLoaderKHR exposed as an export, forward call to it.
+    auto function_name = manifest_file->GetFunctionName("xrInitializeLoaderKHR");
+    auto initLoader =
+        reinterpret_cast<PFN_xrInitializeLoaderKHR>(dlsym(runtime_library, function_name.c_str()));
+    if (initLoader != nullptr) {
+        // we found the entry point one way or another.
+        LoaderLogger::LogInfoMessage(openxr_command,
+                                     "RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime before "
+                                     "calling xrNegotiateLoaderRuntimeInterface.");
+        XrResult res = initLoader(LoaderInitData::instance().getParam());
+        if (!XR_SUCCEEDED(res)) {
+            LoaderLogger::LogErrorMessage(openxr_command,
+                                          "RuntimeInterface::LoadRuntime forwarded call to xrInitializeLoaderKHR failed.");
+
+            dlclose(runtime_library);
+            return res;
         }
     }
-#endif
 
     // Get and settle on an runtime interface version (using any provided name if required).
-    std::string function_name = manifest_file->GetFunctionName("xrNegotiateLoaderRuntimeInterface");
+    function_name = manifest_file->GetFunctionName("xrNegotiateLoaderRuntimeInterface");
     auto negotiate =
-        reinterpret_cast<PFN_xrNegotiateLoaderRuntimeInterface>(LoaderPlatformLibraryGetProcAddr(runtime_library, function_name));
+        reinterpret_cast<PFN_xrNegotiateLoaderRuntimeInterface>(dlsym(runtime_library, function_name.c_str()));
 
     // Loader info for negotiation
     XrNegotiateLoaderInfo loader_info = {};
@@ -261,43 +229,14 @@ XrResult RuntimeInterface::TryLoadingSingleRuntime(const std::string& openxr_com
             res = XR_ERROR_FILE_CONTENTS_INVALID;
         }
     }
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
-    if (XR_SUCCEEDED(res) && !forwardedInitLoader) {
-        // Forward initialize loader call, where possible and if we did not do so before.
-        PFN_xrVoidFunction initializeVoid = nullptr;
-        PFN_xrInitializeLoaderKHR initialize = nullptr;
 
-        // Now we may try asking xrGetInstanceProcAddr
-        if (XR_SUCCEEDED(runtime_info.getInstanceProcAddr(XR_NULL_HANDLE, "xrInitializeLoaderKHR", &initializeVoid))) {
-            if (initializeVoid == nullptr) {
-                LoaderLogger::LogErrorMessage(openxr_command,
-                                              "RuntimeInterface::LoadRuntime got success from xrGetInstanceProcAddr "
-                                              "for xrInitializeLoaderKHR, but output a null pointer.");
-                res = XR_ERROR_RUNTIME_FAILURE;
-            } else {
-                initialize = reinterpret_cast<PFN_xrInitializeLoaderKHR>(initializeVoid);
-            }
-        }
-        if (initialize != nullptr) {
-            // we found the entry point one way or another.
-            LoaderLogger::LogInfoMessage(openxr_command,
-                                         "RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime after "
-                                         "calling xrNegotiateLoaderRuntimeInterface.");
-            res = initialize(LoaderInitData::instance().getParam());
-            if (!XR_SUCCEEDED(res)) {
-                LoaderLogger::LogErrorMessage(openxr_command,
-                                              "RuntimeInterface::LoadRuntime forwarded call to xrInitializeLoaderKHR failed.");
-            }
-        }
-    }
-#endif
     if (XR_FAILED(res)) {
         std::string warning_message = "RuntimeInterface::LoadRuntime skipping manifest file ";
         warning_message += manifest_file->Filename();
         warning_message += ", negotiation failed with error ";
         warning_message += std::to_string(res);
         LoaderLogger::LogErrorMessage(openxr_command, warning_message);
-        LoaderPlatformLibraryClose(runtime_library);
+        dlclose(runtime_library);
         return res;
     }
 
@@ -333,14 +272,12 @@ XrResult RuntimeInterface::LoadRuntime(const std::string& openxr_command) {
     if (GetInstance() != nullptr) {
         return XR_SUCCESS;
     }
-#ifdef XR_KHR_LOADER_INIT_SUPPORT
 
     if (!LoaderInitData::instance().initialized()) {
         LoaderLogger::LogErrorMessage(
             openxr_command, "RuntimeInterface::LoadRuntime cannot run because xrInitializeLoaderKHR was not successfully called.");
         return XR_ERROR_INITIALIZATION_FAILED;
     }
-#endif  // XR_KHR_LOADER_INIT_SUPPORT
 
     std::vector<std::unique_ptr<RuntimeManifestFile>> runtime_manifest_files = {};
 
@@ -400,7 +337,7 @@ const XrGeneratedDispatchTable* RuntimeInterface::GetDebugUtilsMessengerDispatch
     return GetDispatchTable(runtime_instance);
 }
 
-RuntimeInterface::RuntimeInterface(LoaderPlatformLibraryHandle runtime_library, PFN_xrGetInstanceProcAddr get_instance_proc_addr)
+RuntimeInterface::RuntimeInterface(void* runtime_library, PFN_xrGetInstanceProcAddr get_instance_proc_addr)
     : _runtime_library(runtime_library), _get_instance_proc_addr(get_instance_proc_addr) {}
 
 RuntimeInterface::~RuntimeInterface() {
@@ -410,7 +347,7 @@ RuntimeInterface::~RuntimeInterface() {
         std::lock_guard<std::mutex> mlock(_dispatch_table_mutex);
         _dispatch_table_map.clear();
     }
-    LoaderPlatformLibraryClose(_runtime_library);
+    dlclose(_runtime_library);
 }
 
 void RuntimeInterface::GetInstanceExtensionProperties(std::vector<XrExtensionProperties>& extension_properties) {
