@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The Android Open Source Project
+ * Copyright (C) 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,9 @@
 
 #pragma once
 
-#include <binder/unique_fd.h>
-#include <fuzzer/FuzzedDataProvider.h>
+#include <android-base/unique_fd.h>
 
-#include <vector>
-
-namespace android {
-
-// always valid or aborts
-// get a random FD for use in fuzzing, of a few different specific types
-//
-// may return multiple FDs (e.g. pipe), but will always return at least one
-std::vector<binder::unique_fd> getRandomFds(FuzzedDataProvider* provider);
-
-} // namespace android
+namespace android::binder {
+using android::base::borrowed_fd;
+using android::base::unique_fd;
+} // namespace android::binder
