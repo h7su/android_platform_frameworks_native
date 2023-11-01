@@ -39,9 +39,6 @@
 #include <windows.h>
 #endif
 
-// TODO(b/302723053): use binder, not base
-using android::base::borrowed_fd;
-
 namespace android::binder {
 
 bool ReadFdToString(borrowed_fd fd, std::string* content) {

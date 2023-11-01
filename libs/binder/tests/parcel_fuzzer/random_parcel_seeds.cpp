@@ -22,6 +22,7 @@
 
 #include "../../file.h"
 
+using android::binder::borrowed_fd;
 using android::binder::WriteFully;
 
 namespace android {
@@ -65,7 +66,7 @@ void writeReversedBuffer(std::vector<uint8_t>& integralBuffer, T val) {
 
 } // namespace impl
 
-void generateSeedsFromRecording(base::borrowed_fd fd,
+void generateSeedsFromRecording(borrowed_fd fd,
                                 const binder::debug::RecordedTransaction& transaction) {
     // Write Reserved bytes for future use
     std::vector<uint8_t> reservedBytes(8);

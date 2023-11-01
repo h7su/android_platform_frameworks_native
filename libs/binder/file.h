@@ -27,15 +27,14 @@ using android::base::WriteFully;
 
 #else
 
-#include <android-base/unique_fd.h>
+#include <binder/unique_fd.h>
 
 #include <string_view>
 
 namespace android::binder {
 
-// TODO(b/302723053): use binder, not base
-bool ReadFully(base::borrowed_fd fd, void* data, size_t byte_count);
-bool WriteFully(base::borrowed_fd fd, const void* data, size_t byte_count);
+bool ReadFully(borrowed_fd fd, void* data, size_t byte_count);
+bool WriteFully(borrowed_fd fd, const void* data, size_t byte_count);
 
 } // namespace android::binder
 

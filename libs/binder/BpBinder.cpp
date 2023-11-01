@@ -34,6 +34,8 @@
 
 namespace android {
 
+using android::binder::unique_fd;
+
 // ---------------------------------------------------------------------------
 
 RpcMutex BpBinder::sTrackingLock;
@@ -317,7 +319,7 @@ status_t BpBinder::pingBinder()
     return transact(PING_TRANSACTION, data, &reply);
 }
 
-status_t BpBinder::startRecordingBinder(const android::base::unique_fd& fd) {
+status_t BpBinder::startRecordingBinder(const unique_fd& fd) {
     Parcel send, reply;
     send.writeUniqueFileDescriptor(fd);
     return transact(START_RECORDING_TRANSACTION, send, &reply);

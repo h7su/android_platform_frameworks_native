@@ -35,7 +35,7 @@
 
 using namespace std;
 using namespace android;
-using android::base::unique_fd;
+using android::binder::unique_fd;
 using android::os::ParcelFileDescriptor;
 
 // defined in Rust
@@ -350,7 +350,7 @@ TEST_F(SerializationTest, SerializeString) {
 
 TEST_F(SerializationTest, SerializeFileDescriptor) {
     unique_fd out_file, in_file;
-    ASSERT_TRUE(base::Pipe(&out_file, &in_file));
+    ASSERT_TRUE(binder::Pipe(&out_file, &in_file));
 
     vector<ParcelFileDescriptor> file_descriptors;
     file_descriptors.push_back(ParcelFileDescriptor(std::move(out_file)));
