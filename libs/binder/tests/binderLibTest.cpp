@@ -30,7 +30,6 @@
 #include <android-base/properties.h>
 #include <android-base/result-gmock.h>
 #include <android-base/strings.h>
-#include <android-base/unique_fd.h>
 #include <binder/Binder.h>
 #include <binder/BpBinder.h>
 #include <binder/Functional.h>
@@ -39,6 +38,7 @@
 #include <binder/IServiceManager.h>
 #include <binder/RpcServer.h>
 #include <binder/RpcSession.h>
+#include <binder/unique_fd.h>
 #include <utils/Flattenable.h>
 
 #include <linux/sched.h>
