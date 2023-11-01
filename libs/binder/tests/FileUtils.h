@@ -28,7 +28,7 @@ using android::base::WriteStringToFd;
 
 #else
 
-#include <android-base/unique_fd.h>
+#include <binder/unique_fd.h>
 
 #include <string_view>
 
@@ -39,9 +39,8 @@ using android::base::WriteStringToFd;
 
 namespace android::binder {
 
-// TODO(b/302723053): use binder, not base
-bool ReadFdToString(base::borrowed_fd fd, std::string* content);
-bool WriteStringToFd(std::string_view content, base::borrowed_fd fd);
+bool ReadFdToString(borrowed_fd fd, std::string* content);
+bool WriteStringToFd(std::string_view content, borrowed_fd fd);
 
 std::string GetExecutableDirectory();
 

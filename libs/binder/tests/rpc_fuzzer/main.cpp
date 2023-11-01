@@ -18,7 +18,6 @@
 #include "../FileUtils.h"
 
 #include <android-base/logging.h>
-#include <android-base/unique_fd.h>
 #include <binder/Binder.h>
 #include <binder/Parcel.h>
 #include <binder/RpcServer.h>
@@ -26,6 +25,7 @@
 #include <binder/RpcTransport.h>
 #include <binder/RpcTransportRaw.h>
 #include <binder/RpcTransportTls.h>
+#include <binder/unique_fd.h>
 #include <fuzzer/FuzzedDataProvider.h>
 #include <openssl/rand.h>
 #include <openssl/ssl.h>
@@ -34,6 +34,7 @@
 #include <sys/un.h>
 
 using android::base::GetExecutableDirectory;
+using android::binder::unique_fd;
 
 namespace android {
 
@@ -133,7 +134,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
     CHECK_LT(kSock.size(), sizeof(addr.sun_path));
     memcpy(&addr.sun_path, kSock.c_str(), kSock.size());
 
-    std::vector<base::unique_fd> connections;
+    std::vector<unique_fd> connections;
 
     bool hangupBeforeShutdown = provider.ConsumeBool();
 
@@ -144,7 +145,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
     while (provider.remaining_bytes() > 0) {
         if (connections.empty() ||
             (connections.size() < kMaxConnections && provider.ConsumeBool())) {
-            base::unique_fd fd(TEMP_FAILURE_RETRY(socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0)));
+            unique_fd fd(TEMP_FAILURE_RETRY(socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0)));
             CHECK_NE(fd.get(), -1);
             CHECK_EQ(0,
                      TEMP_FAILURE_RETRY(
