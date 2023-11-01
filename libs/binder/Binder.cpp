@@ -19,7 +19,6 @@
 #include <atomic>
 #include <set>
 
-#include <android-base/unique_fd.h>
 #include <binder/BpBinder.h>
 #include <binder/IInterface.h>
 #include <binder/IPCThreadState.h>
@@ -28,6 +27,7 @@
 #include <binder/Parcel.h>
 #include <binder/RecordedTransaction.h>
 #include <binder/RpcServer.h>
+#include <binder/unique_fd.h>
 #include <pthread.h>
 
 #include <inttypes.h>
