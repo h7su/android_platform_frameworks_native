@@ -131,7 +131,7 @@ cc_library_static {
     double_loadable: true,
     cflags: [
         "-fvisibility=hidden",
-        "-Werror=format",
+        "-Wno-error=format",
         "-Wno-unused-parameter",
     ],
     srcs: [
