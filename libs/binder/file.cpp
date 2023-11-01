@@ -20,9 +20,6 @@
 
 #include <stdint.h>
 
-// TODO(b/302723053): use binder, not base
-using android::base::borrowed_fd;
-
 // clang-format off
 
 namespace android::binder {

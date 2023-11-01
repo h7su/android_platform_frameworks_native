@@ -21,6 +21,7 @@
 #include <binder/RpcTransportRaw.h>
 #include <log/log.h>
 #include <string.h>
+#include <sys/socket.h>
 
 using android::binder::ReadFully;
 
@@ -29,7 +30,7 @@ namespace android::binder::os {
 // Linux kernel supports up to 253 (from SCM_MAX_FD) for unix sockets.
 constexpr size_t kMaxFdsPerMsg = 253;
 
-status_t setNonBlocking(android::base::borrowed_fd fd) {
+status_t setNonBlocking(borrowed_fd fd) {
     int flags = TEMP_FAILURE_RETRY(fcntl(fd.get(), F_GETFL));
     if (flags == -1) {
         PLOGE("Failed setNonBlocking: Could not get flags for fd");
@@ -48,7 +49,7 @@ status_t getRandomBytes(uint8_t* data, size_t size) {
         return -errno;
     }
 
-    base::unique_fd fd(ret);
+    unique_fd fd(ret);
     if (!ReadFully(fd, data, size)) {
         return -errno;
     }
@@ -69,9 +70,8 @@ std::unique_ptr<RpcTransportCtxFactory> makeDefaultRpcTransportCtxFactory() {
     return RpcTransportCtxFactoryRaw::make();
 }
 
-ssize_t sendMessageOnSocket(
-        const RpcTransportFd& socket, iovec* iovs, int niovs,
-        const std::vector<std::variant<base::unique_fd, base::borrowed_fd>>* ancillaryFds) {
+ssize_t sendMessageOnSocket(const RpcTransportFd& socket, iovec* iovs, int niovs,
+                            const std::vector<std::variant<unique_fd, borrowed_fd>>* ancillaryFds) {
     if (ancillaryFds != nullptr && !ancillaryFds->empty()) {
         if (ancillaryFds->size() > kMaxFdsPerMsg) {
             errno = EINVAL;
@@ -114,9 +114,8 @@ ssize_t sendMessageOnSocket(
     return TEMP_FAILURE_RETRY(sendmsg(socket.fd.get(), &msg, MSG_NOSIGNAL));
 }
 
-ssize_t receiveMessageFromSocket(
-        const RpcTransportFd& socket, iovec* iovs, int niovs,
-        std::vector<std::variant<base::unique_fd, base::borrowed_fd>>* ancillaryFds) {
+ssize_t receiveMessageFromSocket(const RpcTransportFd& socket, iovec* iovs, int niovs,
+                                 std::vector<std::variant<unique_fd, borrowed_fd>>* ancillaryFds) {
     if (ancillaryFds != nullptr) {
         int fdBuffer[kMaxFdsPerMsg];
         alignas(struct cmsghdr) char msgControlBuf[CMSG_SPACE(sizeof(fdBuffer))];
@@ -142,7 +141,7 @@ ssize_t receiveMessageFromSocket(
                 size_t fdCount = dataLen / sizeof(int);
                 ancillaryFds->reserve(ancillaryFds->size() + fdCount);
                 for (size_t i = 0; i < fdCount; i++) {
-                    ancillaryFds->emplace_back(base::unique_fd(fdBuffer[i]));
+                    ancillaryFds->emplace_back(unique_fd(fdBuffer[i]));
                 }
                 break;
             }
