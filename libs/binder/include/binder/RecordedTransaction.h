@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <android-base/unique_fd.h>
 #include <binder/Parcel.h>
+#include <binder/unique_fd.h>
 #include <mutex>
 
 namespace android {
@@ -31,7 +31,16 @@ namespace binder::debug {
 class RecordedTransaction {
 public:
     // Filled with the first transaction from fd.
-    static std::optional<RecordedTransaction> fromFile(const android::base::unique_fd& fd);
+
+#if __has_include(<android-base/unique_fd.h>) && !defined(__ANDROID__)
+    // TODO: remove
+    static std::optional<RecordedTransaction> fromFile(const base::unique_fd& fd) {
+        // TODO: BAD BAD BAD
+        return fromFile(binder::unique_fd(fd.get()));
+    }
+#endif
+
+    static std::optional<RecordedTransaction> fromFile(const binder::unique_fd& fd);
     // Filled with the arguments.
     static std::optional<RecordedTransaction> fromDetails(const String16& interfaceName,
                                                           uint32_t code, uint32_t flags,
@@ -39,7 +48,7 @@ public:
                                                           const Parcel& reply, status_t err);
     RecordedTransaction(RecordedTransaction&& t) noexcept;
 
-    [[nodiscard]] status_t dumpToFile(const android::base::unique_fd& fd) const;
+    [[nodiscard]] status_t dumpToFile(const binder::unique_fd& fd) const;
 
     const std::string& getInterfaceName() const;
     uint32_t getCode() const;
@@ -53,8 +62,8 @@ public:
 private:
     RecordedTransaction() = default;
 
-    android::status_t writeChunk(const android::base::borrowed_fd, uint32_t chunkType,
-                                 size_t byteCount, const uint8_t* data) const;
+    android::status_t writeChunk(const binder::borrowed_fd, uint32_t chunkType, size_t byteCount,
+                                 const uint8_t* data) const;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic error "-Wpadded"
