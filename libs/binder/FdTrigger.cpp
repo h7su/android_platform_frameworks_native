@@ -33,7 +33,7 @@ using namespace android::binder::impl;
 std::unique_ptr<FdTrigger> FdTrigger::make() {
     auto ret = std::make_unique<FdTrigger>();
 #ifndef BINDER_RPC_SINGLE_THREADED
-    if (!android::base::Pipe(&ret->mRead, &ret->mWrite)) {
+    if (!binder::Pipe(&ret->mRead, &ret->mWrite)) {
         ALOGE("Could not create pipe %s", strerror(errno));
         return nullptr;
     }

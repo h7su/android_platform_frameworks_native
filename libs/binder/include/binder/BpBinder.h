@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include <android-base/unique_fd.h>
 #include <binder/IBinder.h>
 #include <binder/RpcThreads.h>
+#include <binder/unique_fd.h>
 
 #include <map>
 #include <optional>
@@ -92,9 +92,17 @@ public:
 
     std::optional<int32_t> getDebugBinderHandle() const;
 
+#if __has_include(<android-base/unique_fd.h>) && !defined(__ANDROID__)
+    // TODO: remove
+    status_t startRecordingBinder(const base::unique_fd& fd) {
+        // TODO: BAD BAD BAD
+        return startRecordingBinder(binder::unique_fd(fd.get()));
+    }
+#endif
+
     // Start recording transactions to the unique_fd.
     // See RecordedTransaction.h for more details.
-    status_t startRecordingBinder(const android::base::unique_fd& fd);
+    status_t startRecordingBinder(const binder::unique_fd& fd);
     // Stop the current recording.
     status_t stopRecordingBinder();
 
