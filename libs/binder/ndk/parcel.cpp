@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-#include <android-base/unique_fd.h>
 #include <android/binder_parcel.h>
 #include <android/binder_parcel_platform.h>
 #include <binder/Parcel.h>
 #include <binder/ParcelFileDescriptor.h>
+#include <binder/unique_fd.h>
 #include <inttypes.h>
 #include <utils/Unicode.h>
 
