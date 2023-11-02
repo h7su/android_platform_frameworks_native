@@ -653,4 +653,7 @@ cc_binary {
         "libutils",
         "android.debug_aidl-cpp",
     ],
+    static_libs: [
+        "libc++fs",
+    ],
 }
