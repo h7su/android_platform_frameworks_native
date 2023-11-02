@@ -190,6 +190,10 @@ cc_defaults {
         "binderRpcTestIface-cpp",
         "binderRpcTestIface-ndk",
     ],
+
+    srcs: [
+        "FileUtils.cpp",
+    ],
 }
 
 cc_defaults {
