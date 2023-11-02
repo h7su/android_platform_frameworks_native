@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-#include <android-base/file.h>
 #include <android-base/logging.h>
 
 #include <binder/RecordedTransaction.h>
 
 #include <fuzzseeds/random_parcel_seeds.h>
 
-using android::base::WriteFully;
+#include "../../file.h"
+
+using android::binder::WriteFully;
 
 namespace android {
 namespace impl {

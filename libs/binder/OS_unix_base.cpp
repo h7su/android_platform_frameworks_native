@@ -16,11 +16,13 @@
 
 #include "OS.h"
 #include "Utils.h"
+#include "file.h"
 
-#include <android-base/file.h>
 #include <binder/RpcTransportRaw.h>
 #include <log/log.h>
 #include <string.h>
+
+using android::binder::ReadFully;
 
 namespace android::binder::os {
 
@@ -47,7 +49,7 @@ status_t getRandomBytes(uint8_t* data, size_t size) {
     }
 
     base::unique_fd fd(ret);
-    if (!base::ReadFully(fd, data, size)) {
+    if (!ReadFully(fd, data, size)) {
         return -errno;
     }
     return OK;
