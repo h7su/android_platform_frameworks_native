@@ -41,7 +41,6 @@
 #endif
 
 #ifndef __TRUSTY__
-#include <android-base/file.h>
 #include <android/binder_auto_utils.h>
 #include <android/binder_libbinder.h>
 #include <binder/ProcessState.h>
@@ -59,6 +58,7 @@
 #include "../BuildFlags.h"
 #include "../FdTrigger.h"
 #include "../RpcState.h" // for debugging
+#include "FileUtils.h"
 #include "format.h"
 #include "utils/Errors.h"
 
