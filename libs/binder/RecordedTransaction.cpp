@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-#include <android-base/file.h>
+#include "file.h"
+
 #include <binder/Functional.h>
 #include <binder/RecordedTransaction.h>
 #include <binder/unique_fd.h>
+
 #include <inttypes.h>
 #include <sys/mman.h>
+#include <sys/stat.h>
 #include <algorithm>
 
 using namespace android::binder::impl;

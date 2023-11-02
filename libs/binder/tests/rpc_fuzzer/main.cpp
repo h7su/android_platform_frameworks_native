@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-#include <android-base/file.h>
+#include "../FileUtils.h"
+
 #include <android-base/logging.h>
 #include <binder/Binder.h>
 #include <binder/Parcel.h>

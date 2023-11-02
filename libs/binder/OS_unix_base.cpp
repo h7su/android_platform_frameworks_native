@@ -16,8 +16,8 @@
 
 #include "OS.h"
 #include "Utils.h"
+#include "file.h"
 
-#include <android-base/file.h>
 #include <binder/RpcTransportRaw.h>
 #include <log/log.h>
 #include <string.h>
