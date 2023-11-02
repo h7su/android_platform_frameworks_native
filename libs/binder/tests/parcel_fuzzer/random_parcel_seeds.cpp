@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-#include <android-base/file.h>
 #include <android-base/logging.h>
 
 #include <binder/RecordedTransaction.h>
 
 #include <fuzzseeds/random_parcel_seeds.h>
 
-using android::base::WriteFully;
+#include "../../file.h"
+
 using android::binder::borrowed_fd;
+using android::binder::WriteFully;
 
 namespace android {
 namespace impl {
@@ -69,7 +70,7 @@ void generateSeedsFromRecording(borrowed_fd fd,
                                 const binder::debug::RecordedTransaction& transaction) {
     // Write Reserved bytes for future use
     std::vector<uint8_t> reservedBytes(8);
-    CHECK(WriteFully(borrowedToBase(fd), reservedBytes.data(), reservedBytes.size())) << fd.get();
+    CHECK(WriteFully(fd, reservedBytes.data(), reservedBytes.size())) << fd.get();
 
     std::vector<uint8_t> integralBuffer;
 
@@ -132,17 +133,16 @@ void generateSeedsFromRecording(borrowed_fd fd,
     impl::writeReversedBuffer(fillParcelBuffer, static_cast<size_t>(0), toWrite, toWrite);
 
     // Write parcel data with size towrite from recorded transaction
-    CHECK(WriteFully(borrowedToBase(fd), dataParcel.data(), toWrite)) << fd.get();
+    CHECK(WriteFully(fd, dataParcel.data(), toWrite)) << fd.get();
 
     // Write Fill Parcel buffer size in integralBuffer so that fuzzService knows size of data
     size_t subDataSize = toWrite + fillParcelBuffer.size();
     impl::writeReversedBuffer(integralBuffer, static_cast<size_t>(0), subDataSize, subDataSize);
 
     // Write fill parcel buffer
-    CHECK(WriteFully(borrowedToBase(fd), fillParcelBuffer.data(), fillParcelBuffer.size()))
-            << fd.get();
+    CHECK(WriteFully(fd, fillParcelBuffer.data(), fillParcelBuffer.size())) << fd.get();
 
     // Write the integralBuffer to data
-    CHECK(WriteFully(borrowedToBase(fd), integralBuffer.data(), integralBuffer.size())) << fd.get();
+    CHECK(WriteFully(fd, integralBuffer.data(), integralBuffer.size())) << fd.get();
 }
 } // namespace android

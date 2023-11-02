@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-#include <android-base/file.h>
+#include <android-base/file.h> // TODO: remove?
+#include "../FileUtils.h"
+
 #include <android-base/logging.h>
 #include <binder/Binder.h>
 #include <binder/Parcel.h>
@@ -31,6 +33,7 @@
 #include <sys/resource.h>
 #include <sys/un.h>
 
+using android::base::GetExecutableDirectory;
 using android::binder::unique_fd;
 
 namespace android {
@@ -78,12 +81,12 @@ struct ServerAuth {
 ServerAuth readServerKeyAndCert() {
     ServerAuth ret;
 
-    auto keyPath = android::base::GetExecutableDirectory() + "/data/server.key";
+    auto keyPath = GetExecutableDirectory() + "/data/server.key";
     bssl::UniquePtr<BIO> keyBio(BIO_new_file(keyPath.c_str(), "r"));
     ret.pkey.reset(PEM_read_bio_PrivateKey(keyBio.get(), nullptr, passwordCallback, nullptr));
     CHECK_NE(ret.pkey.get(), nullptr);
 
-    auto certPath = android::base::GetExecutableDirectory() + "/data/server.crt";
+    auto certPath = GetExecutableDirectory() + "/data/server.crt";
     bssl::UniquePtr<BIO> certBio(BIO_new_file(certPath.c_str(), "r"));
     ret.cert.reset(PEM_read_bio_X509(certBio.get(), nullptr, nullptr, nullptr));
     CHECK_NE(ret.cert.get(), nullptr);
