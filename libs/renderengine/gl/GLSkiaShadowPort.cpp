@@ -460,7 +460,7 @@ static void fillInRRectVerts(const Geometry& args, Mesh::VertexArray<vec2>& posi
 
 int getVertexCountForGeometry(const Geometry& shadowGeometry) {
     if (shadowGeometry.fIsCircle) {
-        return circle_type_to_vert_count(shadowGeometry.fType);
+        return circle_type_to_vert_count(kStroke_RRectType == shadowGeometry.fType);
     }
 
     return rrect_type_to_vert_count(shadowGeometry.fType);
