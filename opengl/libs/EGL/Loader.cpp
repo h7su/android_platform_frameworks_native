@@ -29,12 +29,15 @@
 #include <utils/Timers.h>
 #include <vndksupport/linker.h>
 
+#include <algorithm>
 #include <string>
 
 #include "EGL/eglext_angle.h"
 #include "egl_platform_entries.h"
 #include "egl_trace.h"
 #include "egldefs.h"
+
+extern "C" android_namespace_t* android_get_exported_namespace(const char*);
 
 namespace android {
 
@@ -53,6 +56,8 @@ namespace android {
  *
  *      /vendor/${LIB}/egl/lib{GLES | [EGL|GLESv1_CM|GLESv2]}_${SUFFIX}.so
  *
+ * When ro.egl.apex is set, then drivers are also searched from
+ * /apex/${ro.egl.apex}.
  */
 
 #ifndef SYSTEM_LIB_PATH
@@ -63,6 +68,7 @@ namespace android {
 #endif
 #endif
 
+static const char* RO_DRIVER_APEX_PROPERTY = "ro.egl.apex";
 static const char* PERSIST_DRIVER_SUFFIX_PROPERTY = "persist.graphics.egl";
 static const char* RO_DRIVER_SUFFIX_PROPERTY = "ro.hardware.egl";
 static const char* RO_BOARD_PLATFORM_PROPERTY = "ro.board.platform";
@@ -263,9 +269,14 @@ void* Loader::open(egl_connection_t* cnx) {
         hnd = attempt_to_load_updated_driver(cnx);
 
         // If updated driver apk is set but fail to load, abort here.
-        LOG_ALWAYS_FATAL_IF(android::GraphicsEnv::getInstance().getDriverNamespace(),
+        LOG_ALWAYS_FATAL_IF(!hnd && android::GraphicsEnv::getInstance().getDriverNamespace(),
                             "couldn't find an OpenGL ES implementation from %s",
                             android::GraphicsEnv::getInstance().getDriverPath().c_str());
+    }
+
+    if (!hnd) {
+        // Thirdly, try to load from APEX if ro.egl.apex is set.
+        hnd = attempt_to_load_driver_from_apex(cnx);
     }
 
     // Attempt to load native GLES drivers specified by ro.hardware.egl if native is selected.
@@ -654,6 +665,67 @@ Loader::driver_t* Loader::attempt_to_load_updated_driver(egl_connection_t* cnx) 
         hnd->set(dso, GLESv1_CM);
 
         dso = load_updated_driver("GLESv2", ns);
+        initialize_api(dso, cnx, GLESv2);
+        hnd->set(dso, GLESv2);
+    }
+    return hnd;
+}
+
+static std::string get_driver_suffix() {
+    for (auto key : HAL_SUBNAME_KEY_PROPERTIES) {
+        auto prop = base::GetProperty(key, "");
+        if (!prop.empty()) {
+            return prop;
+        }
+    }
+    return "";
+}
+
+static void* load_driver_from_ns(const std::string& kind, const std::string& suffix,
+                                 android_namespace_t* ns) {
+    const android_dlextinfo dlextinfo = {
+            .flags = ANDROID_DLEXT_USE_NAMESPACE,
+            .library_namespace = ns,
+    };
+    std::string name = std::string("lib") + kind;
+    if (suffix != "") {
+        name += "_" + suffix;
+    }
+    name += ".so";
+    return do_android_dlopen_ext(name.c_str(), RTLD_LOCAL | RTLD_NOW, &dlextinfo);
+}
+
+Loader::driver_t* Loader::attempt_to_load_driver_from_apex(egl_connection_t* cnx) {
+    ATRACE_CALL();
+    std::string apex = base::GetProperty(RO_DRIVER_APEX_PROPERTY, "");
+    if (apex == "") {
+        return nullptr;
+    }
+
+    android::GraphicsEnv::getInstance().setDriverToLoad(android::GpuStatsInfo::Driver::GL);
+
+    std::replace(apex.begin(), apex.end(), '.', '_');
+    android_namespace_t* ns = android_get_exported_namespace(apex.c_str());
+
+    std::string suffix = get_driver_suffix();
+
+    driver_t* hnd = nullptr;
+    void* dso = load_driver_from_ns("GLES", suffix, ns);
+    if (dso) {
+        initialize_api(dso, cnx, EGL | GLESv1_CM | GLESv2);
+        hnd = new driver_t(dso);
+        return hnd;
+    }
+    dso = load_driver_from_ns("EGL", suffix, ns);
+    if (dso) {
+        initialize_api(dso, cnx, EGL);
+        hnd = new driver_t(dso);
+
+        dso = load_driver_from_ns("GLESv1_CM", suffix, ns);
+        initialize_api(dso, cnx, GLESv1_CM);
+        hnd->set(dso, GLESv1_CM);
+
+        dso = load_driver_from_ns("GLESv2", suffix, ns);
         initialize_api(dso, cnx, GLESv2);
         hnd->set(dso, GLESv2);
     }

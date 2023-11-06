@@ -46,6 +46,8 @@
 using namespace android::hardware::configstore;
 using namespace android::hardware::configstore::V1_0;
 
+extern "C" android_namespace_t* android_get_exported_namespace(const char*);
+
 // #define ENABLE_ALLOC_CALLSTACKS 1
 #if ENABLE_ALLOC_CALLSTACKS
 #include <utils/CallStack.h>
@@ -159,6 +161,7 @@ const std::array<const char*, 2> HAL_SUBNAME_KEY_PROPERTIES = {{
     "ro.board.platform",
 }};
 constexpr int LIB_DL_FLAGS = RTLD_LOCAL | RTLD_NOW;
+constexpr char RO_VULKAN_APEX_PROPERTY[] = "ro.vulkan.apex";
 
 // LoadDriver returns:
 // * 0 when succeed, or
@@ -215,12 +218,30 @@ int LoadDriver(android_namespace_t* library_namespace,
     return 0;
 }
 
+android_namespace_t* GetVulkanApexNamespace() {
+    std::string apex = android::base::GetProperty(RO_VULKAN_APEX_PROPERTY, "");
+    if (apex == "") {
+        // Load from the default driver location
+        return nullptr;
+    }
+    std::replace(apex.begin(), apex.end(), '.', '_');
+    return android_get_exported_namespace(apex.c_str());
+}
+
 int LoadBuiltinDriver(const hwvulkan_module_t** module) {
     ATRACE_CALL();
 
     android::GraphicsEnv::getInstance().setDriverToLoad(
         android::GpuStatsInfo::Driver::VULKAN);
-    return LoadDriver(nullptr, module);
+    int result = -ENOENT;
+    android_namespace_t* ns = GetVulkanApexNamespace();
+    if (ns) {
+        result = LoadDriver(ns, module);
+    }
+    if (result == -ENOENT) {
+        result = LoadDriver(nullptr, module);
+    }
+    return result;
 }
 
 int LoadUpdatedDriver(const hwvulkan_module_t** module) {
