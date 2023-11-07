@@ -721,6 +721,15 @@ static unsigned long logcat_timeout(const std::vector<std::string>& buffers) {
     return timeout_ms > MINIMUM_LOGCAT_TIMEOUT_MS ? timeout_ms : MINIMUM_LOGCAT_TIMEOUT_MS;
 }
 
+/*
+ * Tries to read property for timeout for dumpstate board HAL.
+ * If property is not set then it falls back to default.
+ */
+static size_t get_dumpstate_board_timeout_s() {
+    constexpr size_t default_timeout_s{45};
+    return android::base::GetUintProperty("persist.sys.dumpstate.board_timeout_s", default_timeout_s);
+}
+
 // Opens a socket and returns its file descriptor.
 static int open_socket(const char* service);
 
@@ -2259,7 +2268,8 @@ void Dumpstate::DumpstateBoard(int out_fd) {
     // Given that bugreport is required to diagnose failures, it's better to set an arbitrary amount
     // of timeout for IDumpstateDevice than to block the rest of bugreport. In the timeout case, we
     // will kill the HAL and grab whatever it dumped in time.
-    constexpr size_t timeout_sec = 30;
+    size_t timeout_sec = get_dumpstate_board_timeout_s();
+
     // Prefer version 1.1 if available. New devices launching with R are no longer allowed to
     // implement just 1.0.
     const char* descriptor_to_kill;
@@ -2270,7 +2280,7 @@ void Dumpstate::DumpstateBoard(int out_fd) {
     if (dumpstate_device_1_1 != nullptr) {
         MYLOGI("Using IDumpstateDevice v1.1");
         descriptor_to_kill = IDumpstateDevice_1_1::descriptor;
-        dumpstate_board_task = DumpstateBoardTask([this, dumpstate_device_1_1, &handle]() -> bool {
+        dumpstate_board_task = DumpstateBoardTask([this, dumpstate_device_1_1, &handle, timeout_sec]() -> bool {
             ::android::hardware::Return<DumpstateStatus> status =
                 dumpstate_device_1_1->dumpstateBoard_1_1(handle.get(), options_->dumpstate_hal_mode,
                                                          SEC_TO_MSEC(timeout_sec));
