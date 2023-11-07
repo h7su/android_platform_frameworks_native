@@ -16,7 +16,7 @@
 
 #pragma once
 
-#if __has_include(<android-base/file.h>)
+#ifdef __ANDROID__
 #include <android-base/file.h>
 #else
 // clang-format off
@@ -26,12 +26,21 @@
 #include <string_view>
 
 namespace android {
+namespace binder {
+
+// TODO: remove base::
+bool ReadFully(base::borrowed_fd fd, void* data, size_t byte_count);
+bool WriteFully(base::borrowed_fd fd, const void* data, size_t byte_count);
+
+}  // namespace binder
+
 namespace base {
 
-bool ReadFully(borrowed_fd fd, void* data, size_t byte_count);
-bool WriteFully(borrowed_fd fd, const void* data, size_t byte_count);
+using binder::ReadFully;
+using binder::WriteFully;
 
 }  // namespace base
+
 }  // namespace android
 
-#endif  // __has_include(<android-base/file.h>)
+#endif  // __ANDROID__

@@ -16,12 +16,16 @@
 
 #include "file.h"
 
+#ifndef __ANDROID__
+
 #include <stdint.h>
 
 // clang-format off
 
-namespace android {
-namespace base {
+namespace android::binder {
+
+// TODO: remove
+using base::borrowed_fd;
 
 bool ReadFully(borrowed_fd fd, void* data, size_t byte_count) {
   uint8_t* p = reinterpret_cast<uint8_t*>(data);
@@ -51,5 +55,6 @@ bool WriteFully(borrowed_fd fd, const void* data, size_t byte_count) {
   return true;
 }
 
-}  // namespace base
-}  // namespace android
+}  // namespace android::binder
+
+#endif // __ANDROID__
