@@ -214,7 +214,7 @@ static inline base::unique_fd mockFileDescriptor(std::string contents) {
     LOG_ALWAYS_FATAL_IF(!android::base::Pipe(&readFd, &writeFd), "%s", strerror(errno));
     RpcMaybeThread([writeFd = std::move(writeFd), contents = std::move(contents)]() {
         signal(SIGPIPE, SIG_IGN); // ignore possible SIGPIPE from the write
-        if (!WriteStringToFd(contents, writeFd)) {
+        if (!android::base::WriteStringToFd(contents, writeFd)) {
             int savedErrno = errno;
             LOG_ALWAYS_FATAL_IF(EPIPE != savedErrno, "mockFileDescriptor write failed: %s",
                                 strerror(savedErrno));
