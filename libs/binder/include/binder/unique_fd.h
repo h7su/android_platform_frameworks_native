@@ -16,7 +16,7 @@
 
 #pragma once
 
-#if __has_include(<android-base/unique_fd.h>)
+#ifdef __ANDROID__
 #include <android-base/unique_fd.h>
 #else
 // clang-format off
@@ -41,8 +41,7 @@
 #include <sys/socket.h>
 #endif
 
-namespace android {
-namespace base {
+namespace android::binder {
 
 // Container for a file descriptor that automatically closes the descriptor as
 // it goes out of scope.
@@ -204,8 +203,17 @@ struct borrowed_fd {
  private:
   int fd_ = -1;
 };
-}  // namespace base
-}  // namespace android
+}  // namespace android::binder
+
+namespace android::base {
+  using android::binder::unique_fd;
+  using android::binder::borrowed_fd;
+
+#if !defined(_WIN32) && !defined(__TRUSTY__)
+  using ::android::binder::Pipe;
+  using android::binder::Socketpair;
+#endif
+}
 
 // clang-format on
-#endif // __has_include(<android-base/unique_fd.h>)
+#endif // __ANDROID__
