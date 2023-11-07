@@ -16,12 +16,10 @@
 
 #pragma once
 
-#if __has_include(<android-base/file.h>)
-#include <android-base/file.h>
-#else
-// clang-format off
+#include "../file.h" // includes <android-base/file.h> outside Android
 
-#include "../file.h"
+#ifndef __ANDROID__
+// clang-format off
 
 #include <binder/unique_fd.h>
 
@@ -43,4 +41,4 @@ std::string GetExecutableDirectory();
 }  // namespace base
 }  // namespace android
 
-#endif  // __has_include(<android-base/file.h>)
+#endif  // __ANDROID__
