@@ -16,7 +16,7 @@
 
 #pragma once
 
-#if __has_include(<android-base/unique_fd.h>)
+#ifdef __ANDROID__
 #include <android-base/unique_fd.h>
 #else
 // clang-format off
@@ -41,8 +41,7 @@
 #include <sys/socket.h>
 #endif
 
-namespace android {
-namespace base {
+namespace android::binder {
 
 // Container for a file descriptor that automatically closes the descriptor as
 // it goes out of scope.
@@ -309,22 +308,31 @@ struct borrowed_fd {
  private:
   int fd_ = -1;
 };
-}  // namespace base
-}  // namespace android
+}  // namespace android::binder
 
 template <typename T>
-int close(const android::base::unique_fd_impl<T>&)
+int close(const android::binder::unique_fd_impl<T>&)
     __attribute__((__unavailable__("close called on unique_fd")));
 
 template <typename T>
-FILE* fdopen(const android::base::unique_fd_impl<T>&, const char* mode)
+FILE* fdopen(const android::binder::unique_fd_impl<T>&, const char* mode)
     __attribute__((__unavailable__("fdopen takes ownership of the fd passed in; either dup the "
                                    "unique_fd, or use android::base::Fdopen to pass ownership")));
 
 template <typename T>
-DIR* fdopendir(const android::base::unique_fd_impl<T>&) __attribute__((
+DIR* fdopendir(const android::binder::unique_fd_impl<T>&) __attribute__((
     __unavailable__("fdopendir takes ownership of the fd passed in; either dup the "
                     "unique_fd, or use android::base::Fdopendir to pass ownership")));
 
+namespace android::base {
+  using android::binder::unique_fd;
+  using android::binder::borrowed_fd;
+ 
+#if !defined(_WIN32) && !defined(__TRUSTY__)
+  using ::android::binder::Pipe; 
+  using android::binder::Socketpair;
+#endif
+}
+
 // clang-format on
-#endif // __has_include(<android-base/unique_fd.h>)
+#endif // __ANDROID__
