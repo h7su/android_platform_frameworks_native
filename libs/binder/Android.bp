@@ -92,6 +92,7 @@ cc_defaults {
         "TextOutput.cpp",
         "Trace.cpp",
         "Utils.cpp",
+        "file.cpp",
     ],
 
     shared_libs: [
