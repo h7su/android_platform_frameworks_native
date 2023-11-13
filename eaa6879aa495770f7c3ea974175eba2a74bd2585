@@ -22,6 +22,30 @@
       },
       "revId": "eaa6879aa495770f7c3ea974175eba2a74bd2585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112ef8cd_a2859618",
+        "filename": "libs/renderengine/gl/GLSkiaShadowPort.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1122898
+      },
+      "writtenOn": "2023-11-13T02:03:55Z",
+      "side": 1,
+      "message": "Hi Alec, you\u0027re right. Because the enums are defined in the following order, using implicit casting here does NOT cause any issues, and this patch just fixes such implicit casting by using `kStroke_RRectType \u003d\u003d shadowGeometry.fType` the same as Line 471. \n\n```\nenum RRectType {\n    kFill_RRectType,\n    kStroke_RRectType,\n    kOverstroke_RRectType,\n};\n\n```",
+      "parentUuid": "94d082d7_023708a4",
+      "range": {
+        "startLine": 463,
+        "startChar": 41,
+        "endLine": 463,
+        "endChar": 82
+      },
+      "revId": "eaa6879aa495770f7c3ea974175eba2a74bd2585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
