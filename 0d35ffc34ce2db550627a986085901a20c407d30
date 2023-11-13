@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14b281a7_b3129cfd",
+        "filename": "libs/binder/tests/binderRpcTest.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2085,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T19:58:19Z",
+      "side": 0,
+      "message": "Just verified on cuttlefish:\n- before and after this change, logs are not visible with `atest` (they are always filtered out)\n- if you run this test manually, this change will remove logs from stdout (but they will still be in logcat)\n\nI can add it back to stdout, but I\u0027m still curious - why do you need them in stdout, especially they are not there in `atest`?",
+      "parentUuid": "255a5ceb_3741181c",
+      "range": {
+        "startLine": 2085,
+        "startChar": 0,
+        "endLine": 2085,
+        "endChar": 97
+      },
+      "revId": "0d35ffc34ce2db550627a986085901a20c407d30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96537219_1469215f",
         "filename": "libs/binder/tests/binderRpcTestService.cpp",
         "patchSetId": 6
