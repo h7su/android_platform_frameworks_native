@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2729ce53_e822d37b",
+        "filename": "libs/binder/tests/binderRpcTest.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2085,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T20:09:07Z",
+      "side": 0,
+      "message": "Done. But still - no other tests need this, so I\u0027m curious why does this one need it.",
+      "parentUuid": "14b281a7_b3129cfd",
+      "range": {
+        "startLine": 2085,
+        "startChar": 0,
+        "endLine": 2085,
+        "endChar": 97
+      },
+      "revId": "0d35ffc34ce2db550627a986085901a20c407d30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96537219_1469215f",
@@ -133,6 +157,30 @@
       "writtenOn": "2023-11-07T01:29:43Z",
       "side": 0,
       "message": "same question",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 97
+      },
+      "revId": "0d35ffc34ce2db550627a986085901a20c407d30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa822f6b_e4712bea",
+        "filename": "libs/binder/tests/binderRpcTestService.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T20:09:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "96537219_1469215f",
       "range": {
         "startLine": 101,
         "startChar": 0,
