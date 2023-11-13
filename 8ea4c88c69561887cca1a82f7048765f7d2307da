@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d118cdd_7c1743f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2023-11-13T01:50:19Z",
+      "side": 1,
+      "message": "This patch was previously PV+1, and I have rebased it after PV-1. Could you please help me review it again? Thank you.",
+      "revId": "8ea4c88c69561887cca1a82f7048765f7d2307da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
