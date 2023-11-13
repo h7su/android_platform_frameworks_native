@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b444c83_3b8f8b9d",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T22:52:24Z",
+      "side": 1,
+      "message": "Moved to line #45",
+      "parentUuid": "75b08acb_8e408efe",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d884246b_acd27798",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "If the namespace is changed but `#ifdef ANDROID` is not used, then Android code may use the libbinder unique_fd instead of the one we maintain, and so we\u0027d also need to maintain fdsan support in unique_fd or otherwise experience a degraded fdsan experience in Android.\n\nIf we leave the namesapce the same but use `#ifdef ANDROID`, something other code may include android-base/unique_fd.h unconditionally and still confuse the types.",
       "parentUuid": "86dac431_f4739e72",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d496e2c_216a8d41",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T22:52:24Z",
+      "side": 1,
+      "message": "Moving your comments from other threads:\n\u003e We cannot do this change as is. For instance, if someone has access to libbinder headers but not libbase headers, they would get binder/unique_fd.h, has_include would be false, and if they pass unique_fd into another translation unit, they\u0027d effectively be reinterpret casting between the libbase and libbinder unique_fd implementations, causing UB if any of the methods/etc.. here change.\n\nAnother:\n\u003e we do need to include the Android version, but we should use \u0027#ifdef ANDROID\u0027 here or similar, instead of __has_include, so that people that have binder headers without libbase headers don\u0027t accidentally include it\n\nCurrent status: I started working on this comment in aosp/2828634, but it\u0027s not as easy as I thought. Will continue investigation.",
+      "parentUuid": "1f6008e6_e6b7c214",
       "range": {
         "startLine": 44,
         "startChar": 0,
