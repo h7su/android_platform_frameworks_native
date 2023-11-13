@@ -105,3 +105,40 @@ filegroup {
     srcs: ["aidl/android/hardware/display/IDeviceProductInfoConstants.aidl"],
     path: "aidl",
 }
+
+test_spec {
+    name: "frameworks-native-test-spec-5895438509441024",
+    teamId: 5895438509441024,
+    tests: [
+        "libvibratorservice_benchmarks",
+        "libvibratorservice_test",
+        "vibrator_fuzzer"
+    ],
+}
+
+test_spec {
+    name: "frameworks-native-test-spec-4999436357238784",
+    teamId: 4999436357238784,
+    tests: [
+        "inputflinger_benchmarks",
+        "inputflinger_latencytracker_fuzzer",
+        "inputflinger_multitouch_input_fuzzer",
+        "inputflinger_input_classifier_fuzzer",
+        "inputflinger_keyboard_input_fuzzer",
+        "inputflinger_switch_input_fuzzer",
+        "inputflinger_input_reader_fuzzer",
+        "inputflinger_blocking_queue_fuzzer",
+        "inputflinger_tests",
+        "inputflinger_cursor_input_fuzzer"
+    ],
+}
+
+test_spec {
+    name: "frameworks-native-test-spec-4578440609431552",
+    teamId: 4578440609431552,
+    tests: [
+        "libgui_multilib_test",
+        "libgui_test",
+        "SamplingDemo"
+    ],
+}
