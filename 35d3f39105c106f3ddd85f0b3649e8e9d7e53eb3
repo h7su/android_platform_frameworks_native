@@ -70,6 +70,30 @@
       },
       "revId": "35d3f39105c106f3ddd85f0b3649e8e9d7e53eb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd2005b_d2532d2a",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T20:43:44Z",
+      "side": 1,
+      "message": "This is not blocking, so I\u0027m marking it resolved, but it would be still fun to learn what\u0027s happening here.",
+      "parentUuid": "5a2204c7_f99a2ad5",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 6
+      },
+      "revId": "35d3f39105c106f3ddd85f0b3649e8e9d7e53eb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
