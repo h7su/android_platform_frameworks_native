@@ -53,6 +53,12 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "android.hardware.camera.external.prebuilt.xml",
+    src: "android.hardware.camera.external.xml",
+    defaults: ["frameworks_native_data_etc_defaults"],
+}
+
+prebuilt_etc {
     name: "android.hardware.camera.flash-autofocus.prebuilt.xml",
     src: "android.hardware.camera.flash-autofocus.xml",
     defaults: ["frameworks_native_data_etc_defaults"],
