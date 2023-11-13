@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3248b4d0_7269867e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-13T22:30:48Z",
+      "side": 1,
+      "message": "This change is supposed to be squashed into aosp/2815878, but I\u0027m having some problems with it, so not doing that yet.",
+      "revId": "9228da20e17f1665f43a0edb3d369bd4ca66876e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
