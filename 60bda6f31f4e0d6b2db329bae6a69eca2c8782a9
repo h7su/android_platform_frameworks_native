@@ -16,6 +16,24 @@
       "message": "@smoreland: this needs to be removed, because we only generate platform AIDL output (non-NDK) and Hao worked this around by `-D__ANDROID_VENDOR__` in CMake, so that the two tests using NDK AIDL don\u0027t get compiled.\n\nQuestion #1: do you want lines 17-20 to be merged as a separate change? (what\u0027s in the comment is still true)\n\nQuestion #2: do we want libbinder_ndk on Linux or only platform libbinder?",
       "revId": "60bda6f31f4e0d6b2db329bae6a69eca2c8782a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c466444_b74b83a5",
+        "filename": "libs/binder/tests/binderRpcTest.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T17:46:23Z",
+      "side": 1,
+      "message": "Resolved outside of this change.",
+      "parentUuid": "4257322f_7cbf7047",
+      "revId": "60bda6f31f4e0d6b2db329bae6a69eca2c8782a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
