@@ -890,13 +890,13 @@ void SurfaceFlinger::init() FTL_FAKE_GUARD(kMainThreadContext) {
     property_get("service.sf.prime_shader_cache", primeShaderCache, "1");
     if (atoi(primeShaderCache)) {
         if (setSchedFifo(false) != NO_ERROR) {
-            ALOGW("Can't set SCHED_OTHER for primeCache");
+            ALOGW("Can't set SCHED_OTHER after primeCache");
         }
 
         mRenderEnginePrimeCacheFuture = getRenderEngine().primeCache();
 
         if (setSchedFifo(true) != NO_ERROR) {
-            ALOGW("Can't set SCHED_OTHER for primeCache");
+            ALOGW("Can't set SCHED_FIFO after primeCache");
         }
     }
 
