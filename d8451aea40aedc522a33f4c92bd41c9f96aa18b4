@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fec672f3_8c220734",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T18:47:55Z",
+      "side": 1,
+      "message": "Problem: we also need to change client code to refer to android::binder::unique_fd:\nhttps://paste.googleplex.com/6203998219010048?raw",
+      "parentUuid": "054141eb_ee330bac",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1349762_a53602d3",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
