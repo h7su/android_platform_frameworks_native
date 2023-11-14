@@ -24,6 +24,9 @@
 #include <utility>
 #include <vector>
 
+#include <android/dlext.h>
+#include <graphicsenv/GraphicsEnv.h>
+
 #define PATH_SEPARATOR ':'
 
 XrResult ApiLayerInterface::GetApiLayerProperties(const std::string& openxr_command, uint32_t incoming_count,
@@ -148,8 +151,12 @@ XrResult ApiLayerInterface::LoadApiLayers(const std::string& openxr_command,
         layers_already_found.insert(enabled_layer_manifest_file->LayerName());
     }
 
+    const android_dlextinfo dlextinfo = {
+        .flags = ANDROID_DLEXT_USE_NAMESPACE,
+        .library_namespace = android::GraphicsEnv::getInstance().getOpenXrRuntimeNamespace(),
+    };
     for (std::unique_ptr<ApiLayerManifestFile>& manifest_file : enabled_layer_manifest_files_in_init_order) {
-        void* layer_library = dlopen(manifest_file->LibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL);
+        void* layer_library = android_dlopen_ext(manifest_file->LibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL, &dlextinfo);
         if (nullptr == layer_library) {
             if (!any_loaded) {
                 last_error = XR_ERROR_FILE_ACCESS_ERROR;

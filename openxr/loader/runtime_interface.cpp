@@ -27,6 +27,8 @@
 #include <vector>
 
 #include <android/asset_manager_jni.h>
+#include <android/dlext.h>
+#include <graphicsenv/GraphicsEnv.h>
 #include <jni.h>
 #include <jnipp.h>
 #include <json/value.h>
@@ -136,7 +138,11 @@ void* Android_Get_Asset_Manager() { return LoaderInitData::instance()._android_a
 
 XrResult RuntimeInterface::TryLoadingSingleRuntime(const std::string& openxr_command,
                                                    std::unique_ptr<RuntimeManifestFile>& manifest_file) {
-    void* runtime_library = dlopen(manifest_file->LibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL);
+    const android_dlextinfo dlextinfo = {
+        .flags = ANDROID_DLEXT_USE_NAMESPACE,
+        .library_namespace = android::GraphicsEnv::getInstance().getOpenXrRuntimeNamespace(),
+    };
+    void* runtime_library = android_dlopen_ext(manifest_file->LibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL, &dlextinfo);
     if (nullptr == runtime_library) {
         std::string library_message = dlerror();
         std::string warning_message = "RuntimeInterface::LoadRuntime skipping manifest file ";
