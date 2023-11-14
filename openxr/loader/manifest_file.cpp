@@ -35,6 +35,8 @@
 #include <utility>
 #include <vector>
 
+#include <graphicsenv/GraphicsEnv.h>
+
 // OpenXR paths and registry key locations
 #define OPENXR_RELATIVE_PATH "openxr/"
 #define OPENXR_IMPLICIT_API_LAYER_RELATIVE_PATH "/api_layers/implicit.d"
@@ -190,38 +192,6 @@ static void ReadDataFilesInSearchPaths(const std::string &relative_path,
     AddFilesInPath(search_path, true, manifest_files);
 }
 
-static bool ImplTryRuntimeFilename(const char* rt_dir_prefix, uint16_t major_version, std::string& file_name) {
-    auto decorated_path = rt_dir_prefix + std::to_string(major_version) + "/active_runtime." XR_ARCH_ABI ".json";
-    auto undecorated_path = rt_dir_prefix + std::to_string(major_version) + "/active_runtime.json";
-
-    struct stat buf {};
-    if (0 == stat(decorated_path.c_str(), &buf)) {
-        file_name = decorated_path;
-        return true;
-    }
-    if (0 == stat(undecorated_path.c_str(), &buf)) {
-        file_name = undecorated_path;
-        return true;
-    }
-    return false;
-}
-
-// Intended to be only used as a fallback on Android, with a more open, "native" technique used in most cases
-static bool PlatformGetGlobalRuntimeFileName(uint16_t major_version, std::string& file_name) {
-    // Prefix for the runtime JSON file name, highest priority first
-    static const char* rt_dir_prefixes[] = {"/odm", "/vendor", "/product", "/system"};
-
-    static const std::string subdir = "/etc/openxr/";
-    for (const auto prefix : rt_dir_prefixes) {
-        const std::string rt_dir_prefix = prefix + subdir;
-        if (ImplTryRuntimeFilename(rt_dir_prefix.c_str(), major_version, file_name)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
 ManifestFile::ManifestFile(ManifestFileType type, const std::string &filename, const std::string &library_path)
     : _filename(filename), _type(type), _library_path(library_path) {}
 
@@ -323,22 +293,16 @@ void ManifestFile::ParseCommon(Json::Value const &root_node) {
     }
 }
 
-void RuntimeManifestFile::CreateIfValid(std::string const &filename,
+void RuntimeManifestFile::CreateIfValid(std::string const &manifest_data,
                                         std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files) {
-    std::ifstream json_stream(filename, std::ifstream::in);
-
-    LoaderLogger::LogInfoMessage("", "RuntimeManifestFile::CreateIfValid - attempting to load " + filename);
     std::ostringstream error_ss("RuntimeManifestFile::CreateIfValid ");
-    if (!json_stream.is_open()) {
-        error_ss << "failed to open " << filename << ".  Does it exist?";
-        LoaderLogger::LogErrorMessage("", error_ss.str());
-        return;
-    }
     Json::CharReaderBuilder builder;
     std::string errors;
     Json::Value root_node = Json::nullValue;
-    if (!Json::parseFromStream(builder, json_stream, &root_node, &errors) || !root_node.isObject()) {
-        error_ss << "failed to parse " << filename << ".";
+    std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
+    if (!reader->parse(&manifest_data[0], &manifest_data[0] + manifest_data.size() + 1, &root_node, &errors) ||
+        !root_node.isObject()) {
+        error_ss << "failed to parse: " << manifest_data;
         if (!errors.empty()) {
             error_ss << " (Error message: " << errors << ")";
         }
@@ -347,15 +311,15 @@ void RuntimeManifestFile::CreateIfValid(std::string const &filename,
         return;
     }
 
-    CreateIfValid(root_node, filename, manifest_files);
+    CreateIfValid(root_node, manifest_data, manifest_files);
 }
 
-void RuntimeManifestFile::CreateIfValid(const Json::Value &root_node, const std::string &filename,
+void RuntimeManifestFile::CreateIfValid(const Json::Value &root_node, const std::string &manifest_data,
                                         std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files) {
     std::ostringstream error_ss("RuntimeManifestFile::CreateIfValid ");
     JsonVersion file_version = {};
     if (!ManifestFile::IsValidJson(root_node, file_version)) {
-        error_ss << "isValidJson indicates " << filename << " is not a valid manifest file.";
+        error_ss << "isValidJson indicates " << manifest_data << " is not a valid manifest file.";
         LoaderLogger::LogErrorMessage("", error_ss.str());
         return;
     }
@@ -363,45 +327,16 @@ void RuntimeManifestFile::CreateIfValid(const Json::Value &root_node, const std:
     // The Runtime manifest file needs the "runtime" root as well as a sub-node for "library_path".  If any of those aren't there,
     // fail.
     if (runtime_root_node.isNull() || runtime_root_node["library_path"].isNull() || !runtime_root_node["library_path"].isString()) {
-        error_ss << filename << " is missing required fields.  Verify all proper fields exist.";
+        error_ss << manifest_data << " is missing required fields.  Verify all proper fields exist.";
         LoaderLogger::LogErrorMessage("", error_ss.str());
         return;
     }
 
+    // Library path always corresponds to the APK, there is no need to validate existence
     std::string lib_path = runtime_root_node["library_path"].asString();
 
-    // If the library_path variable has no directory symbol, it's just a file name and should be accessible on the
-    // global library path.
-    if (lib_path.find('/') != std::string::npos) {
-        // If the library_path is an absolute path, just use that if it exists
-        if (FileSysUtilsIsAbsolutePath(lib_path)) {
-            if (!FileSysUtilsPathExists(lib_path)) {
-                error_ss << filename << " library " << lib_path << " does not appear to exist";
-                LoaderLogger::LogErrorMessage("", error_ss.str());
-                return;
-            }
-        } else {
-            // Otherwise, treat the library path as a relative path based on the JSON file.
-            std::string canonical_path;
-            std::string combined_path;
-            std::string file_parent;
-            // Search relative to the real manifest file, not relative to the symlink
-            if (!FileSysUtilsGetCanonicalPath(filename, canonical_path)) {
-                // Give relative to the non-canonical path a chance
-                canonical_path = filename;
-            }
-            if (!FileSysUtilsGetParentPath(canonical_path, file_parent) ||
-                !FileSysUtilsCombinePaths(file_parent, lib_path, combined_path) || !FileSysUtilsPathExists(combined_path)) {
-                error_ss << filename << " library " << combined_path << " does not appear to exist";
-                LoaderLogger::LogErrorMessage("", error_ss.str());
-                return;
-            }
-            lib_path = combined_path;
-        }
-    }
-
     // Add this runtime manifest file
-    manifest_files.emplace_back(new RuntimeManifestFile(filename, lib_path));
+    manifest_files.emplace_back(new RuntimeManifestFile("runtime_manifest", lib_path));
 
     // Add any extensions to it after the fact.
     // Handle any renamed functions
@@ -411,15 +346,8 @@ void RuntimeManifestFile::CreateIfValid(const Json::Value &root_node, const std:
 // Find all manifest files in the appropriate search paths/registries for the given type.
 XrResult RuntimeManifestFile::FindManifestFiles(std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files) {
     XrResult result = XR_SUCCESS;
-    std::string filename;
-    if (!PlatformGetGlobalRuntimeFileName(XR_VERSION_MAJOR(XR_CURRENT_API_VERSION), filename)) {
-        LoaderLogger::LogErrorMessage(
-            "", "RuntimeManifestFile::FindManifestFiles - failed to determine active runtime file path for this environment");
-        return XR_ERROR_RUNTIME_UNAVAILABLE;
-    }
-    result = XR_SUCCESS;
-    LoaderLogger::LogInfoMessage("", "RuntimeManifestFile::FindManifestFiles - using global runtime file " + filename);
-    RuntimeManifestFile::CreateIfValid(filename, manifest_files);
+    std::string manifest_data = android::GraphicsEnv::getInstance().getOpenXrRuntimeManifest();
+    RuntimeManifestFile::CreateIfValid(manifest_data, manifest_files);
 
     return result;
 }
