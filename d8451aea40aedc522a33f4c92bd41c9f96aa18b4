@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8b31b8_e21c67a6",
+        "filename": "libs/binder/include/binder/BpBinder.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T18:39:19Z",
+      "side": 1,
+      "message": "I don\u0027t think we can avoid exporting binder\u0027s flavor of unique_fd. If we don\u0027t, none of unique_fd dependant APIs would be possible to implement on Linux.\n\nAlso, I can forward-declare it for Linux, but it will break regular android build:\nhttps://paste.googleplex.com/6554609485611008?raw",
+      "parentUuid": "f28e0e32_3e4ab310",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 70
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75b08acb_8e408efe",
