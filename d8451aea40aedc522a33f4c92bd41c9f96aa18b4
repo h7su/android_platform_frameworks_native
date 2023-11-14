@@ -333,6 +333,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f976ac6_fda05fda",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-14T06:55:14Z",
+      "side": 1,
+      "message": "Try to use \u0027!myUniqueFd\u0027 after the implicit conversion to \u0027int\u0027 is removed. I believe you\u0027ll see that there is no implementation for it, so it\u0027ll be a compile error anyway.",
+      "parentUuid": "c2cab271_e4555e36",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1f5f98_371c97bb",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
