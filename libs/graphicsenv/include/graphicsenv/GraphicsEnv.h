@@ -141,6 +141,26 @@ public:
     // Get the debug layers to load.
     const std::string& getDebugLayersGLES();
 
+    /*
+     * Apis for loadable OpenXR runtime
+     */
+    // Set a search path for loading the OpenXR runtime. The path is a list of
+    // directories separated by ':'. A directory can be contained in a zip file
+    // (drivers must be stored uncompressed and page aligned); such elements
+    // in the search path must have a '!' after the zip filename, e.g.
+    //     /data/app/com.example.driver/base.apk!/lib/arm64-v8a
+    // Also set additional required sphal libraries to the linker for loading
+    // graphics drivers. The string is a list of libraries separated by ':',
+    // which is required by android_link_namespaces.
+    void setOpenXrRuntimePathAndSphalLibraries(const std::string& path,
+                                               const std::string& sphalLibraries);
+    // Set the OpenXR runtime manifest contents.
+    void setOpenXrRuntimeManifest(const std::string& manifest);
+    // Get the OpenXR runtime manifest contents.
+    const std::string& getOpenXrRuntimeManifest();
+    // Get the OpenXR runtime namespace.
+    android_namespace_t* getOpenXrRuntimeNamespace();
+
 private:
     // Link updatable driver namespace with llndk and vndk-sp libs.
     bool linkDriverNamespaceLocked(android_namespace_t* destNamespace,
@@ -155,6 +175,9 @@ private:
 
     // This mutex protects the namespace creation.
     std::mutex mNamespaceMutex;
+
+    // This mutex protects OpenXR namespace creation.
+    std::mutex mOpenXrNamespaceMutex;
 
     /**
      * Updatable driver variables.
@@ -205,6 +228,18 @@ private:
     std::string mLayerPaths;
     // This App's namespace to open native libraries.
     NativeLoaderNamespace* mAppNamespace = nullptr;
+
+    /**
+     * OpenXR runtime variables.
+     */
+    // Path to OpenXR runtime libs.
+    std::string mOpenXrRuntimePath;
+    // Path to additional sphal libs linked to OpenXR runtime namespace
+    std::string mOpenXrSphalLibraries;
+    // Contents of OpenXR runtime manifest
+    std::string mOpenXrRuntimeManifest;
+    // OpenXR runtime namespace
+    android_namespace_t* mOpenXrRuntimeNamespace = nullptr;
 };
 
 } // namespace android
