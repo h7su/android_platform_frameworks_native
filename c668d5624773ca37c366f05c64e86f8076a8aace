@@ -93,6 +93,30 @@
       },
       "revId": "c668d5624773ca37c366f05c64e86f8076a8aace",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6061f2a6_4e9e7272",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2023-11-14T19:27:51Z",
+      "side": 1,
+      "message": "Ack, thanks for checking!",
+      "parentUuid": "8cf53896_d7d6cb28",
+      "range": {
+        "startLine": 528,
+        "startChar": 12,
+        "endLine": 529,
+        "endChar": 56
+      },
+      "revId": "c668d5624773ca37c366f05c64e86f8076a8aace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
