@@ -143,7 +143,10 @@ cc_library {
 
 cc_library_headers {
     name: "libbinder_headers_platform_shared",
-    export_include_dirs: ["include_cpp"],
+    export_include_dirs: [
+        "include_cpp",
+        "include_ndk",
+    ],
     vendor_available: true,
     recovery_available: true,
     host_supported: true,
@@ -156,6 +159,8 @@ cc_library_headers {
     },
     apex_available: [
         "//apex_available:platform",
+        "com.android.art",
+        "com.android.art.debug",
         "com.android.media",
         "com.android.media.swcodec",
     ],
