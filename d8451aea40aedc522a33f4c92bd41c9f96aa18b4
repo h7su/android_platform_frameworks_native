@@ -189,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "652103a9_263dda64",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1349762_a53602d3",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46350c35_40c04761",
@@ -202,6 +226,30 @@
       "writtenOn": "2023-11-03T23:39:07Z",
       "side": 1,
       "message": "we could drop APIs if libbinder is not using them as well?",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 81
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "064fb693_476c6ac1",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Dropped some. To drop all of them I need to migrate current Binder code that compares against -1 and 0 to `ok()` method. Added TODO for that.",
+      "parentUuid": "46350c35_40c04761",
       "range": {
         "startLine": 93,
         "startChar": 0,
@@ -237,6 +285,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2cab271_e4555e36",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "I\u0027m fine to delete this line, but are you sure we don\u0027t want it just to be a little safer?",
+      "parentUuid": "0768ea97_029a3fd6",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1f5f98_371c97bb",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
@@ -248,6 +320,30 @@
       "writtenOn": "2023-11-03T23:39:07Z",
       "side": 1,
       "message": "there is also a lot of other code that can be deleted",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 28
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2df8ea2_04a8146f",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d1f5f98_371c97bb",
       "range": {
         "startLine": 106,
         "startChar": 0,
@@ -281,6 +377,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c52bb1_292bdab3",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b5fc733_7250378e",
+      "range": {
+        "startLine": 130,
+        "startChar": 7,
+        "endLine": 153,
+        "endChar": 0
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a58806b6_ff76346a",
@@ -294,6 +414,30 @@
       "writtenOn": "2023-11-03T23:39:07Z",
       "side": 1,
       "message": "this would be dead code",
+      "range": {
+        "startLine": 160,
+        "startChar": 10,
+        "endLine": 177,
+        "endChar": 3
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e4720e_0a4f0947",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a58806b6_ff76346a",
       "range": {
         "startLine": 160,
         "startChar": 10,
@@ -329,6 +473,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05dc8b40_c396d740",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "You mean the `Closer` template as well?",
+      "parentUuid": "e450de91_51d232e5",
+      "range": {
+        "startLine": 189,
+        "startChar": 6,
+        "endLine": 189,
+        "endChar": 15
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbbc9a68_5ab92d65",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
@@ -340,6 +508,30 @@
       "writtenOn": "2023-11-03T23:39:07Z",
       "side": 1,
       "message": "we can drop this for libbinder for now as well - we could call pipe2 directly.",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43e610d2_cf065609",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Pipe and Socketpair seem to be useful wrappers - why not to keep them?",
+      "parentUuid": "bbbc9a68_5ab92d65",
       "range": {
         "startLine": 197,
         "startChar": 0,
@@ -373,6 +565,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af99606f_f0d232f7",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2888ffa3_582da984",
+      "range": {
+        "startLine": 260,
+        "startChar": 1,
+        "endLine": 267,
+        "endChar": 1
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a7d5928_2a457fae",
@@ -386,6 +602,30 @@
       "writtenOn": "2023-11-03T23:39:07Z",
       "side": 1,
       "message": "these can also be removed, since we\u0027ll remove \u0027operator int\u0027",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 0
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "445b770a_64a1039c",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-14T01:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a7d5928_2a457fae",
       "range": {
         "startLine": 315,
         "startChar": 0,
