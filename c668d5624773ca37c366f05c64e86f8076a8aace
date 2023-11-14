@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "671d16cd_d674b51e",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2023-11-14T19:14:15Z",
+      "side": 1,
+      "message": "nit: fix indentation",
+      "range": {
+        "startLine": 491,
+        "startChar": 7,
+        "endLine": 491,
+        "endChar": 8
+      },
+      "revId": "c668d5624773ca37c366f05c64e86f8076a8aace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a808cab_af7bf0f5",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2023-11-14T19:14:15Z",
+      "side": 1,
+      "message": "Does this need to be marked with in-progress as well?",
+      "range": {
+        "startLine": 528,
+        "startChar": 12,
+        "endLine": 529,
+        "endChar": 56
+      },
+      "revId": "c668d5624773ca37c366f05c64e86f8076a8aace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
