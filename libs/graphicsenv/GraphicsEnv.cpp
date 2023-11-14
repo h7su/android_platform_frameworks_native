@@ -684,4 +684,75 @@ void GraphicsEnv::setDebugLayersGLES(const std::string& layers) {
     mDebugLayersGLES = layers;
 }
 
+/**
+ * APIs for OpenXR runtime
+ */
+
+void GraphicsEnv::setOpenXrRuntimePathAndSphalLibraries(const std::string& path,
+                                                        const std::string& sphalLibraries) {
+    if (!mOpenXrRuntimePath.empty() || !mOpenXrSphalLibraries.empty()) {
+        ALOGV("ignoring attempt to change driver path from '%s' to '%s' or change sphal libraries "
+              "from '%s' to '%s'",
+              mOpenXrRuntimePath.c_str(), path.c_str(), mOpenXrSphalLibraries.c_str(),
+              sphalLibraries.c_str());
+        return;
+    }
+    ALOGV("setting OpenXR runtime path to '%s' and sphal libraries to '%s'", path.c_str(),
+          sphalLibraries.c_str());
+    mOpenXrRuntimePath = path;
+    mOpenXrSphalLibraries = sphalLibraries;
+}
+
+void GraphicsEnv::setOpenXrRuntimeManifest(const std::string& manifest) {
+    mOpenXrRuntimeManifest = manifest;
+}
+
+std::string GraphicsEnv::getOpenXrRuntimeManifest() const {
+    return mOpenXrRuntimeManifest;
+}
+
+android_namespace_t* GraphicsEnv::getOpenXrRuntimeNamespace() {
+    std::lock_guard<std::mutex> lock(mOpenXrNamespaceMutex);
+
+    if (mOpenXrRuntimeNamespace) {
+        return mOpenXrRuntimeNamespace;
+    }
+
+    if (mOpenXrRuntimePath.empty()) {
+        ALOGV("mOpenXrRuntimePath is empty, not creating OpenXR runtime namespace");
+        return nullptr;
+    }
+
+    mOpenXrRuntimeNamespace =
+            android_create_namespace("openxr",
+                                     mOpenXrRuntimePath.c_str(), // ld_library_path
+                                     mOpenXrRuntimePath.c_str(), // default_library_path
+                                     ANDROID_NAMESPACE_TYPE_SHARED_ISOLATED,
+                                     nullptr, // permitted_when_isolated_path
+                                     nullptr);
+
+    ALOGD_IF(!mOpenXrRuntimeNamespace, "Could not create OpenXR runtime namespace from default");
+
+    if (mOpenXrSphalLibraries.empty()) {
+        return mOpenXrRuntimeNamespace;
+    }
+
+    // Make additional libraries in sphal to be accessible
+    auto sphalNamespace = android_get_exported_namespace("sphal");
+    if (!sphalNamespace) {
+        ALOGE("OpenXR depends on these libraries[%s] in sphal, but failed to get sphal namespace",
+              mOpenXrSphalLibraries.c_str());
+        mOpenXrRuntimeNamespace = nullptr;
+        return mOpenXrRuntimeNamespace;
+    }
+
+    if (!android_link_namespaces(mOpenXrRuntimeNamespace, sphalNamespace,
+                                 mOpenXrSphalLibraries.c_str())) {
+        ALOGE("Failed to link sphal namespace[%s]", dlerror());
+        mOpenXrRuntimeNamespace = nullptr;
+    }
+
+    return mOpenXrRuntimeNamespace;
+}
+
 } // namespace android
