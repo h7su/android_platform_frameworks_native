@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0cbfe5_747946a3",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2023-11-14T11:58:09Z",
+      "side": 1,
+      "message": "maybe move this to some other namespace to avoid clashing, as I think technically `security` is owned by the kernel (and installd is only allowed to write it to because it has the SYS_ADMIN capability).",
+      "range": {
+        "startLine": 475,
+        "startChar": 53,
+        "endLine": 475,
+        "endChar": 61
+      },
+      "revId": "da29cf8f27c63ef1aafaabfef00907fadcf4c4fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
