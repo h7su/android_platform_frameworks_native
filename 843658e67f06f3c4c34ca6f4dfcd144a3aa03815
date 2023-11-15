@@ -50,6 +50,24 @@
       "message": "This patch requires Review-Enforcement, please help code review, thanks!",
       "revId": "843658e67f06f3c4c34ca6f4dfcd144a3aa03815",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e24acac6_e609d799",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2023-11-15T16:31:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28492695_e7c1cefe",
+      "revId": "843658e67f06f3c4c34ca6f4dfcd144a3aa03815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
