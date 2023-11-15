@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bcf10eb_475d9601",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2023-11-15T02:49:06Z",
+      "side": 1,
+      "message": "Discussed offline, aligned on Vulkan change, will take another look once the patch is revised :) Thank you for your patience!",
+      "revId": "6de63d5d080ab0573eb67c8c379e39c76b8cc25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
