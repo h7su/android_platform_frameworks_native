@@ -16,6 +16,24 @@
       "message": "Discussed offline, aligned on Vulkan change, will take another look once the patch is revised :) Thank you for your patience!",
       "revId": "6de63d5d080ab0573eb67c8c379e39c76b8cc25a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ebd820d_1f4820fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-11-15T04:57:32Z",
+      "side": 1,
+      "message": "Dropped GL changes. I think this is better! Thank you Peiyong.",
+      "parentUuid": "5bcf10eb_475d9601",
+      "revId": "6de63d5d080ab0573eb67c8c379e39c76b8cc25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
