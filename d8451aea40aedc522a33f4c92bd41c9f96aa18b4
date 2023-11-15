@@ -288,6 +288,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de65c55a_8a747d9c",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-15T05:09:07Z",
+      "side": 1,
+      "message": "\u003e if any client code includes anything from both libbase and binder, it will have two conflicting definitions of android::base::unique_fd.\n\nright - we would want it to show an issue, so that we could know to include libbase in those locations. Since both things should be built with __ANDROID__ though, this case shouldn\u0027t come up.\n\nI\u0027m also okay with your suggestion, I just suspect it will require a lot more changes in libbinder, because you\u0027ll have to update all references to base::unique_fd to refer to binder::unique_fd",
+      "parentUuid": "2746a749_4f14a228",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1349762_a53602d3",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
@@ -748,6 +772,30 @@
       "side": 1,
       "message": "Pipe and Socketpair seem to be useful wrappers - why not to keep them?",
       "parentUuid": "bbbc9a68_5ab92d65",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66a6630_c29e30ae",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-15T05:09:07Z",
+      "side": 1,
+      "message": "I\u0027d agree if we use `__APPLE__`, but otherwise they are a passthrough abstraction layer?\n\nThe \u0027#else\u0027 clause is wrong now? O_CLOEXEC/O_NONBLOCK may or may not be supported on other OSes - it depends.",
+      "parentUuid": "43e610d2_cf065609",
       "range": {
         "startLine": 197,
         "startChar": 0,
