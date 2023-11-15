@@ -336,6 +336,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63d5870c_c7bb73bf",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-15T05:54:29Z",
+      "side": 1,
+      "message": "I don\u0027t fully understand your first paragraph. Anyway, there\u0027s 181 hits against `base::unique_fd`. Not small, but I\u0027ve seen worse.\n\nFor not exporting this header - please see my response to your comment on BpBinder.h.",
+      "parentUuid": "9693bc8d_f3e27fb2",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1349762_a53602d3",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
@@ -820,6 +844,30 @@
       "side": 1,
       "message": "I\u0027d agree if we use `__APPLE__`, but otherwise they are a passthrough abstraction layer?\n\nThe \u0027#else\u0027 clause is wrong now? O_CLOEXEC/O_NONBLOCK may or may not be supported on other OSes - it depends.",
       "parentUuid": "43e610d2_cf065609",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20906f0b_0bfee994",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-15T05:54:29Z",
+      "side": 1,
+      "message": "Not just abstraction layer - if I use pipe2 directly, I\u0027ll loose all of RAII coupling between pipe2 and unique_fd - I\u0027ll need to manually move these fds (see lines 139-140).\n\nFor #else, I can switch it around (start with `ifdef __APPLE__`). Since this is supposed to run on host, it needs to work on apple too.",
+      "parentUuid": "b66a6630_c29e30ae",
       "range": {
         "startLine": 197,
         "startChar": 0,
