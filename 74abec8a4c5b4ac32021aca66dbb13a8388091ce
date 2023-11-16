@@ -198,6 +198,30 @@
       },
       "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3af5cdc_fc975ac2",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:45:39Z",
+      "side": 1,
+      "message": "Moved to internal FdUtils.h. Not tests, but since this is header-only and just a couple lines of code I didn\u0027t feel like splitting it into `FdUtils.h` and `tests/FdUtils.h`.",
+      "parentUuid": "34be0d8a_d1b1bb6b",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

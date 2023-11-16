@@ -1022,6 +1022,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc402b5_e66cd2eb",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:45:39Z",
+      "side": 1,
+      "message": "Moved to internal FdUtils.h.",
+      "parentUuid": "f4bb89a1_b61f339d",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2888ffa3_582da984",
