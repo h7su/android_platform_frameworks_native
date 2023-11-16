@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaabbd46_abc77bc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:06:38Z",
+      "side": 1,
+      "message": "Thanks. I still need to split this change into two:\n1. unique_fd.h only containing \n```\nnamespace android::binder {\nusing unique_fd \u003d android::base::unique_fd;\n}\n```\n2. unique_fd.h with current contents\n\nThis way I will be able to merge all changes in other projects (e.g. https://r.android.com/2834836) separately and not revert them if something else breaks.",
+      "parentUuid": "511416f6_f13e906e",
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c9904a4_70c9aaf0",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-16T07:15:01Z",
       "side": 1,
       "message": "+1 :)",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d26c68f_4fc85aeb",
+        "filename": "libs/binder/include/binder/BpBinder.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:06:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c9904a4_70c9aaf0",
       "range": {
         "startLine": 98,
         "startChar": 0,
