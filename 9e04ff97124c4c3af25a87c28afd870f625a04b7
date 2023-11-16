@@ -16,6 +16,24 @@
       "message": "btw, there are a number of changes we should make to this, such as factoring the list of sources out into lists, so they are only listed once. Let me know if you\u0027ve made this compile without deps. I can also iterate on this",
       "revId": "9e04ff97124c4c3af25a87c28afd870f625a04b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb94fc8_cc83af0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T18:33:21Z",
+      "side": 1,
+      "message": "Yes, that\u0027s what one of FIXMEs is referring to - it\u0027s WIP.\n\nIt already compiles without deps (please note all defaults are commented out), except `libutils_binder` and `include_dirs` for `liblog`. I\u0027m not sure how to approach liblog yet.",
+      "parentUuid": "7e47ce1f_b7030aa9",
+      "revId": "9e04ff97124c4c3af25a87c28afd870f625a04b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
