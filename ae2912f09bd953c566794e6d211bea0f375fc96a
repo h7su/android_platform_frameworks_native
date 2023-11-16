@@ -22,6 +22,30 @@
       },
       "revId": "ae2912f09bd953c566794e6d211bea0f375fc96a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83b7624_54708bbc",
+        "filename": "libs/binder/TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T03:50:34Z",
+      "side": 1,
+      "message": "Also, it should be okay to be in presubmit for libbinder changes as well, but it should be outside of global presubmit. Could you check with engprod if there is a way to do that? For instance, we could make sure this is a device-only test, so it would never be a candidate for global persubmit.\n\nAlso - you might want to create another CL which intentionally breaks this test, and make sure presubmit catches the breakage. We want to make sure breaking changes are caught",
+      "parentUuid": "3a66ea42_ab1aa3fe",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 19
+      },
+      "revId": "ae2912f09bd953c566794e6d211bea0f375fc96a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
