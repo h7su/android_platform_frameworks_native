@@ -976,6 +976,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87f1c3bf_3bbf78d3",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "There is only one use of Pipe in libbinder itself - FdTrigger, right? I think we could call pipe, it would cost 1 extra line of code there:\n\n```\n    unique_fd read;\n    unique_fd write;\n    Pipe(\u0026read, \u0026write, O_CLOEXEC);\n```\n\n```\n    int pipefd[2];\n    if (pipe2(pipefd, O_CLOEXEC) !\u003d 0) return false;\n    unique_fd read \u003d unique_fd(pipefd[0]);\n    unique_fd read \u003d unique_fd(pipefd[1]);\n```\n\nThe tests also, they don\u0027t use this much. We could use pipe there. Anyway, I think it would be better to provide pipe2 wrapper of pipe/fcntl on __APPLE__ than have an abstraction layer for every user of pipe2.\n\nAlso finally, this could avoid exposing Pipe as API from libbinder. Go ahead and add the wrapper for the tests (maybe trimming __APPLE__ for now just because we\u0027re definitely not testing/using that), FdTrigger could be okay with the couple extra lines of code?",
+      "parentUuid": "20906f0b_0bfee994",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2888ffa3_582da984",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4

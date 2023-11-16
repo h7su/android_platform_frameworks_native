@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "511416f6_f13e906e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "lg, getting very close, thanks!",
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c9904a4_70c9aaf0",
+        "filename": "libs/binder/include/binder/BpBinder.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "+1 :)",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ead4cf_02d5e5c6",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "`__ANDROID__` is defined in the _WIN32 and/or the __TRUSTY__ build? that seems like a surprise/an issue? but we could deal with it separately",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8686e891_4f559cc1",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "tests should enforce this right?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34be0d8a_d1b1bb6b",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T07:15:01Z",
+      "side": 1,
+      "message": "same - only one use in libbinder, move to tests? I\u0027d prefer we don\u0027t expose it as API",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
