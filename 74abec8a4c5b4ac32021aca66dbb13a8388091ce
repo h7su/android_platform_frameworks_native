@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62db037c_fb310b21",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47ead4cf_02d5e5c6",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8686e891_4f559cc1",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-11-16T07:15:01Z",
       "side": 1,
       "message": "tests should enforce this right?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "74abec8a4c5b4ac32021aca66dbb13a8388091ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27c8d31_30d3e1df",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8686e891_4f559cc1",
       "range": {
         "startLine": 49,
         "startChar": 0,
