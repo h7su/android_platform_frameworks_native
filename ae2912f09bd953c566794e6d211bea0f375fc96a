@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a66ea42_ab1aa3fe",
+        "filename": "libs/binder/TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T03:48:50Z",
+      "side": 1,
+      "message": "nothing is configured to run this, but we want to make sure the test gets run.\n\nHow about if you keep it in \"postsubmit\"?",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 19
+      },
+      "revId": "ae2912f09bd953c566794e6d211bea0f375fc96a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
