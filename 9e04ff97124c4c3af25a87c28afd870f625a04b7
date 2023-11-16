@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e47ce1f_b7030aa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-16T06:44:14Z",
+      "side": 1,
+      "message": "btw, there are a number of changes we should make to this, such as factoring the list of sources out into lists, so they are only listed once. Let me know if you\u0027ve made this compile without deps. I can also iterate on this",
+      "revId": "9e04ff97124c4c3af25a87c28afd870f625a04b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
