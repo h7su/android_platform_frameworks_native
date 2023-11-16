@@ -1000,6 +1000,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4bb89a1_b61f339d",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-16T19:13:34Z",
+      "side": 1,
+      "message": "It\u0027s used in 3 places in Binder and 4 places in tests.\n\nBut indeed this shouldn\u0027t be part of API.",
+      "parentUuid": "87f1c3bf_3bbf78d3",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 68
+      },
+      "revId": "d8451aea40aedc522a33f4c92bd41c9f96aa18b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2888ffa3_582da984",
         "filename": "libs/binder/include/binder/unique_fd.h",
         "patchSetId": 4
