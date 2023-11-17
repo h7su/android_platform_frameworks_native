@@ -45,6 +45,30 @@
       },
       "revId": "b83a3fa2e96302e29c2e8a9118521adc470b936a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd5bcc08_42974ecc",
+        "filename": "libs/binder/tests/parcel_fuzzer/include_random_parcel_seeds/fuzzseeds/random_parcel_seeds.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-17T21:50:18Z",
+      "side": 1,
+      "message": "I can pull all of these to visibility-restricted static libraries: `libbinder_internal_utils` (FdUtils.h, file.cpp/h) and `libbinder_test_utils` (FileUtils.cpp/h).\n\nI can also fix previous instances of `#include \"..` - add to `libbinder_internal_utils` as well: OS.h, FdTrigger.h, RpcState.h, Utils.h, UtilsHost.h, Debug.h, binder_module.h, RpcSocketAddress.h, vm_sockets.h, BuildFlags.h, ibinder_internal.h.\n\nDo you want me to clean it up in a separate change? Ideally not in November.",
+      "parentUuid": "8d896971_f266517f",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "b83a3fa2e96302e29c2e8a9118521adc470b936a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
