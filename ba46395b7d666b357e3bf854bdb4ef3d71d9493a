@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d2a2add_782580f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957957
+      },
+      "writtenOn": "2023-11-17T07:38:47Z",
+      "side": 1,
+      "message": "If you have other solutions,please help reply,thanks! This bug related to the issue 304183778 and 290318197.",
+      "revId": "ba46395b7d666b357e3bf854bdb4ef3d71d9493a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
