@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43d8d96_51e00f7e",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-17T22:59:07Z",
+      "side": 1,
+      "message": "@smoreland@google.com: I squashed the other unique_fd change here. PTAL.",
+      "revId": "639490b9ec6535cda7f24403237355c941e9fcb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
