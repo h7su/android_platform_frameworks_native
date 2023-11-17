@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7affef3a_f31ce509",
+        "filename": "include/input/InputTransport.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-17T22:29:31Z",
+      "side": 1,
+      "message": "Except this one - it looks like it\u0027s breaking some uses across Android.",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 46
+      },
+      "revId": "72d587d40ad3fcb0e292fc1ac7f751ea644ca0a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
