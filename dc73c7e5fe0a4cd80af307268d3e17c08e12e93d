@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7405a60d_1629fd65",
+        "filename": "libs/binder/include/binder/unique_fd.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-17T22:37:07Z",
+      "side": 1,
+      "message": "With this macro, unique_fd no longer needs to be split into 2 changes. Let me squash them back.",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "dc73c7e5fe0a4cd80af307268d3e17c08e12e93d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
