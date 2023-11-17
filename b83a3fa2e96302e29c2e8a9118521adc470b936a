@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "915b3243_2836abc3",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 23
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-17T21:24:24Z",
+      "side": 1,
+      "message": ":( okay",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 19
+      },
+      "revId": "b83a3fa2e96302e29c2e8a9118521adc470b936a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d896971_f266517f",
+        "filename": "libs/binder/tests/parcel_fuzzer/include_random_parcel_seeds/fuzzseeds/random_parcel_seeds.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-17T21:24:24Z",
+      "side": 1,
+      "message": "this is so messy though, in the parent CLs as well. it could be a visibility restricted headers library or something",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "b83a3fa2e96302e29c2e8a9118521adc470b936a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
