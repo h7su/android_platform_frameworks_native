@@ -16,6 +16,24 @@
       "message": "What would be useful here would be a generic `FdWriter` that works with any file descriptor, even on Trusty. I haven\u0027t found one yet on crates.io, I\u0027m tempted to just write it myself.",
       "revId": "72333f2621f2114dabbe44775fb5dae8ac9d7351",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26968f5f_ced06344",
+        "filename": "libs/binder/rust/src/native.rs",
+        "patchSetId": 45
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-20T23:54:53Z",
+      "side": 1,
+      "message": "Alternatively, this could just return `INVALID_OPERATION`.",
+      "parentUuid": "08d4ea9c_46b06196",
+      "revId": "72333f2621f2114dabbe44775fb5dae8ac9d7351",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
