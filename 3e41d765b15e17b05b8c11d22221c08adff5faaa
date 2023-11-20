@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69a221fd_7e7c93f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:25:07Z",
+      "side": 1,
+      "message": "adds",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695d9a9d_be32589b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:25:07Z",
+      "side": 1,
+      "message": "change",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c674799_c9c1b188",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -112,6 +158,23 @@
         "endLine": 13,
         "endChar": 44
       },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c6089b_75cbf848",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:25:07Z",
+      "side": 1,
+      "message": "Please also provide the difference snapshot for your change so that people can understand your commit easily while reading your commit message. \n\nE.g.\n```\nBefore:\n1: lo: \u003cLOOPBACK,UP,LOWER_UP\u003e mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n\n\nAfter:\n1: lo: \u003cLOOPBACK,UP,LOWER_UP\u003e mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n    RX: bytes  packets  errors  dropped overrun mcast   \n    3851       28       0       0       0       0       \n    TX: bytes  packets  errors  dropped carrier collsns \n    3851       28       0       0       0       0       \n```",
       "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
