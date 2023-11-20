@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20c83a1_f3aaa29d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:14:04Z",
+      "side": 1,
+      "message": "Nit: Capital",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa65d42_2b31c9ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:14:04Z",
+      "side": 1,
+      "message": "statistics",
+      "range": {
+        "startLine": 9,
+        "startChar": 48,
+        "endLine": 9,
+        "endChar": 59
+      },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ddec8e0_ce6603bf",
+        "filename": "cmds/dumpstate/dumpstate.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-11-20T08:14:04Z",
+      "side": 1,
+      "message": "IIUC, `ip -s link` covers all the information in `ip link`. What you need to do is just to add `-s` here. Otherwise, you will have duplicate information.",
+      "range": {
+        "startLine": 1239,
+        "startChar": 38,
+        "endLine": 1239,
+        "endChar": 50
+      },
+      "revId": "3e41d765b15e17b05b8c11d22221c08adff5faaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
