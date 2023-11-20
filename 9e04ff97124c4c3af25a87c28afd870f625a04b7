@@ -34,6 +34,24 @@
       "parentUuid": "7e47ce1f_b7030aa9",
       "revId": "9e04ff97124c4c3af25a87c28afd870f625a04b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ade2bc_e6227d15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-20T23:28:12Z",
+      "side": 1,
+      "message": "The change is slowly getting final shape. The last thing for duplicated source list is `libbinder_headers`. PTAL at the current state when you have time - I did some not-a-noop changes.",
+      "parentUuid": "efb94fc8_cc83af0d",
+      "revId": "9e04ff97124c4c3af25a87c28afd870f625a04b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
