@@ -1241,6 +1241,7 @@ static void DumpIpAddrAndRules() {
     RunCommand("IPv6 ADDRESSES", {"ip", "-6", "addr", "show"});
     RunCommand("IP RULES", {"ip", "rule", "show"});
     RunCommand("IP RULES v6", {"ip", "-6", "rule", "show"});
+    RunCommand("NETWORK INTERFACES STATISTICS", {"ip", "-s", "link"});
 }
 
 static Dumpstate::RunStatus RunDumpsysTextByPriority(const std::string& title, int priority,
