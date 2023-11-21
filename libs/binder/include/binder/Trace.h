@@ -16,22 +16,32 @@
 
 #pragma once
 
-#include <cutils/trace.h>
 #include <stdint.h>
+
+#ifdef __ANDROID__
+#include <cutils/trace.h>
+#endif
+
+#ifndef ATRACE_TAG_AIDL
+#define ATRACE_TAG_AIDL (1 << 24)
+#endif
 
 namespace android {
 namespace binder {
 
+// Forward declarations from internal OS.h
+namespace os {
 // Trampoline functions allowing generated aidls to trace binder transactions without depending on
 // libcutils/libutils
-void atrace_begin(uint64_t tag, const char* name);
-void atrace_end(uint64_t tag);
+void trace_begin(uint64_t tag, const char* name);
+void trace_end(uint64_t tag);
+} // namespace os
 
 class ScopedTrace {
 public:
-    inline ScopedTrace(uint64_t tag, const char* name) : mTag(tag) { atrace_begin(mTag, name); }
+    inline ScopedTrace(uint64_t tag, const char* name) : mTag(tag) { os::trace_begin(mTag, name); }
 
-    inline ~ScopedTrace() { atrace_end(mTag); }
+    inline ~ScopedTrace() { os::trace_end(mTag); }
 
 private:
     uint64_t mTag;
