@@ -16,6 +16,23 @@
       "message": "(if you want)",
       "revId": "2b0251438f35a56e329f7db04dba12d0e2d17cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9c32f5_0b8d13eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2023-11-21T08:25:48Z",
+      "side": 1,
+      "message": "Thanks :) Happy to keep doing reviews here, but guess OWNERS doesn\u0027t really differentiate (as of now).",
+      "revId": "2b0251438f35a56e329f7db04dba12d0e2d17cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
