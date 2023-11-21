@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6069ca4d_5b64b8d6",
+        "filename": "libs/binder/tests/Android.bp",
+        "patchSetId": 23
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-21T20:40:39Z",
+      "side": 1,
+      "message": "@smoreland@google.com: Is this soong bug or intended operation? Looks like if I set `gen_trace` on aidl_interface and then do any change to some backend (java), all other backends have `gen_trace` reverted to a default.",
+      "revId": "56b9888f7d9f8f84257be3508734ac94d0235192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

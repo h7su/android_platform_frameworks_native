@@ -33,6 +33,24 @@
       "message": "It should be, since we\u0027re mocking Trusty which is (still) single-threaded, and this macro changes a bunch of definitions from `RpcThreads.h`.",
       "revId": "ae9715abeff1cfe0d5c93be526d662289a9aeedc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b03459_5088f9b2",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 22
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-21T20:40:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4be08a03_f36ffbf1",
+      "revId": "ae9715abeff1cfe0d5c93be526d662289a9aeedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
