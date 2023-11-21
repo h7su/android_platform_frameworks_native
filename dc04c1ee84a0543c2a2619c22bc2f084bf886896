@@ -16,6 +16,24 @@
       "message": "`Merged-In: Ib0fa4484576f9d296b8f57f32ae536b17e5c6497` from aosp/2627391?",
       "revId": "dc04c1ee84a0543c2a2619c22bc2f084bf886896",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75cfa8da_1751e00a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-21T21:14:27Z",
+      "side": 1,
+      "message": "Thanks. Hopefully we won\u0027t need to merge this though. See b/312510312. It\u0027s working around ABI mismatches..",
+      "parentUuid": "22b9917e_ccc0207d",
+      "revId": "dc04c1ee84a0543c2a2619c22bc2f084bf886896",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
