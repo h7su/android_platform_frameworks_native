@@ -178,6 +178,10 @@ static void get_interesting_hidl_pids(std::set<int> &pids) {
     using android::hardware::Return;
 
     sp<IServiceManager> manager = IServiceManager::getService();
+    if (!manager) {
+        ALOGI("Can not reach hwservicemanager to get HIDL service PIDs.");
+        return;
+    }
     read_extra_hals_to_dump_from_property();
 
     Return<void> ret = manager->debugDump([&](auto& hals) {
