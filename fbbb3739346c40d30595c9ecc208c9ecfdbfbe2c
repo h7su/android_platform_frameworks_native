@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c102a8_5a5d12c3",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 24
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-21T22:15:58Z",
+      "side": 1,
+      "message": "Removing this doesn\u0027t fail, because this soong chain:\n - libbinder_common_defaults\n - libutils_binder\n - libutils_binder_impl_defaults\n - libutils_defaults\n \nadds `libcutils` and `liblog` to `shared_libs`.\n\n@smoreland@google.com: Is there a less invasive option than doing `libutils_binder_sdk`?",
+      "range": {
+        "startLine": 409,
+        "startChar": 26,
+        "endLine": 409,
+        "endChar": 81
+      },
+      "revId": "fbbb3739346c40d30595c9ecc208c9ecfdbfbe2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
