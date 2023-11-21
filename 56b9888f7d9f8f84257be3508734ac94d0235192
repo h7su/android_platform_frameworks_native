@@ -16,6 +16,24 @@
       "message": "@smoreland@google.com: Is this soong bug or intended operation? Looks like if I set `gen_trace` on aidl_interface and then do any change to some backend (java), all other backends have `gen_trace` reverted to a default.",
       "revId": "56b9888f7d9f8f84257be3508734ac94d0235192",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc81b8a6_12c9b35b",
+        "filename": "libs/binder/tests/Android.bp",
+        "patchSetId": 23
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-21T20:49:19Z",
+      "side": 1,
+      "message": "It\u0027s because Zim is trying to migrate everything to use tracing by default:\nhttps://cs.android.com/android/platform/superproject/main/+/main:system/tools/aidl/build/aidl_interface.go;l\u003d525;drc\u003d65c0715fa7f96de7a19b80c3052a6614c1c8c0cc\n\nI\u0027d recommend moving this to the OS.cpp layer rather than removing it here. We do want tracing support in general.",
+      "parentUuid": "6069ca4d_5b64b8d6",
+      "revId": "56b9888f7d9f8f84257be3508734ac94d0235192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
