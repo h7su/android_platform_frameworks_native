@@ -16,6 +16,23 @@
       "message": "@ahomescu@google.com PTAL at the trusty changes.",
       "revId": "ae9715abeff1cfe0d5c93be526d662289a9aeedc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be08a03_f36ffbf1",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 22
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-21T05:16:44Z",
+      "side": 1,
+      "message": "It should be, since we\u0027re mocking Trusty which is (still) single-threaded, and this macro changes a bunch of definitions from `RpcThreads.h`.",
+      "revId": "ae9715abeff1cfe0d5c93be526d662289a9aeedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
