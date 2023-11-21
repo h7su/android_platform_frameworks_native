@@ -1358,8 +1358,8 @@ TEST_F(BinderLibTest, ThreadPoolAvailableThreads) {
     EXPECT_THAT(server->transact(BINDER_LIB_TEST_GET_MAX_THREAD_COUNT, data, &reply),
                 StatusEq(NO_ERROR));
     int32_t replyi = reply.readInt32();
-    // Expect 16 threads: kKernelThreads = 15 + Pool thread == 16
-    EXPECT_TRUE(replyi == kKernelThreads || replyi == kKernelThreads + 1);
+    // Expect 16 threads: kKernelThreads = 15 + Pool thread == 16 - or 17 (for 24Q1+ devices - b/309885877)
+    EXPECT_TRUE(replyi == kKernelThreads || replyi == kKernelThreads + 1 || replyi == kKernelThreads + 2);
     EXPECT_THAT(server->transact(BINDER_LIB_TEST_PROCESS_LOCK, data, &reply), NO_ERROR);
 
     /*
@@ -1387,7 +1387,7 @@ TEST_F(BinderLibTest, ThreadPoolAvailableThreads) {
     EXPECT_THAT(server->transact(BINDER_LIB_TEST_GET_MAX_THREAD_COUNT, data, &reply),
                 StatusEq(NO_ERROR));
     replyi = reply.readInt32();
-    EXPECT_EQ(replyi, kKernelThreads + 1);
+    EXPECT_GE(replyi, kKernelThreads + 1); // will be +2 on 24Q1 devices - see b/309885877
 }
 
 TEST_F(BinderLibTest, ThreadPoolStarted) {
@@ -1437,6 +1437,8 @@ TEST_F(BinderLibTest, HangingServices) {
 class BinderLibRpcTestBase : public BinderLibTest {
 public:
     void SetUp() override {
+        GTEST_SKIP() << "ABI mismatch for 24Q1, see b/309879176";
+
         if (!base::GetBoolProperty("ro.debuggable", false)) {
             GTEST_SKIP() << "Binder RPC is only enabled on debuggable builds, skipping test on "
                             "non-debuggable builds.";
@@ -1470,6 +1472,7 @@ static Matcher<status_t> Debuggable(const Matcher<status_t> &matcher) {
 }
 
 TEST_F(BinderLibRpcTest, SetRpcClientDebug) {
+    GTEST_SKIP() << "ABI mismatch for 24Q1, see b/309879176";
     auto binder = addServer();
     ASSERT_TRUE(binder != nullptr);
     auto [socket, port] = CreateSocket();
@@ -1480,6 +1483,7 @@ TEST_F(BinderLibRpcTest, SetRpcClientDebug) {
 
 // Tests for multiple RpcServer's on the same binder object.
 TEST_F(BinderLibRpcTest, SetRpcClientDebugTwice) {
+    GTEST_SKIP() << "ABI mismatch for 24Q1, see b/309879176";
     auto binder = addServer();
     ASSERT_TRUE(binder != nullptr);
 
@@ -1509,6 +1513,7 @@ public:
 };
 
 TEST_P(BinderLibRpcTestP, SetRpcClientDebugNoFd) {
+    GTEST_SKIP() << "ABI mismatch for 24Q1, see b/309879176";
     auto binder = GetService();
     ASSERT_TRUE(binder != nullptr);
     EXPECT_THAT(binder->setRpcClientDebug(android::base::unique_fd(), sp<BBinder>::make()),
@@ -1516,6 +1521,7 @@ TEST_P(BinderLibRpcTestP, SetRpcClientDebugNoFd) {
 }
 
 TEST_P(BinderLibRpcTestP, SetRpcClientDebugNoKeepAliveBinder) {
+    GTEST_SKIP() << "ABI mismatch for 24Q1, see b/309879176";
     auto binder = GetService();
     ASSERT_TRUE(binder != nullptr);
     auto [socket, port] = CreateSocket();
