@@ -22,6 +22,30 @@
       },
       "revId": "3202460dda991e79ff5c9fc77daf4bd484bb23e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff7a6a4b_f20cf5ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-21T16:44:04Z",
+      "side": 1,
+      "message": "It\u0027s just one of these changes that if I abandon it now, it may come back in a year or a few.",
+      "parentUuid": "d19e1238_61a01657",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 26
+      },
+      "revId": "3202460dda991e79ff5c9fc77daf4bd484bb23e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
