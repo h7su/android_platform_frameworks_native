@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19e1238_61a01657",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-21T01:08:36Z",
+      "side": 1,
+      "message": "if you don\u0027t have the tests on hand, I\u0027d honestly recommend just abandoning this and working on the stuff that needs to get merged - emails add up!",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 26
+      },
+      "revId": "3202460dda991e79ff5c9fc77daf4bd484bb23e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
