@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00d3502_862f6549",
+        "filename": "libs/binder/trusty/rust/rules.mk",
+        "patchSetId": 48
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-21T20:32:11Z",
+      "side": 1,
+      "message": "can you file a bug to move away from this kind of thing? unify with AAOS strategy?",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "12705d0a3ed808ae02e25352627aeeab7ac66b5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
