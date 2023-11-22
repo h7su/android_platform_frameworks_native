@@ -52,6 +52,24 @@
       "parentUuid": "2be7e7a5_4b779eae",
       "revId": "9e0b0eb93ec9bf2954df7b21db87fc06d36ddff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbebe60e_23af99ae",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-22T00:17:12Z",
+      "side": 1,
+      "message": "Up to you, but I would advise against log spam on Trusty :).",
+      "parentUuid": "2202c4b3_2c32ee15",
+      "revId": "9e0b0eb93ec9bf2954df7b21db87fc06d36ddff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
