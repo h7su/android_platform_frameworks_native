@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf0351f_d03f44b0",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-22T05:27:36Z",
+      "side": 1,
+      "message": "Older versions of gcc don\u0027t have this operator. How far back do you want this to compile?\n\nThe gcc manual recommends checking if it\u0027s defined first (https://gcc.gnu.org/onlinedocs/cpp/_005f_005fhas_005finclude.html).",
+      "revId": "9e14627fe658fd8f1c7668bf025e64e13a3248d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
