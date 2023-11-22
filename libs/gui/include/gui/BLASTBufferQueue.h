@@ -293,6 +293,8 @@ private:
     std::function<void(const std::string&)> mTransactionHangCallback;
 
     std::unordered_set<uint64_t> mSyncedFrameNumbers GUARDED_BY(mMutex);
+
+    bool mNoAcquireFlag GUARDED_BY(mMutex) = false;
 };
 
 } // namespace android
