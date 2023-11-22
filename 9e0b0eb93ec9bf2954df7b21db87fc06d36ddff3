@@ -70,6 +70,24 @@
       "parentUuid": "2202c4b3_2c32ee15",
       "revId": "9e0b0eb93ec9bf2954df7b21db87fc06d36ddff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a5f4e86_2b986722",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-22T00:19:10Z",
+      "side": 1,
+      "message": "Yeah I would need to plan it out. Let\u0027s leave them no-ops for now.",
+      "parentUuid": "bbebe60e_23af99ae",
+      "revId": "9e0b0eb93ec9bf2954df7b21db87fc06d36ddff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
