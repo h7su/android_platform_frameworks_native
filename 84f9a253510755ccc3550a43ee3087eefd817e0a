@@ -22,6 +22,30 @@
       },
       "revId": "84f9a253510755ccc3550a43ee3087eefd817e0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9cb703e_dfbd66b2",
+        "filename": "libs/vibrator/fuzzer/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1619864
+      },
+      "writtenOn": "2023-11-22T14:50:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424dc774_697eb50d",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "84f9a253510755ccc3550a43ee3087eefd817e0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
