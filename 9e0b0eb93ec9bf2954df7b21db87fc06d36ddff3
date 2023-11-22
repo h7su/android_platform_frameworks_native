@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5c84f4a_2e75d4e4",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-22T00:07:29Z",
+      "side": 1,
+      "message": "We could do something interesting here, but can leave it for later.",
+      "revId": "9e0b0eb93ec9bf2954df7b21db87fc06d36ddff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
