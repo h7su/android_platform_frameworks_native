@@ -46,6 +46,30 @@
       },
       "revId": "12705d0a3ed808ae02e25352627aeeab7ac66b5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e4b974_bae4f029",
+        "filename": "libs/binder/trusty/rust/rules.mk",
+        "patchSetId": 48
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-22T18:09:41Z",
+      "side": 1,
+      "message": "I think what you\u0027re proposing is switching to CMake. I\u0027m not sure we can get away from using the `rules.mk` files on Trusty, since the switch would require porting a significant part of the Trusty build system to CMake. There has already been one attempt to switch to Bazel (https://android-review.git.corp.google.com/q/topic:%22wingerter-trusty-bazel-poc%22) and that one fell through, not sure we\u0027d be any more successful with CMake.\n\nI\u0027ll open a bug anyway and we can figure it out later.",
+      "parentUuid": "651a41c2_e0162036",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "12705d0a3ed808ae02e25352627aeeab7ac66b5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
