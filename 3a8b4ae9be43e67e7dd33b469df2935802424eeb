@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83bd5d64_6ee143ab",
+        "filename": "libs/dumputils/dump_utils.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-22T23:37:47Z",
+      "side": 1,
+      "message": "hey actually though - when servicemanager gets added to itself, we won\u0027t need this change. This was me using the lazy approach (instead of calling defaultServiceManager() directly) - so this change should also not be needed",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 11
+      },
+      "revId": "3a8b4ae9be43e67e7dd33b469df2935802424eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
