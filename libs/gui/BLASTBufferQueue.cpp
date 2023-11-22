@@ -176,6 +176,7 @@ BLASTBufferQueue::BLASTBufferQueue(const std::string& name, bool updateDestinati
     mCurrentMaxAcquiredBufferCount = mMaxAcquiredBuffers;
     mNumAcquired = 0;
     mNumFrameAvailable = 0;
+    mNoAcquireFlag = false;
 
     TransactionCompletedListener::getInstance()->addQueueStallListener(
             [&](const std::string& reason) {
@@ -704,6 +705,7 @@ void BLASTBufferQueue::onFrameAvailable(const BufferItem& item) {
 
         const bool syncTransactionSet = mTransactionReadyCallback != nullptr;
         BQA_LOGV("onFrameAvailable-start syncTransactionSet=%s", boolToString(syncTransactionSet));
+	int ret;
 
         if (syncTransactionSet) {
             // If we are going to re-use the same mSyncTransaction, release the buffer that may
@@ -731,6 +733,14 @@ void BLASTBufferQueue::onFrameAvailable(const BufferItem& item) {
                     acquireAndReleaseBuffer();
                 }
             } else {
+                if(mNumFrameAvailable > 0 && mNoAcquireFlag) {
+                    mNoAcquireFlag = false;
+                    ret = acquireNextBufferLocked(std::nullopt);
+                    if (ret != OK) {
+                        BQA_LOGE("Failed to acquire next buffer (waiting), ret=%d", ret);
+                    }
+                    BQA_LOGD("reset mNoAcquireFlag!");
+                }
                 // Make sure the frame available count is 0 before proceeding with a sync to ensure
                 // the correct frame is used for the sync. The only way mNumFrameAvailable would be
                 // greater than 0 is if we already ran out of buffers previously. This means we
@@ -779,7 +789,10 @@ void BLASTBufferQueue::onFrameAvailable(const BufferItem& item) {
             }
         } else if (!waitForTransactionCallback) {
             acquireNextBufferLocked(std::nullopt);
-        }
+        } else {
+            mNoAcquireFlag = true;
+            BQA_LOGV("set mNoAcquireFlag!");
+	}
     }
     if (prevCallback) {
         prevCallback(prevTransaction);
