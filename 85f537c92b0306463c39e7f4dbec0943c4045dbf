@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7af72b29_23a6bcf9",
+        "filename": "libs/binder/tests/binderLibTest.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 1973455
+      },
+      "writtenOn": "2023-11-23T00:34:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fda0cd26_e343fe1c",
+      "range": {
+        "startLine": 1361,
+        "startChar": 0,
+        "endLine": 1361,
+        "endChar": 107
+      },
+      "revId": "85f537c92b0306463c39e7f4dbec0943c4045dbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33d47d8c_90cd0125",
