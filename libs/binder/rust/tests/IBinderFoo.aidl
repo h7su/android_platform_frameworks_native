@@ -1,0 +1,3 @@
+interface IBinderFoo {
+    void foo();
+}
