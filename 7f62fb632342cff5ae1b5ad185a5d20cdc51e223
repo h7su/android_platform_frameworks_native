@@ -39,6 +39,30 @@
       },
       "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3961fede_080da67d",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1413436
+      },
+      "writtenOn": "2023-11-27T08:49:16Z",
+      "side": 1,
+      "message": "I updated to change log callback which is just mute. PTAL if this would work.",
+      "parentUuid": "b5537753_d128ad5c",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 80
+      },
+      "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
