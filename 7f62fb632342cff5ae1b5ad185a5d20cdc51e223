@@ -16,6 +16,29 @@
       "message": "LGTM, but should be approved by the owners.",
       "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5537753_d128ad5c",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-27T06:13:48Z",
+      "side": 1,
+      "message": "nit; Doesn\u0027t this print an audit log (`avc: denied`) upon failure? Can we avoid printing that? (I\u0027m not sure exactly how to)",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 80
+      },
+      "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
