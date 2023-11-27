@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "877a56a1_7c738f13",
+        "filename": "libs/gui/BLASTBufferQueue.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2023-11-27T15:46:16Z",
+      "side": 1,
+      "message": "Overall I\u0027m not familiar with this code, but if we were to declare a variable so far away from its use, it would need a better name, and we would most likely need to initialize it.\n\nBut assuming this overall idea is correct (again, just not my area), this should be declared where it\u0027s used. I would make line 738 say something along the lines of\n\n```\n  if (int ret \u003d acquireNextBufferLocked(std::nullopt); ret !\u003d OK) [\n      BQA_LOGE(...);\n  }\n  BQA_LOGD(...);\n```",
+      "revId": "f6c3946c9d8d6f1bc397bd274e438271edcf1c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
