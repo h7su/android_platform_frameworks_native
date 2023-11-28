@@ -16,6 +16,24 @@
       "message": "okay, okay",
       "revId": "e8d996e11b36b26376896abe32f62792aeed5e25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479ec228_d108ed5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2023-11-28T23:34:16Z",
+      "side": 1,
+      "message": "if you really think you\u0027re likely to get back to using this, we can always just disable the actual functionality[1] but keep it building for now... but it\u0027s not clear to me that _your_ use case would have cared much about the _thread_ names anyway? iirc you were just looking for \"can we have a presubmit test to spot new spammers?\", so you only care about _volume_ (and for _presubmit_ don\u0027t even really need to attribute it to a specific process even)?\n\n____\n1. in system/logging/ that is --- i still think we should merge this so we can \"fail fast\" if there are actual humans (or bots!) looking at this.",
+      "parentUuid": "6992b892_8a4f518a",
+      "revId": "e8d996e11b36b26376896abe32f62792aeed5e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
