@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6f4bd2_4cbd9aa9",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-28T22:05:07Z",
+      "side": 0,
+      "message": "may break prebuilts which are checked in using this symbol, can you check ABDT boot on devices we have? if possible - leave this symbol unchanged?\n\nIf you can leave this symbol unchanged with \u0027android::binder::atrace_begin\u0027.",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
