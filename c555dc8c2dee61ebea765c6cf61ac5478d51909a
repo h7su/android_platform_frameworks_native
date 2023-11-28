@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b24e0ce3_6af7a86f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:02:46Z",
+      "side": 1,
+      "message": "have you tried corrupting the labels manually to trigger this code path, and see if it actually works? I mean, that the files are accessible in time if the call is in a separate thread",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8687bcfa_c2d465ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:02:46Z",
+      "side": 1,
+      "message": "t",
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7949220_f73e9538",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:02:46Z",
+      "side": 1,
+      "message": "1. is there a way to reuse some existing thread for this? I\u0027m pretty sure you will get pinged by the system health team because of a new thread creation that\u0027s not known to their systems\n\n2. if there was a crash, is there a chance we\u0027re getting a few of those \u0027in progress\u0027 packages, and end up creating multiple threads this way?",
+      "range": {
+        "startLine": 582,
+        "startChar": 12,
+        "endLine": 582,
+        "endChar": 45
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ed1319_dc8bd330",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:02:46Z",
+      "side": 1,
+      "message": "how can we guarantee that some inner files are ready by the time this function returns? what if someone is trying to access them, or even setting up an attack and the function takes longer than their code?",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 23
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2355c0a0_c4fbe7c5",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:02:46Z",
+      "side": 1,
+      "message": "nit: this isn\u0027t required as it\u0027s the default condition",
+      "range": {
+        "startLine": 584,
+        "startChar": 42,
+        "endLine": 584,
+        "endChar": 54
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
