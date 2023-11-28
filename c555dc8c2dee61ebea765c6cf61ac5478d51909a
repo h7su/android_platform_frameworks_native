@@ -41,6 +41,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee2d5d4_a8d8df1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:13:37Z",
+      "side": 1,
+      "message": "sorry, this was a misclick",
+      "parentUuid": "8687bcfa_c2d465ce",
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7949220_f73e9538",
@@ -82,6 +100,30 @@
         "startChar": 17,
         "endLine": 582,
         "endChar": 23
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fccc6759_ef28e2ac",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1080076
+      },
+      "writtenOn": "2023-11-28T20:13:37Z",
+      "side": 1,
+      "message": "After reading the bug - it looks like what we actually need here is a way to resume labeling on the next call instead of restarting it. Do you know what is the slower part of the operation - walking directories or labeling the files? if we could walk directory fast enough it could be possible to periodically update the \u0027in progress\u0027 label to point at the current path, so the operation would continue from that point only. \n\nBut if walking it is also slow, I don\u0027t see any way other than making the app unavailable until the operation completes, and only then restoring it in PackageManager - so we could at least allow the system to boot up, but not let anyone access incorrectly labeled apps",
+      "parentUuid": "d7949220_f73e9538",
+      "range": {
+        "startLine": 582,
+        "startChar": 12,
+        "endLine": 582,
+        "endChar": 45
       },
       "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
