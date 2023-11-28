@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff9d6cd4_3c8479af",
+        "filename": "libs/binder/rust/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2023-11-28T02:28:49Z",
+      "side": 1,
+      "message": "This is not required if the binary is in `system_ext`.",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 29
+      },
+      "revId": "92f0b3b982f040f609d6e279fb48fc9d07fcde55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005da237_573caaee",
+        "filename": "libs/binder/rust/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2023-11-28T02:28:49Z",
+      "side": 1,
+      "message": "You may use `system_ext_specific` to install this in `system_ext` partition instead of `product` partition.",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 20
+      },
+      "revId": "92f0b3b982f040f609d6e279fb48fc9d07fcde55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
