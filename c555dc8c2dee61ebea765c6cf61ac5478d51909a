@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09e907a_00c24c88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-11-28T21:15:44Z",
+      "side": 1,
+      "message": "if we are talking about 1,000,000s of files then they won\u0027t be accessible for minutes. the trade off here is between the whole phone is unusable and a single app potentially broken",
+      "parentUuid": "b24e0ce3_6af7a86f",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8687bcfa_c2d465ce",
@@ -131,6 +155,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "928a1c87_bb4ffa45",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-11-28T21:15:44Z",
+      "side": 1,
+      "message": "Files can be only accessed from the same uid. i.e. an attacker has to:\n1. wait for many-many OTAs to obtain the same UID,\n2. AND for the user to reboot the phone during label update, at first reboot after an OTA\n3. AND to know the exact path to the file,\n4. and the file has to be available (label not changed).\nI find all the above highly unlikely.\n\nBesides, an app which is continuously hanging during OTA, will most probably be flagged and fixed.",
+      "parentUuid": "b8ed1319_dc8bd330",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 23
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dd3d7bd_f52efcd2",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-11-28T21:15:44Z",
+      "side": 1,
+      "message": "Resuming of a multi-minutes process will annoy the user even further, and will probably result in more reboots. And this is exactly what we want to avoid.\n\"How many reboots does it take to finally boot the phone?\"",
+      "parentUuid": "fccc6759_ef28e2ac",
+      "range": {
+        "startLine": 582,
+        "startChar": 12,
+        "endLine": 582,
+        "endChar": 45
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2355c0a0_c4fbe7c5",
         "filename": "cmds/installd/InstalldNativeService.cpp",
         "patchSetId": 1
@@ -142,6 +214,30 @@
       "writtenOn": "2023-11-28T20:02:46Z",
       "side": 1,
       "message": "nit: this isn\u0027t required as it\u0027s the default condition",
+      "range": {
+        "startLine": 584,
+        "startChar": 42,
+        "endLine": 584,
+        "endChar": 54
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c98d42ee_dcf24c82",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-11-28T21:15:44Z",
+      "side": 1,
+      "message": "too much java recently 😞",
+      "parentUuid": "2355c0a0_c4fbe7c5",
       "range": {
         "startLine": 584,
         "startChar": 42,
