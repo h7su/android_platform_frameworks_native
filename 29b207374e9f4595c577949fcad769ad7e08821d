@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "115a0ea9_0c2255d2",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 31
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-28T23:25:40Z",
+      "side": 1,
+      "message": "I tried doing this [https://paste.googleplex.com/5961501471408128?raw], but it turned out it won\u0027t work:\n - Android build system adds a lot of includes by default (see #if 0\u0027s in the paste)\n - Adding unwanted dependency to other dependency (libutils_binder_sdk) doesn\u0027t trigger these failures in libbinder_sdk\n\nSounds like we need to add such a test somewhere else, e.g. inspecting CMake auto-generated output.",
+      "range": {
+        "startLine": 420,
+        "startChar": 24,
+        "endLine": 420,
+        "endChar": 120
+      },
+      "revId": "29b207374e9f4595c577949fcad769ad7e08821d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
