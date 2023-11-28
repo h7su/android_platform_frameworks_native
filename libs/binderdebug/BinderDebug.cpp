@@ -20,6 +20,7 @@
 #include <binder/Binder.h>
 #include <sys/types.h>
 #include <fstream>
+#include <list>
 #include <regex>
 
 #include <binderdebug/BinderDebug.h>
@@ -49,15 +50,18 @@ static status_t scanBinderContext(pid_t pid, const std::string& contextName,
         }
     }
 
+    bool allContexts = contextName.empty();
     bool isDesiredContext = false;
     std::string line;
     while (getline(ifs, line)) {
-        if (base::StartsWith(line, "context")) {
-            isDesiredContext = base::Split(line, " ").back() == contextName;
-            continue;
-        }
-        if (!isDesiredContext) {
-            continue;
+        if (!allContexts) {
+            if (base::StartsWith(line, "context")) {
+                isDesiredContext = base::Split(line, " ").back() == contextName;
+                continue;
+            }
+            if (!isDesiredContext) {
+                continue;
+            }
         }
         eachLine(line);
     }
@@ -197,6 +201,70 @@ status_t getBinderClientPids(BinderDebugContext context, pid_t pid, pid_t servic
         }
     });
     return ret;
+}
+
+#define contains(val, l) (std::find(l.begin(), l.end(), val) != l.end())
+
+static inline status_t findBinderTransactions(int pid, const std::string& contextStr,
+                                              std::list<int>& workingPids,
+                                              BinderTransactionInfo& workInfo) {
+    // First, mark current target pid as scanned pid.
+    workInfo.scannedPids.push_back(pid);
+    status_t ret = scanBinderContext(pid, contextStr, [&](const std::string& line) {
+        std::smatch match;
+        const static std::regex kBinderTransaction(
+                "\\s*(outgoing|incoming|pending)" // group1: direction
+                "\\s+transaction\\s+-?\\d+:\\s+-?\\w+"
+                "\\s+from\\s+-?\\d+:-?\\d+"
+                "\\s+to\\s+(-?\\d+):-?\\d+.*"); // group2: to pid
+        if (std::regex_match(line, match, kBinderTransaction)) {
+            std::string direction = match[1].str();
+            int toPid = stoi(match[2].str());
+            // Add new target pid if found a new outgoing pid.
+            if (toPid != 0 && direction == "outgoing") {
+                if (!contains(toPid, workInfo.scannedPids) && !contains(toPid, workingPids)) {
+                    workingPids.push_back(toPid);
+                }
+            }
+            // Add raw transactions info line to log string.
+            workInfo.trLines.push_back(line);
+        }
+    });
+    return ret;
+}
+
+// Examples of what we are looking at:
+// outgoing transaction 879906: 0000000000000000 from 16129:16129 to 18658:18723 code 3 flags 10 pri
+// 0:110 r1 incoming transaction 899093: 0000000000000000 from 20205:20236 to 16129:16386 code 2
+// flags 12 pri 0:130 r1 node 743337 size 212:8 data 0000000000000000 pending transaction 1067148:
+// 0000000000000000 from 0:0 to 23076:0 code 1 flags 11 pri 0:120 r0 node 1034234 size 824:0 data
+// 0000000000000000
+status_t getBinderTransactions(BinderDebugContext context, pid_t startPid,
+                               BinderTransactionInfo& workInfo) {
+    std::string contextStr = contextToString(context);
+    workInfo.scannedPids.clear();
+    workInfo.trLines.clear();
+
+    std::list<int> workingPids;
+    status_t status = OK;
+
+    // Scan binder transactions chain start from startPid.
+    workingPids.push_back(startPid);
+    while (!workingPids.empty()) {
+        // Pick first one and remove from workingPids.
+        int currentPid = workingPids.front();
+        workingPids.pop_front();
+        // workingPids, workInfo.scannedPids and workInfo.trLines will be modified.
+        status_t ret = findBinderTransactions(currentPid, contextStr, workingPids, workInfo);
+        if (ret != OK) {
+            LOG(ERROR) << "Failed to get the binder transaction info of pid "
+                       << std::to_string(currentPid) << ", " << statusToString(ret);
+            if (status == OK) {
+                status = ret;
+            }
+        }
+    }
+    return status;
 }
 
 } // namespace  android

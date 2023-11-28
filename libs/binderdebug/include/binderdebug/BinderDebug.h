@@ -28,10 +28,21 @@ struct BinderPidInfo {
     uint32_t threadCount;                           // number of threads total
 };
 
+/**
+ * Filled by getBinderTransactions(pid_t pid, BinderTransactionInfo& trInfo), see function header
+ * description.
+ */
+struct BinderTransactionInfo {
+    std::vector<pid_t> scannedPids;   // The pids having their binder info files scanned.
+    std::vector<std::string> trLines; // Lines with outgoing, incoming or pending binder
+                                      // transaction from scanned binder info files.
+};
+
 enum class BinderDebugContext {
     BINDER,
     HWBINDER,
     VNDBINDER,
+    ALLBINDERS, // All binder info files, regardless context, will be scanned.
 };
 
 /**
@@ -43,5 +54,17 @@ status_t getBinderPidInfo(BinderDebugContext context, pid_t pid, BinderPidInfo* 
  */
 status_t getBinderClientPids(BinderDebugContext context, pid_t pid, pid_t servicePid,
                              int32_t handle, std::vector<pid_t>* pids);
+
+/**
+ * On return, trInfo is filled with binder transaction information from Android binderfs filesystem.
+ *
+ * Starting with given pid, binder info files for all to-pids in outgoing transactions are
+ * scanned recursively.
+ * From the scanned binder info files, all lines with binder transactions is added to trInfo
+ * All the pids that had their binder files scanned are added to trInfo
+ * Returns status_t from <utils/Errors.h>, OK is 0.
+ */
+status_t getBinderTransactions(BinderDebugContext context, pid_t pid,
+                               BinderTransactionInfo& trInfo);
 
 } // namespace  android
