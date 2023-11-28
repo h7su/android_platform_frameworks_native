@@ -63,6 +63,30 @@
       },
       "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "815d525d_01699b6a",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-28T01:56:24Z",
+      "side": 1,
+      "message": "Today I searched for the ways, and probably using `avc_has_perm_noaudit` is best. But that will be too complex compared to `selinux_check_access`... I think this is fine; race conditions on selinux audit log must be rare.",
+      "parentUuid": "3961fede_080da67d",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 80
+      },
+      "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
