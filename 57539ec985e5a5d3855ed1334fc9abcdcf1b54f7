@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a495aff_60fce2f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 49
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-29T20:36:00Z",
+      "side": 1,
+      "message": "Ping for code owner review, all the previous comments have been resolved.",
+      "revId": "57539ec985e5a5d3855ed1334fc9abcdcf1b54f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
