@@ -121,6 +121,13 @@ Layer::Layer(const LayerCreationArgs& args)
     mDrawingState.height = UINT32_MAX;
     mDrawingState.transform.set(0, 0);
     mDrawingState.frameNumber = 0;
+<<<<<<< HEAD   (935d53 Merge "Fix the missing extension EGL_ANDROID_image_native_bu)
+=======
+    mDrawingState.previousFrameNumber = 0;
+    mDrawingState.barrierFrameNumber = 0;
+    mDrawingState.producerId = 0;
+    mDrawingState.barrierProducerId = 0;
+>>>>>>> CHANGE (8ac3f4 Assign previous release fence to previous frame ID)
     mDrawingState.bufferTransform = 0;
     mDrawingState.transformToDisplayInverse = false;
     mDrawingState.crop.makeInvalid();
@@ -2671,13 +2678,1271 @@ void Layer::cloneDrawingState(const Layer* from) {
     mDrawingState.callbackHandles = {};
 }
 
+<<<<<<< HEAD   (935d53 Merge "Fix the missing extension EGL_ANDROID_image_native_bu)
 bool Layer::setTransactionCompletedListeners(const std::vector<sp<CallbackHandle>>& handles) {
+=======
+void Layer::callReleaseBufferCallback(const sp<ITransactionCompletedListener>& listener,
+                                      const sp<GraphicBuffer>& buffer, uint64_t framenumber,
+                                      const sp<Fence>& releaseFence) {
+    if (!listener) {
+        return;
+    }
+    ATRACE_FORMAT_INSTANT("callReleaseBufferCallback %s - %" PRIu64, getDebugName(), framenumber);
+    uint32_t currentMaxAcquiredBufferCount =
+            mFlinger->getMaxAcquiredBufferCountForCurrentRefreshRate(mOwnerUid);
+    listener->onReleaseBuffer({buffer->getId(), framenumber},
+                              releaseFence ? releaseFence : Fence::NO_FENCE,
+                              currentMaxAcquiredBufferCount);
+}
+
+void Layer::onLayerDisplayed(ftl::SharedFuture<FenceResult> futureFenceResult,
+                             ui::LayerStack layerStack) {
+    // If we are displayed on multiple displays in a single composition cycle then we would
+    // need to do careful tracking to enable the use of the mLastClientCompositionFence.
+    //  For example we can only use it if all the displays are client comp, and we need
+    //  to merge all the client comp fences. We could do this, but for now we just
+    // disable the optimization when a layer is composed on multiple displays.
+    if (mClearClientCompositionFenceOnLayerDisplayed) {
+        mLastClientCompositionFence = nullptr;
+    } else {
+        mClearClientCompositionFenceOnLayerDisplayed = true;
+    }
+
+    // The previous release fence notifies the client that SurfaceFlinger is done with the previous
+    // buffer that was presented on this layer. The first transaction that came in this frame that
+    // replaced the previous buffer on this layer needs this release fence, because the fence will
+    // let the client know when that previous buffer is removed from the screen.
+    //
+    // Every other transaction on this layer does not need a release fence because no other
+    // Transactions that were set on this layer this frame are going to have their preceding buffer
+    // removed from the display this frame.
+    //
+    // For example, if we have 3 transactions this frame. The first transaction doesn't contain a
+    // buffer so it doesn't need a previous release fence because the layer still needs the previous
+    // buffer. The second transaction contains a buffer so it needs a previous release fence because
+    // the previous buffer will be released this frame. The third transaction also contains a
+    // buffer. It replaces the buffer in the second transaction. The buffer in the second
+    // transaction will now no longer be presented so it is released immediately and the third
+    // transaction doesn't need a previous release fence.
+    sp<CallbackHandle> ch;
+    for (auto& handle : mDrawingState.callbackHandles) {
+        if (handle->releasePreviousBuffer && mPreviousReleaseBufferEndpoint == handle->listener) {
+            ch = handle;
+            break;
+        }
+    }
+
+    // Prevent tracing the same release multiple times.
+    if (mPreviousFrameNumber != mPreviousReleasedFrameNumber) {
+        mPreviousReleasedFrameNumber = mPreviousFrameNumber;
+    }
+
+    if (ch != nullptr) {
+        ch->previousReleaseCallbackId = mPreviousReleaseCallbackId;
+        ch->previousReleaseFences.emplace_back(std::move(futureFenceResult));
+        ch->name = mName;
+    }
+    mPreviouslyPresentedLayerStacks.push_back(layerStack);
+
+    if (mDrawingState.frameNumber > 0) {
+        mDrawingState.previousFrameNumber = mDrawingState.frameNumber;
+    }
+}
+
+void Layer::onSurfaceFrameCreated(
+        const std::shared_ptr<frametimeline::SurfaceFrame>& surfaceFrame) {
+    while (mPendingJankClassifications.size() >= kPendingClassificationMaxSurfaceFrames) {
+        // Too many SurfaceFrames pending classification. The front of the deque is probably not
+        // tracked by FrameTimeline and will never be presented. This will only result in a memory
+        // leak.
+        if (hasBufferOrSidebandStreamInDrawing()) {
+            // Only log for layers with a buffer, since we expect the jank data to be drained for
+            // these, while there may be no jank listeners for bufferless layers.
+            ALOGW("Removing the front of pending jank deque from layer - %s to prevent memory leak",
+                  mName.c_str());
+            std::string miniDump = mPendingJankClassifications.front()->miniDump();
+            ALOGD("Head SurfaceFrame mini dump\n%s", miniDump.c_str());
+        }
+        mPendingJankClassifications.pop_front();
+    }
+    mPendingJankClassifications.emplace_back(surfaceFrame);
+}
+
+void Layer::releasePendingBuffer(nsecs_t dequeueReadyTime) {
+    for (const auto& handle : mDrawingState.callbackHandles) {
+        if (mFlinger->mLayerLifecycleManagerEnabled) {
+            handle->transformHint = mTransformHint;
+        } else {
+            handle->transformHint = mSkipReportingTransformHint
+                    ? std::nullopt
+                    : std::make_optional<uint32_t>(mTransformHintLegacy);
+        }
+        handle->dequeueReadyTime = dequeueReadyTime;
+        handle->currentMaxAcquiredBufferCount =
+                mFlinger->getMaxAcquiredBufferCountForCurrentRefreshRate(mOwnerUid);
+        ATRACE_FORMAT_INSTANT("releasePendingBuffer %s - %" PRIu64, getDebugName(),
+                              handle->previousReleaseCallbackId.framenumber);
+    }
+
+    for (auto& handle : mDrawingState.callbackHandles) {
+        if (handle->releasePreviousBuffer && mPreviousReleaseBufferEndpoint == handle->listener) {
+            handle->previousReleaseCallbackId = mPreviousReleaseCallbackId;
+            break;
+        }
+    }
+
+    std::vector<JankData> jankData;
+    transferAvailableJankData(mDrawingState.callbackHandles, jankData);
+    mFlinger->getTransactionCallbackInvoker().addCallbackHandles(mDrawingState.callbackHandles,
+                                                                 jankData);
+    mDrawingState.callbackHandles = {};
+}
+
+bool Layer::willPresentCurrentTransaction() const {
+    // Returns true if the most recent Transaction applied to CurrentState will be presented.
+    return (getSidebandStreamChanged() || getAutoRefresh() ||
+            (mDrawingState.modified &&
+             (mDrawingState.buffer != nullptr || mDrawingState.bgColorLayer != nullptr)));
+}
+
+bool Layer::setTransform(uint32_t transform) {
+    if (mDrawingState.bufferTransform == transform) return false;
+    mDrawingState.bufferTransform = transform;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setTransformToDisplayInverse(bool transformToDisplayInverse) {
+    if (mDrawingState.transformToDisplayInverse == transformToDisplayInverse) return false;
+    mDrawingState.sequence++;
+    mDrawingState.transformToDisplayInverse = transformToDisplayInverse;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setBufferCrop(const Rect& bufferCrop) {
+    if (mDrawingState.bufferCrop == bufferCrop) return false;
+
+    mDrawingState.sequence++;
+    mDrawingState.bufferCrop = bufferCrop;
+
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setDestinationFrame(const Rect& destinationFrame) {
+    if (mDrawingState.destinationFrame == destinationFrame) return false;
+
+    mDrawingState.sequence++;
+    mDrawingState.destinationFrame = destinationFrame;
+
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+// Translate destination frame into scale and position. If a destination frame is not set, use the
+// provided scale and position
+bool Layer::updateGeometry() {
+    if ((mDrawingState.flags & layer_state_t::eIgnoreDestinationFrame) ||
+        mDrawingState.destinationFrame.isEmpty()) {
+        // If destination frame is not set, use the requested transform set via
+        // Layer::setPosition and Layer::setMatrix.
+        return assignTransform(&mDrawingState.transform, mRequestedTransform);
+    }
+
+    Rect destRect = mDrawingState.destinationFrame;
+    int32_t destW = destRect.width();
+    int32_t destH = destRect.height();
+    if (destRect.left < 0) {
+        destRect.left = 0;
+        destRect.right = destW;
+    }
+    if (destRect.top < 0) {
+        destRect.top = 0;
+        destRect.bottom = destH;
+    }
+
+    if (!mDrawingState.buffer) {
+        ui::Transform t;
+        t.set(destRect.left, destRect.top);
+        return assignTransform(&mDrawingState.transform, t);
+    }
+
+    uint32_t bufferWidth = mDrawingState.buffer->getWidth();
+    uint32_t bufferHeight = mDrawingState.buffer->getHeight();
+    // Undo any transformations on the buffer.
+    if (mDrawingState.bufferTransform & ui::Transform::ROT_90) {
+        std::swap(bufferWidth, bufferHeight);
+    }
+    uint32_t invTransform = SurfaceFlinger::getActiveDisplayRotationFlags();
+    if (mDrawingState.transformToDisplayInverse) {
+        if (invTransform & ui::Transform::ROT_90) {
+            std::swap(bufferWidth, bufferHeight);
+        }
+    }
+
+    float sx = destW / static_cast<float>(bufferWidth);
+    float sy = destH / static_cast<float>(bufferHeight);
+    ui::Transform t;
+    t.set(sx, 0, 0, sy);
+    t.set(destRect.left, destRect.top);
+    return assignTransform(&mDrawingState.transform, t);
+}
+
+bool Layer::setMatrix(const layer_state_t::matrix22_t& matrix) {
+    if (mRequestedTransform.dsdx() == matrix.dsdx && mRequestedTransform.dtdy() == matrix.dtdy &&
+        mRequestedTransform.dtdx() == matrix.dtdx && mRequestedTransform.dsdy() == matrix.dsdy) {
+        return false;
+    }
+
+    mRequestedTransform.set(matrix.dsdx, matrix.dtdy, matrix.dtdx, matrix.dsdy);
+
+    mDrawingState.sequence++;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+
+    return true;
+}
+
+bool Layer::setPosition(float x, float y) {
+    if (mRequestedTransform.tx() == x && mRequestedTransform.ty() == y) {
+        return false;
+    }
+
+    mRequestedTransform.set(x, y);
+
+    mDrawingState.sequence++;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+
+    return true;
+}
+
+void Layer::resetDrawingStateBufferInfo() {
+    mDrawingState.producerId = 0;
+    mDrawingState.frameNumber = 0;
+    mDrawingState.previousFrameNumber = 0;
+    mDrawingState.releaseBufferListener = nullptr;
+    mDrawingState.buffer = nullptr;
+    mDrawingState.acquireFence = sp<Fence>::make(-1);
+    mDrawingState.acquireFenceTime = std::make_unique<FenceTime>(mDrawingState.acquireFence);
+    mCallbackHandleAcquireTimeOrFence = mDrawingState.acquireFenceTime->getSignalTime();
+    mDrawingState.releaseBufferEndpoint = nullptr;
+}
+
+bool Layer::setBuffer(std::shared_ptr<renderengine::ExternalTexture>& buffer,
+                      const BufferData& bufferData, nsecs_t postTime, nsecs_t desiredPresentTime,
+                      bool isAutoTimestamp, std::optional<nsecs_t> dequeueTime,
+                      const FrameTimelineInfo& info) {
+    ATRACE_FORMAT("setBuffer %s - hasBuffer=%s", getDebugName(), (buffer ? "true" : "false"));
+
+    const bool frameNumberChanged =
+            bufferData.flags.test(BufferData::BufferDataChange::frameNumberChanged);
+    const uint64_t frameNumber =
+            frameNumberChanged ? bufferData.frameNumber : mDrawingState.frameNumber + 1;
+    ATRACE_FORMAT_INSTANT("setBuffer %s - %" PRIu64, getDebugName(), frameNumber);
+
+    if (mDrawingState.buffer) {
+        mReleasePreviousBuffer = true;
+        if (!mBufferInfo.mBuffer ||
+            (!mDrawingState.buffer->hasSameBuffer(*mBufferInfo.mBuffer) ||
+             mDrawingState.frameNumber != mBufferInfo.mFrameNumber)) {
+            // If mDrawingState has a buffer, and we are about to update again
+            // before swapping to drawing state, then the first buffer will be
+            // dropped and we should decrement the pending buffer count and
+            // call any release buffer callbacks if set.
+            callReleaseBufferCallback(mDrawingState.releaseBufferListener,
+                                      mDrawingState.buffer->getBuffer(), mDrawingState.frameNumber,
+                                      mDrawingState.acquireFence);
+            decrementPendingBufferCount();
+            if (mDrawingState.bufferSurfaceFrameTX != nullptr &&
+                mDrawingState.bufferSurfaceFrameTX->getPresentState() != PresentState::Presented) {
+                addSurfaceFrameDroppedForBuffer(mDrawingState.bufferSurfaceFrameTX);
+                mDrawingState.bufferSurfaceFrameTX.reset();
+            }
+        } else if (EARLY_RELEASE_ENABLED && mLastClientCompositionFence != nullptr) {
+            callReleaseBufferCallback(mDrawingState.releaseBufferListener,
+                                      mDrawingState.buffer->getBuffer(), mDrawingState.frameNumber,
+                                      mLastClientCompositionFence);
+            mLastClientCompositionFence = nullptr;
+        }
+    } else if (buffer) {
+        // if we are latching a buffer for the first time then clear the mLastLatchTime since
+        // we don't want to incorrectly classify a frame if we miss the desired present time.
+        updateLastLatchTime(0);
+    }
+
+    mDrawingState.desiredPresentTime = desiredPresentTime;
+    mDrawingState.isAutoTimestamp = isAutoTimestamp;
+    mDrawingState.latchedVsyncId = info.vsyncId;
+    mDrawingState.useVsyncIdForRefreshRateSelection = info.useForRefreshRateSelection;
+    mDrawingState.modified = true;
+    if (!buffer) {
+        resetDrawingStateBufferInfo();
+        setTransactionFlags(eTransactionNeeded);
+        mDrawingState.bufferSurfaceFrameTX = nullptr;
+        setFrameTimelineVsyncForBufferlessTransaction(info, postTime);
+        return true;
+    }
+
+    mDrawingState.producerId = bufferData.producerId;
+    mDrawingState.barrierProducerId =
+            std::max(mDrawingState.producerId, mDrawingState.barrierProducerId);
+    mDrawingState.frameNumber = frameNumber;
+    mDrawingState.barrierFrameNumber =
+            std::max(mDrawingState.frameNumber, mDrawingState.barrierFrameNumber);
+
+    // TODO(b/277265947) log and flush transaction trace when we detect out of order updates
+    mDrawingState.releaseBufferListener = bufferData.releaseBufferListener;
+    mDrawingState.buffer = std::move(buffer);
+    mDrawingState.acquireFence = bufferData.flags.test(BufferData::BufferDataChange::fenceChanged)
+            ? bufferData.acquireFence
+            : Fence::NO_FENCE;
+    mDrawingState.acquireFenceTime = std::make_unique<FenceTime>(mDrawingState.acquireFence);
+    if (mDrawingState.acquireFenceTime->getSignalTime() == Fence::SIGNAL_TIME_PENDING) {
+        // We latched this buffer unsiganled, so we need to pass the acquire fence
+        // on the callback instead of just the acquire time, since it's unknown at
+        // this point.
+        mCallbackHandleAcquireTimeOrFence = mDrawingState.acquireFence;
+    } else {
+        mCallbackHandleAcquireTimeOrFence = mDrawingState.acquireFenceTime->getSignalTime();
+    }
+    setTransactionFlags(eTransactionNeeded);
+
+    const int32_t layerId = getSequence();
+    mFlinger->mTimeStats->setPostTime(layerId, mDrawingState.frameNumber, getName().c_str(),
+                                      mOwnerUid, postTime, getGameMode());
+
+    if (mFlinger->mLegacyFrontEndEnabled) {
+        recordLayerHistoryBufferUpdate(getLayerProps());
+    }
+
+    setFrameTimelineVsyncForBufferTransaction(info, postTime);
+
+    if (dequeueTime && *dequeueTime != 0) {
+        const uint64_t bufferId = mDrawingState.buffer->getId();
+        mFlinger->mFrameTracer->traceNewLayer(layerId, getName().c_str());
+        mFlinger->mFrameTracer->traceTimestamp(layerId, bufferId, frameNumber, *dequeueTime,
+                                               FrameTracer::FrameEvent::DEQUEUE);
+        mFlinger->mFrameTracer->traceTimestamp(layerId, bufferId, frameNumber, postTime,
+                                               FrameTracer::FrameEvent::QUEUE);
+    }
+
+    mDrawingState.releaseBufferEndpoint = bufferData.releaseBufferEndpoint;
+    return true;
+}
+
+void Layer::setDesiredPresentTime(nsecs_t desiredPresentTime, bool isAutoTimestamp) {
+    mDrawingState.desiredPresentTime = desiredPresentTime;
+    mDrawingState.isAutoTimestamp = isAutoTimestamp;
+}
+
+void Layer::recordLayerHistoryBufferUpdate(const scheduler::LayerProps& layerProps) {
+    ATRACE_CALL();
+    const nsecs_t presentTime = [&] {
+        if (!mDrawingState.isAutoTimestamp) {
+            ATRACE_FORMAT_INSTANT("desiredPresentTime");
+            return mDrawingState.desiredPresentTime;
+        }
+
+        if (mDrawingState.useVsyncIdForRefreshRateSelection) {
+            const auto prediction =
+                    mFlinger->mFrameTimeline->getTokenManager()->getPredictionsForToken(
+                            mDrawingState.latchedVsyncId);
+            if (prediction.has_value()) {
+                ATRACE_FORMAT_INSTANT("predictedPresentTime");
+                return prediction->presentTime;
+            }
+        }
+
+        return static_cast<nsecs_t>(0);
+    }();
+
+    if (ATRACE_ENABLED() && presentTime > 0) {
+        const auto presentIn = TimePoint::fromNs(presentTime) - TimePoint::now();
+        ATRACE_FORMAT_INSTANT("presentIn %s", to_string(presentIn).c_str());
+    }
+
+    mFlinger->mScheduler->recordLayerHistory(sequence, layerProps, presentTime,
+                                             scheduler::LayerHistory::LayerUpdateType::Buffer);
+}
+
+void Layer::recordLayerHistoryAnimationTx(const scheduler::LayerProps& layerProps) {
+    const nsecs_t presentTime =
+            mDrawingState.isAutoTimestamp ? 0 : mDrawingState.desiredPresentTime;
+    mFlinger->mScheduler->recordLayerHistory(sequence, layerProps, presentTime,
+                                             scheduler::LayerHistory::LayerUpdateType::AnimationTX);
+}
+
+bool Layer::setDataspace(ui::Dataspace dataspace) {
+    if (mDrawingState.dataspace == dataspace) return false;
+    mDrawingState.dataspace = dataspace;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setExtendedRangeBrightness(float currentBufferRatio, float desiredRatio) {
+    if (mDrawingState.currentHdrSdrRatio == currentBufferRatio &&
+        mDrawingState.desiredHdrSdrRatio == desiredRatio)
+        return false;
+    mDrawingState.currentHdrSdrRatio = currentBufferRatio;
+    mDrawingState.desiredHdrSdrRatio = desiredRatio;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setCachingHint(gui::CachingHint cachingHint) {
+    if (mDrawingState.cachingHint == cachingHint) return false;
+    mDrawingState.cachingHint = cachingHint;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setHdrMetadata(const HdrMetadata& hdrMetadata) {
+    if (mDrawingState.hdrMetadata == hdrMetadata) return false;
+    mDrawingState.hdrMetadata = hdrMetadata;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setSurfaceDamageRegion(const Region& surfaceDamage) {
+    if (mDrawingState.surfaceDamageRegion.hasSameRects(surfaceDamage)) return false;
+    mDrawingState.surfaceDamageRegion = surfaceDamage;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setApi(int32_t api) {
+    if (mDrawingState.api == api) return false;
+    mDrawingState.api = api;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    return true;
+}
+
+bool Layer::setSidebandStream(const sp<NativeHandle>& sidebandStream) {
+    if (mDrawingState.sidebandStream == sidebandStream) return false;
+
+    if (mDrawingState.sidebandStream != nullptr && sidebandStream == nullptr) {
+        mFlinger->mTunnelModeEnabledReporter->decrementTunnelModeCount();
+    } else if (sidebandStream != nullptr) {
+        mFlinger->mTunnelModeEnabledReporter->incrementTunnelModeCount();
+    }
+
+    mDrawingState.sidebandStream = sidebandStream;
+    mDrawingState.modified = true;
+    setTransactionFlags(eTransactionNeeded);
+    if (!mSidebandStreamChanged.exchange(true)) {
+        // mSidebandStreamChanged was false
+        mFlinger->onLayerUpdate();
+    }
+    return true;
+}
+
+bool Layer::setTransactionCompletedListeners(const std::vector<sp<CallbackHandle>>& handles,
+                                             bool willPresent) {
+    // If there is no handle, we will not send a callback so reset mReleasePreviousBuffer and return
+>>>>>>> CHANGE (8ac3f4 Assign previous release fence to previous frame ID)
     if (handles.empty()) {
         return false;
     }
 
     for (const auto& handle : handles) {
+<<<<<<< HEAD   (935d53 Merge "Fix the missing extension EGL_ANDROID_image_native_bu)
         mFlinger->getTransactionCallbackInvoker().registerUnpresentedCallbackHandle(handle);
+=======
+        // If this transaction set a buffer on this layer, release its previous buffer
+        handle->releasePreviousBuffer = mReleasePreviousBuffer;
+
+        // If this layer will be presented in this frame
+        if (willPresent) {
+            // If this transaction set an acquire fence on this layer, set its acquire time
+            handle->acquireTimeOrFence = mCallbackHandleAcquireTimeOrFence;
+            handle->frameNumber = mDrawingState.frameNumber;
+            handle->previousFrameNumber = mDrawingState.previousFrameNumber;
+
+            // Store so latched time and release fence can be set
+            mDrawingState.callbackHandles.push_back(handle);
+
+        } else { // If this layer will NOT need to be relatched and presented this frame
+            // Queue this handle to be notified below.
+            remainingHandles.push_back(handle);
+        }
+    }
+
+    if (!remainingHandles.empty()) {
+        // Notify the transaction completed threads these handles are done. These are only the
+        // handles that were not added to the mDrawingState, which will be notified later.
+        std::vector<JankData> jankData;
+        transferAvailableJankData(remainingHandles, jankData);
+        mFlinger->getTransactionCallbackInvoker().addCallbackHandles(remainingHandles, jankData);
+    }
+
+    mReleasePreviousBuffer = false;
+    mCallbackHandleAcquireTimeOrFence = -1;
+
+    return willPresent;
+}
+
+Rect Layer::getBufferSize(const State& /*s*/) const {
+    // for buffer state layers we use the display frame size as the buffer size.
+
+    if (mBufferInfo.mBuffer == nullptr) {
+        return Rect::INVALID_RECT;
+    }
+
+    uint32_t bufWidth = mBufferInfo.mBuffer->getWidth();
+    uint32_t bufHeight = mBufferInfo.mBuffer->getHeight();
+
+    // Undo any transformations on the buffer and return the result.
+    if (mBufferInfo.mTransform & ui::Transform::ROT_90) {
+        std::swap(bufWidth, bufHeight);
+    }
+
+    if (getTransformToDisplayInverse()) {
+        uint32_t invTransform = SurfaceFlinger::getActiveDisplayRotationFlags();
+        if (invTransform & ui::Transform::ROT_90) {
+            std::swap(bufWidth, bufHeight);
+        }
+    }
+
+    return Rect(0, 0, static_cast<int32_t>(bufWidth), static_cast<int32_t>(bufHeight));
+}
+
+FloatRect Layer::computeSourceBounds(const FloatRect& parentBounds) const {
+    if (mBufferInfo.mBuffer == nullptr) {
+        return parentBounds;
+    }
+
+    return getBufferSize(getDrawingState()).toFloatRect();
+}
+
+bool Layer::fenceHasSignaled() const {
+    if (SurfaceFlinger::enableLatchUnsignaledConfig != LatchUnsignaledConfig::Disabled) {
+        return true;
+    }
+
+    const bool fenceSignaled =
+            getDrawingState().acquireFence->getStatus() == Fence::Status::Signaled;
+    if (!fenceSignaled) {
+        mFlinger->mTimeStats->incrementLatchSkipped(getSequence(),
+                                                    TimeStats::LatchSkipReason::LateAcquire);
+    }
+
+    return fenceSignaled;
+}
+
+void Layer::onPreComposition(nsecs_t refreshStartTime) {
+    for (const auto& handle : mDrawingState.callbackHandles) {
+        handle->refreshStartTime = refreshStartTime;
+    }
+}
+
+void Layer::setAutoRefresh(bool autoRefresh) {
+    mDrawingState.autoRefresh = autoRefresh;
+}
+
+bool Layer::latchSidebandStream(bool& recomputeVisibleRegions) {
+    // We need to update the sideband stream if the layer has both a buffer and a sideband stream.
+    auto* snapshot = editLayerSnapshot();
+    snapshot->sidebandStreamHasFrame = hasFrameUpdate() && mSidebandStream.get();
+
+    if (mSidebandStreamChanged.exchange(false)) {
+        const State& s(getDrawingState());
+        // mSidebandStreamChanged was true
+        mSidebandStream = s.sidebandStream;
+        snapshot->sidebandStream = mSidebandStream;
+        if (mSidebandStream != nullptr) {
+            setTransactionFlags(eTransactionNeeded);
+            mFlinger->setTransactionFlags(eTraversalNeeded);
+        }
+        recomputeVisibleRegions = true;
+
+        return true;
+    }
+    return false;
+}
+
+bool Layer::hasFrameUpdate() const {
+    const State& c(getDrawingState());
+    return (mDrawingStateModified || mDrawingState.modified) &&
+            (c.buffer != nullptr || c.bgColorLayer != nullptr);
+}
+
+void Layer::updateTexImage(nsecs_t latchTime, bool bgColorOnly) {
+    const State& s(getDrawingState());
+
+    if (!s.buffer) {
+        if (bgColorOnly || mBufferInfo.mBuffer) {
+            for (auto& handle : mDrawingState.callbackHandles) {
+                handle->latchTime = latchTime;
+            }
+        }
+        return;
+    }
+
+    for (auto& handle : mDrawingState.callbackHandles) {
+        if (handle->frameNumber == mDrawingState.frameNumber) {
+            handle->latchTime = latchTime;
+        }
+    }
+
+    const int32_t layerId = getSequence();
+    const uint64_t bufferId = mDrawingState.buffer->getId();
+    const uint64_t frameNumber = mDrawingState.frameNumber;
+    const auto acquireFence = std::make_shared<FenceTime>(mDrawingState.acquireFence);
+    mFlinger->mTimeStats->setAcquireFence(layerId, frameNumber, acquireFence);
+    mFlinger->mTimeStats->setLatchTime(layerId, frameNumber, latchTime);
+
+    mFlinger->mFrameTracer->traceFence(layerId, bufferId, frameNumber, acquireFence,
+                                       FrameTracer::FrameEvent::ACQUIRE_FENCE);
+    mFlinger->mFrameTracer->traceTimestamp(layerId, bufferId, frameNumber, latchTime,
+                                           FrameTracer::FrameEvent::LATCH);
+
+    auto& bufferSurfaceFrame = mDrawingState.bufferSurfaceFrameTX;
+    if (bufferSurfaceFrame != nullptr &&
+        bufferSurfaceFrame->getPresentState() != PresentState::Presented) {
+        // Update only if the bufferSurfaceFrame wasn't already presented. A Presented
+        // bufferSurfaceFrame could be seen here if a pending state was applied successfully and we
+        // are processing the next state.
+        addSurfaceFramePresentedForBuffer(bufferSurfaceFrame,
+                                          mDrawingState.acquireFenceTime->getSignalTime(),
+                                          latchTime);
+        mDrawingState.bufferSurfaceFrameTX.reset();
+    }
+
+    std::deque<sp<CallbackHandle>> remainingHandles;
+    mFlinger->getTransactionCallbackInvoker()
+            .addOnCommitCallbackHandles(mDrawingState.callbackHandles, remainingHandles);
+    mDrawingState.callbackHandles = remainingHandles;
+
+    mDrawingStateModified = false;
+}
+
+void Layer::gatherBufferInfo() {
+    mPreviousReleaseCallbackId = {getCurrentBufferId(), mBufferInfo.mFrameNumber};
+    mPreviousReleaseBufferEndpoint = mBufferInfo.mReleaseBufferEndpoint;
+    if (!mDrawingState.buffer) {
+        mBufferInfo = {};
+        return;
+    }
+
+    if ((!mBufferInfo.mBuffer || !mDrawingState.buffer->hasSameBuffer(*mBufferInfo.mBuffer))) {
+        decrementPendingBufferCount();
+    }
+
+    mBufferInfo.mBuffer = mDrawingState.buffer;
+    mBufferInfo.mReleaseBufferEndpoint = mDrawingState.releaseBufferEndpoint;
+    mBufferInfo.mFence = mDrawingState.acquireFence;
+    mBufferInfo.mFrameNumber = mDrawingState.frameNumber;
+    mBufferInfo.mPixelFormat =
+            !mBufferInfo.mBuffer ? PIXEL_FORMAT_NONE : mBufferInfo.mBuffer->getPixelFormat();
+    mBufferInfo.mFrameLatencyNeeded = true;
+    mBufferInfo.mDesiredPresentTime = mDrawingState.desiredPresentTime;
+    mBufferInfo.mFenceTime = std::make_shared<FenceTime>(mDrawingState.acquireFence);
+    mBufferInfo.mFence = mDrawingState.acquireFence;
+    mBufferInfo.mTransform = mDrawingState.bufferTransform;
+    auto lastDataspace = mBufferInfo.mDataspace;
+    mBufferInfo.mDataspace = translateDataspace(mDrawingState.dataspace);
+    if (mBufferInfo.mBuffer != nullptr) {
+        auto& mapper = GraphicBufferMapper::get();
+        // TODO: We should measure if it's faster to do a blind write if we're on newer api levels
+        // and don't need to possibly remaps buffers.
+        ui::Dataspace dataspace = ui::Dataspace::UNKNOWN;
+        status_t err = OK;
+        {
+            ATRACE_NAME("getDataspace");
+            err = mapper.getDataspace(mBufferInfo.mBuffer->getBuffer()->handle, &dataspace);
+        }
+        if (err != OK || dataspace != mBufferInfo.mDataspace) {
+            {
+                ATRACE_NAME("setDataspace");
+                err = mapper.setDataspace(mBufferInfo.mBuffer->getBuffer()->handle,
+                                          static_cast<ui::Dataspace>(mBufferInfo.mDataspace));
+            }
+
+            // Some GPU drivers may cache gralloc metadata which means before we composite we need
+            // to upsert RenderEngine's caches. Put in a special workaround to be backwards
+            // compatible with old vendors, with a ticking clock.
+            static const int32_t kVendorVersion =
+                    base::GetIntProperty("ro.vndk.version", __ANDROID_API_FUTURE__);
+            if (const auto format =
+                        static_cast<aidl::android::hardware::graphics::common::PixelFormat>(
+                                mBufferInfo.mBuffer->getPixelFormat());
+                err == OK && kVendorVersion < __ANDROID_API_U__ &&
+                (format ==
+                         aidl::android::hardware::graphics::common::PixelFormat::
+                                 IMPLEMENTATION_DEFINED ||
+                 format == aidl::android::hardware::graphics::common::PixelFormat::YCBCR_420_888 ||
+                 format == aidl::android::hardware::graphics::common::PixelFormat::YV12 ||
+                 format == aidl::android::hardware::graphics::common::PixelFormat::YCBCR_P010)) {
+                mBufferInfo.mBuffer->remapBuffer();
+            }
+        }
+    }
+    if (lastDataspace != mBufferInfo.mDataspace) {
+        mFlinger->mHdrLayerInfoChanged = true;
+    }
+    if (mBufferInfo.mDesiredHdrSdrRatio != mDrawingState.desiredHdrSdrRatio) {
+        mBufferInfo.mDesiredHdrSdrRatio = mDrawingState.desiredHdrSdrRatio;
+        mFlinger->mHdrLayerInfoChanged = true;
+    }
+    mBufferInfo.mCrop = computeBufferCrop(mDrawingState);
+    mBufferInfo.mScaleMode = NATIVE_WINDOW_SCALING_MODE_SCALE_TO_WINDOW;
+    mBufferInfo.mSurfaceDamage = mDrawingState.surfaceDamageRegion;
+    mBufferInfo.mHdrMetadata = mDrawingState.hdrMetadata;
+    mBufferInfo.mApi = mDrawingState.api;
+    mBufferInfo.mTransformToDisplayInverse = mDrawingState.transformToDisplayInverse;
+}
+
+Rect Layer::computeBufferCrop(const State& s) {
+    if (s.buffer && !s.bufferCrop.isEmpty()) {
+        Rect bufferCrop;
+        s.buffer->getBounds().intersect(s.bufferCrop, &bufferCrop);
+        return bufferCrop;
+    } else if (s.buffer) {
+        return s.buffer->getBounds();
+    } else {
+        return s.bufferCrop;
+    }
+}
+
+sp<Layer> Layer::createClone(uint32_t mirrorRootId) {
+    LayerCreationArgs args(mFlinger.get(), nullptr, mName + " (Mirror)", 0, LayerMetadata());
+    args.textureName = mTextureName;
+    sp<Layer> layer = mFlinger->getFactory().createBufferStateLayer(args);
+    layer->setInitialValuesForClone(sp<Layer>::fromExisting(this), mirrorRootId);
+    return layer;
+}
+
+void Layer::decrementPendingBufferCount() {
+    int32_t pendingBuffers = --mPendingBufferTransactions;
+    tracePendingBufferCount(pendingBuffers);
+}
+
+void Layer::tracePendingBufferCount(int32_t pendingBuffers) {
+    ATRACE_INT(mBlastTransactionName.c_str(), pendingBuffers);
+}
+
+/*
+ * We don't want to send the layer's transform to input, but rather the
+ * parent's transform. This is because Layer's transform is
+ * information about how the buffer is placed on screen. The parent's
+ * transform makes more sense to send since it's information about how the
+ * layer is placed on screen. This transform is used by input to determine
+ * how to go from screen space back to window space.
+ */
+ui::Transform Layer::getInputTransform() const {
+    if (!hasBufferOrSidebandStream()) {
+        return getTransform();
+    }
+    sp<Layer> parent = mDrawingParent.promote();
+    if (parent == nullptr) {
+        return ui::Transform();
+    }
+
+    return parent->getTransform();
+}
+
+/**
+ * Returns the bounds used to fill the input frame and the touchable region.
+ *
+ * Similar to getInputTransform, we need to update the bounds to include the transform.
+ * This is because bounds don't include the buffer transform, where the input assumes
+ * that's already included.
+ */
+std::pair<FloatRect, bool> Layer::getInputBounds(bool fillParentBounds) const {
+    Rect croppedBufferSize = getCroppedBufferSize(getDrawingState());
+    FloatRect inputBounds = croppedBufferSize.toFloatRect();
+    if (hasBufferOrSidebandStream() && croppedBufferSize.isValid() &&
+        mDrawingState.transform.getType() != ui::Transform::IDENTITY) {
+        inputBounds = mDrawingState.transform.transform(inputBounds);
+    }
+
+    bool inputBoundsValid = croppedBufferSize.isValid();
+    if (!inputBoundsValid) {
+        /**
+         * Input bounds are based on the layer crop or buffer size. But if we are using
+         * the layer bounds as the input bounds (replaceTouchableRegionWithCrop flag) then
+         * we can use the parent bounds as the input bounds if the layer does not have buffer
+         * or a crop. We want to unify this logic but because of compat reasons we cannot always
+         * use the parent bounds. A layer without a buffer can get input. So when a window is
+         * initially added, its touchable region can fill its parent layer bounds and that can
+         * have negative consequences.
+         */
+        inputBounds = fillParentBounds ? mBounds : FloatRect{};
+    }
+
+    // Clamp surface inset to the input bounds.
+    const float inset = static_cast<float>(mDrawingState.inputInfo.surfaceInset);
+    const float xSurfaceInset = std::clamp(inset, 0.f, inputBounds.getWidth() / 2.f);
+    const float ySurfaceInset = std::clamp(inset, 0.f, inputBounds.getHeight() / 2.f);
+
+    // Apply the insets to the input bounds.
+    inputBounds.left += xSurfaceInset;
+    inputBounds.top += ySurfaceInset;
+    inputBounds.right -= xSurfaceInset;
+    inputBounds.bottom -= ySurfaceInset;
+
+    return {inputBounds, inputBoundsValid};
+}
+
+bool Layer::simpleBufferUpdate(const layer_state_t& s) const {
+    const uint64_t requiredFlags = layer_state_t::eBufferChanged;
+
+    const uint64_t deniedFlags = layer_state_t::eProducerDisconnect | layer_state_t::eLayerChanged |
+            layer_state_t::eRelativeLayerChanged | layer_state_t::eTransparentRegionChanged |
+            layer_state_t::eFlagsChanged | layer_state_t::eBlurRegionsChanged |
+            layer_state_t::eLayerStackChanged | layer_state_t::eAutoRefreshChanged |
+            layer_state_t::eReparent;
+
+    const uint64_t allowedFlags = layer_state_t::eHasListenerCallbacksChanged |
+            layer_state_t::eFrameRateSelectionPriority | layer_state_t::eFrameRateChanged |
+            layer_state_t::eSurfaceDamageRegionChanged | layer_state_t::eApiChanged |
+            layer_state_t::eMetadataChanged | layer_state_t::eDropInputModeChanged |
+            layer_state_t::eInputInfoChanged;
+
+    if ((s.what & requiredFlags) != requiredFlags) {
+        ALOGV("%s: false [missing required flags 0x%" PRIx64 "]", __func__,
+              (s.what | requiredFlags) & ~s.what);
+        return false;
+    }
+
+    if (s.what & deniedFlags) {
+        ALOGV("%s: false [has denied flags 0x%" PRIx64 "]", __func__, s.what & deniedFlags);
+        return false;
+    }
+
+    if (s.what & allowedFlags) {
+        ALOGV("%s: [has allowed flags 0x%" PRIx64 "]", __func__, s.what & allowedFlags);
+    }
+
+    if (s.what & layer_state_t::ePositionChanged) {
+        if (mRequestedTransform.tx() != s.x || mRequestedTransform.ty() != s.y) {
+            ALOGV("%s: false [ePositionChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eAlphaChanged) {
+        if (mDrawingState.color.a != s.color.a) {
+            ALOGV("%s: false [eAlphaChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eColorTransformChanged) {
+        if (mDrawingState.colorTransform != s.colorTransform) {
+            ALOGV("%s: false [eColorTransformChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eBackgroundColorChanged) {
+        if (mDrawingState.bgColorLayer || s.bgColor.a != 0) {
+            ALOGV("%s: false [eBackgroundColorChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eMatrixChanged) {
+        if (mRequestedTransform.dsdx() != s.matrix.dsdx ||
+            mRequestedTransform.dtdy() != s.matrix.dtdy ||
+            mRequestedTransform.dtdx() != s.matrix.dtdx ||
+            mRequestedTransform.dsdy() != s.matrix.dsdy) {
+            ALOGV("%s: false [eMatrixChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eCornerRadiusChanged) {
+        if (mDrawingState.cornerRadius != s.cornerRadius) {
+            ALOGV("%s: false [eCornerRadiusChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eBackgroundBlurRadiusChanged) {
+        if (mDrawingState.backgroundBlurRadius != static_cast<int>(s.backgroundBlurRadius)) {
+            ALOGV("%s: false [eBackgroundBlurRadiusChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eBufferTransformChanged) {
+        if (mDrawingState.bufferTransform != s.bufferTransform) {
+            ALOGV("%s: false [eBufferTransformChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eTransformToDisplayInverseChanged) {
+        if (mDrawingState.transformToDisplayInverse != s.transformToDisplayInverse) {
+            ALOGV("%s: false [eTransformToDisplayInverseChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eCropChanged) {
+        if (mDrawingState.crop != s.crop) {
+            ALOGV("%s: false [eCropChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eDataspaceChanged) {
+        if (mDrawingState.dataspace != s.dataspace) {
+            ALOGV("%s: false [eDataspaceChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eHdrMetadataChanged) {
+        if (mDrawingState.hdrMetadata != s.hdrMetadata) {
+            ALOGV("%s: false [eHdrMetadataChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eSidebandStreamChanged) {
+        if (mDrawingState.sidebandStream != s.sidebandStream) {
+            ALOGV("%s: false [eSidebandStreamChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eColorSpaceAgnosticChanged) {
+        if (mDrawingState.colorSpaceAgnostic != s.colorSpaceAgnostic) {
+            ALOGV("%s: false [eColorSpaceAgnosticChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eShadowRadiusChanged) {
+        if (mDrawingState.shadowRadius != s.shadowRadius) {
+            ALOGV("%s: false [eShadowRadiusChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eFixedTransformHintChanged) {
+        if (mDrawingState.fixedTransformHint != s.fixedTransformHint) {
+            ALOGV("%s: false [eFixedTransformHintChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eTrustedOverlayChanged) {
+        if (mDrawingState.isTrustedOverlay != s.isTrustedOverlay) {
+            ALOGV("%s: false [eTrustedOverlayChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eStretchChanged) {
+        StretchEffect temp = s.stretchEffect;
+        temp.sanitize();
+        if (mDrawingState.stretchEffect != temp) {
+            ALOGV("%s: false [eStretchChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eBufferCropChanged) {
+        if (mDrawingState.bufferCrop != s.bufferCrop) {
+            ALOGV("%s: false [eBufferCropChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eDestinationFrameChanged) {
+        if (mDrawingState.destinationFrame != s.destinationFrame) {
+            ALOGV("%s: false [eDestinationFrameChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eDimmingEnabledChanged) {
+        if (mDrawingState.dimmingEnabled != s.dimmingEnabled) {
+            ALOGV("%s: false [eDimmingEnabledChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    if (s.what & layer_state_t::eExtendedRangeBrightnessChanged) {
+        if (mDrawingState.currentHdrSdrRatio != s.currentHdrSdrRatio ||
+            mDrawingState.desiredHdrSdrRatio != s.desiredHdrSdrRatio) {
+            ALOGV("%s: false [eExtendedRangeBrightnessChanged changed]", __func__);
+            return false;
+        }
+    }
+
+    ALOGV("%s: true", __func__);
+    return true;
+}
+
+bool Layer::isHdrY410() const {
+    // pixel format is HDR Y410 masquerading as RGBA_1010102
+    return (mBufferInfo.mDataspace == ui::Dataspace::BT2020_ITU_PQ &&
+            mBufferInfo.mApi == NATIVE_WINDOW_API_MEDIA &&
+            mBufferInfo.mPixelFormat == HAL_PIXEL_FORMAT_RGBA_1010102);
+}
+
+sp<LayerFE> Layer::getCompositionEngineLayerFE() const {
+    // There's no need to get a CE Layer if the layer isn't going to draw anything.
+    return hasSomethingToDraw() ? mLegacyLayerFE : nullptr;
+}
+
+const LayerSnapshot* Layer::getLayerSnapshot() const {
+    return mSnapshot.get();
+}
+
+LayerSnapshot* Layer::editLayerSnapshot() {
+    return mSnapshot.get();
+}
+
+std::unique_ptr<frontend::LayerSnapshot> Layer::stealLayerSnapshot() {
+    return std::move(mSnapshot);
+}
+
+void Layer::updateLayerSnapshot(std::unique_ptr<frontend::LayerSnapshot> snapshot) {
+    mSnapshot = std::move(snapshot);
+}
+
+const compositionengine::LayerFECompositionState* Layer::getCompositionState() const {
+    return mSnapshot.get();
+}
+
+sp<LayerFE> Layer::copyCompositionEngineLayerFE() const {
+    auto result = mFlinger->getFactory().createLayerFE(mName);
+    result->mSnapshot = std::make_unique<LayerSnapshot>(*mSnapshot);
+    return result;
+}
+
+sp<LayerFE> Layer::getCompositionEngineLayerFE(
+        const frontend::LayerHierarchy::TraversalPath& path) {
+    for (auto& [p, layerFE] : mLayerFEs) {
+        if (p == path) {
+            return layerFE;
+        }
+    }
+    auto layerFE = mFlinger->getFactory().createLayerFE(mName);
+    mLayerFEs.emplace_back(path, layerFE);
+    return layerFE;
+}
+
+void Layer::useSurfaceDamage() {
+    if (mFlinger->mForceFullDamage) {
+        surfaceDamageRegion = Region::INVALID_REGION;
+    } else {
+        surfaceDamageRegion = mBufferInfo.mSurfaceDamage;
+    }
+}
+
+void Layer::useEmptyDamage() {
+    surfaceDamageRegion.clear();
+}
+
+bool Layer::isOpaque(const Layer::State& s) const {
+    // if we don't have a buffer or sidebandStream yet, we're translucent regardless of the
+    // layer's opaque flag.
+    if (!hasSomethingToDraw()) {
+        return false;
+    }
+
+    // if the layer has the opaque flag, then we're always opaque
+    if ((s.flags & layer_state_t::eLayerOpaque) == layer_state_t::eLayerOpaque) {
+        return true;
+    }
+
+    // If the buffer has no alpha channel, then we are opaque
+    if (hasBufferOrSidebandStream() && LayerSnapshot::isOpaqueFormat(getPixelFormat())) {
+        return true;
+    }
+
+    // Lastly consider the layer opaque if drawing a color with alpha == 1.0
+    return fillsColor() && getAlpha() == 1.0_hf;
+}
+
+bool Layer::canReceiveInput() const {
+    return !isHiddenByPolicy() && (mBufferInfo.mBuffer == nullptr || getAlpha() > 0.0f);
+}
+
+bool Layer::isVisible() const {
+    if (!hasSomethingToDraw()) {
+        return false;
+    }
+
+    if (isHiddenByPolicy()) {
+        return false;
+    }
+
+    return getAlpha() > 0.0f || hasBlur();
+}
+
+void Layer::onPostComposition(const DisplayDevice* display,
+                              const std::shared_ptr<FenceTime>& glDoneFence,
+                              const std::shared_ptr<FenceTime>& presentFence,
+                              const CompositorTiming& compositorTiming) {
+    // mFrameLatencyNeeded is true when a new frame was latched for the
+    // composition.
+    if (!mBufferInfo.mFrameLatencyNeeded) return;
+
+    for (const auto& handle : mDrawingState.callbackHandles) {
+        handle->gpuCompositionDoneFence = glDoneFence;
+        handle->compositorTiming = compositorTiming;
+    }
+
+    // Update mFrameTracker.
+    nsecs_t desiredPresentTime = mBufferInfo.mDesiredPresentTime;
+    mFrameTracker.setDesiredPresentTime(desiredPresentTime);
+
+    const int32_t layerId = getSequence();
+    mFlinger->mTimeStats->setDesiredTime(layerId, mCurrentFrameNumber, desiredPresentTime);
+
+    const auto outputLayer = findOutputLayerForDisplay(display);
+    if (outputLayer && outputLayer->requiresClientComposition()) {
+        nsecs_t clientCompositionTimestamp = outputLayer->getState().clientCompositionTimestamp;
+        mFlinger->mFrameTracer->traceTimestamp(layerId, getCurrentBufferId(), mCurrentFrameNumber,
+                                               clientCompositionTimestamp,
+                                               FrameTracer::FrameEvent::FALLBACK_COMPOSITION);
+        // Update the SurfaceFrames in the drawing state
+        if (mDrawingState.bufferSurfaceFrameTX) {
+            mDrawingState.bufferSurfaceFrameTX->setGpuComposition();
+        }
+        for (auto& [token, surfaceFrame] : mDrawingState.bufferlessSurfaceFramesTX) {
+            surfaceFrame->setGpuComposition();
+        }
+    }
+
+    std::shared_ptr<FenceTime> frameReadyFence = mBufferInfo.mFenceTime;
+    if (frameReadyFence->isValid()) {
+        mFrameTracker.setFrameReadyFence(std::move(frameReadyFence));
+    } else {
+        // There was no fence for this frame, so assume that it was ready
+        // to be presented at the desired present time.
+        mFrameTracker.setFrameReadyTime(desiredPresentTime);
+    }
+
+    if (display) {
+        const Fps refreshRate = display->refreshRateSelector().getActiveMode().fps;
+        const std::optional<Fps> renderRate =
+                mFlinger->mScheduler->getFrameRateOverride(getOwnerUid());
+
+        const auto vote = frameRateToSetFrameRateVotePayload(mDrawingState.frameRate);
+        const auto gameMode = getGameMode();
+
+        if (presentFence->isValid()) {
+            mFlinger->mTimeStats->setPresentFence(layerId, mCurrentFrameNumber, presentFence,
+                                                  refreshRate, renderRate, vote, gameMode);
+            mFlinger->mFrameTracer->traceFence(layerId, getCurrentBufferId(), mCurrentFrameNumber,
+                                               presentFence,
+                                               FrameTracer::FrameEvent::PRESENT_FENCE);
+            mFrameTracker.setActualPresentFence(std::shared_ptr<FenceTime>(presentFence));
+        } else if (const auto displayId = PhysicalDisplayId::tryCast(display->getId());
+                   displayId && mFlinger->getHwComposer().isConnected(*displayId)) {
+            // The HWC doesn't support present fences, so use the present timestamp instead.
+            const nsecs_t presentTimestamp =
+                    mFlinger->getHwComposer().getPresentTimestamp(*displayId);
+
+            const nsecs_t now = systemTime(CLOCK_MONOTONIC);
+            const nsecs_t vsyncPeriod = display->getVsyncPeriodFromHWC();
+            const nsecs_t actualPresentTime = now - ((now - presentTimestamp) % vsyncPeriod);
+
+            mFlinger->mTimeStats->setPresentTime(layerId, mCurrentFrameNumber, actualPresentTime,
+                                                 refreshRate, renderRate, vote, gameMode);
+            mFlinger->mFrameTracer->traceTimestamp(layerId, getCurrentBufferId(),
+                                                   mCurrentFrameNumber, actualPresentTime,
+                                                   FrameTracer::FrameEvent::PRESENT_FENCE);
+            mFrameTracker.setActualPresentTime(actualPresentTime);
+        }
+    }
+
+    mFrameTracker.advanceFrame();
+    mBufferInfo.mFrameLatencyNeeded = false;
+}
+
+bool Layer::willReleaseBufferOnLatch() const {
+    return !mDrawingState.buffer && mBufferInfo.mBuffer;
+}
+
+bool Layer::latchBuffer(bool& recomputeVisibleRegions, nsecs_t latchTime) {
+    const bool bgColorOnly = mDrawingState.bgColorLayer != nullptr;
+    return latchBufferImpl(recomputeVisibleRegions, latchTime, bgColorOnly);
+}
+
+bool Layer::latchBufferImpl(bool& recomputeVisibleRegions, nsecs_t latchTime, bool bgColorOnly) {
+    ATRACE_FORMAT_INSTANT("latchBuffer %s - %" PRIu64, getDebugName(),
+                          getDrawingState().frameNumber);
+
+    bool refreshRequired = latchSidebandStream(recomputeVisibleRegions);
+
+    if (refreshRequired) {
+        return refreshRequired;
+    }
+
+    // If the head buffer's acquire fence hasn't signaled yet, return and
+    // try again later
+    if (!fenceHasSignaled()) {
+        ATRACE_NAME("!fenceHasSignaled()");
+        mFlinger->onLayerUpdate();
+        return false;
+    }
+    updateTexImage(latchTime, bgColorOnly);
+
+    // Capture the old state of the layer for comparisons later
+    BufferInfo oldBufferInfo = mBufferInfo;
+    const bool oldOpacity = isOpaque(mDrawingState);
+    mPreviousFrameNumber = mCurrentFrameNumber;
+    mCurrentFrameNumber = mDrawingState.frameNumber;
+    gatherBufferInfo();
+
+    if (mBufferInfo.mBuffer) {
+        // We latched a buffer that will be presented soon. Clear the previously presented layer
+        // stack list.
+        mPreviouslyPresentedLayerStacks.clear();
+    }
+
+    if (mDrawingState.buffer == nullptr) {
+        const bool bufferReleased = oldBufferInfo.mBuffer != nullptr;
+        recomputeVisibleRegions = bufferReleased;
+        return bufferReleased;
+    }
+
+    if (oldBufferInfo.mBuffer == nullptr) {
+        // the first time we receive a buffer, we need to trigger a
+        // geometry invalidation.
+        recomputeVisibleRegions = true;
+    }
+
+    if ((mBufferInfo.mCrop != oldBufferInfo.mCrop) ||
+        (mBufferInfo.mTransform != oldBufferInfo.mTransform) ||
+        (mBufferInfo.mScaleMode != oldBufferInfo.mScaleMode) ||
+        (mBufferInfo.mTransformToDisplayInverse != oldBufferInfo.mTransformToDisplayInverse)) {
+        recomputeVisibleRegions = true;
+    }
+
+    if (oldBufferInfo.mBuffer != nullptr) {
+        uint32_t bufWidth = mBufferInfo.mBuffer->getWidth();
+        uint32_t bufHeight = mBufferInfo.mBuffer->getHeight();
+        if (bufWidth != oldBufferInfo.mBuffer->getWidth() ||
+            bufHeight != oldBufferInfo.mBuffer->getHeight()) {
+            recomputeVisibleRegions = true;
+        }
+    }
+
+    if (oldOpacity != isOpaque(mDrawingState)) {
+        recomputeVisibleRegions = true;
+>>>>>>> CHANGE (8ac3f4 Assign previous release fence to previous frame ID)
     }
 
     return true;

@@ -189,8 +189,15 @@ public:
 
         // The fields below this point are only used by BufferStateLayer
         uint64_t frameNumber;
+<<<<<<< HEAD   (935d53 Merge "Fix the missing extension EGL_ANDROID_image_native_bu)
         uint32_t width;
         uint32_t height;
+=======
+        uint64_t previousFrameNumber;
+        // high watermark framenumber to use to check for barriers to protect ourselves
+        // from out of order transactions
+        uint64_t barrierFrameNumber;
+>>>>>>> CHANGE (8ac3f4 Assign previous release fence to previous frame ID)
         ui::Transform transform;
 
         uint32_t bufferTransform;

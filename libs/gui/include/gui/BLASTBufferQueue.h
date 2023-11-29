@@ -46,9 +46,15 @@ public:
 
     void onDisconnect() override;
     void addAndGetFrameTimestamps(const NewFrameEventsEntry* newTimestamps,
+<<<<<<< HEAD   (935d53 Merge "Fix the missing extension EGL_ANDROID_image_native_bu)
                                   FrameEventHistoryDelta* outDelta) override REQUIRES(mMutex);
     void updateFrameTimestamps(uint64_t frameNumber, nsecs_t refreshStartTime,
                                const sp<Fence>& gpuCompositionDoneFence,
+=======
+                                  FrameEventHistoryDelta* outDelta) override EXCLUDES(mMutex);
+    void updateFrameTimestamps(uint64_t frameNumber, uint64_t previousFrameNumber,
+                               nsecs_t refreshStartTime, const sp<Fence>& gpuCompositionDoneFence,
+>>>>>>> CHANGE (8ac3f4 Assign previous release fence to previous frame ID)
                                const sp<Fence>& presentFence, const sp<Fence>& prevReleaseFence,
                                CompositorTiming compositorTiming, nsecs_t latchTime,
                                nsecs_t dequeueReadyTime) REQUIRES(mMutex);
