@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d4334e2_6b36b583",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2023-11-29T22:24:16Z",
+      "side": 1,
+      "message": "I don\u0027t know enough about binder_rpc to judge whether the pieces you\u0027ve cut out makes sense, and the Rust stuff you\u0027re adding is Trusty-only, bindings-only, so I don\u0027t really have a review to give here.",
+      "revId": "6fcd0cdc1522b1936b519aebfca0bb50382994b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
