@@ -16,6 +16,24 @@
       "message": "I don\u0027t know enough about binder_rpc to judge whether the pieces you\u0027ve cut out makes sense, and the Rust stuff you\u0027re adding is Trusty-only, bindings-only, so I don\u0027t really have a review to give here.",
       "revId": "6fcd0cdc1522b1936b519aebfca0bb50382994b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55b6c34c_a7001666",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-11-29T22:26:08Z",
+      "side": 1,
+      "message": "Yeah I added you because there was some bindgen stuff, but I guess that\u0027s not a lot.",
+      "parentUuid": "9d4334e2_6b36b583",
+      "revId": "6fcd0cdc1522b1936b519aebfca0bb50382994b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
