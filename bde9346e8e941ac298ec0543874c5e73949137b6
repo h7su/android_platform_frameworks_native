@@ -22,6 +22,30 @@
       },
       "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "773c01e4_869fcbb9",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-29T17:40:22Z",
+      "side": 0,
+      "message": "I ran a couple of ABTD tests:\n- boot test on all aosp-main-with-phones targets: https://android-build.corp.google.com/builds/abtd/run/L19700030000524852\n- build test on udc-dev-plus-aosp: https://android-build.corp.google.com/builds/abtd/run/L53900030000538567\n- build test on aosp-main-with-phones: https://android-build.corp.google.com/builds/abtd/run/L76300030000531742\n- build test on internal main: https://android-build.corp.google.com/builds/abtd/run/L94800030000508130\n\nThey all came out green. Is there anything I\u0027m missing?",
+      "parentUuid": "4d6f4bd2_4cbd9aa9",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
