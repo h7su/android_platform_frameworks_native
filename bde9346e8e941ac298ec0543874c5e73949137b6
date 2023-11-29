@@ -46,6 +46,30 @@
       },
       "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe36489d_7218d2a2",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-29T23:14:37Z",
+      "side": 0,
+      "message": "I just ran more boot tests:\n- internal main: https://android-build.corp.google.com/builds/abtd/run/L90500030000564616\n- udc-dev-plus-aosp: https://android-build.corp.google.com/builds/abtd/run/L26900030000556646\n\nInternal main came out red on 6 targets, but the same targets went red too on build without this change: https://android-build.corp.google.com/builds/abtd/run/L86900030000540746",
+      "parentUuid": "773c01e4_869fcbb9",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
