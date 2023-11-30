@@ -93,6 +93,30 @@
       },
       "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7c0c8e_6fc913b8",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-30T02:14:13Z",
+      "side": 1,
+      "message": "I was suggesting comparing the two values when you include cutils. nit.",
+      "parentUuid": "7b523c26_6e484bd9",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
