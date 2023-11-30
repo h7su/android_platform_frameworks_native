@@ -70,6 +70,30 @@
       },
       "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4992f0_b02afbb1",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-30T01:22:02Z",
+      "side": 0,
+      "message": "That\u0027s not very convincing. I\u0027d say you probably don\u0027t want to change the ABI here. It\u0027s probably going to break something, if not here, downstream. Though, you\u0027re welcome to try, might get reverted.",
+      "parentUuid": "fe36489d_7218d2a2",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
