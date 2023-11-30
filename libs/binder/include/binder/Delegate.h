@@ -18,25 +18,6 @@
 
 #include <binder/IBinder.h>
 
-#ifndef __BIONIC__
-#ifndef __assert
-
-// defined differently by liblog
-#pragma push_macro("LOG_PRI")
-#ifdef LOG_PRI
-#undef LOG_PRI
-#endif
-#include <syslog.h>
-#pragma pop_macro("LOG_PRI")
-
-#define __assert(a, b, c)          \
-    do {                           \
-        syslog(LOG_ERR, a ": " c); \
-        abort();                   \
-    } while (false)
-#endif // __assert
-#endif // __BIONIC__
-
 namespace android {
 
 /*
@@ -59,9 +40,8 @@ sp<T> delegate(const sp<T>& binder) {
     // is binder itself a delegator?
     if (T::asBinder(binder)->findObject(isDelegatorId)) {
         if (T::asBinder(binder)->findObject(hasDelegatorId)) {
-            __assert(__FILE__, __LINE__,
-                     "This binder has a delegator and is also delegator itself! This is "
-                     "likely an unintended mixing of binders.");
+            LOG_ALWAYS_FATAL("This binder has a delegator and is also delegator itself! This is "
+                             "likely an unintended mixing of binders.");
             return nullptr;
         }
         // unwrap the delegator

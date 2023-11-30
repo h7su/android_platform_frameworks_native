@@ -36,8 +36,11 @@ TEST(BinderRpcParcel, EntireParcelFormatted) {
     Parcel p;
     p.writeInt32(3);
 
-    EXPECT_DEATH_IF_SUPPORTED(p.markForBinder(sp<BBinder>::make()),
-                              "format must be set before data is written");
+    const char* deathRegex = "";
+    IF_ALOG(LOG_FATAL, "Parcel") {
+        deathRegex = "format must be set before data is written";
+    }
+    EXPECT_DEATH_IF_SUPPORTED(p.markForBinder(sp<BBinder>::make()), deathRegex);
 }
 
 TEST(BinderRpc, CannotUseNextWireVersion) {
