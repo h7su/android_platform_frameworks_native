@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a183eaab_92b5da0d",
+        "filename": "cmds/atrace/atrace.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 2009465
+      },
+      "writtenOn": "2023-11-30T13:29:26Z",
+      "side": 1,
+      "message": "It seems like both categories enable the same tag. Would adding just one category instead of two make sense here?",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 90
+      },
+      "revId": "503391c849e0d4d5e47e677f309144890991a066",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
