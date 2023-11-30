@@ -276,6 +276,9 @@ private:
     // Input channels that will receive a copy of all input events sent to the provided display.
     std::unordered_map<int32_t, std::vector<Monitor>> mGlobalMonitorsByDisplay GUARDED_BY(mLock);
 
+    std::optional<int32_t> getGlobalMonitorDisplayIdLocked(
+            const std::shared_ptr<InputChannel>& inputChannel) REQUIRES(mLock);
+
     const HmacKeyManager mHmacKeyManager;
     const std::array<uint8_t, 32> getSignature(const MotionEntry& motionEntry,
                                                const DispatchEntry& dispatchEntry) const;
