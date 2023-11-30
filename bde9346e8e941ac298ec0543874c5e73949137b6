@@ -94,6 +94,30 @@
       },
       "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5706563_d732c9a2",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-30T01:57:44Z",
+      "side": 0,
+      "message": "I\u0027m happy to take a shot. I\u0027ll prepare a fix-forward and a revert tomorrow just in case.",
+      "parentUuid": "4e4992f0_b02afbb1",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "bde9346e8e941ac298ec0543874c5e73949137b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

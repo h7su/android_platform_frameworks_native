@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b71c948c_dcca804b",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-30T01:57:44Z",
+      "side": 1,
+      "message": "I tried putting this behind a macro, but I learned it doesn\u0027t make sense: this include is only to verify value of ATRACE_TAG_AIDL, so it would mean validating it only on some targets. Let\u0027s discuss this in the other comment thread.",
+      "parentUuid": "a792e1f8_e7a8737f",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16de94c0_7683ad52",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-30T01:14:48Z",
       "side": 1,
       "message": "nit: if this is not else with above clause, might as well double-check the values stay in sync?\n\n```\n#ifdef ATRACE_TAG_AIDL\n#if ATRACE_TAG_AIDL !\u003d (1 \u003c\u003c 24)\n#error mismatch\n#endif\n#else\n#define ATRACE_TAG_AIDL (1 \u003c\u003c 24)\n```",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b523c26_6e484bd9",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-30T01:57:44Z",
+      "side": 1,
+      "message": "The problem here is that whole macro (including whitespaces) has to stay in sync, not just the value.\n\nThere\u0027s a couple moving pieces here.\n\n1. If I don\u0027t do ifndef (define unconditionally) compilation will fail due to macro redefiniton (`#define TAG     (1\u003c\u003c24)` vs `#define TAG (1 \u003c\u003c 24)`).\n\n2. If I include `\u003ccutils/trace.h\u003e` here, the failure will happen in this file. If I don\u0027t and some other code includes it after this header, error will pop out in that other random file.\n\n3. If I put include behind a macro, problem #2 will pop out only on builds not having that flag\n\nI think the only feasible option other than what\u0027s in this PS is to do this instead of lines 21-27 (include and definition):\n```\n// clang-format off\n#define ATRACE_TAG_AIDL             (1\u003c\u003c24)\n// clang-format on\n```\n\nPlease let me know if you want me to switch it over or you have other ideas.",
+      "parentUuid": "16de94c0_7683ad52",
       "range": {
         "startLine": 25,
         "startChar": 0,
