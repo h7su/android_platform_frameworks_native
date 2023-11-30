@@ -117,6 +117,30 @@
       },
       "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adcd3fe2_bf6d6ec1",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-11-30T02:33:19Z",
+      "side": 1,
+      "message": "Ah, okay, fixed.\n\nThen what I wrote is applicable to the other comment only (about replacing __has_include with macro).",
+      "parentUuid": "3f7c0c8e_6fc913b8",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
