@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3859a5c6_b7fc3890",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1546599
+      },
+      "writtenOn": "2023-11-30T20:50:21Z",
+      "side": 1,
+      "message": "Dichen, This will ensure tests/Android.bp is in sync between aosp/main and git_main. (commit message has a Merged-In to ensure this doesn\u0027t automerge to git_main).\nOnce this lands in aosp/main, I will be able to rebase the CL that renames and disables these ultrahdr targets in frameworks/native.\nCan you please review?\nThanks.",
+      "revId": "9b02402a1506abc1239fb39849eff5bcbdacad0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
