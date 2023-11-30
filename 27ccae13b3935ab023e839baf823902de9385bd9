@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a792e1f8_e7a8737f",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-30T01:14:48Z",
+      "side": 1,
+      "message": "can you put this behind a macro like your other conditional includes? avoid silent behavior?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16de94c0_7683ad52",
+        "filename": "libs/binder/include/binder/Trace.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-11-30T01:14:48Z",
+      "side": 1,
+      "message": "nit: if this is not else with above clause, might as well double-check the values stay in sync?\n\n```\n#ifdef ATRACE_TAG_AIDL\n#if ATRACE_TAG_AIDL !\u003d (1 \u003c\u003c 24)\n#error mismatch\n#endif\n#else\n#define ATRACE_TAG_AIDL (1 \u003c\u003c 24)\n```",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "27ccae13b3935ab023e839baf823902de9385bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
