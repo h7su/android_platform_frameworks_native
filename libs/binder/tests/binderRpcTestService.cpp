@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#include <android/log.h>
+
 #include "binderRpcTestCommon.h"
 
 using namespace android;
