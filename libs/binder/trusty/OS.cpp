@@ -22,9 +22,13 @@
 #endif
 
 #include <binder/RpcTransportTipcTrusty.h>
+#include <log/log.h>
+#include <trusty_log.h>
 
 #include "../OS.h"
 #include "TrustyStatus.h"
+
+#include <cstdarg>
 
 using android::binder::borrowed_fd;
 using android::binder::unique_fd;
@@ -87,3 +91,53 @@ ssize_t receiveMessageFromSocket(
 }
 
 } // namespace android::binder::os
+
+int __android_log_print(int prio [[maybe_unused]], const char* tag, const char* fmt, ...) {
+    const auto prefix = (tag[0] == '\0') ? "libbinder" : "libbinder-";
+#ifdef TRUSTY_USERSPACE
+    // since there is no _tlog variant that takes va_list, we have to print message to buffer first
+    thread_local char buffer[256];
+
+    va_list args;
+    va_start(args, fmt);
+    auto pos = vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+    if (pos < 0 || static_cast<size_t>(pos) >= sizeof(buffer)) {
+        _tlog("%s%s: can't generate log message", prefix, tag);
+        return -ENOMEM;
+    }
+
+    buffer[pos] = '\0';
+    _tlog("%s%s", prefix, buffer);
+#else
+    // mapping taken from kernel trusty_log.h (TLOGx)
+    int kernelLogLevel;
+    if (prio <= ANDROID_LOG_DEBUG) {
+        kernelLogLevel = LK_DEBUGLEVEL_ALWAYS;
+    } else if (prio == ANDROID_LOG_INFO) {
+        kernelLogLevel = LK_DEBUGLEVEL_SPEW;
+    } else if (prio == ANDROID_LOG_WARN) {
+        kernelLogLevel = LK_DEBUGLEVEL_INFO;
+    } else if (prio == ANDROID_LOG_ERROR) {
+        kernelLogLevel = LK_DEBUGLEVEL_CRITICAL;
+    } else { /* prio >= ANDROID_LOG_FATAL */
+        kernelLogLevel = LK_DEBUGLEVEL_CRITICAL;
+    }
+
+    // from _dprintf_internal
+    if (kernelLogLevel <= LK_LOGLEVEL) {
+        va_list args;
+        va_start(args, fmt);
+        // Kernel logs to stdout, while host utils to stderr. Let's stick with the latter.
+        fprintf(stderr, prefix);
+        vfprintf(stderr, fmt, args);
+        va_end(args);
+    }
+#endif
+    return 1;
+}
+
+// TODO(b/285204695): remove once trusty mock doesn't depend on libbase
+extern "C" int __android_log_buf_print(int, int, const char*, const char*, ...) {
+    return -ENOSYS;
+}
