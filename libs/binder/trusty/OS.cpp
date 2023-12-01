@@ -22,9 +22,13 @@
 #endif
 
 #include <binder/RpcTransportTipcTrusty.h>
+#include <log/log.h>
+#include <trusty_log.h>
 
 #include "../OS.h"
 #include "TrustyStatus.h"
+
+#include <cstdarg>
 
 using android::binder::borrowed_fd;
 using android::binder::unique_fd;
@@ -87,3 +91,64 @@ ssize_t receiveMessageFromSocket(
 }
 
 } // namespace android::binder::os
+
+void android_log_stub_print(int priority [[maybe_unused]], const char* tag, const char* fmt, ...) {
+    const auto preamble = (tag == nullptr || tag[0] == '\0') ? "libbinder" : "libbinder-";
+#ifdef TRUSTY_USERSPACE
+    // since there is no _tlog variant that takes va_list, we have to print message to buffer first
+    thread_local char thread_buffer[256];
+    char* buffer = thread_buffer;
+    ssize_t buffer_size = sizeof(buffer);
+
+    auto pos = snprintf(buffer, buffer_size, "%s%s", preamble, tag);
+    if (pos < 0 || pos >= buffer_size) {
+        _tlog("%s%s: can't generate log message prefix", preamble, tag);
+        return;
+    }
+    buffer += pos;
+    buffer_size -= pos;
+
+    va_list args;
+    va_start(args, fmt);
+    pos = vsnprintf(buffer, buffer_size, fmt, args);
+    va_end(args);
+    if (pos < 0 || pos >= buffer_size) {
+        _tlog("%s%s: can't generate log message", preamble, tag);
+        return;
+    }
+
+    buffer[pos] = '\0';
+    _tlog("%s", buffer);
+#else
+    // mapping taken from kernel trusty_log.h (TLOGx)
+    int kernelLogLevel;
+    if (priority <= ANDROID_LOG_DEBUG) {
+        kernelLogLevel = LK_DEBUGLEVEL_ALWAYS;
+    } else if (priority == ANDROID_LOG_INFO) {
+        kernelLogLevel = LK_DEBUGLEVEL_SPEW;
+    } else if (priority == ANDROID_LOG_WARN) {
+        kernelLogLevel = LK_DEBUGLEVEL_INFO;
+    } else if (priority == ANDROID_LOG_ERROR) {
+        kernelLogLevel = LK_DEBUGLEVEL_CRITICAL;
+    } else { /* priority >= ANDROID_LOG_FATAL */
+        kernelLogLevel = LK_DEBUGLEVEL_CRITICAL;
+    }
+
+    // from _dprintf_internal
+    if (kernelLogLevel <= LK_LOGLEVEL) {
+        va_list args;
+        va_start(args, fmt);
+        // Kernel logs to stdout, while host utils to stderr. Let's stick with the latter.
+        fprintf(stderr, "%s%s", preamble, tag);
+        vfprintf(stderr, fmt, args);
+        va_end(args);
+    }
+#endif
+}
+
+// TODO: probably not necessary
+int __android_log_buf_print(int /*bufID*/, int /*prio*/, const char* /*tag*/, const char* /*fmt*/,
+                            ...) {
+    // TODO: merge with android_log_stub_print
+    return 0;
+}

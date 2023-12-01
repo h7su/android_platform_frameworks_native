@@ -54,6 +54,7 @@ MODULE_SRCS := \
 
 MODULE_EXPORT_INCLUDES += \
 	$(LOCAL_DIR)/include \
+	$(LIBBINDER_DIR)/include_liblog_stub \
 	$(LIBBINDER_DIR)/include \
 	$(LIBBASE_DIR)/include \
 	$(LIBUTILS_BINDER_DIR)/include \
