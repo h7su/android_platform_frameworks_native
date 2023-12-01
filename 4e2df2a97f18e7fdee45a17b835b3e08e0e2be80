@@ -33,6 +33,23 @@
       "message": "Note: This is more to open a discussion about how to get OpenXR into Android, I fully expect to have to modify this stack of changes to satisfy both the OpenXR side as well as the AOSP side.",
       "revId": "4e2df2a97f18e7fdee45a17b835b3e08e0e2be80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc16a8a_a32f5ec8",
+        "filename": "openxr/external/android-jni-wrappers/wrap/android.content.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:16:30Z",
+      "side": 1,
+      "message": "Maybe modules integrated into frameworks/native can get more native APIs for Framework\u0027s Java APIs than a normal app with NDK.",
+      "revId": "4e2df2a97f18e7fdee45a17b835b3e08e0e2be80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
