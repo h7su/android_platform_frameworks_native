@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7d6470f_178ad278",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-01T23:55:36Z",
+      "side": 1,
+      "message": "\u003e since a lot of _tlog implementations are just fprintf to stderr, shouldn\u0027t they all contain a newline?\n\nCallers are expected to add the newline characters explicitly in the format strings. Not sure why, but LK `dprintf` works like that too.\n\n\u003e  Does it expect the entire log message to be passed at once, or I can do it in pieces (multiple calls to _tlog)?\n\nPieces are fine, e.g., both the old C Googletest-like (`trusty_unittest.h`, see `ASSERT_EXPECT_TEST`) and the actual Googletest back end (`trusty-gtest.h`) do that.",
+      "parentUuid": "1c59a944_36fe5cc7",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
