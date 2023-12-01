@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "442ecb2d_dc2b9e48",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-01T23:23:27Z",
+      "side": 1,
+      "message": "```\n#define _dprintf_internal(level, x...) do { if ((level) \u003c\u003d LK_LOGLEVEL) { printf(x); } } while (0)\n#if LK_DEBUGLEVEL_NO_ALIASES\n#define dprintf(level, x...) _dprintf_internal(LK_DEBUGLEVEL_##level, ##x)\n#else\n#define dprintf(level, x...) _dprintf_internal(level, ##x)\n#endif\n```\n\nThis is `dprintf` so yeah I think we can add a `va_list` flavor.",
+      "parentUuid": "47993fcd_52ffed6c",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
