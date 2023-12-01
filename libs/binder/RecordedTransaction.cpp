@@ -114,7 +114,7 @@ static_assert(PADDING8(8) == 0);
 
 RecordedTransaction::RecordedTransaction(RecordedTransaction&& t) noexcept {
     mData = t.mData;
-    mSent.setData(t.getDataParcel().data(), t.getDataParcel().dataSize());
+    mSentDataOnly.setData(t.getDataParcel().data(), t.getDataParcel().dataSize());
     mReply.setData(t.getReplyParcel().data(), t.getReplyParcel().dataSize());
 }
 
@@ -136,7 +136,15 @@ std::optional<RecordedTransaction> RecordedTransaction::fromDetails(
         return std::nullopt;
     }
 
-    if (t.mSent.setData(dataParcel.data(), dataParcel.dataBufferSize()) != android::NO_ERROR) {
+    if (const auto* kernelFields = dataParcel.maybeKernelFields()) {
+        for (size_t i = 0; i < kernelFields->mObjectsSize; i++) {
+            size_t offset = kernelFields->mObjects[i];
+            t.mData.mSentObjectData.push_back(offset);
+        }
+    }
+
+    if (t.mSentDataOnly.setData(dataParcel.data(), dataParcel.dataBufferSize()) !=
+        android::NO_ERROR) {
         ALOGE("Failed to set sent parcel data.");
         return std::nullopt;
     }
@@ -154,6 +162,7 @@ enum {
     DATA_PARCEL_CHUNK = 2,
     REPLY_PARCEL_CHUNK = 3,
     INTERFACE_NAME_CHUNK = 4,
+    DATA_PARCEL_OBJECT_CHUNK = 5,
     END_CHUNK = 0x00ffffff,
 };
 
@@ -265,8 +274,8 @@ std::optional<RecordedTransaction> RecordedTransaction::fromFile(const unique_fd
                 break;
             }
             case DATA_PARCEL_CHUNK: {
-                if (t.mSent.setData(reinterpret_cast<const unsigned char*>(payloadMap),
-                                    chunk.dataSize) != android::NO_ERROR) {
+                if (t.mSentDataOnly.setData(reinterpret_cast<const unsigned char*>(payloadMap),
+                                            chunk.dataSize) != android::NO_ERROR) {
                     ALOGE("Failed to set sent parcel data.");
                     return std::nullopt;
                 }
@@ -277,6 +286,15 @@ std::optional<RecordedTransaction> RecordedTransaction::fromFile(const unique_fd
                                      chunk.dataSize) != android::NO_ERROR) {
                     ALOGE("Failed to set reply parcel data.");
                     return std::nullopt;
+                }
+                break;
+            }
+            case DATA_PARCEL_OBJECT_CHUNK: {
+                const size_t* objects = reinterpret_cast<const size_t*>(payloadMap);
+                size_t metaDataSize = (chunk.dataSize / sizeof(size_t));
+                ALOGI("Total objects found in saved parcel %zu", metaDataSize);
+                for (size_t index = 0; index < metaDataSize; ++index) {
+                    t.mData.mSentObjectData.push_back(objects[index]);
                 }
                 break;
             }
@@ -343,14 +361,24 @@ android::status_t RecordedTransaction::dumpToFile(const unique_fd& fd) const {
         return UNKNOWN_ERROR;
     }
 
-    if (NO_ERROR != writeChunk(fd, DATA_PARCEL_CHUNK, mSent.dataBufferSize(), mSent.data())) {
+    if (NO_ERROR !=
+        writeChunk(fd, DATA_PARCEL_CHUNK, mSentDataOnly.dataBufferSize(), mSentDataOnly.data())) {
         ALOGE("Failed to write sent Parcel to fd %d", fd.get());
         return UNKNOWN_ERROR;
     }
+
     if (NO_ERROR != writeChunk(fd, REPLY_PARCEL_CHUNK, mReply.dataBufferSize(), mReply.data())) {
         ALOGE("Failed to write reply Parcel to fd %d", fd.get());
         return UNKNOWN_ERROR;
     }
+
+    if (NO_ERROR !=
+        writeChunk(fd, DATA_PARCEL_OBJECT_CHUNK, mData.mSentObjectData.size() * sizeof(size_t),
+                   reinterpret_cast<const uint8_t*>(mData.mSentObjectData.data()))) {
+        ALOGE("Failed to write sent parcel object metadata to fd %d", fd.get());
+        return UNKNOWN_ERROR;
+    }
+
     if (NO_ERROR != writeChunk(fd, END_CHUNK, 0, NULL)) {
         ALOGE("Failed to write end chunk to fd %d", fd.get());
         return UNKNOWN_ERROR;
@@ -384,8 +412,12 @@ uint32_t RecordedTransaction::getVersion() const {
     return mData.mHeader.version;
 }
 
+const std::vector<size_t>& RecordedTransaction::getObjectOffsets() const {
+    return mData.mSentObjectData;
+}
+
 const Parcel& RecordedTransaction::getDataParcel() const {
-    return mSent;
+    return mSentDataOnly;
 }
 
 const Parcel& RecordedTransaction::getReplyParcel() const {
