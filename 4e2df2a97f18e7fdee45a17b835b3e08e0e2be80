@@ -16,6 +16,23 @@
       "message": "If possible, it would be better to import the OpenXR-SDK repository (https://github.com/KhronosGroup/OpenXR-SDK into external/ and point to the headers there.\n\nI also realize the linter is going crazy with this due to the raw code import from upstream.",
       "revId": "4e2df2a97f18e7fdee45a17b835b3e08e0e2be80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4edc7ba_b9f1f3d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T03:12:32Z",
+      "side": 1,
+      "message": "Note: This is more to open a discussion about how to get OpenXR into Android, I fully expect to have to modify this stack of changes to satisfy both the OpenXR side as well as the AOSP side.",
+      "revId": "4e2df2a97f18e7fdee45a17b835b3e08e0e2be80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
