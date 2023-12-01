@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c7e2df_6485d264",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T16:54:28Z",
+      "side": 1,
+      "message": "For external library, I think AOSP might recommend to keep these files, and only modify content for adopting or other necessary purposes. Keeping as much as files can help update external library versions. And I think the Android team can upstream patches to OpenXR WG from AOSP part as early as possible.",
+      "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
