@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f986fcb9_0690c268",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-01T23:07:49Z",
+      "side": 1,
+      "message": "\u003e where is _tlog defined?\n\nA few places:\n* Regular user space apps: in `trusty/user/base/lib/libc-trusty/logging.c`: https://android.googlesource.com/trusty/lib/+/refs/heads/main/lib/libc-trusty/logging.c#22 (sorry I don\u0027t have a cs.android.com link, Trusty files aren\u0027t included there). This just forwards to `stderr`.\n* Kernel: macro in `trusty/kernel/include/trusty_log.h`\n* Googletest apps in user space, which have an explicit dependency on `trusty/user/base/lib/unittest`: this is where it gets a little tricky. There is a separate overriding implementation of `_tlog` in `unittest.c` at https://android.googlesource.com/trusty/lib/+/refs/heads/main/lib/unittest/unittest.c#94 that logs to both `stderr` and sends the messages over IPC back to Android, so they can be printed there.\n\nI think your stubs still need to call `_tlog`, or duplicate that IPC functionality (which I wouldn\u0027t recommend).",
+      "parentUuid": "86f85579_4ee9aa2c",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
