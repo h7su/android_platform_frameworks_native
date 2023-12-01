@@ -215,6 +215,7 @@ cc_defaults {
     host_supported: true,
 
     header_libs: [
+        "liblog_stub",
         "trusty_mock_headers",
     ],
 
@@ -258,9 +259,6 @@ cc_library_shared {
         "trusty/RpcTransportTipcTrusty.cpp",
         "trusty/TrustyStatus.cpp",
         "trusty/socket.cpp",
-    ],
-    shared_libs: [
-        "liblog",
     ],
 }
 
@@ -348,6 +346,25 @@ cc_library {
     },
 
     afdo: true,
+}
+
+cc_library_headers {
+    name: "liblog_stub",
+    export_include_dirs: ["include_liblog_stub"],
+    host_supported: true,
+    product_available: true,
+    recovery_available: true,
+    vendor_available: true,
+
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
+    visibility: [
+        ":__subpackages__",
+        "//system/core/libutils/binder",
+    ],
 }
 
 cc_library_static {
