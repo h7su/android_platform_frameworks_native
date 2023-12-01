@@ -16,6 +16,24 @@
       "message": "Is this because we don\u0027t have `base::expected` anymore? We probably can\u0027t use `std::expected` since that\u0027s only in C++23, is there anything else?\n\nI\u0027d really prefer if we kept the error code since the caller might want to do different things depending on what the code is, but if we have no way of doing it right now then we can remove it now and add it back later.",
       "revId": "07e2a7ca0db45f90be0dfbd62b34ae592bd77afa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a7b747_25dc5ce8",
+        "filename": "libs/binder/trusty/RpcServerTrusty.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-01T23:06:58Z",
+      "side": 1,
+      "message": "Yes, std::expected is what I was hoping to use. I think we need a new libstdc++ release to have it. It\u0027s WIP AFAIK, but it may take a few more months.",
+      "parentUuid": "85e353c6_eb745695",
+      "revId": "07e2a7ca0db45f90be0dfbd62b34ae592bd77afa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
