@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d2a95a5_6006570f",
+        "filename": "openxr/loader/api_layer_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:16:27Z",
+      "side": 1,
+      "message": "I mentioned in a previous change that the intent was to allow divergence from the upstream OpenXR loader to account for Android-system-platform changes such as this. Generating a new library namespace would never really be doable in the upstream OpenXR codebase.",
+      "parentUuid": "eec5a4af_6ceb9d10",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7c23725_c42b9468",
         "filename": "openxr/loader/manifest_file.cpp",
         "patchSetId": 1
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9960b65d_28ecea19",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:16:27Z",
+      "side": 1,
+      "message": "That would leave an unused function lying around.",
+      "parentUuid": "c7c23725_c42b9468",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93007853_41b9ab11",
         "filename": "openxr/loader/manifest_file.cpp",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2023-12-01T17:13:52Z",
       "side": 1,
       "message": "Maybe adding a custom implementation for AOSP and select this implementation as the first priority for OpenXR Loader? And this implementation can only be kept in AOSP\u0027s downstream version with graphics env dependency and APIs calling. And it also has a great compatibility with OpenXR\u0027s official version.",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc429f4_aa38a7ab",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:16:27Z",
+      "side": 1,
+      "message": "I\u0027m not following what you are asking for here.",
+      "parentUuid": "93007853_41b9ab11",
       "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

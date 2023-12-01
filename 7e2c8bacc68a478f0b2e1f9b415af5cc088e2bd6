@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "168733bc_e5181dd4",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:16:27Z",
+      "side": 0,
+      "message": "These functions end up unused, and the GetGlobalRuntimeFileName function doesn\u0027t actually make sense with the partition ordering listed. There\u0027s no real reason to keep it here either.",
+      "parentUuid": "3173e4de_f26ad7eb",
+      "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "044d5f36_f4884f09",
         "filename": "openxr/loader/manifest_file.cpp",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-01T17:13:52Z",
       "side": 0,
       "message": "Maybe adding a feature flag to configure whether to run this logic?",
+      "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "369decc0_0eb6a072",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:16:27Z",
+      "side": 0,
+      "message": "I\u0027m not sure I follow why that would be desirable for an implementation integrated with the platform.",
+      "parentUuid": "044d5f36_f4884f09",
       "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
