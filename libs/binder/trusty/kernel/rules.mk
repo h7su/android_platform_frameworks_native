@@ -52,6 +52,7 @@ MODULE_INCLUDES += \
 GLOBAL_INCLUDES += \
 	$(LOCAL_DIR)/include \
 	$(LOCAL_DIR)/../include \
+	$(LIBBINDER_DIR)/include_liblog_stub \
 	$(LIBBINDER_DIR)/include \
 	$(LIBBINDER_DIR)/ndk/include_cpp \
 	$(LIBBASE_DIR)/include \
