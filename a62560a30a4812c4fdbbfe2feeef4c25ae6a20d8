@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88791b3d_a883c753",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-01T22:44:04Z",
+      "side": 1,
+      "message": "I think this is fine, but it\u0027s more code and effort than the old approach. What does it buy you?",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30749c0_6b643af5",
+        "filename": "libs/binder/trusty/include/log/log.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-01T22:44:04Z",
+      "side": 1,
+      "message": "I think this file is safe to delete, since you\u0027re adding another `log/log.h` and that one is also in the include path. `\u003ctrusty_log.h\u003e` was only needed for the `TLOG*` macros.",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
