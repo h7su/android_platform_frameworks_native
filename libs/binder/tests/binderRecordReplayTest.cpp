@@ -24,7 +24,10 @@
 #include <binder/RecordedTransaction.h>
 #include <binder/unique_fd.h>
 
+#include <cutils/ashmem.h>
+
 #include <fuzzbinder/libbinder_driver.h>
+#include <fuzzbinder/random_binder.h>
 #include <fuzzer/FuzzedDataProvider.h>
 #include <fuzzseeds/random_parcel_seeds.h>
 
@@ -37,6 +40,7 @@
 
 using namespace android;
 using android::generateSeedsFromRecording;
+using android::RandomBinder;
 using android::binder::borrowed_fd;
 using android::binder::Status;
 using android::binder::unique_fd;
@@ -81,6 +85,7 @@ public:
 
     GENERATE_GETTER_SETTER(String, String16);
     GENERATE_GETTER_SETTER(SingleDataParcelable, SingleDataParcelable);
+    GENERATE_GETTER_SETTER(Binder, sp<IBinder>);
 
     GENERATE_GETTER_SETTER(BooleanArray, std::vector<bool>);
     GENERATE_GETTER_SETTER(ByteArray, std::vector<uint8_t>);
@@ -91,12 +96,22 @@ public:
     GENERATE_GETTER_SETTER(DoubleArray, std::vector<double>);
     GENERATE_GETTER_SETTER(StringArray, std::vector<::android::String16>);
     GENERATE_GETTER_SETTER(SingleDataParcelableArray, std::vector<SingleDataParcelable>);
+
+    Status setFileDescriptor(unique_fd input) {
+        mFd = std::move(unique_fd(dup(input)));
+        return Status::ok();
+    }
+
+    Status getFileDescriptor(unique_fd* output) {
+        *output = std::move(unique_fd(dup(mFd)));
+        return Status::ok();
+    }
+    unique_fd mFd;
 };
 
 std::vector<uint8_t> retrieveData(borrowed_fd fd) {
     struct stat fdStat;
     EXPECT_TRUE(fstat(fd.get(), &fdStat) != -1);
-    EXPECT_TRUE(fdStat.st_size != 0);
 
     std::vector<uint8_t> buffer(fdStat.st_size);
     auto readResult = android::base::ReadFully(fd, buffer.data(), fdStat.st_size);
@@ -115,6 +130,7 @@ void replayFuzzService(const sp<BpBinder>& binder, const RecordedTransaction& tr
     // Read the data which has been written to seed corpus
     ASSERT_EQ(0, lseek(seedFd.get(), 0, SEEK_SET));
     std::vector<uint8_t> seedData = retrieveData(seedFd);
+    EXPECT_TRUE(seedData.size() != 0);
 
     // use fuzzService to replay the corpus
     FuzzedDataProvider provider(seedData.data(), seedData.size());
@@ -188,6 +204,92 @@ public:
             EXPECT_TRUE(status.isOk());
             EXPECT_EQ(output, recordedValue);
         }
+    }
+
+    template <typename T, typename U>
+    void replayFd(Status (IBinderRecordReplayTest::*set)(T), U recordedValue,
+                  Status (IBinderRecordReplayTest::*get)(U*), U changedValue) {
+        unique_fd fd(
+                open("/data/local/tmp/binderReplayFdTest.rec", O_RDWR | O_CREAT | O_CLOEXEC, 0666));
+        ASSERT_TRUE(fd.ok());
+
+        // record a transaction
+        mBpBinder->startRecordingBinder(fd);
+        auto status = (*mInterface.*set)(std::move(unique_fd(dup(recordedValue))));
+        EXPECT_TRUE(status.isOk());
+        mBpBinder->stopRecordingBinder();
+
+        // test transaction does the thing we expect it to do
+        U output;
+        status = (*mInterface.*get)(&output);
+        EXPECT_TRUE(status.isOk());
+
+        // write over the existing state
+        status = (*mInterface.*set)(std::move(unique_fd(dup(changedValue))));
+        EXPECT_TRUE(status.isOk());
+
+        status = (*mInterface.*get)(&output);
+        EXPECT_TRUE(status.isOk());
+
+        // replay transaction
+        ASSERT_EQ(0, lseek(fd.get(), 0, SEEK_SET));
+        std::optional<RecordedTransaction> transaction = RecordedTransaction::fromFile(fd);
+        ASSERT_NE(transaction, std::nullopt);
+
+        const RecordedTransaction& recordedTransaction = *transaction;
+        // call replay function with recorded transaction
+        replayFuzzService(mBpBinder, recordedTransaction);
+
+        status = (*mInterface.*get)(&output);
+        EXPECT_TRUE(status.isOk());
+
+        std::vector<uint8_t> seedData = retrieveData(output);
+        // We will be reading from /dev/null
+        EXPECT_TRUE(seedData.size() == 0);
+    }
+
+    template <typename T, typename U>
+    void replayRandomBinder(Status (IBinderRecordReplayTest::*set)(T), U recordedValue,
+                            Status (IBinderRecordReplayTest::*get)(U*), U changedValue) {
+        unique_fd fd(open("/data/local/tmp/binderReplayBinderTest.rec",
+                          O_RDWR | O_CREAT | O_CLOEXEC, 0666));
+        ASSERT_TRUE(fd.ok());
+
+        // record a transaction
+        mBpBinder->startRecordingBinder(fd);
+        auto status = (*mInterface.*set)(recordedValue);
+        EXPECT_TRUE(status.isOk());
+        mBpBinder->stopRecordingBinder();
+
+        // test transaction does the thing we expect it to do
+        U output;
+        status = (*mInterface.*get)(&output);
+        EXPECT_TRUE(status.isOk());
+
+        // write over the existing state
+        status = (*mInterface.*set)(changedValue);
+        EXPECT_TRUE(status.isOk());
+
+        status = (*mInterface.*get)(&output);
+        EXPECT_TRUE(status.isOk());
+
+        // replay transaction
+        ASSERT_EQ(0, lseek(fd.get(), 0, SEEK_SET));
+        std::optional<RecordedTransaction> transaction = RecordedTransaction::fromFile(fd);
+        ASSERT_NE(transaction, std::nullopt);
+
+        const RecordedTransaction& recordedTransaction = *transaction;
+        // call replay function with recorded transaction
+        replayFuzzService(mBpBinder, recordedTransaction);
+
+        U replayedOutput;
+        status = (*mInterface.*get)(&replayedOutput);
+        EXPECT_TRUE(status.isOk());
+
+        // This is binder is replayed using seed data which writes this interface
+        std::string randomInterface(100, 'i');
+        EXPECT_EQ(String16(randomInterface.c_str(), randomInterface.size()),
+                  replayedOutput->getInterfaceDescriptor());
     }
 
 private:
@@ -317,6 +419,32 @@ TEST_F(BinderRecordReplayTest, ReplaySingleDataParcelableArray) {
 
     recordReplay(&IBinderRecordReplayTest::setSingleDataParcelableArray, saved,
                  &IBinderRecordReplayTest::getSingleDataParcelableArray, changed);
+}
+
+TEST_F(BinderRecordReplayTest, ReplayBinder) {
+    vector<uint8_t> data = {0x8A, 0x19, 0x0D, 0x44, 0x37, 0x0D, 0x38, 0x5E, 0x9B, 0xAA, 0xF3, 0xDA};
+    sp<IBinder> saved = new RandomBinder(String16("random_interface"), std::move(data));
+    sp<IBinder> changed = IInterface::asBinder(defaultServiceManager());
+    replayRandomBinder(&IBinderRecordReplayTest::setBinder, saved,
+                       &IBinderRecordReplayTest::getBinder, changed);
+}
+
+TEST_F(BinderRecordReplayTest, ReplayFd) {
+    // Write something to both fds we are setting
+    unique_fd saved(open("/data/local/tmp/test_fd", O_RDWR | O_CREAT | O_CLOEXEC, 0666));
+    std::string contentSaved = "This will be never read again for recorded fd!";
+    CHECK(android::base::WriteFully(saved, contentSaved.data(), contentSaved.size()))
+            << saved.get();
+
+    unique_fd changed(open("/data/local/tmp/test_des", O_RDWR | O_CREAT | O_CLOEXEC, 0666));
+    std::string contentChanged = "This will be never read again from changed fd!";
+    CHECK(android::base::WriteFully(changed, contentChanged.data(), contentChanged.size()))
+            << changed.get();
+
+    // When fds are replayed, it will be replaced by /dev/null..reading from it should yeild
+    // null data
+    replayFd(&IBinderRecordReplayTest::setFileDescriptor, std::move(unique_fd(dup(saved))),
+             &IBinderRecordReplayTest::getFileDescriptor, std::move(unique_fd(dup(changed))));
 }
 
 int main(int argc, char** argv) {

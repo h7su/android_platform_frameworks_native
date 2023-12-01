@@ -17,13 +17,18 @@
 #include <fuzzbinder/random_parcel.h>
 
 #include <android-base/logging.h>
+#include <binder/Binder.h>
+#include <binder/IBinder.h>
 #include <binder/RpcSession.h>
 #include <binder/RpcTransportRaw.h>
 #include <fuzzbinder/random_binder.h>
 #include <fuzzbinder/random_fd.h>
+#include <linux/android/binder.h>
 #include <utils/String16.h>
 
 using android::binder::unique_fd;
+using namespace android;
+using namespace android::binder::impl;
 
 namespace android {
 
@@ -73,7 +78,7 @@ void fillRandomParcel(Parcel* p, FuzzedDataProvider&& provider, RandomParcelOpti
                         return;
                     }
 
-                    if (options->extraFds.size() > 0 && provider.ConsumeBool()) {
+                    if (provider.ConsumeBool() && options->extraFds.size() > 0) {
                         const unique_fd& fd = options->extraFds.at(
                                 provider.ConsumeIntegralInRange<size_t>(0,
                                                                         options->extraFds.size() -
@@ -102,7 +107,7 @@ void fillRandomParcel(Parcel* p, FuzzedDataProvider&& provider, RandomParcelOpti
                     }
 
                     sp<IBinder> binder;
-                    if (options->extraBinders.size() > 0 && provider.ConsumeBool()) {
+                    if (provider.ConsumeBool() && options->extraBinders.size() > 0) {
                         binder = options->extraBinders.at(
                                 provider.ConsumeIntegralInRange<size_t>(0,
                                                                         options->extraBinders
