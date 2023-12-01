@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6864b1_e2d62914",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:02:13Z",
+      "side": 1,
+      "message": "Maybe splitting this log to split return reasons for changing runtime path and changing sphal libraries?",
+      "revId": "91d86eeb2d870daed032694c5ddfb69b421510ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b37ecd_ad414782",
+        "filename": "libs/graphicsenv/include/graphicsenv/GraphicsEnv.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:02:13Z",
+      "side": 1,
+      "message": "What about adding a directory sample for pre-installed system apps/priv-apps?",
+      "revId": "91d86eeb2d870daed032694c5ddfb69b421510ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
