@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964378bd_a13a05ae",
+        "filename": "openxr/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T16:51:29Z",
+      "side": 1,
+      "message": "If compare openxr\u0027s integration with vulkan\u0027s integration in NDK, the ndk_openxr_headers might be defined in external/openxr-headers/Android.bp? See https://cs.android.com/android/platform/superproject/main/+/main:external/vulkan-headers/Android.bp;l\u003d48?q\u003dndk_vulkan\u0026ss\u003dandroid. But it might be difficult to add a new external repository if Google folks don\u0027t allow it.",
+      "revId": "7631f10a2a20ad4141cce28b5fe4ad962eae76e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d90c07f_20826774",
+        "filename": "openxr/external/android-jni-wrappers/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T16:51:29Z",
+      "side": 1,
+      "message": "From what I know, AOSP recommends to add an external repository for these external libraries, like jnipp and android-jni-wrappers.",
+      "revId": "7631f10a2a20ad4141cce28b5fe4ad962eae76e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
