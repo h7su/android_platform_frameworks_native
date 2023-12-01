@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c59a944_36fe5cc7",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-01T23:37:23Z",
+      "side": 1,
+      "message": "Sounds good. A few more questions then:\n- since a lot of _tlog implementations are just fprintf to stderr, shouldn\u0027t they all contain a newline?\n- unittest implementation does something fancy from what I see (vsnprintf_filtered, send_msg_wait). Does it expect the entire log message to be passed at once, or I can do it in pieces (multiple calls to _tlog)?",
+      "parentUuid": "f905461c_9d3df63d",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
