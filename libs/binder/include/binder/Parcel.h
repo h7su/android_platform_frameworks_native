@@ -107,6 +107,8 @@ public:
     // does not dup
     std::vector<int> debugReadAllFileDescriptors() const;
 
+    std::vector<std::pair<size_t, uint32_t>> debugObjectMetaData() const;
+
     // Zeros data when reallocating. Other mitigations may be added
     // in the future.
     //

@@ -79,6 +79,7 @@ public:
 
     GENERATE_GETTER_SETTER(String, String16);
     GENERATE_GETTER_SETTER(SingleDataParcelable, SingleDataParcelable);
+    GENERATE_GETTER_SETTER(Binder, sp<IBinder>);
 
     GENERATE_GETTER_SETTER(BooleanArray, std::vector<bool>);
     GENERATE_GETTER_SETTER(ByteArray, std::vector<uint8_t>);
@@ -188,7 +189,7 @@ public:
         }
     }
 
-private:
+public:
     sp<BpBinder> mBpBinder;
     sp<IBinderRecordReplayTest> mInterface;
 };
@@ -315,6 +316,20 @@ TEST_F(BinderRecordReplayTest, ReplaySingleDataParcelableArray) {
 
     recordReplay(&IBinderRecordReplayTest::setSingleDataParcelableArray, saved,
                  &IBinderRecordReplayTest::getSingleDataParcelableArray, changed);
+}
+
+TEST_F(BinderRecordReplayTest, ReplayBinder) {
+    sp<IBinder> saved = IInterface::asBinder(mInterface);
+    // sp<IBinder> changed = IInterface::asBinder(mInterface);
+    recordReplay(&IBinderRecordReplayTest::setBinder, saved, &IBinderRecordReplayTest::getBinder,
+                 saved);
+
+    //    TODO : This still yield 0 objectSize in kernel fields.
+    //    Follow up:  Check
+    //    Parcel data;
+    //    data.writeStrongBinder(mBpBinder);
+    //    auto parcelMeta  = data.debugObjectMetaData();
+    //    ALOGE("parcelMeta size", parcelMeta.size());
 }
 
 int main(int argc, char** argv) {

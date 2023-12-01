@@ -73,6 +73,7 @@ cc_test {
         "libbinder",
         "libcutils",
         "libutils",
+        "liblog",
     ],
     static_libs: [
         "binderRecordReplayTestIface-cpp",

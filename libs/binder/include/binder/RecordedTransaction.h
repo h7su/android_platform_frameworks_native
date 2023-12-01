@@ -24,6 +24,11 @@ namespace android {
 
 namespace binder::debug {
 
+struct ObjectMetaData {
+    size_t offset = 0;
+    uint32_t objectType = 0;
+};
+
 // Warning: Transactions are sequentially recorded to the file descriptor in a
 // non-stable format. A detailed description of the recording format can be found in
 // RecordedTransaction.cpp.
@@ -49,6 +54,7 @@ public:
     uint32_t getVersion() const;
     const Parcel& getDataParcel() const;
     const Parcel& getReplyParcel() const;
+    const std::vector<ObjectMetaData>& getObjectMetadata() const;
 
 private:
     RecordedTransaction() = default;
@@ -71,9 +77,13 @@ private:
     static_assert(sizeof(TransactionHeader) == 32);
     static_assert(sizeof(TransactionHeader) % 8 == 0);
 
+    // We don't save binders and fds in recording, instead save metadata about these objects
+    // Need to store object metadata instead of this like : type, Data offset.
+
     struct MovableData { // movable
         TransactionHeader mHeader;
         std::string mInterfaceName;
+        std::vector<ObjectMetaData> mSentObjectData;
     };
     MovableData mData;
     Parcel mSent;

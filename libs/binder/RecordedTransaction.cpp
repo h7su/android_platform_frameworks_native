@@ -25,6 +25,7 @@
 using android::Parcel;
 using android::base::borrowed_fd;
 using android::base::unique_fd;
+using android::binder::debug::ObjectMetaData;
 using android::binder::debug::RecordedTransaction;
 
 #define PADDING8(s) ((8 - (s) % 8) % 8)
@@ -131,6 +132,11 @@ std::optional<RecordedTransaction> RecordedTransaction::fromDetails(
         return std::nullopt;
     }
 
+    auto metaData = dataParcel.debugObjectMetaData();
+    for (auto data : metaData) {
+        t.mData.mSentObjectData.push_back({data.first, data.second});
+    }
+
     if (t.mSent.setData(dataParcel.data(), dataParcel.dataBufferSize()) != android::NO_ERROR) {
         LOG(ERROR) << "Failed to set sent parcel data.";
         return std::nullopt;
@@ -149,6 +155,7 @@ enum {
     DATA_PARCEL_CHUNK = 2,
     REPLY_PARCEL_CHUNK = 3,
     INTERFACE_NAME_CHUNK = 4,
+    DATA_PARCEL_OBJECT_CHUNK = 5,
     END_CHUNK = 0x00ffffff,
 };
 
@@ -277,6 +284,15 @@ std::optional<RecordedTransaction> RecordedTransaction::fromFile(const unique_fd
                 }
                 break;
             }
+            case DATA_PARCEL_OBJECT_CHUNK: {
+                const ObjectMetaData* objects = reinterpret_cast<const ObjectMetaData*>(payloadMap);
+                auto metaDataSize = (chunk.dataSize / sizeof(ObjectMetaData));
+                // LOG(info) << "metaDataSize " << metaDataSize;
+                for (size_t index = 0; index < metaDataSize; ++index) {
+                    t.mData.mSentObjectData.push_back(objects[index]);
+                }
+                break;
+            }
             case END_CHUNK:
                 break;
             default:
@@ -348,6 +364,15 @@ android::status_t RecordedTransaction::dumpToFile(const unique_fd& fd) const {
         LOG(ERROR) << "Failed to write reply Parcel to fd " << fd.get();
         return UNKNOWN_ERROR;
     }
+
+    if (NO_ERROR !=
+        writeChunk(fd, DATA_PARCEL_OBJECT_CHUNK,
+                   mData.mSentObjectData.size() * sizeof(ObjectMetaData),
+                   reinterpret_cast<const uint8_t*>(mData.mSentObjectData.data()))) {
+        LOG(ERROR) << "Failed to write sent parcel object metadata to fd " << fd.get();
+        return UNKNOWN_ERROR;
+    }
+
     if (NO_ERROR != writeChunk(fd, END_CHUNK, 0, NULL)) {
         LOG(ERROR) << "Failed to write end chunk to fd " << fd.get();
         return UNKNOWN_ERROR;
@@ -379,6 +404,10 @@ timespec RecordedTransaction::getTimestamp() const {
 
 uint32_t RecordedTransaction::getVersion() const {
     return mData.mHeader.version;
+}
+
+const std::vector<ObjectMetaData>& RecordedTransaction::getObjectMetadata() const {
+    return mData.mSentObjectData;
 }
 
 const Parcel& RecordedTransaction::getDataParcel() const {
