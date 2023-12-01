@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec5a4af_6ceb9d10",
+        "filename": "openxr/loader/api_layer_interface.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:13:52Z",
+      "side": 1,
+      "message": "IMO, what about adding a new feature flag for this logic. For example,\n\n#ifdef ANDROID_OS_DLOPEN_EXT\n void* layer_library \u003d android_dlopen_ext(manifest_file-\u003eLibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL, \u0026dlextinfo);\n#else\nvoid* layer_library \u003d dlopen(manifest_file-\u003eLibraryPath().c_str(), RTLD_LAZY | RTLD_LOCAL);\n#endif\n\nWith patches like above one, don\u0027t need change api_layer_interface.cpp in AOSP downstream version.",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c23725_c42b9468",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:13:52Z",
+      "side": 1,
+      "message": "Maybe creating a new API to accept manfiest_data instead of modifying the existed one for AOSP usage?",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93007853_41b9ab11",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:13:52Z",
+      "side": 1,
+      "message": "Maybe adding a custom implementation for AOSP and select this implementation as the first priority for OpenXR Loader? And this implementation can only be kept in AOSP\u0027s downstream version with graphics env dependency and APIs calling. And it also has a great compatibility with OpenXR\u0027s official version.",
+      "revId": "d09545abd49631ce8a6becce3b72cf094380ddba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

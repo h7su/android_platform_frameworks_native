@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3173e4de_f26ad7eb",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:13:52Z",
+      "side": 0,
+      "message": "Maybe it\u0027s not a great idea to remove OpenXR Loader\u0027s methods.",
+      "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044d5f36_f4884f09",
+        "filename": "openxr/loader/manifest_file.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1670415
+      },
+      "writtenOn": "2023-12-01T17:13:52Z",
+      "side": 0,
+      "message": "Maybe adding a feature flag to configure whether to run this logic?",
+      "revId": "7e2c8bacc68a478f0b2e1f9b415af5cc088e2bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
