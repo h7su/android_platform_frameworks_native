@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37188411_e0d8246b",
+        "filename": "openxr/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2023-12-01T22:09:14Z",
+      "side": 1,
+      "message": "I mentioned elsewhere in this stack of changes that it would be preferable to import the OpenXR-SDK project from github into external and use the headers found there, as an external/ project can easily be kept up to date with the external OpenXR project. Not sure what the process for doing that is, I\u0027m hoping one of the Google folks here can help with that.",
+      "parentUuid": "964378bd_a13a05ae",
+      "revId": "7631f10a2a20ad4141cce28b5fe4ad962eae76e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d90c07f_20826774",
         "filename": "openxr/external/android-jni-wrappers/Android.bp",
         "patchSetId": 1
