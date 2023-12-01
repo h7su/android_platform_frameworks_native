@@ -106,6 +106,8 @@ public:
     // does not dup
     std::vector<int> debugReadAllFileDescriptors() const;
 
+    std::vector<size_t> debugObjectOffsets() const;
+
     // Zeros data when reallocating. Other mitigations may be added
     // in the future.
     //

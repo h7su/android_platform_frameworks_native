@@ -758,6 +758,32 @@ std::vector<int> Parcel::debugReadAllFileDescriptors() const {
     return ret;
 }
 
+std::vector<size_t> Parcel::debugObjectOffsets() const {
+    std::vector<size_t> ret;
+
+    ALOGE("FD %u", BINDER_TYPE_FD);
+    ALOGE("Binder %u", BINDER_TYPE_BINDER);
+    ALOGE("Handle %u", BINDER_TYPE_HANDLE);
+
+    if (const auto* kernelFields = maybeKernelFields()) {
+#ifdef BINDER_WITH_KERNEL_IPC
+        size_t initPosition = dataPosition();
+        ALOGE("Parcel kernelFields->mObjectsSize, %zu", kernelFields->mObjectsSize);
+        for (size_t i = 0; i < kernelFields->mObjectsSize; i++) {
+            size_t offset = kernelFields->mObjects[i];
+            const flat_binder_object* flat =
+                    reinterpret_cast<const flat_binder_object*>(mData + offset);
+            ALOGE("Parcel Count %zu, offset %zu type %u", i, offset, flat->hdr.type);
+            ret.push_back(offset);
+        }
+        setDataPosition(initPosition);
+#else
+        LOG_ALWAYS_FATAL("Binder kernel driver disabled at build time");
+#endif
+    }
+    return ret;
+}
+
 status_t Parcel::hasFileDescriptorsInRange(size_t offset, size_t len, bool* result) const {
     if (len > INT32_MAX || offset > INT32_MAX) {
         // Don't accept size_t values which may have come from an inadvertent conversion from a
