@@ -215,6 +215,7 @@ cc_defaults {
     host_supported: true,
 
     header_libs: [
+        "liblog_stub",
         "trusty_mock_headers",
     ],
 
@@ -258,9 +259,6 @@ cc_library_shared {
         "trusty/RpcTransportTipcTrusty.cpp",
         "trusty/TrustyStatus.cpp",
         "trusty/socket.cpp",
-    ],
-    shared_libs: [
-        "liblog",
     ],
 }
 
