@@ -105,6 +105,30 @@
       },
       "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf2452b0_e736db54",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-12-01T01:09:17Z",
+      "side": 1,
+      "message": "Actually the callback method didn\u0027t work: b/313804706",
+      "parentUuid": "815d525d_01699b6a",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 80
+      },
+      "revId": "7f62fb632342cff5ae1b5ad185a5d20cdc51e223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
