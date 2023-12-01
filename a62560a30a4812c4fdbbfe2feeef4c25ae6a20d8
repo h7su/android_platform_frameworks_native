@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86f85579_4ee9aa2c",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-01T22:58:27Z",
+      "side": 1,
+      "message": "The point here is to reuse liblog_stub between Trusty and Linux Binder. I made it flexible by having the user provide __android_log_print at link time. If you count two (or more, in the future) copies of the old approach, it will actually be less code :).\n\nUnfortunately, Trusty\u0027s `trusty_log.h` makes things difficult (`OS_linux.cpp` has just 6 LOC - http://shortn/_1LRsEu1IPZ):\n- It has two completely different variants for Kernel and userspace. Kernel isn\u0027t bad though, only requires mapping between Android\u0027s and Trusty\u0027s log levels (that\u0027s second `#else` block)\n- Userspace variant has two sub-variants as well (on-device and host, but I think host may be dead code - is it?). `_tlog` doesn\u0027t provide va_list version (like `vprintf` is to `printf`), so I had to print to buffer first.\n\nThis is still WIP, but I was about to ask you a question: where is _tlog defined? I can\u0027t find it anywhere in the repo.",
+      "parentUuid": "88791b3d_a883c753",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-01T22:44:04Z",
       "side": 1,
       "message": "I think this file is safe to delete, since you\u0027re adding another `log/log.h` and that one is also in the include path. `\u003ctrusty_log.h\u003e` was only needed for the `TLOG*` macros.",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2145e147_cf537aff",
+        "filename": "libs/binder/trusty/include/log/log.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-01T22:58:27Z",
+      "side": 1,
+      "message": "That\u0027s on my TODO for this change. I just need to fix a few places that depend on trusty_log and assert being done here.",
+      "parentUuid": "f30749c0_6b643af5",
       "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
