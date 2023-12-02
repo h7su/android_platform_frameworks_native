@@ -52,6 +52,24 @@
       "parentUuid": "9a0af7d5_d25b67ee",
       "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73eea05_aa5c20f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:53:31Z",
+      "side": 1,
+      "message": "the tests that are needed should be configured here, otherwise ask armellel/ahomescu",
+      "parentUuid": "c104fcdf_f76cacd4",
+      "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
