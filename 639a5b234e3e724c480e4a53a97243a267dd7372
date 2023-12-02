@@ -85,6 +85,30 @@
       },
       "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bb77c18_f71b96fd",
+        "filename": "libs/binder/OS_linux.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T07:36:46Z",
+      "side": 1,
+      "message": "But host is \"non-Android Linux\" too...",
+      "parentUuid": "c1aac962_70c7a23d",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 65
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
