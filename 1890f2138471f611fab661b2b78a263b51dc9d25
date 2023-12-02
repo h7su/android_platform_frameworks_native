@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e82585b9_23fad819",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T05:16:44Z",
+      "side": 1,
+      "message": "Do you mean `binder_status.h`? It\u0027s also defining `__assert` with `syslog`, which is not present on Trusty :/.",
+      "parentUuid": "4466a165_c2b15eaf",
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82a9c7ab_c3c4aaba",
         "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
         "patchSetId": 4
@@ -49,6 +67,30 @@
       "writtenOn": "2023-12-02T04:44:53Z",
       "side": 1,
       "message": "why?",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6134ea8_60ddd747",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T05:16:44Z",
+      "side": 1,
+      "message": "Because this message won\u0027t show up with logging completely disabled.",
+      "parentUuid": "82a9c7ab_c3c4aaba",
       "range": {
         "startLine": 40,
         "startChar": 1,
