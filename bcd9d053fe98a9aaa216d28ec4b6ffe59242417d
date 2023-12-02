@@ -34,6 +34,24 @@
       "parentUuid": "2c2fe265_f12b0b66",
       "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c104fcdf_f76cacd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T06:46:35Z",
+      "side": 1,
+      "message": "I mean, there are some tests showing green results when I run this:\n`trusty/vendor/google/aosp/scripts/build.py generic-arm64-test-debug`\n\nBut I\u0027d rather try it on a device.",
+      "parentUuid": "9a0af7d5_d25b67ee",
+      "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
