@@ -16,6 +16,47 @@
       "message": "@devinmoore@google.com: Why did you go extra mile to use `__assert` here instead of `LOG_(ALWAYS_)FATAL`?",
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4466a165_c2b15eaf",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T04:44:53Z",
+      "side": 1,
+      "message": "binder/IBinder.h doesn\u0027t export Log.h does it? this function should work without a liblog dependency?\n\nit might also be copied from libbinder_ndk adjacent code which does this same thing a lot to avoid the liblog dep",
+      "parentUuid": "97635c21_a86f9ef9",
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a9c7ab_c3c4aaba",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T04:44:53Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
