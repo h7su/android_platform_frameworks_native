@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97635c21_a86f9ef9",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T04:36:08Z",
+      "side": 1,
+      "message": "@devinmoore@google.com: Why did you go extra mile to use `__assert` here instead of `LOG_(ALWAYS_)FATAL`?",
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
