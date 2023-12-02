@@ -123,6 +123,30 @@
       },
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f98eb74_ffc4d6fa",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T05:38:18Z",
+      "side": 1,
+      "message": "I don\u0027t recall such comment.\n\nI mean the case when min log priority is set to `ANDROID_LOG_SILENT`.",
+      "parentUuid": "ecff0bd0_062ded05",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
