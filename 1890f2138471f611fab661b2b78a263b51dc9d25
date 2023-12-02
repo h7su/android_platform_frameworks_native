@@ -195,6 +195,30 @@
       },
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc0af8b_2ee1ed63",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:03:47Z",
+      "side": 1,
+      "message": "😊\n\nWe don\u0027t typically test Android tests in this diminished mode, and you shouldn\u0027t worry about a case like this which is not verified, because the second someone else makes a change to the test, the property goes away. Properties that go away mean, we can\u0027t prove there is an improvement, and this qualitative improvement would most likely go unnoticed because hardly anyone would run it in that mode. It\u0027s not worth all this visual noise. Remove it. Please don\u0027t.\n\nIf you wanted to fix this, there are a million other testing problems first, but we should probably focus on the mechanism to detect the issue for all tests, rather than doing all this extra work on one test. You can run it, but it\u0027s wasted cycles, most code should probably always run at the normal log level anyway. Then, I\u0027d suggest working on different testing problems before log levels anyway. 😞\n\nOn \u0027IWYU\u0027 I would only ever add it if not having it would cause an error in some build configuratoin. To be clear - I\u0027m never adding this for fun.\n\nIn both of these cases the \"real\" solution is outside the scope of a specific change like this. ANDROID_LOG_SILENT should probably be removed or changed to continue to include the abort message even if other logging is silent. IWYU should be fixed by not having such a silly #include system in C++.\n\nIf you\u0027re fixing maybe_unused, I\u0027d prefer you to add the warning in the build in our tree if you haven\u0027t already.\n\nHitting presubmit-ready, because I think the log change will break in Android, but we can check. Cheers 😊",
+      "parentUuid": "9ec6f34d_3649b80f",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
