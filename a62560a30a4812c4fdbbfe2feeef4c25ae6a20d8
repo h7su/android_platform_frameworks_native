@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e78e5c9a_aa6881d7",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T07:33:28Z",
+      "side": 1,
+      "message": "Okay, this is the last TODO for this change. I\u0027ll do it next week. But marking the whole CL as ready for review now.",
+      "parentUuid": "c7d6470f_178ad278",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30749c0_6b643af5",
         "filename": "libs/binder/trusty/include/log/log.h",
         "patchSetId": 5
@@ -193,6 +211,24 @@
       "side": 1,
       "message": "That\u0027s on my TODO for this change. I just need to fix a few places that depend on trusty_log and assert being done here.",
       "parentUuid": "f30749c0_6b643af5",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb9b57b_acbee08f",
+        "filename": "libs/binder/trusty/include/log/log.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T07:33:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2145e147_cf537aff",
       "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
