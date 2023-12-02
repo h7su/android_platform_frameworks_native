@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9048e2e0_068a0f84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 50
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:42:47Z",
+      "side": 1,
+      "message": "nice!",
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73026b58_af20dafa",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 50
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:42:47Z",
+      "side": 1,
+      "message": "thank you",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 6
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06abc88d_09371bba",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 50
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:42:47Z",
+      "side": 1,
+      "message": "this is like the most overcopied TODO.asdfadsfadsf 😊 you could take it out if you wanted",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1aac962_70c7a23d",
+        "filename": "libs/binder/OS_linux.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T06:42:47Z",
+      "side": 1,
+      "message": "\u0027linux\u0027 is also used in Android to mean Android host. Should we call this file OS_non_android_linux.cpp? given it\u0027s in Android, or would that be too much?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 65
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
