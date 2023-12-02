@@ -171,6 +171,30 @@
       },
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec6f34d_3649b80f",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-02T05:44:40Z",
+      "side": 1,
+      "message": "Well, we don\u0027t - I forced it temporarily to make sure all tests pass with any level of logging. This one didn\u0027t.\n\nIf you feel strongly about this one, I can remove this part of the change. But this check doesn\u0027t break anything on \"regular\" builds.",
+      "parentUuid": "d6bcb756_75ca085c",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
