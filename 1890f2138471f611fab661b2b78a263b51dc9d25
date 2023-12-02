@@ -99,6 +99,30 @@
       },
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecff0bd0_062ded05",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-02T05:31:25Z",
+      "side": 1,
+      "message": "I\u0027m having a deja vu. I\u0027m not sure if you did this or Andrei did on some CL, but I think enh commented ~\"why not make it log in both cases?\"\n\nWhat is the case logging is disabled?",
+      "parentUuid": "e6134ea8_60ddd747",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
