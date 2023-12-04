@@ -37,6 +37,9 @@ cc_defaults {
                 "libbinder",
                 "libutils",
             ],
+            static_libs: [
+                "libaudit",
+            ],
         },
         host: {
             static_libs: [
