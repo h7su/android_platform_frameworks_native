@@ -1,6 +1,7 @@
 service servicemanager /system/bin/servicemanager
     class core animation
     user system
+    capabilities AUDIT_WRITE
     group system readproc
     critical
     file /dev/kmsg w

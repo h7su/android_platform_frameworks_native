@@ -22,6 +22,16 @@
 #include <selinux/android.h>
 #include <selinux/avc.h>
 
+#ifdef __ANDROID__
+#include <stdarg.h>
+
+#include <android-base/unique_fd.h>
+#include <linux/audit.h>
+#include <linux/netlink.h>
+
+#include <libaudit.h>
+#endif
+
 namespace android {
 
 #ifdef VENDORSERVICEMANAGER
@@ -66,6 +76,58 @@ struct AuditCallbackData {
     const std::string* tname;
 };
 
+static int netlink_log(int type, const char* fmt, ...) {
+    char* strp;
+
+    va_list ap;
+    va_start(ap, fmt);
+    int len = vasprintf(&strp, fmt, ap);
+    va_end(ap);
+
+    if (len < 0) {
+        return 0;
+    }
+
+    /* libselinux log messages usually contain a new line character, while
+     * Android LOG() does not expect it. Remove it to avoid empty lines in
+     * the log buffers.
+     */
+    if (len > 0 && strp[len - 1] == '\n') {
+        strp[len - 1] = '\0';
+    }
+
+    if (type == SELINUX_AVC) {
+        auto fd = android::base::unique_fd{audit_open()};
+        if (!fd.ok()) {
+            LOG(ERROR) << "Unable to open PF_NETLINK";
+            free(strp);
+            return 0;
+        }
+
+        int ret = audit_send(fd, AUDIT_USER_AVC, strp, len);
+        if (ret < 0) {
+            LOG(ERROR) << "audit_send failed with error " << ret;
+        }
+    } else {
+        int priority;
+        switch (type) {
+            case SELINUX_WARNING:
+                priority = ANDROID_LOG_WARN;
+                break;
+            case SELINUX_INFO:
+                priority = ANDROID_LOG_INFO;
+                break;
+            default:
+                priority = ANDROID_LOG_ERROR;
+                break;
+        }
+        LOG_PRI(priority, "SELinux", "%s", strp);
+    }
+
+    free(strp);
+    return 0;
+}
+
 static int auditCallback(void *data, security_class_t /*cls*/, char *buf, size_t len) {
     const AuditCallbackData* ad = reinterpret_cast<AuditCallbackData*>(data);
 
@@ -87,7 +149,7 @@ Access::Access() {
     cb.func_audit = auditCallback;
     selinux_set_callback(SELINUX_CB_AUDIT, cb);
 
-    cb.func_log = kIsVendor ? selinux_vendor_log_callback : selinux_log_callback;
+    cb.func_log = kIsVendor ? selinux_vendor_log_callback : netlink_log;
     selinux_set_callback(SELINUX_CB_LOG, cb);
 
     CHECK(selinux_status_open(true /*fallback*/) >= 0);
