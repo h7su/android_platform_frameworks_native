@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18e975b1_7bc4335f",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-04T21:49:45Z",
+      "side": 1,
+      "message": "I just checked and it it does pull liblog already:\n`Delegate.h -\u003e IBinder.h -\u003e Vector.h -\u003e log.h`\n\nThe story around `binder_status.h` might have been different - it doesn\u0027t pull in anything except system includes.",
+      "parentUuid": "e42f9698_82e50e4d",
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82a9c7ab_c3c4aaba",
