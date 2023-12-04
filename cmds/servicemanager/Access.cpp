@@ -87,17 +87,22 @@ Access::Access() {
     cb.func_audit = auditCallback;
     selinux_set_callback(SELINUX_CB_AUDIT, cb);
 
-    cb.func_log = kIsVendor ? selinux_vendor_log_callback : selinux_log_callback;
+    cb.func_log = kIsVendor ? selinux_vendor_log_callback : selinux_log_netlink_callback;
     selinux_set_callback(SELINUX_CB_LOG, cb);
 
     CHECK(selinux_status_open(true /*fallback*/) >= 0);
 
     CHECK(getcon(&mThisProcessContext) == 0);
+
+    CHECK(avc_audit_netlink_open() != -1);
 #endif
 }
 
 Access::~Access() {
+#ifdef __ANDROID__
     freecon(mThisProcessContext);
+    avc_audit_netlink_close();
+#endif
 }
 
 Access::CallingContext Access::getCallingContext() {
