@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70535214_b1d0c8f0",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 50
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-04T22:27:45Z",
+      "side": 1,
+      "message": "Do you mean take the TODO out or native_bridge_supported? Because if I take the latter out, it will fail the build.",
+      "parentUuid": "06abc88d_09371bba",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1aac962_70c7a23d",
         "filename": "libs/binder/OS_linux.cpp",
         "patchSetId": 50
