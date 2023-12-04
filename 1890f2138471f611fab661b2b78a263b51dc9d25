@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e42f9698_82e50e4d",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-12-04T16:16:37Z",
+      "side": 1,
+      "message": "I don\u0027t remember. There was some build error trying log the issue so I picked up what libbinder_ndk was doing to avoid it.\nBut, if it builds now without needing an extra dependency everywhere, then that\u0027s great!",
+      "parentUuid": "e82585b9_23fad819",
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82a9c7ab_c3c4aaba",
         "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
         "patchSetId": 4
