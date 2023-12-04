@@ -70,6 +70,24 @@
       "parentUuid": "c104fcdf_f76cacd4",
       "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb65207_0cb6172c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-04T20:53:47Z",
+      "side": 1,
+      "message": "Before we look at actual numbers, my expectation is that binary size should go down not up. `base::expected` was taking up a lot of space in the binary (a few KB at least).\n\nRe the test target: I run on `qemu-generic-arm64-test-debug`, that\u0027s the full build with the emulator. We have it set up in presubmit as well, so if you just want an emulator test then it will run automatically.\n\nFor device testing: we should discuss offline. There\u0027s a whole process for that, might be faster if I just did it.",
+      "parentUuid": "b73eea05_aa5c20f6",
+      "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
