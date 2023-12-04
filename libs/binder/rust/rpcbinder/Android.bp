@@ -82,6 +82,9 @@ rust_bindgen {
         "--rustified-enum",
         "ARpcSession_FileDescriptorTransportMode",
     ],
+    cflags: [
+        "-Wno-pragma-once-outside-header",
+    ],
     rustlibs: [
         "libbinder_ndk_sys",
     ],

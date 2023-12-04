@@ -134,6 +134,9 @@ aidl_interface {
         "IBinderRpcTest.aidl",
         "ParcelableCertificateData.aidl",
     ],
+    flags: [
+        "-Wno-mixed-oneway",
+    ],
     backend: {
         java: {
             enabled: false,
