@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282e206a_c9ae4d09",
+        "filename": "libs/binder/rust/rpcbinder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-04T23:37:09Z",
+      "side": 1,
+      "message": "is there a bindgen bug for this? (lgtm though)",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 42
+      },
+      "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec86b46_0e80781e",
+        "filename": "libs/binder/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-04T23:37:09Z",
+      "side": 1,
+      "message": "how is this related to C++20?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f345e6_9df03b9d",
+        "filename": "libs/binder/tests/parcel_fuzzer/parcelables/GenericDataParcelable.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-04T23:37:09Z",
+      "side": 1,
+      "message": "how is this related to C++20?",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 22
+      },
+      "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
