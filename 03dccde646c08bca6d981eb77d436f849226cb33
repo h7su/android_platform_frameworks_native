@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90accff1_351d3fe4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-04T19:08:29Z",
+      "side": 1,
+      "message": "😊 it\u0027s nice that we got build breakage from this instead of runtime failures 😊 that took a long time to get into place",
+      "revId": "03dccde646c08bca6d981eb77d436f849226cb33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
