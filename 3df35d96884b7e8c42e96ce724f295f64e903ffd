@@ -33,6 +33,52 @@
       "message": "Still waiting on reviwers @Siarhei and @Atonio please help",
       "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6db99226_39b85442",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-04T22:51:48Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 102
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1509476e_78e68407",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-04T22:51:48Z",
+      "side": 1,
+      "message": "Since this variable is only used in this function, can we just make it a local variable to this function? This would allow us to reduce the total state stored inside InputDevice.\n\nGoing one step further, what do you think about pulling this out into a function?\n\n```\nmAssociatedViewport \u003d findViewportByDescriptor(readerConfig, mIdentifier);\nif (mAssociatedViewport \u003d\u003d std::nullopt) {\n    mAssociatedViewport \u003d findViewportByPort(readerConfig, mIdentifier);\n}\n```\n\nwould that work?\n\nAlso OK with me if you want to do this in a separate follow-up CL to reduce the churn",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
