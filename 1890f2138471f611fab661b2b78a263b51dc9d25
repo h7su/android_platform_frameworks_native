@@ -285,6 +285,30 @@
       },
       "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf5b851_c0b3c7e7",
+        "filename": "libs/binder/tests/binderRpcUniversalTests.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-04T21:41:37Z",
+      "side": 1,
+      "message": "Done. The one IWYU is failing on Trusty only and I don\u0027t see any easy way to reproduce it on in-tree build.",
+      "parentUuid": "9f5e226f_66703dcb",
+      "range": {
+        "startLine": 40,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "1890f2138471f611fab661b2b78a263b51dc9d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
