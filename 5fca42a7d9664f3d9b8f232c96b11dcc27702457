@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618b591e_15e88800",
+        "filename": "libs/binder/rust/rpcbinder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-05T01:55:20Z",
+      "side": 1,
+      "message": "I would have gone for .cpp",
+      "range": {
+        "startLine": 73,
+        "startChar": 33,
+        "endLine": 73,
+        "endChar": 36
+      },
+      "revId": "5fca42a7d9664f3d9b8f232c96b11dcc27702457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
