@@ -88,6 +88,24 @@
       "parentUuid": "b73eea05_aa5c20f6",
       "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75d73b2_44d3ec60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-05T01:31:50Z",
+      "side": 1,
+      "message": "Re testing: built and successfully ran `binderRpcTest` on a Raven device.\n\nRe code size: see table for Raven device build (test-debug build, release builds don\u0027t have the test apps).\n\n| Binary | Before | After | Difference |\n|--------|--------|-------|------------|\n| binderRpcTest.app | 1,605,817 | 1,601,721 | 4,096 |\n| binderRpcTest/service.app | 1,061,057 | 1,056,961 | 4,096 |\n| cast_auth.app | 790,709 | 790,709 | 0 |\n\nDoesn\u0027t make a difference on the cast-auth app (probably because of page alignment in the text section), saves us exactly one page in the test apps.",
+      "parentUuid": "9fb65207_0cb6172c",
+      "revId": "bcd9d053fe98a9aaa216d28ec4b6ffe59242417d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
