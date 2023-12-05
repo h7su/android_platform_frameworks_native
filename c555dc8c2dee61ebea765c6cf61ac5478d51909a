@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef7a70e6_c7250b77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-12-05T17:52:05Z",
+      "side": 1,
+      "message": "Reopening for posterity.",
+      "parentUuid": "8eb27165_8977c1a5",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 15
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8687bcfa_c2d465ce",
@@ -263,6 +287,54 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "928a1c87_bb4ffa45",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 23
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94fdc897_39ddad9e",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-12-05T17:52:05Z",
+      "side": 1,
+      "message": "Reopening for posterity.",
+      "parentUuid": "bc3aa68f_e68ca7d9",
+      "range": {
+        "startLine": 582,
+        "startChar": 12,
+        "endLine": 582,
+        "endChar": 45
+      },
+      "revId": "c555dc8c2dee61ebea765c6cf61ac5478d51909a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd71d726_c535dd79",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1166043
+      },
+      "writtenOn": "2023-12-05T17:52:05Z",
+      "side": 1,
+      "message": "Reopening for posterity.",
+      "parentUuid": "138baf0c_23481e04",
       "range": {
         "startLine": 582,
         "startChar": 17,
