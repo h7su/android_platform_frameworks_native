@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c070b65c_28ed797a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2023-12-05T06:49:30Z",
+      "side": 1,
+      "message": "LGTM\n\nI think you will want to patch the internal branch first :)",
+      "revId": "cb20d8603d0603860fbf645faa8c4376bacb3de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
