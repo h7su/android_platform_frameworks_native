@@ -72,10 +72,13 @@ bool timeout(std::chrono::duration<R, P> delay, std::function<void(void)> &&func
         return false;
     }
     bool success = state.wait(now + delay);
-    if (!success) {
-        pthread_kill(thread, SIGINT);
+    if (success) {
+        pthread_join(thread, nullptr);
+    } else {
+        // b/311143089: Leave background thread abandoned. It will be cleaned up
+        // when returning from main().
+        pthread_detach(thread);
     }
-    pthread_join(thread, nullptr);
     return success;
 }
 
