@@ -164,6 +164,30 @@
       },
       "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f95c3e_66d18c08",
+        "filename": "libs/binder/tests/parcel_fuzzer/parcelables/GenericDataParcelable.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T00:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34f345e6_9df03b9d",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 22
+      },
+      "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
