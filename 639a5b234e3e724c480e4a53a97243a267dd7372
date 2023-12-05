@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f34fc0b6_c709163c",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 50
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-05T01:41:10Z",
+      "side": 1,
+      "message": "the TODO yeah, it\u0027s a false promise :(",
+      "parentUuid": "70535214_b1d0c8f0",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1aac962_70c7a23d",
         "filename": "libs/binder/OS_linux.cpp",
         "patchSetId": 50
@@ -125,6 +149,30 @@
       "side": 1,
       "message": "But host is \"non-Android Linux\" too...",
       "parentUuid": "c1aac962_70c7a23d",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 65
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031e62c8_f5d7d686",
+        "filename": "libs/binder/OS_linux.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-05T01:41:10Z",
+      "side": 1,
+      "message": "I see, it\u0027s just the SDK build vs the standard build that would use libbase/etc.",
+      "parentUuid": "6bb77c18_f71b96fd",
       "range": {
         "startLine": 25,
         "startChar": 0,
