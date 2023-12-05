@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d59ec18_85ac9768",
+        "filename": "libs/binder/include/binder/Delegate.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-05T01:01:58Z",
+      "side": 1,
+      "message": "oh I see, IBinder.h -\u003e Vector.h -\u003e log/log.h *head table*",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 24
+      },
+      "revId": "2b721cd8104fb090ece267e47b01854fff4f2289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
