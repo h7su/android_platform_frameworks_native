@@ -57,8 +57,17 @@ cc_test {
         "liblog",
         "libPlatformProperties",
         "libutils",
-        "libvintf",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "libkernelconfig",
+            ],
+            shared_libs: [
+                "libz",
+            ],
+        },
+    },
     data: [
         "data/*",
         ":motion_predictor_model.fb",

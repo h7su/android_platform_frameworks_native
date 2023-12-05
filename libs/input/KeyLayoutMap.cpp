@@ -27,8 +27,7 @@
 #include <utils/Timers.h>
 #include <utils/Tokenizer.h>
 #if defined(__ANDROID__)
-#include <vintf/RuntimeInfo.h>
-#include <vintf/VintfObject.h>
+#include <vintf/KernelConfig.h>
 #endif
 
 #include <cstdlib>
@@ -98,15 +97,12 @@ static const std::unordered_map<std::string_view, InputDeviceSensorType> SENSOR_
 
 bool kernelConfigsArePresent(const std::set<std::string>& configs) {
 #if defined(__ANDROID__)
-    std::shared_ptr<const android::vintf::RuntimeInfo> runtimeInfo =
-            android::vintf::VintfObject::GetInstance()->getRuntimeInfo(
-                    vintf::RuntimeInfo::FetchFlag::CONFIG_GZ);
-    LOG_ALWAYS_FATAL_IF(runtimeInfo == nullptr, "Kernel configs could not be fetched");
-
-    const std::map<std::string, std::string>& kernelConfigs = runtimeInfo->kernelConfigs();
+    auto kernelConfigs = android::kernelconfig::LoadKernelConfig();
+    LOG_ALWAYS_FATAL_IF(!kernelConfigs.ok(), "Kernel configs could not be fetched. %s",
+                        kernelConfigs.error().message().c_str());
     for (const std::string& requiredConfig : configs) {
-        const auto configIt = kernelConfigs.find(requiredConfig);
-        if (configIt == kernelConfigs.end()) {
+        const auto configIt = kernelConfigs->find(requiredConfig);
+        if (configIt == kernelConfigs->end()) {
             ALOGI("Required kernel config %s is not found", requiredConfig.c_str());
             return false;
         }

@@ -78,7 +78,6 @@ cc_library {
         "libcutils",
         "liblog",
         "libPlatformProperties",
-        "libvintf",
     ],
 
     ldflags: [
@@ -107,10 +106,12 @@ cc_library {
             shared_libs: [
                 "libutils",
                 "libbinder",
+                "libz",
             ],
 
             static_libs: [
                 "libgui_window_info_static",
+                "libkernelconfig",
             ],
 
             export_static_lib_headers: [
