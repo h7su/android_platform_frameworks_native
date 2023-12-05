@@ -180,6 +180,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0fdfea9_ebed95eb",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T22:51:21Z",
+      "side": 1,
+      "message": "Done. I only didn\u0027t do one thing I wanted here: making _tlog signature the same on kernel and userspace (they differ by first argument - level). `LK_DEBUGLEVEL_` levels aren\u0027t present on userspace, so it wouldn\u0027t make much sense, I think.",
+      "parentUuid": "e78e5c9a_aa6881d7",
+      "revId": "a62560a30a4812c4fdbbfe2feeef4c25ae6a20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f30749c0_6b643af5",
