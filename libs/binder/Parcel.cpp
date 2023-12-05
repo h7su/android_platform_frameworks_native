@@ -845,6 +845,11 @@ void Parcel::updateWorkSourceRequestHeaderPosition() const {
 }
 
 #ifdef BINDER_WITH_KERNEL_IPC
+
+constexpr int32_t kHeaderUnknown = B_PACK_CHARS('U', 'N', 'K', 'N');
+
+#if defined(__ANDROID__)
+
 #if defined(__ANDROID_VNDK__)
 constexpr int32_t kHeader = B_PACK_CHARS('V', 'N', 'D', 'R');
 #elif defined(__ANDROID_RECOVERY__)
@@ -852,6 +857,14 @@ constexpr int32_t kHeader = B_PACK_CHARS('R', 'E', 'C', 'O');
 #else
 constexpr int32_t kHeader = B_PACK_CHARS('S', 'Y', 'S', 'T');
 #endif
+
+#else // ANDROID not defined
+
+// If kernel binder is used in new environments, we need to make sure it's separated
+// out and has a separate header. Kernel binder is only supported on Android now.
+constexpr int32_t kHeader = kHeaderUnknown;
+#endif
+
 #endif // BINDER_WITH_KERNEL_IPC
 
 // Write RPC headers.  (previously just the interface token)
@@ -868,6 +881,11 @@ status_t Parcel::writeInterfaceToken(const char16_t* str, size_t len) {
         updateWorkSourceRequestHeaderPosition();
         writeInt32(threadState->shouldPropagateWorkSource() ? threadState->getCallingWorkSourceUid()
                                                             : IPCThreadState::kUnsetWorkSource);
+
+        if (kHeader == kHeaderUnknown) {
+            LOG_ALWAYS_FATAL("Binder kernel driver used in unknown mode");
+        }
+
         writeInt32(kHeader);
 #else  // BINDER_WITH_KERNEL_IPC
         LOG_ALWAYS_FATAL("Binder kernel driver disabled at build time");
