@@ -221,7 +221,6 @@ cc_library {
         "liblog",
         "libPlatformProperties",
         "libtinyxml2",
-        "libvintf",
     ],
 
     ldflags: [
@@ -269,10 +268,13 @@ cc_library {
                 "libstatslog_libinput",
                 "libstatsbootstrap",
                 "android.os.statsbootstrap_aidl-cpp",
+                // needed by libkernelconfig
+                "libz",
             ],
 
             static_libs: [
                 "libgui_window_info_static",
+                "libkernelconfigs",
             ],
 
             export_static_lib_headers: [

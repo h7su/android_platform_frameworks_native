@@ -61,7 +61,6 @@ cc_test {
         "libPlatformProperties",
         "libtinyxml2",
         "libutils",
-        "libvintf",
     ],
     data: [
         "data/*",
@@ -79,6 +78,8 @@ cc_test {
         },
         android: {
             static_libs: [
+                "libkernelconfigs",
+                "libz",
                 // Stats logging library and its dependencies.
                 "libstatslog_libinput",
                 "libstatsbootstrap",
