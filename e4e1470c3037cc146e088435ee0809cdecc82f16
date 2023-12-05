@@ -16,6 +16,24 @@
       "message": "hey, I didn\u0027t understand, why does this function need to be added? is it copied from liblog, which trusty was using before?\n\nRegardless, why does Trusty need this, but the libbinder_sdk host variant does not?",
       "revId": "e4e1470c3037cc146e088435ee0809cdecc82f16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8d8081_2c3fb83d",
+        "filename": "libs/binder/trusty/OS.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T00:50:06Z",
+      "side": 1,
+      "message": "It\u0027s not copied from liblog and libbinder_sdk also have it (please see `OS_linux.cpp`).\n\nI needed a mechanism to provide different logging implementations for trusty and Linux Binder (and potentially other users). I figured what I need is very similar to `__android_log_print` signature, so I reused the exact same symbol name, to preserve some more compatibility.",
+      "parentUuid": "3ed145bd_96a867de",
+      "revId": "e4e1470c3037cc146e088435ee0809cdecc82f16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
