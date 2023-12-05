@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66573cd8_d76cfb5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T20:38:15Z",
+      "side": 1,
+      "message": "This looks like disabling Binder IPC completely on Linux (and that\u0027s my next goal post after landing RPC Linux Binder). How can we make it work on Linux later?",
+      "revId": "c1a03201e10ced78cf90a73795f099486fccc39d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
