@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "680f7ac1_362384a5",
+        "filename": "libs/binder/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T01:02:04Z",
+      "side": 1,
+      "message": "Done in aosp/2858052.",
+      "parentUuid": "46ed9160_ea31de18",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 6
+      },
+      "revId": "795ccc4636f68563ef6e1708ef407cee9f555483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34f345e6_9df03b9d",
