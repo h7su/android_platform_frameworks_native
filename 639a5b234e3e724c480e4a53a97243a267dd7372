@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcfd700b_785f46d6",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 50
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T23:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f34fc0b6_c709163c",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 55
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1aac962_70c7a23d",
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "I see, it\u0027s just the SDK build vs the standard build that would use libbase/etc.",
       "parentUuid": "6bb77c18_f71b96fd",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 65
+      },
+      "revId": "639a5b234e3e724c480e4a53a97243a267dd7372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a850924_11f52d12",
+        "filename": "libs/binder/OS_linux.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-05T23:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "031e62c8_f5d7d686",
       "range": {
         "startLine": 25,
         "startChar": 0,
