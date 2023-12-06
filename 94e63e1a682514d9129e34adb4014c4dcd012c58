@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb7895d_c8b9ac91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-06T00:51:33Z",
+      "side": 1,
+      "message": "test hermeticity issue",
+      "revId": "94e63e1a682514d9129e34adb4014c4dcd012c58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
