@@ -31,6 +31,10 @@ constexpr int UP = AMOTION_EVENT_ACTION_UP;
 constexpr int CANCEL = AMOTION_EVENT_ACTION_CANCEL;
 static constexpr int32_t POINTER_1_DOWN =
         AMOTION_EVENT_ACTION_POINTER_DOWN | (1 << AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT);
+constexpr int HOVER_ENTER = AMOTION_EVENT_ACTION_HOVER_ENTER;
+constexpr int HOVER_MOVE = AMOTION_EVENT_ACTION_HOVER_MOVE;
+constexpr int HOVER_EXIT = AMOTION_EVENT_ACTION_HOVER_EXIT;
+
 constexpr int32_t TOUCHSCREEN = AINPUT_SOURCE_TOUCHSCREEN;
 constexpr int32_t STYLUS = AINPUT_SOURCE_STYLUS;
 
@@ -86,8 +90,10 @@ protected:
         std::vector<NotifyMotionArgs> receivedArgs = mBlocker.processMotion(args);
         ASSERT_EQ(expected.size(), receivedArgs.size());
         for (size_t i = 0; i < expected.size(); i++) {
-            // The 'eventTime' of CANCEL events is dynamically generated. Don't check this field.
-            if (expected[i].action == CANCEL && receivedArgs[i].action == CANCEL) {
+            // The 'eventTime' of CANCEL/HOVER_EXIT events is dynamically generated. Don't check
+            // this field.
+            if ((expected[i].action == CANCEL && receivedArgs[i].action == CANCEL) ||
+                (expected[i].action == HOVER_EXIT && receivedArgs[i].action == HOVER_EXIT)) {
                 receivedArgs[i].eventTime = expected[i].eventTime;
             }
 
@@ -177,6 +183,145 @@ TEST_F(PreferStylusOverTouchTest, StylusDownAfterTouch) {
 
     // Stylus goes down
     args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/3, DOWN, {{10, 30}}, STYLUS);
+    assertNotBlocked(args);
+}
+
+/**
+ * Existing touch pad hover should be canceled as HOVER_EXIT when stylus goes down.
+ */
+TEST_F(PreferStylusOverTouchTest, HoverIsCanceledAsHoverExitWhenStylusGoesDown) {
+    NotifyMotionArgs args;
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/0, HOVER_ENTER, {{1, 2}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/1, HOVER_MOVE, {{1, 3}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/3, DOWN, {{10, 30}}, STYLUS);
+    NotifyMotionArgs cancelArgs =
+            generateMotionArgs(/*downTime=*/0, /*eventTime=*/4, HOVER_EXIT, {{1, 3}}, TOUCHSCREEN);
+    assertResponse(args, {cancelArgs, args});
+
+    // Both stylus and mouse events continue. Stylus should be not blocked, and mouse also should
+    // not be blocked
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/5, MOVE, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/6, HOVER_MOVE, {{1, 4}}, TOUCHSCREEN);
+    assertDropped(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/7, HOVER_EXIT, {{1, 5}}, TOUCHSCREEN);
+    assertDropped(args);
+}
+
+/**
+ * Existing touch pad hover should be canceled as HOVER_EXIT when stylus goes down, and after
+ * stylus goes up, the hover event will continue dispatch.
+ */
+TEST_F(PreferStylusOverTouchTest, HoverIsContinueWhenStylusGoesUp) {
+    NotifyMotionArgs args;
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/0, HOVER_ENTER, {{1, 2}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/1, HOVER_MOVE, {{1, 3}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/3, DOWN, {{10, 30}}, STYLUS);
+    NotifyMotionArgs cancelArgs =
+            generateMotionArgs(/*downTime=*/0, /*eventTime=*/4, HOVER_EXIT, {{1, 3}}, TOUCHSCREEN);
+    assertResponse(args, {cancelArgs, args});
+
+    // Both stylus and mouse events continue. Stylus should be not blocked, and mouse also should
+    // not be blocked
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/5, MOVE, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/6, HOVER_MOVE, {{1, 4}}, TOUCHSCREEN);
+    assertDropped(args);
+
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/7, UP, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/8, HOVER_MOVE, {{1, 5}}, TOUCHSCREEN);
+    NotifyMotionArgs enterArgs =
+            generateMotionArgs(/*downTime=*/0, /*eventTime=*/8, HOVER_ENTER, {{1, 5}}, TOUCHSCREEN);
+    assertResponse(args, {enterArgs});
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/9, HOVER_EXIT, {{1, 5}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+}
+
+/**
+ * Existing touch pad hover should be canceled as HOVER_EXIT when stylus goes down, and after
+ * stylus goes up, if touchpad report a HOVER_EXIT but before not a HOVER_MOVE, the HOVER_EXIT will
+ * be dropped.
+ */
+TEST_F(PreferStylusOverTouchTest, HoverExitIsDroppedWhenNotHoverMoveAfterStylusGoesUp) {
+    NotifyMotionArgs args;
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/0, HOVER_ENTER, {{1, 2}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/1, HOVER_MOVE, {{1, 3}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/3, DOWN, {{10, 30}}, STYLUS);
+    NotifyMotionArgs cancelArgs =
+            generateMotionArgs(/*downTime=*/0, /*eventTime=*/4, HOVER_EXIT, {{1, 3}}, TOUCHSCREEN);
+    assertResponse(args, {cancelArgs, args});
+
+    // Both stylus and mouse events continue. Stylus should be not blocked, and mouse also should
+    // not be blocked
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/5, MOVE, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/6, HOVER_MOVE, {{1, 4}}, TOUCHSCREEN);
+    assertDropped(args);
+
+    args = generateMotionArgs(/*downTime=*/3, /*eventTime=*/7, UP, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/8, HOVER_EXIT, {{1, 5}}, TOUCHSCREEN);
+    assertDropped(args);
+}
+
+/**
+ * When stylus gone down but not a up, all touch pad hover event will be dropped.
+ */
+TEST_F(PreferStylusOverTouchTest, HoverIsDroppedAfterStylusGoesDown) {
+    NotifyMotionArgs args;
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/0, DOWN, {{10, 30}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/1, MOVE, {{10, 31}}, STYLUS);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/2, HOVER_ENTER, {{1, 4}}, TOUCHSCREEN);
+    assertDropped(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/3, HOVER_MOVE, {{1, 5}}, TOUCHSCREEN);
+    assertDropped(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/4, HOVER_EXIT, {{1, 6}}, TOUCHSCREEN);
+    assertDropped(args);
+}
+
+/**
+ * Hover event will not dropped if not a stylus not goes down.
+ */
+TEST_F(PreferStylusOverTouchTest, HoverIsNotDroppedWhenStylusNotDown) {
+    NotifyMotionArgs args;
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/0, HOVER_ENTER, {{1, 4}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/1, HOVER_MOVE, {{1, 5}}, TOUCHSCREEN);
+    assertNotBlocked(args);
+
+    args = generateMotionArgs(/*downTime=*/0, /*eventTime=*/2, HOVER_EXIT, {{1, 6}}, TOUCHSCREEN);
     assertNotBlocked(args);
 }
 
