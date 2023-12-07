@@ -16,6 +16,24 @@
       "message": "The problem is that these symbols are not weak when built as a vendor module. Hence checking if null doesn\u0027t fix the issue. To build with vendor modules, these should be guarded with #ifdef, not __builtin_available.",
       "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec36f0dd_19295534",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-07T05:38:04Z",
+      "side": 1,
+      "message": "Nevermind, I missed `__attribute__((weak))` in the change. I think this would work. Sorry about the noise.\n\nBtw, do we need a build-time check as well?",
+      "parentUuid": "94de5ff5_936d8cbb",
+      "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
