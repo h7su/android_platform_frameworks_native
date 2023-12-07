@@ -50,9 +50,9 @@
 
 #include <signal.h>
 
+#include <linux/vm_sockets.h>    // for VMADDR_*
 #include "../OS.h"               // for testing UnixBootstrap clients
 #include "../RpcSocketAddress.h" // for testing preconnected clients
-#include "../vm_sockets.h"       // for VMADDR_*
 #endif                           // __TRUSTY__
 
 #include "../BuildFlags.h"

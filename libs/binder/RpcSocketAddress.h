@@ -24,7 +24,7 @@
 #include <sys/types.h>
 #include <sys/un.h>
 
-#include "vm_sockets.h"
+#include <linux/vm_sockets.h>
 
 namespace android {
 
