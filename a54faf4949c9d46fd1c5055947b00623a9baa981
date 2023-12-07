@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94de5ff5_936d8cbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-07T03:54:11Z",
+      "side": 1,
+      "message": "The problem is that these symbols are not weak when built as a vendor module. Hence checking if null doesn\u0027t fix the issue. To build with vendor modules, these should be guarded with #ifdef, not __builtin_available.",
+      "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
