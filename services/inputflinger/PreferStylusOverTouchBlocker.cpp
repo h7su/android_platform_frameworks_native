@@ -93,6 +93,11 @@ static void intersectInPlace(std::map<K, V>& map, const std::set<K>& set2) {
 
 // -------------------------------- PreferStylusOverTouchBlocker -----------------------------------
 
+static inline bool isHoverAction(const int32_t action) {
+    return action == AMOTION_EVENT_ACTION_HOVER_ENTER ||
+            action == AMOTION_EVENT_ACTION_HOVER_MOVE || action == AMOTION_EVENT_ACTION_HOVER_EXIT;
+}
+
 std::vector<NotifyMotionArgs> PreferStylusOverTouchBlocker::processMotion(
         const NotifyMotionArgs& args) {
     const auto [hasTouch, hasStylus] = checkToolType(args);
@@ -134,31 +139,42 @@ std::vector<NotifyMotionArgs> PreferStylusOverTouchBlocker::processMotion(
                     continue;
                 }
                 // Not yet canceled. Cancel it.
-                lastTouchEvent.action = AMOTION_EVENT_ACTION_CANCEL;
-                lastTouchEvent.flags |= AMOTION_EVENT_FLAG_CANCELED;
+                if (isHoverAction(lastTouchEvent.action)) {
+                    // Hover event should be canceled as a HOVER_EXIT.
+                    lastTouchEvent.action = AMOTION_EVENT_ACTION_HOVER_EXIT;
+                    mDeviceHovering.erase(deviceId);
+                    mCanceledDevices[deviceId] = true;
+                } else {
+                    lastTouchEvent.action = AMOTION_EVENT_ACTION_CANCEL;
+                    lastTouchEvent.flags |= AMOTION_EVENT_FLAG_CANCELED;
+                    mCanceledDevices[deviceId] = false;
+                }
                 lastTouchEvent.eventTime = systemTime(SYSTEM_TIME_MONOTONIC);
                 result.push_back(lastTouchEvent);
-                mCanceledDevices.insert(deviceId);
             }
             result.push_back(args);
             return result;
         }
         if (isUpOrCancel) {
             mActiveStyli.erase(args.deviceId);
+            // Remove the device that canceled as HOVER_EXIT.
+            std::erase_if(mCanceledDevices, [](const auto& pair) { return pair.second; });
         }
         // Never drop stylus events
         return {args};
     }
 
     const bool isTouchEvent = hasTouch;
+    const bool isHoverExit = args.action == AMOTION_EVENT_ACTION_HOVER_EXIT;
+    const bool isHover = isHoverAction(args.action);
     if (isTouchEvent) {
         // Suppress the current gesture if any stylus is still down
         if (!mActiveStyli.empty()) {
-            mCanceledDevices.insert(args.deviceId);
+            mCanceledDevices[args.deviceId] = isHover;
         }
 
         const bool shouldDrop = mCanceledDevices.find(args.deviceId) != mCanceledDevices.end();
-        if (isUpOrCancel) {
+        if (isUpOrCancel || isHoverExit) {
             mCanceledDevices.erase(args.deviceId);
             mLastTouchEvents.erase(args.deviceId);
         }
@@ -169,8 +185,31 @@ std::vector<NotifyMotionArgs> PreferStylusOverTouchBlocker::processMotion(
             return {};
         }
 
-        if (!isUpOrCancel) {
+        if (!isUpOrCancel && !isHoverExit) {
             mLastTouchEvents[args.deviceId] = args;
+        }
+
+        const bool deviceIsHovering = mDeviceHovering.find(args.deviceId) != mDeviceHovering.end();
+        if (args.action == AMOTION_EVENT_ACTION_HOVER_EXIT) {
+            if (!deviceIsHovering) {
+                // Device is not hovering, drop HOVER_EXIT.
+                return {};
+            }
+            mDeviceHovering.erase(args.deviceId);
+        } else if (args.action == AMOTION_EVENT_ACTION_HOVER_ENTER) {
+            if (deviceIsHovering) {
+                // Can't happen and we drop it.
+                return {};
+            }
+            mDeviceHovering.insert(args.deviceId);
+        } else if (args.action == AMOTION_EVENT_ACTION_HOVER_MOVE) {
+            if (!deviceIsHovering) {
+                // HOVER_MOVE should be changed to HOVER_ENTER when device is not hovering.
+                NotifyMotionArgs enterArgs = args;
+                enterArgs.action = AMOTION_EVENT_ACTION_HOVER_ENTER;
+                mDeviceHovering.insert(args.deviceId);
+                return {enterArgs};
+            }
         }
         return {args};
     }
@@ -190,6 +229,7 @@ void PreferStylusOverTouchBlocker::notifyInputDevicesChanged(
     intersectInPlace(mLastTouchEvents, presentDevices);
     intersectInPlace(mCanceledDevices, presentDevices);
     intersectInPlace(mActiveStyli, presentDevices);
+    intersectInPlace(mDeviceHovering, presentDevices);
 }
 
 void PreferStylusOverTouchBlocker::notifyDeviceReset(const NotifyDeviceResetArgs& args) {
@@ -197,6 +237,7 @@ void PreferStylusOverTouchBlocker::notifyDeviceReset(const NotifyDeviceResetArgs
     mLastTouchEvents.erase(args.deviceId);
     mCanceledDevices.erase(args.deviceId);
     mActiveStyli.erase(args.deviceId);
+    mDeviceHovering.erase(args.deviceId);
 }
 
 static std::string dumpArgs(const NotifyMotionArgs& args) {
@@ -208,7 +249,8 @@ std::string PreferStylusOverTouchBlocker::dump() const {
     out += "mActiveStyli: " + dumpSet(mActiveStyli) + "\n";
     out += "mLastTouchEvents: " + dumpMap(mLastTouchEvents, constToString, dumpArgs) + "\n";
     out += "mDevicesWithMixedToolType: " + dumpSet(mDevicesWithMixedToolType) + "\n";
-    out += "mCanceledDevices: " + dumpSet(mCanceledDevices) + "\n";
+    out += "mCanceledDevices: " + dumpMap(mCanceledDevices) + "\n";
+    out += "mDeviceHovering: " + dumpSet(mDeviceHovering) + "\n";
     return out;
 }
 
