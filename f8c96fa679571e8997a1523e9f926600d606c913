@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c9a0af9_572ccb45",
+        "filename": "libs/binder/liblog_stub/include/log/log.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-07T20:24:26Z",
+      "side": 1,
+      "message": "TODO: I forgot about this one, I\u0027ll fix it today.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "revId": "f8c96fa679571e8997a1523e9f926600d606c913",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
