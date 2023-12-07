@@ -54,8 +54,11 @@ private:
     // For each device, store the last touch event as long as the touch is down. Upon liftoff,
     // the entry is erased.
     std::map<int32_t /*deviceId*/, NotifyMotionArgs> mLastTouchEvents;
-    // Device ids of devices for which the current touch gesture is canceled.
-    std::set<int32_t /*deviceId*/> mCanceledDevices;
+    // Device ids of devices for which the current touch gesture is canceled, if it canceled as
+    // HOVER_EXIT, device will remove when stylus goes up.
+    std::map<int32_t /*deviceId*/, bool /*cancelAsHover*/> mCanceledDevices;
+    // The device is hovering, it used be confirmed the hover action.
+    std::set<int32_t /*deviceId*/> mDeviceHovering;
 
     // Device ids of input devices where we encountered simultaneous touch and stylus
     // events. For these devices, we don't do any event processing (nothing is blocked or altered).
