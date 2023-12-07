@@ -52,6 +52,24 @@
       "parentUuid": "ec36f0dd_19295534",
       "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9943fae_38738bf9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-12-07T18:01:33Z",
+      "side": 1,
+      "message": "I don\u0027t know how `__builtin_available` works. This is all new to me. \n\nIt seems like we would need a `__builtin_available` equivalent for the vendor level now. Or that would need to be repurposed for vendor level if it no longer makes sense for SDK API level.\n\nIn the comment https://b.corp.google.com/issues/312510312#comment54 I interpreted that as `__builtin_available` won\u0027t work at all for vendor modules. Were you only saying the build-time checks don\u0027t work, but there is still some runtime behavior that does the equivalent to the nullptr check for weak symbols?",
+      "parentUuid": "58777d28_3e992978",
+      "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
