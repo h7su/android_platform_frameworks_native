@@ -70,6 +70,24 @@
       "parentUuid": "58777d28_3e992978",
       "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a3bcc30_84f5f7ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-12-07T18:09:56Z",
+      "side": 1,
+      "message": "Also I couldn\u0027t figure out how you did: `I manually changed aarch64-linux-android10000 to aarch64-linux-android34 (to simulate the correction).` to reproduce those build issues in the bug.",
+      "parentUuid": "b9943fae_38738bf9",
+      "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
