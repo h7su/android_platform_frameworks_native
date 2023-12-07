@@ -34,6 +34,24 @@
       "parentUuid": "94de5ff5_936d8cbb",
       "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58777d28_3e992978",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-07T05:46:23Z",
+      "side": 1,
+      "message": "given that symbols are weak, do we still need nullchecks? `__builtin_available(V)` should be enough, no?",
+      "parentUuid": "ec36f0dd_19295534",
+      "revId": "a54faf4949c9d46fd1c5055947b00623a9baa981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
