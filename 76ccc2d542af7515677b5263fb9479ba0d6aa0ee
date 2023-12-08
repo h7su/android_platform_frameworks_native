@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22534da3_c092126e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1304263
+      },
+      "writtenOn": "2023-12-08T00:54:40Z",
+      "side": 1,
+      "message": "The command requires to interact with racoon which was removed.",
+      "revId": "76ccc2d542af7515677b5263fb9479ba0d6aa0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
