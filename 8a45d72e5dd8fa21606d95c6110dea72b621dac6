@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3d8007_5f49a55b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2023-12-08T21:24:18Z",
+      "side": 1,
+      "message": "But this breaks the expected behavior for users that want compile time errors instead of runtime errors.",
+      "revId": "8a45d72e5dd8fa21606d95c6110dea72b621dac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
