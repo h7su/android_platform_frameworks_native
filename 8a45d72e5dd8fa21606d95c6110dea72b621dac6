@@ -34,6 +34,24 @@
       "parentUuid": "2c3d8007_5f49a55b",
       "revId": "8a45d72e5dd8fa21606d95c6110dea72b621dac6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1281777_09c62139",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-12-08T21:30:33Z",
+      "side": 1,
+      "message": "Sorry, I should have updated the commit message. Does that make more sense now?\n\nThere is a suggestion to modify builtin_available to work with vendor libraries but I\u0027m not sure of the timeline: https://b.corp.google.com/issues/312510312#comment66\n\nThis is a new issue because of the way UDC GSI is being used to verify UDC QPR2 devices that come from git_main. This is the first time we have new vendor partitions than the GSI, so now there may be missing symbols in the lldnk from the vendor perspective.",
+      "parentUuid": "a561cab0_326e51e3",
+      "revId": "8a45d72e5dd8fa21606d95c6110dea72b621dac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
