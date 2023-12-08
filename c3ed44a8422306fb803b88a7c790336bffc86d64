@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a1f358_982f525a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1411826
+      },
+      "writtenOn": "2023-12-08T13:23:46Z",
+      "side": 1,
+      "message": "Hi Chris and Jesse,\n\nThis is a follow-up change for https://android-review.googlesource.com/c/platform/frameworks/native/+/1958441.\n\nI have verified the change on GLDual.apk and it can be installed Android 14 devices.\n\nCould you help to review it? thanks",
+      "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
