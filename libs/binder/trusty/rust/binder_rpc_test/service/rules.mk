@@ -14,29 +14,23 @@
 #
 
 LOCAL_DIR := $(GET_LOCAL_DIR)
-LIBBINDER_DIR := $(LOCAL_DIR)/../..
+LIBBINDER_DIR := $(LOCAL_DIR)/../../../..
 
 MODULE := $(LOCAL_DIR)
 
-MODULE_SRCS := $(LIBBINDER_DIR)/rust/src/lib.rs
+MODULE_SRCS := $(LOCAL_DIR)/main.rs
 
-MODULE_CRATE_NAME := binder
+MODULE_CRATE_NAME := binder_rpc_test_service
 
 MODULE_LIBRARY_DEPS += \
-	$(LIBBINDER_DIR)/trusty \
-	$(LIBBINDER_DIR)/trusty/ndk \
-	$(LIBBINDER_DIR)/trusty/rust/binder_ndk_sys \
-	$(LIBBINDER_DIR)/trusty/rust/binder_rpc_unstable_bindgen \
-	external/rust/crates/downcast-rs \
-	external/rust/crates/libc \
-	trusty/user/base/lib/trusty-sys \
+	$(LIBBINDER_DIR)/trusty/rust \
+	$(LIBBINDER_DIR)/trusty/rust/rpcbinder \
+	$(LIBBINDER_DIR)/trusty/rust/binder_rpc_server \
+	$(LOCAL_DIR)/../aidl \
+	$(LOCAL_DIR)/../binder_rpc_test_session \
+	$(LOCAL_DIR)/.. \
+	trusty/user/base/lib/tipc/rust \
 
-MODULE_RUSTFLAGS += \
-	--cfg 'android_vendor' \
+MANIFEST := $(LOCAL_DIR)/manifest.json
 
-# Trusty does not have `ProcessState`, so there are a few
-# doc links in `IBinder` that are still broken.
-MODULE_RUSTFLAGS += \
-	--allow rustdoc::broken-intra-doc-links \
-
-include make/library.mk
+include make/trusted_app.mk
