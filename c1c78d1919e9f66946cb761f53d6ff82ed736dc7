@@ -16,6 +16,24 @@
       "message": "But this also alters the behavior for NDK users. This should not be done for the NDK.\n\nIgnoring the NDK, this sounds wrong from the vendor side as well. It sounds like using 10000 as the version number is wrong?",
       "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06eeec03_62a4e403",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-08T21:59:31Z",
+      "side": 1,
+      "message": "Btw, the issue is blocking compliance testing, and if this can unblock it first, that needs to be the priority. I think we\u0027re all on the same page about resolving this a different way and/or reverting this patch once the other issue is fixed.",
+      "parentUuid": "2684f10c_0606d4c5",
+      "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
