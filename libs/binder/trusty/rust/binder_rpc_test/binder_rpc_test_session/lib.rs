@@ -14,95 +14,85 @@
  * limitations under the License.
  */
 #![allow(unused)]
+
 use binder::{
     BinderFeatures, IBinder, Interface, ParcelFileDescriptor, SpIBinder, Status, StatusCode, Strong,
 };
 use binder_rpc_test_aidl::aidl::IBinderRpcCallback::IBinderRpcCallback;
 use binder_rpc_test_aidl::aidl::IBinderRpcSession::{BnBinderRpcSession, IBinderRpcSession};
-use binder_rpc_test_aidl::aidl::IBinderRpcTest::{BnBinderRpcTest, IBinderRpcTest};
-use binder_rpc_test_session::MyBinderRpcSession;
-use libc::{nanosleep, timespec};
-use rpcbinder::RpcServer;
-use std::rc::Rc;
+use binder_rpc_test_aidl::aidl::IBinderRpcTest::IBinderRpcTest;
+use log::{info, warn};
+use rpcbinder::RpcSession;
 use std::sync::Mutex;
-use tipc::{service_dispatcher, wrap_service, Manager, PortCfg};
+use trusty_std::ffi::{CString, FallibleCString};
 
-const RUST_SERVICE_PORT: &str = "com.android.trusty.rust.binderRpcTestService.V1";
-
-// -----------------------------------------------------------------------------
-
-static SESSION_COUNT: Mutex<i32> = Mutex::new(0);
-static HOLD_BINDER: Mutex<Option<SpIBinder>> = Mutex::new(None);
-static SAME_BINDER: Mutex<Option<SpIBinder>> = Mutex::new(None);
+static G_NUM: Mutex<i32> = Mutex::new(0);
 
 #[derive(Debug, Default)]
-struct TestService {
-    port: i32,
+pub struct MyBinderRpcSession {
     m_name: String,
 }
 
-impl TestService {
-    fn new(name: &str) -> Self {
-        *SESSION_COUNT.lock().unwrap() += 1;
-        Self { m_name: name.to_string(), ..Default::default() }
+impl MyBinderRpcSession {
+    pub fn new(name: &str) -> Self {
+        Self::increment_instance_count();
+        Self { m_name: name.to_string() }
     }
 
-    fn get_instance_count() -> i32 {
-        *SESSION_COUNT.lock().unwrap()
+    pub fn get_instance_count() -> i32 {
+        *G_NUM.lock().unwrap()
+    }
+
+    fn increment_instance_count() {
+        *G_NUM.lock().unwrap() += 1;
+    }
+
+    fn decrement_instance_count() {
+        *G_NUM.lock().unwrap() -= 1;
     }
 }
 
-impl Drop for TestService {
+impl Drop for MyBinderRpcSession {
     fn drop(&mut self) {
-        *SESSION_COUNT.lock().unwrap() -= 1;
+        MyBinderRpcSession::decrement_instance_count();
     }
 }
 
-impl Interface for TestService {}
+impl Interface for MyBinderRpcSession {}
 
-impl IBinderRpcSession for TestService {
+impl IBinderRpcSession for MyBinderRpcSession {
     fn getName(&self) -> Result<String, Status> {
         Ok(self.m_name.clone())
     }
 }
 
-impl IBinderRpcTest for TestService {
+impl IBinderRpcTest for MyBinderRpcSession {
     fn sendString(&self, _: &str) -> Result<(), Status> {
-        // This is a oneway function, so caller returned immediately and gives back an Ok(()) regardless of what this returns
-        Ok(())
+        todo!()
     }
     fn doubleString(&self, s: &str) -> Result<String, Status> {
-        let ss = [s, s].concat();
-        Ok(ss)
+        todo!()
     }
     fn getClientPort(&self) -> Result<i32, Status> {
-        Ok(self.port)
+        todo!()
     }
     fn countBinders(&self) -> Result<Vec<i32>, Status> {
-        // TODO #### Where do I get server reference to look at sessions?  Is that the same as the service (self)? ###
         todo!()
     }
     fn getNullBinder(&self) -> Result<SpIBinder, Status> {
-        Err(Status::from(StatusCode::UNKNOWN_TRANSACTION))
+        todo!()
     }
     fn pingMe(&self, binder: &SpIBinder) -> Result<i32, Status> {
-        match binder.clone().ping_binder() {
-            Ok(n) => Ok(StatusCode::OK as i32),
-            Err(e) => Err(Status::from(e)),
-        }
+        todo!()
     }
     fn repeatBinder(&self, binder: Option<&SpIBinder>) -> Result<Option<SpIBinder>, Status> {
-        match binder {
-            Some(x) => Ok(Some(x.clone())),
-            None => Err(Status::from(StatusCode::BAD_VALUE)),
-        }
+        todo!()
     }
     fn holdBinder(&self, binder: Option<&SpIBinder>) -> Result<(), Status> {
-        *HOLD_BINDER.lock().unwrap() = binder.cloned();
-        Ok(())
+        todo!()
     }
     fn getHeldBinder(&self) -> Result<Option<SpIBinder>, Status> {
-        Ok((*HOLD_BINDER.lock().unwrap()).clone())
+        todo!()
     }
     fn nestMe(
         &self,
@@ -116,24 +106,13 @@ impl IBinderRpcTest for TestService {
         }
     }
     fn alwaysGiveMeTheSameBinder(&self) -> Result<SpIBinder, Status> {
-        let mut locked = SAME_BINDER.lock().unwrap();
-        Ok((*locked)
-            .get_or_insert_with(|| {
-                BnBinderRpcTest::new_binder(TestService::default(), BinderFeatures::default())
-                    .as_binder()
-            })
-            .clone())
+        todo!()
     }
     fn openSession(&self, name: &str) -> Result<Strong<(dyn IBinderRpcSession + 'static)>, Status> {
-        let s = BnBinderRpcSession::new_binder(
-            MyBinderRpcSession::new(name),
-            BinderFeatures::default(),
-        );
-        Ok(s)
+        todo!()
     }
     fn getNumOpenSessions(&self) -> Result<i32, Status> {
-        let count = MyBinderRpcSession::get_instance_count();
-        Ok(count)
+        todo!()
     }
     fn lock(&self) -> Result<(), Status> {
         todo!()
@@ -144,19 +123,11 @@ impl IBinderRpcTest for TestService {
     fn lockUnlock(&self) -> Result<(), Status> {
         todo!()
     }
-    fn sleepMs(&self, ms: i32) -> Result<(), Status> {
-        let ts =
-            timespec { tv_sec: (ms / 1000) as i64, tv_nsec: (ms % 1000) as i64 * 1_000_000 as i64 };
-
-        let mut rem = timespec { tv_sec: 0, tv_nsec: 0 };
-
-        // Safety: Passing valid pointers to variables ts & rem which live past end of call
-        assert_eq!(unsafe { nanosleep(&ts, &mut rem) }, 0);
-
-        Ok(())
+    fn sleepMs(&self, _: i32) -> Result<(), Status> {
+        todo!()
     }
-    fn sleepMsAsync(&self, ms: i32) -> Result<(), Status> {
-        self.sleepMs(ms)
+    fn sleepMsAsync(&self, _: i32) -> Result<(), Status> {
+        todo!()
     }
     fn doCallback(
         &self,
@@ -203,31 +174,4 @@ impl IBinderRpcTest for TestService {
     fn blockingRecvInt(&self) -> Result<i32, Status> {
         todo!()
     }
-}
-
-wrap_service!(TestRpcServer(RpcServer: UnbufferedService));
-
-service_dispatcher! {
-    enum TestDispatcher {
-        TestRpcServer,
-    }
-}
-
-fn main() {
-    let mut dispatcher = TestDispatcher::<1>::new().expect("Could not create test dispatcher");
-
-    let service = BnBinderRpcTest::new_binder(TestService::default(), BinderFeatures::default());
-    let rpc_server =
-        TestRpcServer::new(RpcServer::new_per_session(move |_uuid| Some(service.as_binder())));
-
-    let cfg = PortCfg::new(RUST_SERVICE_PORT)
-        .expect("Could not create port config")
-        .allow_ta_connect()
-        .allow_ns_connect();
-    dispatcher.add_service(Rc::new(rpc_server), cfg).expect("Could not add service to dispatcher");
-
-    Manager::<_, _, 1, 4>::new_with_dispatcher(dispatcher, [])
-        .expect("Could not create service manager")
-        .run_event_loop()
-        .expect("Test event loop failed");
 }
