@@ -16,6 +16,24 @@
       "message": "These are all functions from the Trusty logging headers, right? Maybe add a comment?",
       "revId": "b4c3b031ae1957baecac21d8188a465287154c36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58e2bbb_f8f5ac80",
+        "filename": "libs/binder/rust/libbinder_ndk_bindgen_flags.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-08T00:39:02Z",
+      "side": 1,
+      "message": "Never mind, can\u0027t do this in a text file.",
+      "parentUuid": "55a64451_892b6db3",
+      "revId": "b4c3b031ae1957baecac21d8188a465287154c36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
