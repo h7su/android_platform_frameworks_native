@@ -34,6 +34,24 @@
       "parentUuid": "2684f10c_0606d4c5",
       "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c69d3cd_6b683d13",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2023-12-08T22:14:18Z",
+      "side": 1,
+      "message": "You can\u0027t break the NDK API surface in the interim. Put this behind some vendor `#ifdef` if it\u0027s too urgent to fix properly.\n\n(I\u0027m not entirely convinced that this change is right for vendor either, but that\u0027s your purview, not mine)",
+      "parentUuid": "06eeec03_62a4e403",
+      "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
