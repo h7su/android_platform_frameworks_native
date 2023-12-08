@@ -14,24 +14,19 @@
 #
 
 LOCAL_DIR := $(GET_LOCAL_DIR)
-LIBBINDER_DIR := $(LOCAL_DIR)/../../..
+LIBBINDER_DIR := $(LOCAL_DIR)/../../../..
 
 MODULE := $(LOCAL_DIR)
 
-MODULE_SRCS := $(LOCAL_DIR)/main.rs
+MODULE_SRCS := $(LOCAL_DIR)/lib.rs
 
-MODULE_CRATE_NAME := binder_rpc_test
+MODULE_CRATE_NAME := binder_rpc_test_session
 
 MODULE_LIBRARY_DEPS += \
 	$(LIBBINDER_DIR)/trusty/rust \
 	$(LIBBINDER_DIR)/trusty/rust/rpcbinder \
-	$(LOCAL_DIR)/aidl \
-	$(LOCAL_DIR)/binder_rpc_test_session \
+	$(LOCAL_DIR)/../aidl \
 	$(call FIND_CRATE,log) \
 	trusty/user/base/lib/trusty-std \
-
-MODULE_RUST_TESTS := true
-
-MANIFEST := $(LOCAL_DIR)/manifest.json
 
 include make/library.mk
