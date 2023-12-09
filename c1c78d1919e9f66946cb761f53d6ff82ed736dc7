@@ -52,6 +52,24 @@
       "parentUuid": "06eeec03_62a4e403",
       "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b433c5c_2397a508",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-09T01:45:37Z",
+      "side": 1,
+      "message": "It\u0027s a new API for Android V, and also, would you really consider strong-\u003eweak breaking the NDK API surface? There is no guard against this now - it\u0027s something I\u0027ve definitely done it before 😊, and another reason we should compile the NDK headers in C and test further aspects of them.\n\nI mean - it\u0027s ABI compitable, but a behavior change to be strong-\u003eweak. If code compiled before, it wouldn\u0027t cause anything to break, but it would change the guarantees someone could expect if they were linking it differently",
+      "parentUuid": "8c69d3cd_6b683d13",
+      "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
