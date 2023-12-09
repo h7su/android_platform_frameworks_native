@@ -27,6 +27,7 @@ MODULE_LIBRARY_DEPS += \
 	$(LIBBINDER_DIR)/trusty/ndk \
 	$(LIBBINDER_DIR)/trusty/rust/binder_ndk_sys \
 	external/rust/crates/downcast-rs \
+	trusty/user/base/lib/libstdc++-trusty \
 	trusty/user/base/lib/trusty-sys \
 
 # Trusty does not have `ProcessState`, so there are a few

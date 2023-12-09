@@ -27,6 +27,7 @@ MODULE_CRATE_NAME := binder_ndk_sys
 MODULE_LIBRARY_DEPS += \
 	$(LIBBINDER_DIR)/trusty \
 	$(LIBBINDER_DIR)/trusty/ndk \
+	trusty/user/base/lib/libstdc++-trusty \
 	trusty/user/base/lib/trusty-sys \
 
 MODULE_BINDGEN_SRC_HEADER := $(LIBBINDER_DIR)/rust/sys/BinderBindings.hpp
