@@ -70,6 +70,24 @@
       "parentUuid": "8c69d3cd_6b683d13",
       "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77f089a_25e9a25d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2023-12-11T21:20:47Z",
+      "side": 1,
+      "message": "There\u0027s definitely a guard against this. That\u0027s why I\u0027m here: https://r.android.com/2863811. I would not have known otherwise. You\u0027ve been getting away with it before (API council would not have approved) because the guard is new.\n\n\u003e but it would change the guarantees someone could expect if they were linking it differently\n\nYes, exactly. This changes the behavior for app developers. This symbol (and every other API) _should not be weak_ in the default NDK configuration. That\u0027s what `__INTRODUCED_IN` is meant to control.",
+      "parentUuid": "0b433c5c_2397a508",
+      "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
