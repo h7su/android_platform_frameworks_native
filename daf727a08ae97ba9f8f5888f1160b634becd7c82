@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b515557_7da9667b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-11T17:16:12Z",
+      "side": 1,
+      "message": "This change introduced build errors about a missing symbol (`_ZN7android6binder12atrace_beginEmPKc` and similar). They\u0027ve been brought back in aosp/2855323",
+      "revId": "daf727a08ae97ba9f8f5888f1160b634becd7c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
