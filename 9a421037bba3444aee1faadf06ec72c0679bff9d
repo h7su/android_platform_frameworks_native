@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3192d6c3_3b892715",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-11T16:55:19Z",
+      "side": 1,
+      "message": "can this be enabled inside the appropriate Android.bp so that we can prevent these kinds of issues going forward?",
+      "range": {
+        "startLine": 9,
+        "startChar": 105,
+        "endLine": 9,
+        "endChar": 113
+      },
+      "revId": "9a421037bba3444aee1faadf06ec72c0679bff9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "31f6caaf_90d0af74",
@@ -14,6 +37,29 @@
       "writtenOn": "2023-12-11T12:00:33Z",
       "side": 1,
       "message": "Thanks for the fix!",
+      "revId": "9a421037bba3444aee1faadf06ec72c0679bff9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a761bb_9cd894c4",
+        "filename": "include/input/DisplayViewport.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-11T16:55:19Z",
+      "side": 1,
+      "message": "there is already `constexpr const char* toCString(Rotation rotation) {` that we should probably use instead",
+      "range": {
+        "startLine": 133,
+        "startChar": 28,
+        "endLine": 133,
+        "endChar": 56
+      },
       "revId": "9a421037bba3444aee1faadf06ec72c0679bff9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
