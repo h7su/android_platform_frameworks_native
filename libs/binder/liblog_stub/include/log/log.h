@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <cstdio>
-#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <android/log.h>
 
@@ -53,13 +53,13 @@ int __android_log_print(int prio, const char* tag, const char* fmt, ...)
 #define ALOG(priority, tag, fmt, ...)                                          \
     do {                                                                       \
         if (false)[[/*VERY*/ unlikely]] { /* ignore unused __VA_ARGS__ */      \
-            std::fprintf(stderr, fmt __VA_OPT__(, ) __VA_ARGS__);              \
+            fprintf(stderr, fmt __VA_OPT__(, ) __VA_ARGS__);                   \
         }                                                                      \
         IF_ALOG(priority, tag) {                                               \
             __android_log_print(ANDROID_##priority, tag,                       \
                                 tag ": " fmt "\n" __VA_OPT__(, ) __VA_ARGS__); \
         }                                                                      \
-        if constexpr (ANDROID_##priority == ANDROID_LOG_FATAL) std::abort();   \
+        if constexpr (ANDROID_##priority == ANDROID_LOG_FATAL) abort();        \
     } while (false)
 #define ALOGV(...) ALOG(LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
 #define ALOGD(...) ALOG(LOG_DEBUG, LOG_TAG, __VA_ARGS__)
