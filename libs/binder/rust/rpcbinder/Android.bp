@@ -74,13 +74,8 @@ rust_bindgen {
     crate_name: "binder_rpc_unstable_bindgen",
     visibility: [":__subpackages__"],
     source_stem: "bindings",
-    bindgen_flags: [
-        "--blocklist-type",
-        "AIBinder",
-        "--raw-line",
-        "use binder_ndk_sys::AIBinder;",
-        "--rustified-enum",
-        "ARpcSession_FileDescriptorTransportMode",
+    bindgen_flag_files: [
+        "libbinder_rpc_unstable_bindgen_flags.txt",
     ],
     rustlibs: [
         "libbinder_ndk_sys",
