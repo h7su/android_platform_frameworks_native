@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9797715_bad9c153",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-12T20:54:10Z",
+      "side": 1,
+      "message": "nit: len -\u003d 1? do we need that?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d24683_3d345799",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-12T20:54:10Z",
+      "side": 1,
+      "message": "we want this every time? not cached?",
+      "range": {
+        "startLine": 100,
+        "startChar": 43,
+        "endLine": 100,
+        "endChar": 53
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1132366_46b99f67",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-12T20:54:10Z",
+      "side": 1,
+      "message": "close guard? unique_ptr?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 23
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbef1922_e234a30e",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-12T20:54:10Z",
+      "side": 1,
+      "message": "vendor logs don\u0027t support this feature?",
+      "range": {
+        "startLine": 152,
+        "startChar": 30,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

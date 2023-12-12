@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc7f7792_15856f55",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-12T20:54:10Z",
+      "side": 0,
+      "message": "is there a reason this isn\u0027t done inside of this libselinux function and requires a lot of custom code here instead?\n\nI\u0027d expect similar work needed in keystore or other users of getCallingSid",
+      "range": {
+        "startLine": 90,
+        "startChar": 60,
+        "endLine": 90,
+        "endChar": 80
+      },
+      "revId": "f1e4a205322b15d1530430a4b22ad238bbf9427b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
