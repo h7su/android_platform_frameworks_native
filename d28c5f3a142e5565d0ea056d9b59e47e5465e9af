@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bec6952_6ed62052",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/main.rs",
+        "patchSetId": 64
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-12T21:18:23Z",
+      "side": 1,
+      "message": "I\u0027ll add more tests later, for now I just wanted a basic smoke test.\n\nWould it make sense to also run this on Android?",
+      "revId": "d28c5f3a142e5565d0ea056d9b59e47e5465e9af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
