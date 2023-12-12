@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aada4bf1_ad142949",
+        "filename": "libs/binder/RpcSocketAddress.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-12T01:21:47Z",
+      "side": 1,
+      "message": "This header is Linux-specific, Trusty will probably export its own but at a different path. For now, I think we could either wrap this in `#ifdef __linux__` (and all other lines that depend on it, e.g., the definition of `VsockSocketAddress` below) or add a new libbinder build variable `BINDER_DISABLE_VSOCK`. We already have several of the latter.",
+      "revId": "5852a1383760b7d00e25c71da5f394c4bc38fae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
