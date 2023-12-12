@@ -1,0 +1,3 @@
+--blocklist-type=AIBinder
+--raw-line=use binder_ndk_sys::AIBinder;
+--rustified-enum=ARpcSession_FileDescriptorTransportMode
