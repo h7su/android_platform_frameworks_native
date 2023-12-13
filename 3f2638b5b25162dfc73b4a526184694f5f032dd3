@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15003e97_89fde93e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2023-12-13T17:50:25Z",
+      "side": 1,
+      "message": "Does this just re-introduce the issue that https://googleplex-android-review.git.corp.google.com/c/platform/frameworks/native/+/6665496 was attempting to fix originally?",
+      "revId": "3f2638b5b25162dfc73b4a526184694f5f032dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
