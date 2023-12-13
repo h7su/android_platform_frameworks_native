@@ -16,6 +16,24 @@
       "message": "Dom consolidated this from \n```\nconst bool needMoreSignals \u003d ...\nif (needMoreSignals) {\n```\nin ag/I157b0895a77f055763f86dd21602d0dac13622da. I kind of like having the variable, since it\u0027s not obvious what `VsyncController::addPresentFence` returns (without looking up the method). Maybe replace it with a comment? Something like:\n\n```\nif (schedule-\u003egetController().addPresentFence(std::move(fence))) {\n    // The model needs more signals to make an accurate prediction, so ensure\n    // that hw VSYNC is enabled.\n```\n\n?",
       "revId": "edf5d0fd649fbfbe3ae681b8bcfabb56fea2c5f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1d6d44_1af3bedf",
+        "filename": "services/surfaceflinger/Scheduler/Scheduler.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2023-12-13T06:49:30Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e6f9d864_8bdb9d62",
+      "revId": "edf5d0fd649fbfbe3ae681b8bcfabb56fea2c5f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
