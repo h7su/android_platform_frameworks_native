@@ -22,6 +22,30 @@
       },
       "revId": "f1e4a205322b15d1530430a4b22ad238bbf9427b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "746e6a08_b8c277e2",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1561651
+      },
+      "writtenOn": "2023-12-13T06:18:32Z",
+      "side": 0,
+      "message": "IIUC, libselinux is llndk, which would make any addition something that we must support forever. I wanted to test the water with the approach. And to your other question on vendor logs, I was thinking:\n1. land this change for the platform only,\n2. land another change to enable the same logging for vendor (we can always revert this change if we overlooked something vendor-specific).\n3. Once this has settled a bit, refactor and move the function to libselinux.\n\nWDYT?",
+      "parentUuid": "fc7f7792_15856f55",
+      "range": {
+        "startLine": 90,
+        "startChar": 60,
+        "endLine": 90,
+        "endChar": 80
+      },
+      "revId": "f1e4a205322b15d1530430a4b22ad238bbf9427b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

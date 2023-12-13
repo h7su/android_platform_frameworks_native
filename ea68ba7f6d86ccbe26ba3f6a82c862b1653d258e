@@ -91,6 +91,30 @@
       },
       "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2abeaee_312c00df",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1561651
+      },
+      "writtenOn": "2023-12-13T06:18:32Z",
+      "side": 1,
+      "message": "I was thinking following up with another change (in case it needs to be reverted for vendor, so this doesn\u0027t affect the platform).",
+      "parentUuid": "fbef1922_e234a30e",
+      "range": {
+        "startLine": 152,
+        "startChar": 30,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
