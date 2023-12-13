@@ -16,6 +16,29 @@
       "message": "Does this just re-introduce the issue that https://googleplex-android-review.git.corp.google.com/c/platform/frameworks/native/+/6665496 was attempting to fix originally?",
       "revId": "3f2638b5b25162dfc73b4a526184694f5f032dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "891b2c04_96c2d031",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2023-12-13T18:06:36Z",
+      "side": 1,
+      "message": "should we figure out who\u0027s calling this?\n\nThe commit message blames surfaceflinger as the caller, but surfaceflinger only queries dumpState() with an in-process bufferqueue so a permission check doesn\u0027t make sense anyways.\n\nI couldn\u0027t really track down any other usages either.\n\nWhat I\u0027m getting at is I wonder if we should no-op dumpState() at the binder layer to prevent remote processes from invoking dumpState() entirely -- https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/native/libs/gui/IGraphicBufferConsumer.cpp;l\u003d223;drc\u003dd64e2a2939b1dbb09b8f5e66bf2e0ddc685b27d8, and then delete all of the permission stuff here.",
+      "range": {
+        "startLine": 800,
+        "startChar": 30,
+        "endLine": 800,
+        "endChar": 39
+      },
+      "revId": "3f2638b5b25162dfc73b4a526184694f5f032dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
