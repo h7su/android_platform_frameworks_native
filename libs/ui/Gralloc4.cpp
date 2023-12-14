@@ -1045,7 +1045,7 @@ Gralloc4Allocator::Gralloc4Allocator(const Gralloc4Mapper& mapper) : mMapper(map
             uid_t aid = multiuser_get_app_id(getuid());
             if (aid >= AID_ISOLATED_START && aid <= AID_ISOLATED_END) {
                 mAidlAllocator = AidlIAllocator::fromBinder(ndk::SpAIBinder(
-                        AServiceManager_getService(kAidlAllocatorServiceName.c_str())));
+                        AServiceManager_waitForService(kAidlAllocatorServiceName.c_str())));
             } else {
                 mAidlAllocator = AidlIAllocator::fromBinder(ndk::SpAIBinder(
                         AServiceManager_waitForService(kAidlAllocatorServiceName.c_str())));
