@@ -16,6 +16,23 @@
       "message": "Hi, Google team, please help review the patch, thanks!",
       "revId": "3086cd7f7dfae8fd940b09a254fac1215e1f8ab5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9396bed6_0c86cc11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2023-12-14T15:10:36Z",
+      "side": 1,
+      "message": "Thanks for the cleanup! It looks like this variable got moved in Ia5f04f447455bba0bbebbe7642d8ade8313f381a (submitted internally, so it won\u0027t show up in the AOSP Gerrit), but was never used in its new location.\n\nI could see an advantage to using it, though. If `hwc.getDeviceCompositionChanges` returns an error, we could ignore `changes` and leave `outChanges` unmodified.\n\nIf `hwc.getDeviceCompositionChanges` fails, we still set `outChanges` as `previousDeviceRequestedChanges`, which gets used later. If the HWC modifies `outChanges`, I could see that being incorrect. I\u0027d be curious to hear @vishnun@google.com\u0027s thoughts, since he wrote that CL.",
+      "revId": "3086cd7f7dfae8fd940b09a254fac1215e1f8ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
