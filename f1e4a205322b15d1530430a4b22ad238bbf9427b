@@ -46,6 +46,30 @@
       },
       "revId": "f1e4a205322b15d1530430a4b22ad238bbf9427b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748cd364_eb2a8056",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:30:16Z",
+      "side": 0,
+      "message": "You can export this as a platform symbol so it is not subject to ll-ndk library deadlines, like this:\nhttps://cs.android.com/android/platform/superproject/+/master:frameworks/native/libs/binder/ndk/libbinder_ndk.map.txt;l\u003d164;drc\u003dde6036dfb22a377fa2ad0ddc7007cd262729c7db",
+      "parentUuid": "746e6a08_b8c277e2",
+      "range": {
+        "startLine": 90,
+        "startChar": 60,
+        "endLine": 90,
+        "endChar": 80
+      },
+      "revId": "f1e4a205322b15d1530430a4b22ad238bbf9427b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

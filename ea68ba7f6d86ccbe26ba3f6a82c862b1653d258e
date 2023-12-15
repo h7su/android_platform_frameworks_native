@@ -115,6 +115,30 @@
       },
       "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d982536_12ef7a70",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:30:16Z",
+      "side": 1,
+      "message": "vendor would require ll-ndk API, so good to know. Also - last day for V ll-ndk API is 12/15 tomorrow so... we\u0027ll see",
+      "parentUuid": "b2abeaee_312c00df",
+      "range": {
+        "startLine": 152,
+        "startChar": 30,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "ea68ba7f6d86ccbe26ba3f6a82c862b1653d258e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
