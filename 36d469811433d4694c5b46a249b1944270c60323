@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "400295b8_d363c82b",
+        "filename": "libs/binder/Stability.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2023-12-15T22:51:10Z",
+      "side": 1,
+      "message": "nit: places",
+      "range": {
+        "startLine": 79,
+        "startChar": 3,
+        "endLine": 79,
+        "endChar": 8
+      },
+      "revId": "36d469811433d4694c5b46a249b1944270c60323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
