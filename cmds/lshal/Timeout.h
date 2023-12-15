@@ -19,8 +19,10 @@
 #include <condition_variable>
 #include <chrono>
 #include <functional>
+#include <memory>
 #include <mutex>
-#include <thread>
+#include <iostream>
+#include <optional>
 
 #include <hidl/Status.h>
 
@@ -32,46 +34,75 @@ static constexpr std::chrono::milliseconds IPC_CALL_WAIT{500};
 class BackgroundTaskState {
 public:
     explicit BackgroundTaskState(std::function<void(void)> &&func)
-            : mFunc(std::forward<decltype(func)>(func)) {}
-    void notify() {
+            : mFunc(std::move(func)) {}
+    void waitStateTaken() {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mCondVar.wait(lock, [this](){ return this->mStateTaken; });
+    }
+    void notifyStateTaken() {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mStateTaken = true;
+        lock.unlock();
+        mCondVar.notify_all();
+    }
+    void callFunc() {
+        mFunc();
+    }
+    template<class C, class D>
+    bool waitFinished(std::chrono::time_point<C, D> end) {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mCondVar.wait_until(lock, end, [this](){ return this->mFinished; });
+        return mFinished;
+    }
+    void notifyFinished() {
         std::unique_lock<std::mutex> lock(mMutex);
         mFinished = true;
         lock.unlock();
         mCondVar.notify_all();
     }
-    template<class C, class D>
-    bool wait(std::chrono::time_point<C, D> end) {
-        std::unique_lock<std::mutex> lock(mMutex);
-        mCondVar.wait_until(lock, end, [this](){ return this->mFinished; });
-        return mFinished;
-    }
-    void operator()() {
-        mFunc();
-    }
 private:
     std::mutex mMutex;
     std::condition_variable mCondVar;
+    bool mStateTaken = false;
     bool mFinished = false;
     std::function<void(void)> mFunc;
 };
 
 void *callAndNotify(void *data) {
-    BackgroundTaskState &state = *static_cast<BackgroundTaskState *>(data);
-    state();
-    state.notify();
+
+    // Take control of the shared state
+    std::shared_ptr<BackgroundTaskState> state = *static_cast<std::shared_ptr<BackgroundTaskState>*>(data);
+
+    // Notify main thread that the background thread has taken a strong reference to
+    // the state object.
+    state->notifyStateTaken();
+
+    // call the slow function.
+    state->callFunc();
+
+    // Notify the main thread that the slow function has finished.
+    state->notifyFinished();
+
     return nullptr;
 }
 
 template<class R, class P>
 bool timeout(std::chrono::duration<R, P> delay, std::function<void(void)> &&func) {
     auto now = std::chrono::system_clock::now();
-    BackgroundTaskState state{std::forward<decltype(func)>(func)};
+    auto state = std::make_shared<BackgroundTaskState>(std::move(func));
     pthread_t thread;
     if (pthread_create(&thread, nullptr, callAndNotify, &state)) {
         std::cerr << "FATAL: could not create background thread." << std::endl;
         return false;
     }
-    bool success = state.wait(now + delay);
+    // Wait until the background thread is started. This ensured that
+    // the background thread does not access the stack of timeout() to get `state`
+    // after timeout() has returned.
+    state->waitStateTaken();
+
+    // Wait for the background thread to execute the slow function, optionally abort.
+    bool success = state->waitFinished(now + delay);
+
     if (!success) {
         pthread_kill(thread, SIGINT);
     }
