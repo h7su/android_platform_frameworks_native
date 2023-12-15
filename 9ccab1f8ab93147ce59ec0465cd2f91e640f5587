@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a512f7fe_5435bf61",
+        "filename": "cmds/lshal/ListCommand.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-15T01:06:12Z",
+      "side": 1,
+      "message": "Need to be fixed, same below",
+      "range": {
+        "startLine": 526,
+        "startChar": 69,
+        "endLine": 526,
+        "endChar": 72
+      },
+      "revId": "9ccab1f8ab93147ce59ec0465cd2f91e640f5587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3252146f_9970a885",
+        "filename": "cmds/lshal/Timeout.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-15T01:06:12Z",
+      "side": 1,
+      "message": "Need to be fixed",
+      "range": {
+        "startLine": 121,
+        "startChar": 33,
+        "endLine": 121,
+        "endChar": 51
+      },
+      "revId": "9ccab1f8ab93147ce59ec0465cd2f91e640f5587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
