@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68226e9_82f5481b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:26:39Z",
+      "side": 1,
+      "message": "how is this tested/built in Android?",
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75256ac7_97119c3f",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:26:39Z",
+      "side": 1,
+      "message": "this would allow you to crash trusty",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 18
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5acf6d_ae4d6cfd",
+        "filename": "libs/binder/ndk/stability.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:26:39Z",
+      "side": 1,
+      "message": "why is this needed in the Trusty build?",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381e5314_3d7d784d",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 39
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T00:26:39Z",
+      "side": 1,
+      "message": "do we really need that much more API surface than libbinder_rpc_unstable or libbinder_rs? is there anyway to re-use or share those APIs, rather than creating a new RpcServer type? This is a really different API than we have there. We want this to be able to converge, right, so that eventually there is only one RpcServer? RpcServerTrusty should go away once TIPC switches to something stable upstream?",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
