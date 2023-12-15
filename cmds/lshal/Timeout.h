@@ -103,10 +103,14 @@ bool timeout(std::chrono::duration<R, P> delay, std::function<void(void)> &&func
     // Wait for the background thread to execute the slow function, optionally abort.
     bool success = state->waitFinished(now + delay);
 
-    if (!success) {
-        pthread_kill(thread, SIGINT);
+    if (success) {
+        pthread_join(thread, nullptr);
+    } else {
+        // b/311143089: Abandon this background thread. Resources for a detached
+        // thread are cleaned up when it is terminated. If the background thread
+        // is stalled, it will be terminated when returning from main().
+        pthread_detach(thread);
     }
-    pthread_join(thread, nullptr);
     return success;
 }
 
