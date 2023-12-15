@@ -85,7 +85,7 @@ cc_fuzz {
     // cflags: ["-DENABLE_LOG_FUZZ"],
 }
 
-cc_library_static {
+cc_library {
     name: "libbinder_random_parcel",
     host_supported: true,
     vendor_available: true,
