@@ -16,6 +16,69 @@
       "message": "This is WIP change for binder/fd support. \n- For some binders, ex defaultServiceManager(), no metadata is being recorded. binderRecordReplay tests needs modification so that saved and read object data can be checked. We would be able to save object metadata which is recorded inside parcel here: https://cs.android.com/android/platform/superproject/main/+/main:frameworks/native/libs/binder/Parcel.cpp;l\u003d1711;drc\u003d639490b9ec6535cda7f24403237355c941e9fcb2 Again, this doesn\u0027t necessarily captures every object.\n- binder2corpus need to read this metadata and generate seeds with it.\n- fuzzService modifications are needed so that we can replace the objects with random objects in Parcel data buffer. Using existing getRandomBinder and getRandomFd are maintainable options but using those will make seed generation more complex.",
       "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260ceaaf_e5001899",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T22:16:29Z",
+      "side": 1,
+      "message": "does this work btw? it looks like good progress, but we might want to meet and white board this",
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b65b97b_be625b63",
+        "filename": "libs/binder/Parcel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T22:16:29Z",
+      "side": 1,
+      "message": "we need to actually zero or eliminate this data before saving it to disk.",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 52
+      },
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa00aa0_8d3a37c6",
+        "filename": "libs/binder/include/binder/Parcel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-15T22:16:29Z",
+      "side": 1,
+      "message": "a few things on this:\n- we shouldn\u0027t export it as API (note \u0027ipcObjects\u0027 is hidden)\n- almost always prefer \u0027struct Foo { size_t a; size_t b; };\u0027 over pair",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 73
+      },
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
