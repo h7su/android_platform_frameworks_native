@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa6a5d09_e7919d05",
+        "filename": "libs/binder/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-12-16T05:09:18Z",
+      "side": 1,
+      "message": "this is 36s? you can use `10m` here.",
+      "range": {
+        "startLine": 262,
+        "startChar": 24,
+        "endLine": 262,
+        "endChar": 29
+      },
+      "revId": "f62727a3a6b73d0dbecacd8947cc7f6510c1b209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
