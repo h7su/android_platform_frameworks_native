@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4421ebf_1fc91375",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1413436
+      },
+      "writtenOn": "2023-12-18T06:21:50Z",
+      "side": 1,
+      "message": "Marking as resolved. Feel free to reopen if you have any concerns.",
+      "parentUuid": "51dbce80_8cd7c3d5",
+      "revId": "3f2638b5b25162dfc73b4a526184694f5f032dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "891b2c04_96c2d031",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "AFAIK `adb shell dumpsys` calls this part, if the process uses libgui.",
       "parentUuid": "891b2c04_96c2d031",
+      "range": {
+        "startLine": 800,
+        "startChar": 30,
+        "endLine": 800,
+        "endChar": 39
+      },
+      "revId": "3f2638b5b25162dfc73b4a526184694f5f032dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b30b13_1b6852d4",
+        "filename": "libs/gui/BufferQueueConsumer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1413436
+      },
+      "writtenOn": "2023-12-18T06:21:50Z",
+      "side": 1,
+      "message": "Marking as resolved. Feel free to reopen if you have any concerns.",
+      "parentUuid": "3e7aaee2_94e09243",
       "range": {
         "startLine": 800,
         "startChar": 30,
