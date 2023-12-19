@@ -69,10 +69,14 @@ public:
         // Wait for the background thread to execute the slow function, optionally abort.
         auto ret = task->waitFinishedAndRetrieve(now + delay);
 
-        if (!ret.has_value()) {
-            pthread_kill(thread, SIGINT);
+        if (ret.has_value()) {
+            pthread_join(thread, nullptr);
+        } else {
+            // b/311143089: Abandon this background thread. Resources for a detached
+            // thread are cleaned up when it is terminated. If the background thread
+            // is stalled, it will be terminated when returning from main().
+            pthread_detach(thread);
         }
-        pthread_join(thread, nullptr);
         return ret;
     }
 
@@ -132,6 +136,9 @@ private:
 } // namespace
 
 // Call function on interfaceObject and wait for result until the given timeout has reached.
+// Callback functions pass to timeoutIPC() may executed after the this function
+// has returned, especially if deadline has been reached. Hence, care must be taken when passing
+// data between the background thread and the main thread. See b/311143089.
 template<class R, class P, class Function, class I, class... Args>
 typename std::result_of<Function(I *, Args...)>::type
 timeoutIPC(std::chrono::duration<R, P> wait, const sp<I> &interfaceObject, Function &&func,
@@ -149,6 +156,9 @@ timeoutIPC(std::chrono::duration<R, P> wait, const sp<I> &interfaceObject, Funct
 }
 
 // Call function on interfaceObject and wait for result until the default timeout has reached.
+// Callback functions pass to timeoutIPC() may executed after the this function
+// has returned, especially if deadline has been reached. Hence, care must be taken when passing
+// data between the background thread and the main thread. See b/311143089.
 template<class Function, class I, class... Args>
 typename std::result_of<Function(I *, Args...)>::type
 timeoutIPC(const sp<I> &interfaceObject, Function &&func, Args &&... args) {
