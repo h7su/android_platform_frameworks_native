@@ -22,6 +22,30 @@
       },
       "revId": "549782358016fe4ab5f803c02b2b8377b7719d0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a3fd302_011d312a",
+        "filename": "cmds/lshal/Timeout.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-19T22:13:10Z",
+      "side": 1,
+      "message": "No. The two new tests ensures that.\n\nI added two tests. One checks that the background thread continues execution even after the main thread puts the future object in the dead pool. The other test ensures that the main thread is not blocked by the background thread when the timeout has reached.\n\nThe pool is just a pool of future objects, not a pool of threads.",
+      "parentUuid": "ca339984_459684a5",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "549782358016fe4ab5f803c02b2b8377b7719d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
