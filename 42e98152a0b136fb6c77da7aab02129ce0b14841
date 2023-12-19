@@ -34,6 +34,24 @@
       "parentUuid": "266a48aa_6da3988b",
       "revId": "42e98152a0b136fb6c77da7aab02129ce0b14841",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e18710_3cfef8ba",
+        "filename": "libs/binder/tests/binderRpcTest.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2023-12-19T03:35:03Z",
+      "side": 1,
+      "message": "Why not? std::format is pretty cool and I hope would end up being a go-to formatting mechanism once it\u0027s enabled in Android.\n\nExcept the ETA for libstdc++ update has passed and the job turned up to be more complex than 2-weeks worth of work. But I think I\u0027ll look into helping the engineer who\u0027s working on it.",
+      "parentUuid": "266a48aa_6da3988b",
+      "revId": "42e98152a0b136fb6c77da7aab02129ce0b14841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
