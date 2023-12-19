@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24a42291_bf75f78f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-19T22:27:05Z",
+      "side": 1,
+      "message": "Holding this change until after the holidays because this is a bit disruptive.",
+      "revId": "549782358016fe4ab5f803c02b2b8377b7719d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca339984_459684a5",
         "filename": "cmds/lshal/Timeout.h",
         "patchSetId": 13
