@@ -16,92 +16,144 @@
 
 #pragma once
 
-#include <condition_variable>
 #include <chrono>
+#include <condition_variable>
 #include <functional>
+#include <iostream>
+#include <memory>
 #include <mutex>
-#include <thread>
+#include <optional>
 
 #include <hidl/Status.h>
 
 namespace android {
 namespace lshal {
 
-static constexpr std::chrono::milliseconds IPC_CALL_WAIT{500};
+enum class State : int32_t { INITIALIZED, STARTED, FINISHED, RETRIEVED };
 
-class BackgroundTaskState {
+// Check that state is not RETRIEVED.
+void checkNotRetrieved(State state);
+
+namespace {
+
+constexpr std::chrono::milliseconds IPC_CALL_WAIT{500};
+
+// A background task that wraps a function. The function takes no arguments
+// and return some value. For functions with arguments, use std::bind.
+template <class Function>
+class BackgroundTask {
+    using ReturnType = typename std::result_of<Function()>::type;
+
 public:
-    explicit BackgroundTaskState(std::function<void(void)> &&func)
-            : mFunc(std::forward<decltype(func)>(func)) {}
-    void notify() {
-        std::unique_lock<std::mutex> lock(mMutex);
-        mFinished = true;
-        lock.unlock();
-        mCondVar.notify_all();
+    // public so it can be accessed by std::make_shared
+    explicit BackgroundTask(Function&& func) : mFunc(std::move(func)) {}
+
+    // Runs the given function in a background thread with the given timeout. If
+    // deadline has reached before the function returns, std::nullopt is
+    // returned.
+    template <class R, class P>
+    static std::optional<ReturnType> runWithTimeout(std::chrono::duration<R, P> delay,
+                                                    Function&& func) {
+        auto now = std::chrono::system_clock::now();
+        auto task = std::make_shared<BackgroundTask>(std::move(func));
+        pthread_t thread;
+        if (pthread_create(&thread, nullptr, BackgroundTask::callAndNotify, &task)) {
+            std::cerr << "FATAL: could not create background thread." << std::endl;
+            return std::nullopt;
+        }
+        // Wait until the background thread is started. This ensured that
+        // the background thread does not access the stack of timeout() to get `task`
+        // after timeout() has returned.
+        task->waitStarted();
+
+        // Wait for the background thread to execute the slow function, optionally abort.
+        auto ret = task->waitFinishedAndRetrieve(now + delay);
+
+        if (!ret.has_value()) {
+            pthread_kill(thread, SIGINT);
+        }
+        pthread_join(thread, nullptr);
+        return ret;
     }
-    template<class C, class D>
-    bool wait(std::chrono::time_point<C, D> end) {
-        std::unique_lock<std::mutex> lock(mMutex);
-        mCondVar.wait_until(lock, end, [this](){ return this->mFinished; });
-        return mFinished;
-    }
-    void operator()() {
-        mFunc();
-    }
+
 private:
+    // Entry point of the background thread. Interpret data as a shared_ptr<BackgroundTask>*
+    // and execute the slow function stored in it.
+    static void* callAndNotify(void* data) {
+        // Background thread holds a reference of the shared task object
+        std::shared_ptr<BackgroundTask> task = *static_cast<std::shared_ptr<BackgroundTask>*>(data);
+
+        // Notify main thread that the background thread has taken a strong reference to
+        // the task object. The main thread may check time after this point.
+        {
+            std::lock_guard<std::mutex> lock(task->mMutex);
+            task->mState = State::STARTED;
+        }
+        task->mCondVar.notify_all();
+
+        // call the slow function.
+        auto ret = task->mFunc();
+
+        // Notify the main thread that the slow function has finished.
+        {
+            std::unique_lock<std::mutex> lock(task->mMutex);
+            task->mState = State::FINISHED;
+            task->mRet = std::move(ret);
+        }
+        task->mCondVar.notify_all();
+
+        return nullptr;
+    }
+
+    // Called by the main thread. Wait for the background thread to start.
+    void waitStarted() {
+        std::unique_lock<std::mutex> lock(mMutex);
+        mCondVar.wait(lock, [this]() { return this->mState >= State::STARTED; });
+    }
+
+    // Called by the main thread. Wait for the background function to finish or
+    // the given time has reached. Then return the function value.
+    template <class C, class D>
+    std::optional<ReturnType> waitFinishedAndRetrieve(std::chrono::time_point<C, D> end) {
+        std::unique_lock<std::mutex> lock(mMutex);
+        checkNotRetrieved(mState);
+        mCondVar.wait_until(lock, end, [this]() { return this->mState == State::FINISHED; });
+        mState = State::RETRIEVED;
+        return std::move(mRet);
+    }
+
     std::mutex mMutex;
     std::condition_variable mCondVar;
-    bool mFinished = false;
-    std::function<void(void)> mFunc;
+    State mState = State::INITIALIZED;
+    std::optional<ReturnType> mRet;
+    Function mFunc;
 };
 
-void *callAndNotify(void *data) {
-    BackgroundTaskState &state = *static_cast<BackgroundTaskState *>(data);
-    state();
-    state.notify();
-    return nullptr;
-}
+} // namespace
 
-template<class R, class P>
-bool timeout(std::chrono::duration<R, P> delay, std::function<void(void)> &&func) {
-    auto now = std::chrono::system_clock::now();
-    BackgroundTaskState state{std::forward<decltype(func)>(func)};
-    pthread_t thread;
-    if (pthread_create(&thread, nullptr, callAndNotify, &state)) {
-        std::cerr << "FATAL: could not create background thread." << std::endl;
-        return false;
-    }
-    bool success = state.wait(now + delay);
-    if (!success) {
-        pthread_kill(thread, SIGINT);
-    }
-    pthread_join(thread, nullptr);
-    return success;
-}
-
+// Call function on interfaceObject and wait for result until the given timeout has reached.
 template<class R, class P, class Function, class I, class... Args>
 typename std::result_of<Function(I *, Args...)>::type
 timeoutIPC(std::chrono::duration<R, P> wait, const sp<I> &interfaceObject, Function &&func,
            Args &&... args) {
     using ::android::hardware::Status;
-    typename std::result_of<Function(I *, Args...)>::type ret{Status::ok()};
+
     auto boundFunc = std::bind(std::forward<Function>(func),
             interfaceObject.get(), std::forward<Args>(args)...);
-    bool success = timeout(wait, [&ret, &boundFunc] {
-        ret = std::move(boundFunc());
-    });
-    if (!success) {
+
+    auto ret = BackgroundTask<decltype(boundFunc)>::runWithTimeout(wait, std::move(boundFunc));
+    if (!ret.has_value()) {
         return Status::fromStatusT(TIMED_OUT);
     }
-    return ret;
+    return std::move(*ret);
 }
 
+// Call function on interfaceObject and wait for result until the default timeout has reached.
 template<class Function, class I, class... Args>
 typename std::result_of<Function(I *, Args...)>::type
 timeoutIPC(const sp<I> &interfaceObject, Function &&func, Args &&... args) {
     return timeoutIPC(IPC_CALL_WAIT, interfaceObject, func, args...);
 }
 
-
-}  // namespace lshal
-}  // namespace android
+} // namespace lshal
+} // namespace android
