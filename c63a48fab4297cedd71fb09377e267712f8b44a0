@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc44633_4f2482ba",
+        "filename": "cmds/servicemanager/test_sm.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-19T08:11:00Z",
+      "side": 1,
+      "message": "This isn\u0027t good. But I don\u0027t have a better option for now.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 86
+      },
+      "revId": "c63a48fab4297cedd71fb09377e267712f8b44a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
