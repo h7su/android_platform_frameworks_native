@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca339984_459684a5",
+        "filename": "cmds/lshal/Timeout.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-19T22:04:45Z",
+      "side": 1,
+      "message": "if these interface calls return while they are in the dead pool, could this cause any issue?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 53
+      },
+      "revId": "549782358016fe4ab5f803c02b2b8377b7719d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
