@@ -21,6 +21,7 @@
 
 #include <chrono>
 #include <cstdlib>
+#include <format>
 #include <iostream>
 #include <thread>
 #include <type_traits>
