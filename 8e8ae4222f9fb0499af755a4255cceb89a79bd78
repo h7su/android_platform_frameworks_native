@@ -52,6 +52,23 @@
       "parentUuid": "ba2f049f_a52a5055",
       "revId": "8e8ae4222f9fb0499af755a4255cceb89a79bd78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c9c218_792cd284",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2023-12-20T17:33:47Z",
+      "side": 1,
+      "message": "LGTM, but leaving +2 to Jesse since he approved the previous change.",
+      "revId": "8e8ae4222f9fb0499af755a4255cceb89a79bd78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
