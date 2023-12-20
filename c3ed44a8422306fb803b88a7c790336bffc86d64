@@ -16,6 +16,23 @@
       "message": "Hi Chris and Jesse,\n\nThis is a follow-up change for https://android-review.googlesource.com/c/platform/frameworks/native/+/1958441.\n\nI have verified the change on GLDual.apk and it can be installed Android 14 devices.\n\nCould you help to review it? thanks",
       "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab596e9_635bbc2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1411826
+      },
+      "writtenOn": "2023-12-20T11:16:18Z",
+      "side": 1,
+      "message": "Hi Jesse and Chris,\n\nNot sure if any progress we can have in this review? I\u0027m happy to provide more information then help on this change as we might know this is a trivial change and needed by opengl unittests. thanks!",
+      "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
