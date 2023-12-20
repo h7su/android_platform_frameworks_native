@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6081947_d7d6f3f6",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T00:10:52Z",
+      "side": 1,
+      "message": "more tests?",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b042704_7c7bb68c",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T00:10:52Z",
+      "side": 1,
+      "message": "could we add these entries to service contexts instead? The \u0027canFind\u0027 permission doesn\u0027t really make sense, but if you think of it like \"can find info about\" then I think it\u0027s pretty clear?",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 20
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1335047f_287e1799",
+        "filename": "cmds/servicemanager/test_sm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T00:10:52Z",
+      "side": 1,
+      "message": "also more tests for getUpdatableNames? maybe include positive and negative tests?",
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
