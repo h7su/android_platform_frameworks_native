@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc605d21_cf4c8495",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T20:11:19Z",
+      "side": 1,
+      "message": "this can\u0027t do that?",
+      "range": {
+        "startLine": 93,
+        "startChar": 10,
+        "endLine": 93,
+        "endChar": 29
+      },
+      "revId": "b3c615f807d98a098b8d0d71d8ab204021e2b244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
