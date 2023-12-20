@@ -33,6 +33,23 @@
       "message": "Hi Jesse and Chris,\n\nNot sure if any progress we can have in this review? I\u0027m happy to provide more information then help on this change as we might know this is a trivial change and needed by opengl unittests. thanks!",
       "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81cc6300_2d4365a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2023-12-20T17:35:43Z",
+      "side": 1,
+      "message": "LGTM +1 to let Jesse chime in with any concerns.",
+      "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
