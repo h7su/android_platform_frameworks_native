@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdd9a3a8_c87f3bbd",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T02:15:42Z",
+      "side": 1,
+      "message": "Yeah, I think it\u0027s fine. One downside is that it does look like HIDL (\"@5.0\"). We might want to remove the \u0027.0\u0027 from the libvintf toString for these? maybe? or maybe we\u0027re stuck with this? Also we probably want to add an attribute like \u0027attribute sphal_service;\u0027 and \u0027type mapper_service, sphal_service, service_manager_type;\u0027\n\nAlso - it would be pretty easy to separate this from service_manager_type, but I agree with Inseob. Maybe we can get a second-take from jeffv@ as well? but yeah, I\u0027m good with it.",
+      "parentUuid": "09ef1720_6779a1c3",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 20
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1335047f_287e1799",
         "filename": "cmds/servicemanager/test_sm.cpp",
         "patchSetId": 2
