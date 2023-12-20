@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fff70fd_b9b06258",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-20T01:43:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c6081947_d7d6f3f6",
+      "range": {
+        "startLine": 106,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b042704_7c7bb68c",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a167368e_f8b76f06",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-20T01:43:21Z",
+      "side": 1,
+      "message": "Yup, I was wondering about this. So, if we use service contexts, it would look like:\n```\ntype mapper_service, service_manager_type;\n\nmapper@5.0/minibgm u:object_r:mapper_service:s0\n\nallow some_app mapper_service:service_manager find;\n```\n\nHowever, I think we need a new type of context instead of using \"service\" contexts. Treating native instances (.so files) as service sounds odd to me. (Inviting @inseob)\n\nOtherwise, sounds good to me.",
+      "parentUuid": "4b042704_7c7bb68c",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 20
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1335047f_287e1799",
         "filename": "cmds/servicemanager/test_sm.cpp",
         "patchSetId": 2
@@ -60,6 +108,24 @@
       "writtenOn": "2023-12-20T00:10:52Z",
       "side": 1,
       "message": "also more tests for getUpdatableNames? maybe include positive and negative tests?",
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c51ad2e_e030aaaa",
+        "filename": "cmds/servicemanager/test_sm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-20T01:43:21Z",
+      "side": 1,
+      "message": "For now, there\u0027s no native instances in (v)apex. Hence, for more tests, I think we need to refactor a bit for better testability. I\u0027d like to do it as separate changes.",
+      "parentUuid": "1335047f_287e1799",
       "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
