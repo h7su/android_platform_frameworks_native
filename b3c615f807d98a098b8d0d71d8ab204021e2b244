@@ -22,6 +22,29 @@
       },
       "revId": "b3c615f807d98a098b8d0d71d8ab204021e2b244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47864bd1_3b4e5ab5",
+        "filename": "cmds/servicemanager/Access.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-20T20:12:06Z",
+      "side": 1,
+      "message": "also - I\u0027m not sure you should do this - it will be cleaned up by the kernel as servicemanager shuts down, so removing it would make sure we have the same codepath, depending on if servicemanager halts unexpectedly or if it shuts down as part of device shutdown",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 30
+      },
+      "revId": "b3c615f807d98a098b8d0d71d8ab204021e2b244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
