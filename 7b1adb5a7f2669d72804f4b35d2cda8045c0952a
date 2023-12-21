@@ -16,6 +16,23 @@
       "message": "Looks like build fails with ` unrecognized property \"test_options.test_runner_options\"`",
       "revId": "7b1adb5a7f2669d72804f4b35d2cda8045c0952a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf81215f_09e1579e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1222074
+      },
+      "writtenOn": "2023-12-21T01:07:26Z",
+      "side": 1,
+      "message": "Please review presubmit errors",
+      "revId": "7b1adb5a7f2669d72804f4b35d2cda8045c0952a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
