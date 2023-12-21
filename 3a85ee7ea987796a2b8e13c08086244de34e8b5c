@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98b35147_936a3153",
+        "filename": "cmds/servicemanager/NameUtil.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-12-21T01:24:37Z",
+      "side": 1,
+      "message": "what if `slash \u003c colon`?",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b3e3da3_b764da61",
         "filename": "cmds/servicemanager/ServiceManager.cpp",
         "patchSetId": 4
