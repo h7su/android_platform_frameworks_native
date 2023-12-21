@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b3e3da3_b764da61",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-21T00:35:24Z",
+      "side": 1,
+      "message": "could we consider this an error? It shouldn\u0027t happen, right?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
