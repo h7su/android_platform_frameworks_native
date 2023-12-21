@@ -2226,7 +2226,7 @@ void Layer::writeToProtoCommonState(LayerProto* layerInfo, LayerVector::StateSet
                                     uint32_t traceFlags) {
     const bool useDrawing = stateSet == LayerVector::StateSet::Drawing;
     const LayerVector& children = useDrawing ? mDrawingChildren : mCurrentChildren;
-    const State& state = useDrawing ? mDrawingState : mDrawingState;
+    const State& state = useDrawing ? mDrawingState : mCurrentState;
 
     ui::Transform requestedTransform = state.transform;
 
