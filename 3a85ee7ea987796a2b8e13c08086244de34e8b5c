@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ddf482_8551a665",
+        "filename": "cmds/servicemanager/NameUtil.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-21T02:08:10Z",
+      "side": 1,
+      "message": "It will fail at L47 because of invalid version string (having \u0027/\u0027).\n\nAnd I ran fuzzer a few minutes without a problem.",
+      "parentUuid": "29fcd262_39ff0df9",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b3e3da3_b764da61",
