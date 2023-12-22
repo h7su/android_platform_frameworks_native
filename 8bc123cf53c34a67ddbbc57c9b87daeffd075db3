@@ -16,6 +16,29 @@
       "message": "hey, this wasn\u0027t supposed to be a switch. We should set both",
       "revId": "8bc123cf53c34a67ddbbc57c9b87daeffd075db3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2233cc82_4b376bac",
+        "filename": "libs/binder/ndk/stability.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-22T00:33:16Z",
+      "side": 1,
+      "message": "if this is required, why wasn\u0027t it caught by CI? will we be adding it to CI?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 55
+      },
+      "revId": "8bc123cf53c34a67ddbbc57c9b87daeffd075db3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
