@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d1c9d8_a6324a73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-22T00:32:53Z",
+      "side": 1,
+      "message": "hey, this wasn\u0027t supposed to be a switch. We should set both",
+      "revId": "8bc123cf53c34a67ddbbc57c9b87daeffd075db3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
