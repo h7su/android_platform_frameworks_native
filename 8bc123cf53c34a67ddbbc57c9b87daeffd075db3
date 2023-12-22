@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8170817a_e8257742",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-22T00:35:50Z",
+      "side": 1,
+      "message": "I\u0027ll fix the commit message.",
+      "parentUuid": "c2d1c9d8_a6324a73",
+      "revId": "8bc123cf53c34a67ddbbc57c9b87daeffd075db3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2233cc82_4b376bac",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-22T00:33:16Z",
       "side": 1,
       "message": "if this is required, why wasn\u0027t it caught by CI? will we be adding it to CI?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 55
+      },
+      "revId": "8bc123cf53c34a67ddbbc57c9b87daeffd075db3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "245edb85_1b4d4a79",
+        "filename": "libs/binder/ndk/stability.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2023-12-22T00:35:50Z",
+      "side": 1,
+      "message": "The Rust code that triggers this hasn\u0027t landed yet. See https://r.android.com/c/2584776/66.",
+      "parentUuid": "2233cc82_4b376bac",
       "range": {
         "startLine": 30,
         "startChar": 0,
