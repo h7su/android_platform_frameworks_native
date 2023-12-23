@@ -6135,6 +6135,80 @@ TEST_F(InputDispatcherFocusOnTwoDisplaysTest, CancelTouch_MultiDisplay) {
     monitorInSecondary.assertNoEvents();
 }
 
+TEST_F(InputDispatcherFocusOnTwoDisplaysTest, WhenDropKeyEvent_OnlyCancelCorrespondingKeyGesture) {
+    // inject a key down on primary display
+    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,
+              injectKeyDownNoRepeat(mDispatcher, ADISPLAY_ID_DEFAULT))
+            << "Inject key event should return InputEventInjectionResult::SUCCEEDED";
+    windowInPrimary->consumeKeyDown(ADISPLAY_ID_DEFAULT);
+    windowInSecondary->assertNoEvents();
+
+    // inject a key down on second display
+    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,
+              injectKeyDownNoRepeat(mDispatcher, SECOND_DISPLAY_ID))
+            << "Inject key event should return InputEventInjectionResult::SUCCEEDED";
+    windowInSecondary->consumeKeyDown(SECOND_DISPLAY_ID);
+    windowInPrimary->assertNoEvents();
+
+    // inject a valid key up event on primary display that will be dropped because it is stale
+    KeyEvent event;
+    const nsecs_t eventTime = systemTime(SYSTEM_TIME_MONOTONIC) -
+            std::chrono::nanoseconds(STALE_EVENT_TIMEOUT).count();
+    event.initialize(InputEvent::nextId(), DEVICE_ID, AINPUT_SOURCE_KEYBOARD, ADISPLAY_ID_DEFAULT,
+                     INVALID_HMAC, AKEY_EVENT_ACTION_UP, /* flags */ 0, AKEYCODE_A, KEY_A,
+                     AMETA_NONE, /*repeatCount=*/1, eventTime, eventTime);
+    InputEventInjectionResult result =
+            mDispatcher->injectInputEvent(&event, /*targetUid=*/{},
+                                          InputEventInjectionSync::WAIT_FOR_RESULT,
+                                          INJECT_EVENT_TIMEOUT,
+                                          DEFAULT_POLICY_FLAGS);
+    ASSERT_EQ(InputEventInjectionResult::FAILED, result)
+            << "Injection should fail because the event is stale";
+
+    // only the key gesture corresponding to the dropped event can receive the cancel event.
+    // so windowInPrimary expects to receive the cancel event and windowInSecondary expects to
+    // receive no event
+    windowInPrimary->consumeEvent(InputEventType::KEY, AKEY_EVENT_ACTION_UP, ADISPLAY_ID_DEFAULT,
+                                  AKEY_EVENT_FLAG_CANCELED);
+    windowInSecondary->assertNoEvents();
+}
+
+TEST_F(InputDispatcherFocusOnTwoDisplaysTest, WhenDropMotionEvent_OnlyCancelCorrespondingGesture) {
+    // Test touch down on primary display.
+    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,
+              injectMotionDown(mDispatcher, AINPUT_SOURCE_TOUCHSCREEN, ADISPLAY_ID_DEFAULT))
+            << "Inject motion event should return InputEventInjectionResult::SUCCEEDED";
+    windowInPrimary->consumeMotionDown(ADISPLAY_ID_DEFAULT);
+    windowInSecondary->assertNoEvents();
+
+    // Test touch down on second display.
+    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,
+              injectMotionDown(mDispatcher, AINPUT_SOURCE_TOUCHSCREEN, SECOND_DISPLAY_ID))
+            << "Inject motion event should return InputEventInjectionResult::SUCCEEDED";
+    windowInPrimary->assertNoEvents();
+    windowInSecondary->consumeMotionDown(SECOND_DISPLAY_ID);
+
+    // inject a valid MotionEvent on primary display that will be dropped because it is stale
+    const nsecs_t eventTime = systemTime(SYSTEM_TIME_MONOTONIC) -
+            std::chrono::nanoseconds(STALE_EVENT_TIMEOUT).count();
+    const MotionEvent event =
+            MotionEventBuilder(AMOTION_EVENT_ACTION_DOWN, AINPUT_SOURCE_TOUCHSCREEN)
+                    .displayId(ADISPLAY_ID_DEFAULT)
+                    .eventTime(eventTime)
+                    .pointer(PointerBuilder(/*id=*/0, ToolType::FINGER).x(100).y(200))
+                    .build();
+    ASSERT_EQ(InputEventInjectionResult::FAILED,
+              injectMotionEvent(mDispatcher, event, INJECT_EVENT_TIMEOUT,
+                                InputEventInjectionSync::WAIT_FOR_RESULT))
+            << "Injection should fail because the event is stale";
+
+    // only the gesture corresponding to the dropped event can receive the cancel event.
+    // so windowInPrimary expects to receive the cancel event and windowInSecondary expects to
+    // receive no event
+    windowInPrimary->consumeMotionCancel(ADISPLAY_ID_DEFAULT);
+    windowInSecondary->assertNoEvents();
+}
+
 class InputFilterTest : public InputDispatcherTest {
 protected:
     void testNotifyMotion(int32_t displayId, bool expectToBeFiltered,
