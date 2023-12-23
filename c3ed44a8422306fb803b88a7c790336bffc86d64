@@ -85,6 +85,24 @@
       "parentUuid": "c5726794_78f5cea8",
       "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4ca448_8f75fbe9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2023-12-23T16:07:16Z",
+      "side": 1,
+      "message": "Presubmit is showing a deqp error, but I don\u0027t think it is related to your CL.\n\nI\u0027ll run it again.\n\n```\njava.lang.AssertionError: \n  Unexpected method call testRunEnded(1, {}):\n    testStarted(dEQP-GLES30.info#version): expected: 1, actual: 1\n    testEnded(dEQP-GLES30.info#version, notNull()): expected: 1, actual: 0\n\tat org.easymock.internal.MockInvocationHandler.invoke(MockInvocationHandler.java:43)\n\tat org.easymock.internal.ObjectMethodsFilter.invoke(ObjectMethodsFilter.java:72)\n\tat jdk.proxy2/jdk.proxy2.$Proxy106.testRunEnded(Unknown Source)\n\tat com.drawelements.deqp.runner.DeqpTestRunner.run(DeqpTestRunner.java:2398)\n\tat com.drawelements.deqp.runner.DeqpTestRunnerTest.testGlesVersion(DeqpTestRunnerTest.java:280)\n\tat com.drawelements.deqp.runner.DeqpTestRunnerTest.testRun_require30DeviceVersion20(DeqpTestRunnerTest.java:1291)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:568)\n\tat junit.framework.TestCase.runTest(TestCase.java:177)\n\tat junit.framework.TestCase.runBare(TestCase.java:142)\n\tat com.android.tradefed.testtype.DeviceTestResult$1.protect(DeviceTestResult.java:99)\n\tat com.android.tradefed.testtype.DeviceTestResult.runProtected(DeviceTestResult.java:73)\n\tat com.android.tradefed.testtype.DeviceTestResult.run(DeviceTestResult.java:104)\n\tat junit.framework.TestCase.run(TestCase.java:130)\n\tat junit.framework.TestSuite.runTest(TestSuite.java:241)\n\tat junit.framework.TestSuite.run(TestSuite.java:236)\n\tat com.android.tradefed.testtype.JUnitRunUtil.runTest(JUnitRunUtil.java:65)\n\tat com.android.tradefed.testtype.HostTest.runJUnit3Tests(HostTest.java:708)\n\tat com.android.tradefed.testtype.HostTest.runTestClasses(HostTest.java:591)\n\tat com.android.tradefed.testtype.HostTest.run(HostTest.java:564)\n\tat com.android.tradefed.invoker.InvocationExecution.runTest(InvocationExecution.java:1456)\n\tat com.android.tradefed.invoker.InvocationExecution.runTests(InvocationExecution.java:1204)\n\tat com.android.tradefed.invoker.TestInvocation.prepareAndRun(TestInvocation.java:627)\n\tat com.android.tradefed.invoker.TestInvocation.performInvocation(TestInvocation.java:284)\n\tat com.android.tradefed.invoker.TestInvocation.invoke(TestInvocation.java:1414)\n\tat com.android.tradefed.command.CommandScheduler$InvocationThread.run(CommandScheduler.java:689)\n```",
+      "parentUuid": "4f66846c_be64894b",
+      "revId": "c3ed44a8422306fb803b88a7c790336bffc86d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
