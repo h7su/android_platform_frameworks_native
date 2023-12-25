@@ -6042,7 +6042,7 @@ status_t InputDispatcher::pilferPointersLocked(const sp<IBinder>& token) {
     TouchedWindow& window = *windowPtr;
     // Send cancel events to all the input channels we're stealing from.
     CancelationOptions options(CancelationOptions::Mode::CANCEL_POINTER_EVENTS,
-                               "input channel stole pointer stream");
+                               (requestingChannel->getName() + " stole pointer stream").c_str());
     options.deviceId = deviceId;
     options.displayId = displayId;
     std::bitset<MAX_POINTER_ID + 1> pointerIds = window.getTouchingPointers(deviceId);
