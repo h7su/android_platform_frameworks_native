@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d7f837_d1f0fe99",
+        "filename": "services/inputflinger/dispatcher/InputDispatcher.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 6045,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-26T18:02:43Z",
+      "side": 1,
+      "message": "Unfortunately you can\u0027t do this, because currently \"reason\" is a `char*`, so this will be a memory leak.",
+      "range": {
+        "startLine": 6045,
+        "startChar": 31,
+        "endLine": 6045,
+        "endChar": 95
+      },
+      "revId": "18e21c657a752bb90af9a4662f599eb3c7b9cd07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
