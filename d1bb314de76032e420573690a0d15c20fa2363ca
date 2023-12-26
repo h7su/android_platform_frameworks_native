@@ -33,6 +33,23 @@
       "message": "Hi, @ramindani@google.com, please help code review again, thank you!",
       "revId": "d1bb314de76032e420573690a0d15c20fa2363ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d14fdd3_7d0de1fc",
+        "filename": "services/surfaceflinger/DisplayHardware/HWC2.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2023-12-26T19:30:12Z",
+      "side": 1,
+      "message": "Thanks for the cleanup!\n\nSmall nit, though: since we don\u0027t use `error` after this, it would\u0027ve been even better to make this\n\n```\nif (const auto error \u003d static_cast\u003cError\u003e(intError); error !\u003d Error::NONE) {\n    return error;\n}\n```",
+      "revId": "d1bb314de76032e420573690a0d15c20fa2363ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
