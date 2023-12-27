@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6251726_f2c92d5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-27T23:37:13Z",
+      "side": 1,
+      "message": "Hard to resolve merge conflicts in the tests, so I just dropped the test.",
+      "revId": "0d249c9552d0f7884d3553e4083f366f8b3d5df6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
