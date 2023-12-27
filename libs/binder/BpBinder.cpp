@@ -58,6 +58,58 @@ std::atomic<uint32_t> BpBinder::sBinderProxyCountWarned(0);
 
 static constexpr uint32_t kBinderProxyCountWarnInterval = 5000;
 
+// DO NOT COPY this style - coded to be done quickly w/ idea not maintainable
+#ifdef __ANDROID__
+
+struct LeakCheckTask {
+    std::string parentName;
+    void* parentPointer;
+    std::set<wp<IBinder>> weakPointers;
+};
+
+static std::mutex& parentMutex() {
+    [[clang::no_destroy]] static std::mutex mutex;
+    return mutex;
+}
+static std::condition_variable& parentCv() {
+    [[clang::no_destroy]] static std::condition_variable cv;
+    return cv;
+}
+static std::vector<LeakCheckTask>& tasks() {
+    [[clang::no_destroy]] static std::vector<LeakCheckTask> tasks;
+    return tasks;
+}
+
+static void initParentTracking() {
+    [[clang::no_destroy]] static std::thread thread = std::thread([]() {
+          while (true) {
+            std::vector<LeakCheckTask> asdf;
+            {
+                std::unique_lock<std::mutex> mutex(parentMutex());
+                parentCv().wait(mutex);
+
+                asdf.insert(asdf.begin(), tasks().begin(), tasks().end());
+                tasks().clear();
+            }
+
+            sleep(1); // something amortized yatta yatta
+
+            for (const LeakCheckTask& task : asdf) {
+                for (const wp<IBinder>& passed : task.weakPointers) {
+                    sp<IBinder> binder = passed.promote();
+                    if (binder == nullptr) continue;
+               
+                    ALOGI("Binder %p (%s) was destroyed >1 sec ago, while binder we sent a reference to this %p (%s) remains still now",
+                        task.parentPointer,
+                        task.parentName.c_str(),
+                        binder.get(), String8(binder->getInterfaceDescriptor()).c_str());
+                }
+              }
+          }
+    });
+}
+#endif
+
 // Log any transactions for which the data exceeds this size
 #define LOG_TRANSACTIONS_OVER_SIZE (300 * 1024)
 
@@ -372,6 +424,16 @@ status_t BpBinder::transact(
             }
         }
 
+        // DO NOT SUBMIT - this is extremeley inefficient
+        for (const sp<IBinder>& binder : data.debugReadAllStrongBinders()) {
+            // these are OBJECT_LIFETIME_STRONG so that's a big issue with
+            // doing anything like this, but we also happen to do this
+            // analysis only to track memory of binder objects hosted in
+            // this process
+            if (binder->remoteBinder()) continue;
+            (void)mPassedBinderReferences.insert(wp<IBinder>(binder));
+        }
+
         status_t status;
         if (isRpcBinder()) [[unlikely]] {
             status = rpcSession()->transact(sp<IBinder>::fromExisting(this), code, data, reply,
@@ -588,6 +650,31 @@ BpBinder* BpBinder::remoteBinder()
 }
 
 BpBinder::~BpBinder() {
+    #ifdef __ANDROID__
+    initParentTracking();
+
+//    for (const wp<IBinder>& passed : mPassedBinderReferences) {
+//        // this is really dangerous because if this is promoted here
+//        // and then it is decStrong'd on another thread so that this
+//        // is the last reference, it will be destructed here, which
+//        // could cause locks in some cases, but hey! this is a test
+//        // patch
+//        sp<IBinder> binder = passed.promote();
+//        if (binder == nullptr) continue;
+//   
+//        ALOGI("Binder %p (%s) is destroyed, while binder we sent a reference to this %p (%s) remains", this, String8(mDescriptorCache).c_str(), binder.get(), String8(binder->getInterfaceDescriptor()).c_str());
+//    }
+    {
+        std::lock_guard<std::mutex> mtx(parentMutex());
+        tasks().push_back(LeakCheckTask {
+            .parentName = String8(mDescriptorCache).c_str(), // how many alloations can you make! whee!
+            .parentPointer = this,
+            .weakPointers = mPassedBinderReferences,
+        });
+        parentCv().notify_one();
+    }
+    #endif
+
     if (isRpcBinder()) [[unlikely]] {
         return;
     }

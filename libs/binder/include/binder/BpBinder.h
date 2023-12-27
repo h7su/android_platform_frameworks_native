@@ -21,6 +21,7 @@
 #include <binder/unique_fd.h>
 
 #include <map>
+#include <set>
 #include <optional>
 #include <unordered_map>
 #include <variant>
@@ -200,6 +201,7 @@ private:
             ObjectManager       mObjects;
     mutable String16            mDescriptorCache;
             int32_t             mTrackedUid;
+            std::set<wp<IBinder>> mPassedBinderReferences;
 
     static RpcMutex                             sTrackingLock;
     static std::unordered_map<int32_t,uint32_t> sTrackingMap;
