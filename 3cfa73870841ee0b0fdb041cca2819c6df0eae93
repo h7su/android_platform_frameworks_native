@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "149f89dd_fe10ce5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-27T23:47:57Z",
+      "side": 1,
+      "message": "Thanks Hu,\n\nI verified this patch locally using your native tests that are being added in the child CL. This CL should be able to merge through without modification, so let\u0027s focus on this one first. We can work on the CL with tests after this, because it would require some modification to compile on the internal branch correctly.\n\nLocally, I modified it like this (just for my records):\n```\nTEST_F(InputDispatcherFocusOnTwoDisplaysTest, WhenDropKeyEvent_OnlyCancelCorrespondingKeyGesture) {\n    // inject a key down on primary display\n    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,\n              injectKeyDownNoRepeat(*mDispatcher, ADISPLAY_ID_DEFAULT))\n            \u003c\u003c \"Inject key event should return InputEventInjectionResult::SUCCEEDED\";\n    windowInPrimary-\u003econsumeKeyDown(ADISPLAY_ID_DEFAULT);\n    windowInSecondary-\u003eassertNoEvents();\n\n    // inject a key down on second display\n    ASSERT_EQ(InputEventInjectionResult::SUCCEEDED,\n              injectKeyDownNoRepeat(*mDispatcher, SECOND_DISPLAY_ID))\n            \u003c\u003c \"Inject key event should return InputEventInjectionResult::SUCCEEDED\";\n    windowInSecondary-\u003econsumeKeyDown(SECOND_DISPLAY_ID);\n    windowInPrimary-\u003eassertNoEvents();\n\n    // inject a valid key up event on primary display that will be dropped because it is stale\n    KeyEvent event;\n    static constexpr std::chrono::duration STALE_EVENT_TIMEOUT \u003d 1000ms;\n    mFakePolicy-\u003esetStaleEventTimeout(STALE_EVENT_TIMEOUT);\n    const nsecs_t eventTime \u003d systemTime(SYSTEM_TIME_MONOTONIC) -\n            std::chrono::nanoseconds(STALE_EVENT_TIMEOUT).count();\n    event.initialize(InputEvent::nextId(), DEVICE_ID, AINPUT_SOURCE_KEYBOARD, ADISPLAY_ID_DEFAULT,\n                     INVALID_HMAC, AKEY_EVENT_ACTION_UP, /* flags */ 0, AKEYCODE_A, KEY_A,\n                     AMETA_NONE, /*repeatCount\u003d*/1, eventTime, eventTime);\n    InputEventInjectionResult result \u003d\n            mDispatcher-\u003einjectInputEvent(\u0026event, /*targetUid\u003d*/{},\n                                          InputEventInjectionSync::WAIT_FOR_RESULT,\n                                          INJECT_EVENT_TIMEOUT,\n                                          DEFAULT_POLICY_FLAGS);\n    ASSERT_EQ(InputEventInjectionResult::FAILED, result)\n            \u003c\u003c \"Injection should fail because the event is stale\";\n\n    // only the key gesture corresponding to the dropped event can receive the cancel event.\n    // so windowInPrimary expects to receive the cancel event and windowInSecondary expects to\n    // receive no event\n    windowInPrimary-\u003econsumeKeyUp(ADISPLAY_ID_DEFAULT, AKEY_EVENT_FLAG_CANCELED);\n    windowInSecondary-\u003eassertNoEvents();\n}\n```",
+      "revId": "3cfa73870841ee0b0fdb041cca2819c6df0eae93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
