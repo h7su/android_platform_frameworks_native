@@ -372,6 +372,16 @@ status_t BpBinder::transact(
             }
         }
 
+        // DO NOT SUBMIT - this is extremeley inefficient
+        for (const sp<IBinder>& binder : data.debugReadAllStrongBinders()) {
+            // these are OBJECT_LIFETIME_STRONG so that's a big issue with
+            // doing anything like this, but we also happen to do this
+            // analysis only to track memory of binder objects hosted in
+            // this process
+            if (binder->remoteBinder()) continue;
+            (void)mPassedBinderReferences.insert(wp<IBinder>(binder));
+        }
+
         status_t status;
         if (isRpcBinder()) [[unlikely]] {
             status = rpcSession()->transact(sp<IBinder>::fromExisting(this), code, data, reply,
@@ -588,6 +598,22 @@ BpBinder* BpBinder::remoteBinder()
 }
 
 BpBinder::~BpBinder() {
+    for (const wp<IBinder>& passed : mPassedBinderReferences) {
+        // this is really dangerous because if this is promoted here
+        // and then it is decStrong'd on another thread so that this
+        // is the last reference, it will be destructed here, which
+        // could cause locks in some cases, but hey! this is a test
+        // patch
+        sp<IBinder> binder = passed.promote();
+        if (binder == nullptr) continue;
+   
+        // note: it might make sense to put this onto another thread
+        // and wait a few seconds before checking, because this may be
+        // destructed immediately after this constructor is run, in
+        // which case we really don't care about it 
+        ALOGI("Binder %p (%s) is destroyed, while binder we sent a reference to this %p (%s) remains", this, String8(mDescriptorCache).c_str(), binder.get(), String8(binder->getInterfaceDescriptor()).c_str());
+    }
+
     if (isRpcBinder()) [[unlikely]] {
         return;
     }
