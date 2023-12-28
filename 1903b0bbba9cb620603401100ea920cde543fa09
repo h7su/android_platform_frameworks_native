@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76adf78_d7bd6989",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0446cacd_d5b1b401",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6708872b_631a3b59",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-27T11:00:07Z",
       "side": 1,
       "message": "One of the issues is that the proxy is never destroyed when there\u0027s a cyclic dependency.",
+      "range": {
+        "startLine": 10,
+        "startChar": 26,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5cd3e54_77480b03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "not the issue this patch is trying to solve.",
+      "parentUuid": "6708872b_631a3b59",
       "range": {
         "startLine": 10,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6eccd4_a86f8115",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "By moving to another thread, I think it\u0027s still useful. Also, it is useful before doing that, but the question is what % of the time.",
+      "parentUuid": "219d3887_8139a8ad",
+      "range": {
+        "startLine": 12,
+        "startChar": 30,
+        "endLine": 14,
+        "endChar": 6
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76174940_77e47840",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-12-27T11:00:07Z",
       "side": 1,
       "message": "Why don\u0027t you record the interface descriptor when the binder object is passed in?",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eadc22d6_d06b7f08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "this is what the patch which is linked here does.",
+      "parentUuid": "76174940_77e47840",
       "range": {
         "startLine": 18,
         "startChar": 6,
@@ -110,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "132dee2c_3544de17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e896c704_17ff13d9",
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5ed03bb_8cbd15b1",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-12-27T11:00:07Z",
       "side": 1,
       "message": "what about passed-out local objects? (i.e. returned binder objects)",
+      "range": {
+        "startLine": 349,
+        "startChar": 19,
+        "endLine": 349,
+        "endChar": 27
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b83ce8cc_10027c5e",
+        "filename": "libs/binder/BpBinder.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T02:01:54Z",
+      "side": 1,
+      "message": "so tbd on this - will focus on this direction first",
+      "parentUuid": "b5ed03bb_8cbd15b1",
       "range": {
         "startLine": 349,
         "startChar": 19,
