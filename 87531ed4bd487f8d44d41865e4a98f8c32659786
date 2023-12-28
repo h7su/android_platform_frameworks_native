@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "713894af_07b94bd4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-28T18:19:33Z",
+      "side": 1,
+      "message": "Please also add:\n\n```\nMerged-In: I88fd0702d5e1b0d15f808bfad4ee923a6dd19357\n```\n\nin anticipation of the internal cherry-pick going in.",
+      "revId": "87531ed4bd487f8d44d41865e4a98f8c32659786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36fa4797_7bbacc75",
         "filename": "services/inputflinger/tests/InputDispatcher_test.cpp",
         "patchSetId": 5
@@ -14,6 +31,30 @@
       "writtenOn": "2023-12-28T01:39:33Z",
       "side": 1,
       "message": "I\u0027m actually not quite sure about this test. In the internal branches, we stopped dropping stale pointer events, because it could lead to inconsistent streams.\n\nSo I looked at other ways to trigger this condition:\n\ncase DropReason::POLICY:\n       we already stopped dropping events due to policy if a gesture is in progress\n       \n case DropReason::DISABLED:\n       when the mode is set to \"disabled\", we already drop everything, so this would drop the pointer on the other display, too\n case DropReason::APP_SWITCH:\n      this one is now getting removed internally\n case DropReason::BLOCKED:\n       after a recent internal CL, we are also not dropping any pointer events via the `::BLOCKED` mode\n  case DropReason::STALE:\n       in an internal CL, we don\u0027t drop stale events if a gesture is in progress (similar to the \"POLICY\" case)\n  case DropReason::NO_POINTER_CAPTURE:\n        maybe this could be somehow applied here?\n  case DropReason::NOT_DROPPED\n        should never happen\n        \nI\u0027m thinking that the \"motion event\" piece of the parent CL is essentially dead code, because that path can\u0027t get triggered internally.\n\nAny thoughts on this one Hu? Any other ideas for how we could trigger that path? Maybe somehow via the pointer capture route?",
+      "range": {
+        "startLine": 6176,
+        "startChar": 46,
+        "endLine": 6176,
+        "endChar": 96
+      },
+      "revId": "87531ed4bd487f8d44d41865e4a98f8c32659786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd966bdd_03e074ff",
+        "filename": "services/inputflinger/tests/InputDispatcher_test.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 6176,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-28T18:19:33Z",
+      "side": 1,
+      "message": "Hi Hu,\n\nFor now, I kept the test mostly as is, and documented the behaviour that we aren\u0027t actually canceling the moves. The CL is being reviewed internally in ag/25764480, same Change-Id. I will let you know when it goes in.",
+      "parentUuid": "36fa4797_7bbacc75",
       "range": {
         "startLine": 6176,
         "startChar": 46,
