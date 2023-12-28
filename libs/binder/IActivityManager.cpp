@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include <android/app/IProcessObserver.h>
 #include <android/permission_manager.h>
 #include <binder/ActivityManager.h>
 #include <binder/IActivityManager.h>
@@ -230,7 +231,126 @@ public:
         }
         return NO_ERROR;
     }
+
+    virtual status_t registerProcessObserver(const sp<app::IProcessObserver>& observer) {
+        Parcel data;
+        data.markForBinder(remoteStrong());
+        Parcel reply;
+        data.writeInterfaceToken(IActivityManager::getInterfaceDescriptor());
+        data.writeStrongBinder(observer);
+        status_t err = remote()->transact(REGISTER_PROCESS_OBSERVER, data, &reply, 0);
+        if (err != NO_ERROR || ((err = reply.readExceptionCode()) != NO_ERROR)) {
+            return err;
+        }
+        return OK;
+    }
+
+    virtual status_t unregisterProcessObserver(const sp<app::IProcessObserver>& observer) {
+        Parcel data;
+        data.markForBinder(remoteStrong());
+        Parcel reply;
+        data.writeInterfaceToken(IActivityManager::getInterfaceDescriptor());
+        data.writeStrongBinder(observer);
+        status_t err = remote()->transact(UNREGISTER_PROCESS_OBSERVER, data, &reply, 0);
+        if (err != NO_ERROR || ((err = reply.readExceptionCode()) != NO_ERROR)) {
+            return err;
+        }
+        return OK;
+    }
+
+    virtual status_t getRunningAppProcesses(::std::vector<RunningAppProcessInfo>* output) {
+        Parcel data;
+        Parcel reply;
+        data.writeInterfaceToken(IActivityManager::getInterfaceDescriptor());
+        status_t err = remote()->transact(GET_RUNNING_APP_PROCESSES, data, &reply, 0);
+        if (err != NO_ERROR || ((err = reply.readExceptionCode()) != NO_ERROR)) {
+            return err;
+        }
+        return reply.readParcelableVector(output);
+    }
 };
+
+::android::status_t IActivityManager::RunningAppProcessInfo::readFromParcel(
+        const ::android::Parcel* in) {
+    ::android::status_t status = ::android::OK;
+    status = in->readUtf8FromUtf16(&process_name);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&pid);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&uid);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readUtf8VectorFromUtf16Vector(&pkg_list);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readUtf8VectorFromUtf16Vector(&pkg_deps);
+    if (status != ::android::OK && status != ::android::UNEXPECTED_NULL) {
+        return status;
+    }
+    status = in->readInt32(&flags);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&last_trim_level);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&importance);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&lru);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&importance_reason_code);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&importance_reason_pid);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readUtf8FromUtf16(&important_reason_component_package);
+    if (status == ::android::OK) {
+        status = in->readUtf8FromUtf16(&important_reason_component_class);
+        if (status != ::android::OK) {
+            return status;
+        }
+    } else if (status != ::android::UNEXPECTED_NULL) {
+        return status;
+    }
+    status = in->readInt32(&importance_reason_importance);
+    if (status != ::android::OK) {
+        return status;
+    }
+    status = in->readInt32(&process_state);
+    if (status != ::android::OK) {
+        return status;
+    }
+    int is_focused_int;
+    status = in->readInt32(&is_focused_int);
+    if (status != ::android::OK) {
+        return status;
+    }
+    is_focused = is_focused_int != 0;
+    status = in->readInt64(&last_activity_time);
+    if (status != ::android::OK) {
+        return status;
+    }
+    return android::OK;
+}
+
+::android::status_t IActivityManager::RunningAppProcessInfo::writeToParcel(
+        ::android::Parcel*) const {
+    return android::INVALID_OPERATION;
+}
 
 // ------------------------------------------------------------------------------------
 
