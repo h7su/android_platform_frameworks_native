@@ -149,6 +149,31 @@ status_t ActivityManager::checkPermission(const String16& permission,
     return DEAD_OBJECT;
 }
 
+status_t ActivityManager::registerProcessObserver(const sp<app::IProcessObserver> observer) {
+    sp<IActivityManager> service = getService();
+    if (service != nullptr) {
+        return service->registerProcessObserver(observer);
+    }
+    return INVALID_OPERATION;
+}
+
+status_t ActivityManager::unregisterProcessObserver(const sp<app::IProcessObserver> observer) {
+    sp<IActivityManager> service = getService();
+    if (service != nullptr) {
+        return service->unregisterProcessObserver(observer);
+    }
+    return INVALID_OPERATION;
+}
+
+status_t ActivityManager::getRunningAppProcesses(
+        ::std::vector<IActivityManager::RunningAppProcessInfo>* output) {
+    sp<IActivityManager> service = getService();
+    if (service != nullptr) {
+        return service->getRunningAppProcesses(output);
+    }
+    return INVALID_OPERATION;
+}
+
 status_t ActivityManager::linkToDeath(const sp<IBinder::DeathRecipient>& recipient) {
     sp<IActivityManager> service = getService();
     if (service != nullptr) {
