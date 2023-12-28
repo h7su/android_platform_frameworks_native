@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ec3380_7f2d1c2c",
+        "filename": "libs/binder/rust/rpcbinder/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1856745
+      },
+      "writtenOn": "2023-12-28T20:14:27Z",
+      "side": 0,
+      "message": "does not build properly in Android the raw-line option does not seem to be taken into account properly, error:\n`Unable to generate bindings: NotExist(\"binder_ndk_sys::AIBinder;\")`",
+      "revId": "e65d5c25e3776c1f587302503e9234538c692885",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
