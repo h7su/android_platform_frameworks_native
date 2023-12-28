@@ -88,6 +88,24 @@
       "parentUuid": "0b433c5c_2397a508",
       "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2921b1b_dce1d115",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2023-12-28T18:53:10Z",
+      "side": 1,
+      "message": "Hey Dan - we need to unblock testing. We need to agree on the longterm strategy and get something in that works yesteday.",
+      "parentUuid": "a77f089a_25e9a25d",
+      "revId": "c1c78d1919e9f66946cb761f53d6ff82ed736dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
