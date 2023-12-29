@@ -50,6 +50,23 @@
       "message": "Hi Hongzuo,\n\nCould you please add a test for this to InputDispatcher_test.cpp?",
       "revId": "e13e4ac5f56861bad20208cbc1ba27f2c4537a35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6a8a0af_0f079f1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2023-12-29T00:42:26Z",
+      "side": 1,
+      "message": "Hi Hongzuo,\n\nWe have now removed the app switch behaviour from the dispatcher completely in our internal branch, so the events will no longer be unexpectedly dropped.\n\nI don\u0027t think we need this CL anymore.",
+      "revId": "e13e4ac5f56861bad20208cbc1ba27f2c4537a35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
