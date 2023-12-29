@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f7da84_ce58ff51",
+        "filename": "libs/binder/ndk/include_cpp/android/persistable_bundle_aidl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2023-12-29T07:32:16Z",
+      "side": 1,
+      "message": "This should match with the API declaration. It\u0027s declared with `__INTRODUCED_IN(__ANDROID_API_V__)`.\n\nAnd if you want it to be something for vFRC in 24Q2, then this could be 34.1 along with its declaration.\n```\nAPersistableBundle* _Nullable APersistableBundle_new() __INTRODUCED_IN(34.1);\n\nif (__builtin_available(android 34.1, *)) {... }\n```\n\nOf course this will require the modification of `__isOSVersionAtLeast()`.",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "06673078cd03d9213c699442b862618d55fad06b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
