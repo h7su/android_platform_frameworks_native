@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08a1ba06_2d9a6023",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-01-01T07:53:49Z",
+      "side": 1,
+      "message": "am I reading the code wrong? the interface descriptors are read when the proxy is deleted, which happens far after the binder objects are passed in.",
+      "parentUuid": "eadc22d6_d06b7f08",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e896c704_17ff13d9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
