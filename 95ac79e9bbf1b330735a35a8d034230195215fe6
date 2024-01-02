@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39234d56_46345e27",
+        "filename": "libs/fakeservicemanager/FakeServiceManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-01-02T17:49:32Z",
+      "side": 1,
+      "message": "Is there a bug where this condition happens?",
+      "range": {
+        "startLine": 133,
+        "startChar": 44,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "95ac79e9bbf1b330735a35a8d034230195215fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
