@@ -46,6 +46,30 @@
       },
       "revId": "95ac79e9bbf1b330735a35a8d034230195215fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c45af8_5643637a",
+        "filename": "libs/fakeservicemanager/FakeServiceManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-02T19:09:07Z",
+      "side": 1,
+      "message": "or to answer your question - the one of the fuzzers was hanging we got emailed about because of this.",
+      "parentUuid": "4895fb07_301963c5",
+      "range": {
+        "startLine": 133,
+        "startChar": 44,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "95ac79e9bbf1b330735a35a8d034230195215fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
