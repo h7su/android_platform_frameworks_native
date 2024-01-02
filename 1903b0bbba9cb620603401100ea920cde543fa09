@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c03363c_94a2ad5c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-02T23:34:43Z",
+      "side": 1,
+      "message": "https://android-review.git.corp.google.com/c/platform/frameworks/native/+/2753215\n\nThis separate patch (which is linked in the commit message here) pre-caches all of the interface descriptors. I didn\u0027t test this patch, aosp/2891517 without 2753215",
+      "parentUuid": "08a1ba06_2d9a6023",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e896c704_17ff13d9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -303,6 +327,30 @@
       "side": 1,
       "message": "so tbd on this - will focus on this direction first",
       "parentUuid": "b5ed03bb_8cbd15b1",
+      "range": {
+        "startLine": 349,
+        "startChar": 19,
+        "endLine": 349,
+        "endChar": 27
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf0eb8c_417fe694",
+        "filename": "libs/binder/BpBinder.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-02T23:34:43Z",
+      "side": 1,
+      "message": "Also - the other direction is tricky because BpBinder is OBJECT_LIFETIME_WEAK.",
+      "parentUuid": "b83ce8cc_10027c5e",
       "range": {
         "startLine": 349,
         "startChar": 19,
