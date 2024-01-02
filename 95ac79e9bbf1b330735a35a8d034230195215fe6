@@ -22,6 +22,30 @@
       },
       "revId": "95ac79e9bbf1b330735a35a8d034230195215fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4895fb07_301963c5",
+        "filename": "libs/fakeservicemanager/FakeServiceManager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-02T19:07:28Z",
+      "side": 1,
+      "message": "It\u0027s not a bug.",
+      "parentUuid": "39234d56_46345e27",
+      "range": {
+        "startLine": 133,
+        "startChar": 44,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "95ac79e9bbf1b330735a35a8d034230195215fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
