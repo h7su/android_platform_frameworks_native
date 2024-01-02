@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e80ed0b4_77289cd8",
+        "filename": "cmds/servicemanager/NameUtil.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-01-02T17:28:13Z",
+      "side": 1,
+      "message": "servicemanager fuzzer has been configured and it should run as part of presubmit now.",
+      "parentUuid": "81ddf482_8551a665",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b3e3da3_b764da61",
