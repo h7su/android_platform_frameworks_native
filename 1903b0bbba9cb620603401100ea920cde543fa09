@@ -239,6 +239,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27e083af_8410fc11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-01-03T03:01:10Z",
+      "side": 1,
+      "message": "to be clear: I have read the linked patch when I started this thread.\n\nMy proposal(?) is similar to changing the type of `mPassedBinderReferences` from\n\n`std::set\u003cwp\u003cIBinder\u003e\u003e` to `std::set\u003cstd::pair\u003cstd::string, wp\u003cIBinder\u003e\u003e\u003e`",
+      "parentUuid": "0c03363c_94a2ad5c",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e896c704_17ff13d9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
