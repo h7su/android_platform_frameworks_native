@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7395c07_20828fec",
+        "filename": "libs/ui/Gralloc4.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-03T16:29:36Z",
+      "side": 1,
+      "message": "this is now doing the same thing as the \"else\" branch and I\u0027m guessing this doesn\u0027t actually work as a result, otherwise this conditional wouldn\u0027t be here in the first place.",
+      "range": {
+        "startLine": 1048,
+        "startChar": 24,
+        "endLine": 1048,
+        "endChar": 54
+      },
+      "revId": "e31dc93d3c50fa073c601d7afc405989acdb3c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
