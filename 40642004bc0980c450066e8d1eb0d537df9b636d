@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c9a2954_250386ed",
+        "filename": "cmds/installd/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1038443
+      },
+      "writtenOn": "2024-01-03T10:21:35Z",
+      "side": 1,
+      "message": "Add jiakaiz@",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "40642004bc0980c450066e8d1eb0d537df9b636d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
