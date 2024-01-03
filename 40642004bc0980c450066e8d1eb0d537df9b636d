@@ -22,6 +22,30 @@
       },
       "revId": "40642004bc0980c450066e8d1eb0d537df9b636d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7522cf1e_4c5e36db",
+        "filename": "cmds/installd/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1052644
+      },
+      "writtenOn": "2024-01-03T13:04:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c9a2954_250386ed",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 15
+      },
+      "revId": "40642004bc0980c450066e8d1eb0d537df9b636d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
