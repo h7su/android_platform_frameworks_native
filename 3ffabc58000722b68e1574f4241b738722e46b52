@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3500b643_8e24ea9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407716
+      },
+      "writtenOn": "2024-01-03T20:19:02Z",
+      "side": 1,
+      "message": "Hi, could you please verify that our following fix is what you\u0027re looking for?\n\nhttps://android-review.git.corp.google.com/q/topic:%22usage-code-check%22",
+      "revId": "3ffabc58000722b68e1574f4241b738722e46b52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
