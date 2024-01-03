@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fe97e88_27fe35ce",
+        "filename": "libs/ui/Gralloc4.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-03T16:30:28Z",
+      "side": 1,
+      "message": "Ah yeah this bug captures why this is still using getService and cannot use waitForService.",
+      "range": {
+        "startLine": 1044,
+        "startChar": 20,
+        "endLine": 1044,
+        "endChar": 31
+      },
+      "revId": "e31dc93d3c50fa073c601d7afc405989acdb3c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7395c07_20828fec",
         "filename": "libs/ui/Gralloc4.cpp",
         "patchSetId": 1
