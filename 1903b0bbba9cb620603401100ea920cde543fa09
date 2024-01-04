@@ -263,6 +263,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53b690d6_149ee79f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-04T00:44:36Z",
+      "side": 1,
+      "message": "It\u0027s not enough to cache the interface descriptor when you first get a BpBinder by making a binder call. The other patch I have included is necessary.\n\nThe reason calling getInterfaceDescriptor when you receive the binder may not work. Imagine process A sends binder object to process B in a oneway call. Cases:\na. Since the call is a oneway call, no nested calls are possible, process A may have no binder threads available to service calls for getInterfaceDescriptor to be handled. b/187206324 was filed to track this case, but it still exists today.\nb. (this case comes from poor coding) Process A may receive a binder call or hold a lock, so that the progress of process A is dependent on the oneway call being completed.\n\nSo actually I didn\u0027t test it in this case, but I\u0027ve run into this issue enough in the past, it\u0027s better to cache the descriptor earlier. I actually would like to get something like 2753215 merged into Android, as it would surface a lot of errors earlier and give better data, but it\u0027s complicated to do it efficiently because it is expensive just to make all those copies of interface descriptor strings.",
+      "parentUuid": "27e083af_8410fc11",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "1903b0bbba9cb620603401100ea920cde543fa09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e896c704_17ff13d9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
