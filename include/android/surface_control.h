@@ -253,7 +253,7 @@ int64_t ASurfaceTransactionStats_getAcquireTime(ASurfaceTransactionStats* surfac
  * addition of a buffer to a particular surface as a unique ref. When a transaction updates or
  * removes a buffer from a surface, or removes the surface itself from the tree, this ref is
  * guaranteed to be released in the OnComplete callback for this transaction. The
- * ASurfaceControlStats provided in the callback for this surface may contain an optional fence
+ * \a ASurfaceTransactionStats provided in the callback for this surface may contain an optional fence
  * which must be signaled before the ref is assumed to be released.
  *
  * The client must ensure that all pending refs on a buffer are released before attempting to reuse
@@ -346,7 +346,7 @@ void ASurfaceTransaction_setZOrder(ASurfaceTransaction* transaction,
  */
 void ASurfaceTransaction_setBuffer(ASurfaceTransaction* transaction,
                                    ASurfaceControl* surface_control, AHardwareBuffer* buffer,
-                                   int acquire_fence_fd = -1) __INTRODUCED_IN(29);
+                                   int acquire_fence_fd) __INTRODUCED_IN(29);
 
 /**
  * Updates the color for \a surface_control.  This will make the background color for the
@@ -358,7 +358,7 @@ void ASurfaceTransaction_setBuffer(ASurfaceTransaction* transaction,
  */
 void ASurfaceTransaction_setColor(ASurfaceTransaction* transaction,
                                   ASurfaceControl* surface_control, float r, float g, float b,
-                                  float alpha, ADataSpace dataspace)
+                                  float alpha, enum ADataSpace dataspace)
                                   __INTRODUCED_IN(29);
 
 /**
@@ -382,8 +382,8 @@ void ASurfaceTransaction_setColor(ASurfaceTransaction* transaction,
  * properties at once.
  */
 void ASurfaceTransaction_setGeometry(ASurfaceTransaction* transaction,
-                                     ASurfaceControl* surface_control, const ARect& source,
-                                     const ARect& destination, int32_t transform)
+                                     ASurfaceControl* surface_control, const ARect* _Nonnull source,
+                                     const ARect* _Nonnull destination, int32_t transform)
                                      __INTRODUCED_IN(29);
 
 /**
@@ -396,7 +396,7 @@ void ASurfaceTransaction_setGeometry(ASurfaceTransaction* transaction,
  * Available since API level 31.
  */
 void ASurfaceTransaction_setCrop(ASurfaceTransaction* transaction,
-                                       ASurfaceControl* surface_control, const ARect& crop)
+                                       ASurfaceControl* surface_control, const ARect* _Nonnull crop)
                                        __INTRODUCED_IN(31);
 
 /**
@@ -497,7 +497,7 @@ void ASurfaceTransaction_setBufferAlpha(ASurfaceTransaction* transaction,
  * Available since API level 29.
  */
 void ASurfaceTransaction_setBufferDataSpace(ASurfaceTransaction* transaction,
-                                            ASurfaceControl* surface_control, ADataSpace data_space)
+                                            ASurfaceControl* surface_control, enum ADataSpace data_space)
                                             __INTRODUCED_IN(29);
 
 /**
@@ -510,7 +510,7 @@ void ASurfaceTransaction_setBufferDataSpace(ASurfaceTransaction* transaction,
  */
 void ASurfaceTransaction_setHdrMetadata_smpte2086(ASurfaceTransaction* transaction,
                                                   ASurfaceControl* surface_control,
-                                                  struct AHdrMetadata_smpte2086* metadata)
+                                                  const struct AHdrMetadata_smpte2086* metadata)
                                                   __INTRODUCED_IN(29);
 
 /**
@@ -523,14 +523,12 @@ void ASurfaceTransaction_setHdrMetadata_smpte2086(ASurfaceTransaction* transacti
  */
 void ASurfaceTransaction_setHdrMetadata_cta861_3(ASurfaceTransaction* transaction,
                                                  ASurfaceControl* surface_control,
-                                                 struct AHdrMetadata_cta861_3* metadata)
+                                                 const struct AHdrMetadata_cta861_3* metadata)
                                                  __INTRODUCED_IN(29);
 
 /**
  * Sets the desired extended range brightness for the layer. This only applies for layers whose
  * dataspace has RANGE_EXTENDED set on it.
- *
- * Available since API level 34.
  *
  * @param surface_control The layer whose extended range brightness is being specified
  * @param currentBufferRatio The current hdr/sdr ratio of the current buffer as represented as
