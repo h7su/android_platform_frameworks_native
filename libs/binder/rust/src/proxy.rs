@@ -741,6 +741,8 @@ unsafe impl<T: Proxy> AsNative<sys::AIBinder> for T {
 
 /// Retrieve an existing service, blocking for a few seconds if it doesn't yet
 /// exist.
+
+#[deprecated = "this polls 5s, use check_service"]
 pub fn get_service(name: &str) -> Option<SpIBinder> {
     let name = CString::new(name).ok()?;
     // Safety: `AServiceManager_getService` returns either a null pointer or a
