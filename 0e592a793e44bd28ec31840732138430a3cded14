@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a0d4ef_b9c9fda3",
+        "filename": "libs/binder/ndk/persistable_bundle.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-05T23:59:39Z",
+      "side": 1,
+      "message": "this is a no-op change? free(null) is a no-op?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "0e592a793e44bd28ec31840732138430a3cded14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
