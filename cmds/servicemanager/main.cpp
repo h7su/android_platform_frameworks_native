@@ -102,6 +102,17 @@ public:
         }
 
         mManager->handleClientCallbacks();
+
+        // possible fix to b/316829336
+        //
+        // this may have caused commands to need to be handled, but:
+        // - we actually have no need for the below call to return
+        //   immediately as servicemanager will receive a command
+        //   for the lazy service operation to have to do anything
+        // - this happens infrequently enough, there is no need
+        //   to worry about the extra performance cost
+        IPCThreadState::self()->handlePolledCommands();
+
         return 1;  // Continue receiving callbacks.
     }
 private:
