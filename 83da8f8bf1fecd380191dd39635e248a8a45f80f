@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ee24e8_2432e662",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-05T20:54:21Z",
+      "side": 1,
+      "message": "If we\u0027re going to change the meaning of results, I think we should switch the test to be gbenchmark so it integrates better with other tooling, and then we could also delete the code that does this math, because it would be provided.",
+      "revId": "83da8f8bf1fecd380191dd39635e248a8a45f80f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
