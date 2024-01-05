@@ -45,11 +45,11 @@ public:
         IPCThreadState::self()->setupPolling(&binder_fd);
         LOG_ALWAYS_FATAL_IF(binder_fd < 0, "Failed to setupPolling: %d", binder_fd);
 
-        int ret = looper->addFd(binder_fd,
-                                Looper::POLL_CALLBACK,
-                                Looper::EVENT_INPUT,
-                                cb,
-                                nullptr /*data*/);
+        int ret = fcntl(binder_fd, F_SETFL, O_NONBLOCK);
+        LOG_ALWAYS_FATAL_IF(ret != 0, "Failed to set socket nonblock: %d", ret);
+
+        ret = looper->addFd(binder_fd, Looper::POLL_CALLBACK, Looper::EVENT_INPUT, cb,
+                            nullptr /*data*/);
         LOG_ALWAYS_FATAL_IF(ret != 1, "Failed to add binder FD to Looper");
 
         return cb;
@@ -102,6 +102,10 @@ public:
         }
 
         mManager->handleClientCallbacks();
+
+        // possible fix to b/316829336, see also nonblock above
+        IPCThreadState::self()->handlePolledCommands();
+
         return 1;  // Continue receiving callbacks.
     }
 private:
