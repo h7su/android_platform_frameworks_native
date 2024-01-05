@@ -178,6 +178,23 @@
       "parentUuid": "2d98893d_653f9103",
       "revId": "c6934d2b2be64f952bb020b72225a083302f8992",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c4e660_8bc52bfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-05T21:44:18Z",
+      "side": 1,
+      "message": "Running presubmit on change that it should fail as a test for b/318873464.",
+      "revId": "c6934d2b2be64f952bb020b72225a083302f8992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
