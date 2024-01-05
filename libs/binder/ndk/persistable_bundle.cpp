@@ -44,7 +44,9 @@ APersistableBundle* _Nullable APersistableBundle_dup(const APersistableBundle* p
 }
 
 void APersistableBundle_delete(APersistableBundle* pBundle) {
-    free(pBundle);
+    if (pBundle) {
+        free(pBundle);
+    }
 }
 
 bool APersistableBundle_isEqual(const APersistableBundle* lhs, const APersistableBundle* rhs) {
@@ -76,7 +78,7 @@ binder_status_t APersistableBundle_writeToParcel(const APersistableBundle* pBund
     return pBundle->mPBundle.writeToParcel(AParcel_viewPlatformParcel(parcel));
 }
 
-int32_t APersistableBundle_size(APersistableBundle* pBundle) {
+int32_t APersistableBundle_size(const APersistableBundle* pBundle) {
     size_t size = pBundle->mPBundle.size();
     LOG_ALWAYS_FATAL_IF(size > INT32_MAX,
                         "The APersistableBundle has gotten too large! There will be an overflow in "
