@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def9c0b4_e301ed23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-05T23:11:46Z",
+      "side": 1,
+      "message": "btw I\u0027m wondering if b/316829336 is made more likely by changing the servicemanager scheduling, so you might hold off on merging until that\u0027s resolved, but it may be unrelated",
+      "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
