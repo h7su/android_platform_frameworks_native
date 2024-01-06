@@ -22,6 +22,30 @@
       },
       "revId": "0e592a793e44bd28ec31840732138430a3cded14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca0c6270_28015ce4",
+        "filename": "libs/binder/ndk/persistable_bundle.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-01-06T00:02:54Z",
+      "side": 1,
+      "message": "I always forget free(null) is no-op... Done.",
+      "parentUuid": "76a0d4ef_b9c9fda3",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "0e592a793e44bd28ec31840732138430a3cded14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
