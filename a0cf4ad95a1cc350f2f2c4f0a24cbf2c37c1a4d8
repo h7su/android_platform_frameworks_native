@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d822e9_f32c548e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-01-06T02:45:30Z",
+      "side": 1,
+      "message": "Fixes this compiler error that happens after upgrading libc++:\n```\nIn file included from frameworks/native/cmds/cmd/cmd.cpp:25:\nframeworks/native/libs/binder/include/binder/TextOutput.h:77:12: error: overload resolution selected deleted operator \u0027\u003c\u003c\u0027\n    strbuf \u003c\u003c val;\n    ~~~~~~ ^  ~~~\nframeworks/native/cmds/cmd/cmd.cpp:98:53: note: in instantiation of function template specialization \u0027android::operator\u003c\u003c\u003cconst char16_t *\u003e\u0027 requested here\n            mErrorLog \u003c\u003c \"Invalid mode requested: \" \u003c\u003c mode.c_str() \u003c\u003c endl;\n                                                    ^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:1185:31: note: candidate function [with _Traits \u003d std::char_traits\u003cchar\u003e] has been explicitly deleted\nbasic_ostream\u003cchar, _Traits\u003e\u0026 operator\u003c\u003c(basic_ostream\u003cchar, _Traits\u003e\u0026, const char16_t*) \u003d delete;\n                              ^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:253:20: note: candidate function\n    basic_ostream\u0026 operator\u003c\u003c(const void* __p);\n                   ^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:241:20: note: candidate function\n    basic_ostream\u0026 operator\u003c\u003c(bool __n);\n                   ^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:800:1: note: candidate function template not viable: no known conversion from \u0027const char16_t *const\u0027 to \u0027char\u0027 for 2nd argument; dereference the argument wit\nh *\noperator\u003c\u003c(basic_ostream\u003c_CharT, _Traits\u003e\u0026 __os, char __cn)\n^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:833:1: note: candidate function template not viable: no known conversion from \u0027const char16_t *const\u0027 to \u0027char\u0027 for 2nd argument; dereference the argument wit\nh *\noperator\u003c\u003c(basic_ostream\u003cchar, _Traits\u003e\u0026 __os, char __c)\n^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:840:1: note: candidate function template not viable: no known conversion from \u0027const char16_t *const\u0027 to \u0027signed char\u0027 for 2nd argument; dereference the argum\nent with *\noperator\u003c\u003c(basic_ostream\u003cchar, _Traits\u003e\u0026 __os, signed char __c)\n^\nprebuilts/clang/host/linux-x86/clang-r498229b/include/c++/v1/ostream:847:1: note: candidate function template not viable: no known conversion from \u0027const char16_t *const\u0027 to \u0027unsigned char\u0027 for 2nd argument; dereference the arg\nument with *\noperator\u003c\u003c(basic_ostream\u003cchar, _Traits\u003e\u0026 __os, unsigned char __c)\n^\n...\n```",
+      "revId": "a0cf4ad95a1cc350f2f2c4f0a24cbf2c37c1a4d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
