@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4e268fb_3bcc6b1d",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-01-06T00:00:30Z",
+      "side": 1,
+      "message": "from b/310993538 - `Cannot distinguish between an empty vector and an absent vector for all get*Vector`\n\nIs there a recommended way to handle this from the NDK API council, like add a new bool* keyFound out parameter to the APIs?\n\nWe are currently returning the size from each of these get*Vector functions and -1 for the get*VectorKeys functions when the supplied string allocator fails. We could use something like -2 to represent a found empty vector but that feels odd.",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 43
+      },
+      "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
