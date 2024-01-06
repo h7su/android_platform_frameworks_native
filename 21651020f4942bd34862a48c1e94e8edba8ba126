@@ -70,6 +70,30 @@
       },
       "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56501790_45e66d4e",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-06T00:12:29Z",
+      "side": 1,
+      "message": "If the key is not defined, I think returning an error -1 or -2 would be okay as well. \u00270\u0027 result should remain for a found empty vector. \u0027-2\u0027 shouldn\u0027t mean empty",
+      "parentUuid": "b5ba9c2e_60a73d7d",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 43
+      },
+      "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
