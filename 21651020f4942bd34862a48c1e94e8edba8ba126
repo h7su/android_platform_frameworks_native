@@ -46,6 +46,30 @@
       },
       "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ba9c2e_60a73d7d",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-01-06T00:10:14Z",
+      "side": 1,
+      "message": "\u003e and -1 for the get*VectorKeys functions when the supplied string allocator fails. We could use something like -2 to represent a found empty vector but that feels odd.\n\ngetStringVector is what prevents that. `-1` (get*Keys doesn\u0027t actually need to distinguish between the differences) already means the supplied allocator failed. 0 means either empty vector or nothing set for that key.",
+      "parentUuid": "983ad609_88a6a673",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 43
+      },
+      "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
