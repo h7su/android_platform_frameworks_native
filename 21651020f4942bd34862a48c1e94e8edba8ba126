@@ -22,6 +22,30 @@
       },
       "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983ad609_88a6a673",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-06T00:02:07Z",
+      "side": 1,
+      "message": "why not size \u00270\u0027 for an empty vector and size \u0027-1\u0027 for a null vector?",
+      "parentUuid": "c4e268fb_3bcc6b1d",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 43
+      },
+      "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
