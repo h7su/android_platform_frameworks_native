@@ -94,6 +94,30 @@
       },
       "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd8d34a_a4c48024",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-01-06T01:07:48Z",
+      "side": 1,
+      "message": "-1 for no key and -2 for failed allocator sounds good to me.\n\nAdded constants for it.\n\nI will add tests for it in libbinder_ndk_test.",
+      "parentUuid": "56501790_45e66d4e",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 43
+      },
+      "revId": "21651020f4942bd34862a48c1e94e8edba8ba126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
