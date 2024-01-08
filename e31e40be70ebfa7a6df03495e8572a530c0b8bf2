@@ -34,6 +34,24 @@
       "parentUuid": "def9c0b4_e301ed23",
       "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db647ca2_b7bdc519",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1346941
+      },
+      "writtenOn": "2024-01-08T13:37:37Z",
+      "side": 1,
+      "message": "I\u0027d wager that Milo\u0027s theory of servicemanager is correct. servicemanager starvation is what led us to investigate this cl in the first place. There\u0027s a regression that happened in U that led to increased servicemanager starvation. It was never root caused. This change is more of a bandaid on that issue. See b/297046915 and https://screenshot.googleplex.com/7zK9RWEVsywV6z3 that showed an increase in sm cpu contention way back in July",
+      "parentUuid": "1f4e3a8d_097f0013",
+      "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
