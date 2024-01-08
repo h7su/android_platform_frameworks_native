@@ -16,6 +16,24 @@
       "message": "btw I\u0027m wondering if b/316829336 is made more likely by changing the servicemanager scheduling, so you might hold off on merging until that\u0027s resolved, but it may be unrelated",
       "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4e3a8d_097f0013",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061011
+      },
+      "writtenOn": "2024-01-08T11:33:58Z",
+      "side": 1,
+      "message": "Intiutively, I don\u0027t see why granting servicemanager access to additional CPUs could make this freeze/crash more likely. \n\nIn b/316829336, in the cpuinfo section, servicemanager used only 6% of the cpu, while system_server used 182%. It might actually be that servicemanager was starved, hence this change could have helped.\n\nI agree that the platform is complex enough so a change like this could cause an unexpected result but I don\u0027t think that delaying it would help us understand the problem better. \n\n@zezeozue@google.com, since you have more experience with ANRs, can you share your thoughts on the issue?",
+      "parentUuid": "def9c0b4_e301ed23",
+      "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
