@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1c4218_e0a01e75",
+        "filename": "services/surfaceflinger/Layer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2225,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-01-08T17:57:16Z",
+      "side": 1,
+      "message": "I would rather remove this parameter. I think in AOSP stateSet is always StateSet::Drawing",
+      "range": {
+        "startLine": 2225,
+        "startChar": 59,
+        "endLine": 2225,
+        "endChar": 90
+      },
+      "revId": "5759b6c501154bb613c4415865ade9d3130b9eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
