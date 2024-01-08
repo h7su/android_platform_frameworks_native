@@ -70,6 +70,24 @@
       "parentUuid": "db647ca2_b7bdc519",
       "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96214f48_2df0507a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-08T18:27:46Z",
+      "side": 1,
+      "message": "Please see b/316829336#comment19.\n\nThe only major change to SM recently is a scheduling change, so there does seem like there is a distinct possibility that this increased the chance this race occured. So, please hold off until we have time to resolve this issue. As it is the beginning of the year, several maintainers who I needed help on this issue were out, so we need some time, thanks. Super supportive of this issue, except for another fire in the area.",
+      "parentUuid": "2a57d197_aee49052",
+      "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
