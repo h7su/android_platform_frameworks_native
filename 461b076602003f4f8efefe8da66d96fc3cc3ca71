@@ -22,6 +22,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7758dae_fb3eb387",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-08T18:25:16Z",
+      "side": 1,
+      "message": "Well, if it\u0027s not safe all the time, weird UB this 1:1,000,000 case would not be so great. We\u0027d prefer to make sure it\u0027s safe all the time. What could break?\n\nAlso, since it\u0027s servicemanager we can\u0027t do runtime flagging.",
+      "parentUuid": "b835e76e_73aa0fb1",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
