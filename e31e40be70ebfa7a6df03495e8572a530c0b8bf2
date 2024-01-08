@@ -52,6 +52,24 @@
       "parentUuid": "1f4e3a8d_097f0013",
       "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a57d197_aee49052",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2024-01-08T17:03:09Z",
+      "side": 1,
+      "message": "There is overwhelming evidence that service manager is a global CUJ bottleneck when it\u0027s restricted to the bg cpuset, and growing evidence that removing this restriction has significant and user-perceptible impact on device performance.\nLet\u0027s please land this change.",
+      "parentUuid": "db647ca2_b7bdc519",
+      "revId": "e31e40be70ebfa7a6df03495e8572a530c0b8bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
