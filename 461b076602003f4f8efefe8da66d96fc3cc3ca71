@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b835e76e_73aa0fb1",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2024-01-08T08:35:38Z",
+      "side": 1,
+      "message": "I think Arve\u0027s suggestion was to set O_NONBLOCK just before this call, and then clear it again. I agree with that because it would make this change less risky, as the regular non-blocking WRITE/READ path isn\u0027t as well tested. Talking about risk: should we flag this change? It is hard to see all the possible implications here.",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
