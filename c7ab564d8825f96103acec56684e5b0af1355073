@@ -33,6 +33,29 @@
       "message": "Thanks all!",
       "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f124267_c4ea50a0",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 3920,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-01-09T18:52:18Z",
+      "side": 1,
+      "message": "Taking a look at this code again, I\u0027m confused by the `appUid` argument to this method.  There\u0027s not really any such thing as an `appUid`.  The value passed is actually the caller\u0027s `uid`, which is `(100000 * userId) + appId`.  But then below it\u0027s enforced that the uid is in the range `[10000, 19999]`.  So as far as I can tell, this API only works for user 0.  That\u0027s a bug, right?\n\nAlso, `authenticate()` does `uid_t uid \u003d multiuser_get_uid(userId, appUid)`, which doesn\u0027t make sense because `appUid` is already the `uid`.  It happens to work for user 0, though.",
+      "range": {
+        "startLine": 3920,
+        "startChar": 52,
+        "endLine": 3920,
+        "endChar": 58
+      },
+      "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
