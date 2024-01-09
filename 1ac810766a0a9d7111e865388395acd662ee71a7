@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "225f7e01_4389bd23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-09T23:26:32Z",
+      "side": 1,
+      "message": "this is as a potential alternative to http://r.android.com/2899188",
+      "revId": "1ac810766a0a9d7111e865388395acd662ee71a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
