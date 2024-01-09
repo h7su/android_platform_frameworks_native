@@ -102,6 +102,10 @@ public:
         }
 
         mManager->handleClientCallbacks();
+
+        // possible solution for b/316829336
+        IPCThreadState::self()->handlePolledCommands();
+
         return 1;  // Continue receiving callbacks.
     }
 private:
