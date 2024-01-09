@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d892855_956b83d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-01-09T20:18:38Z",
+      "side": 1,
+      "message": "It looks like _LIBCPP_HAS_NO_INCOMPLETE_FORMAT was removed from libc++ in https://reviews.llvm.org/D150802, but that\u0027s newer than the current clang-r498229b prebuilt. The upcoming clang-r510928 prebuilt lacks this macro.\n\nlibc++\u0027s macro name confused me a bit. I think it means, \"suppress the incomplete \u003cformat\u003e in libc++\". If the macro is defined, then \u003cformat\u003e\u0027s contents are empty:\n\nhttps://github.com/llvm/llvm-project/blob/14f0776550b5a49e1c42f49a00213f7f3fa047bf/libcxx/include/format#L176\n\nOnce \u003cformat\u003e in libc++ is complete (i.e. after May 2023 or so in upstream libc++),  then the macro is not defined, and it\u0027s OK to include \u003cformat\u003e.",
+      "revId": "634304a642f68d014799f56c2d876551e0f89d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
