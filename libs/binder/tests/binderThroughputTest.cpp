@@ -60,34 +60,33 @@ struct ProcResults {
     void combine_with(const ProcResults& append) {
         data.insert(data.end(), append.data.begin(), append.data.end());
     }
-    uint64_t worst() {
-        return *max_element(data.begin(), data.end());
-    }
+    uint64_t worst() { return *max_element(data.begin(), data.end()); }
     void dump() {
         if (data.size() == 0) {
-            // This avoids index-out-of-bounds below.
-            cout << "error: no data\n" << endl;
-            return;
+        // This avoids index-out-of-bounds below.
+        cout << "error: no data\n" << endl;
+        return;
         }
 
         size_t num_long_transactions = 0;
         for (uint64_t elem : data) {
-            if (elem > warn_latency) {
-                num_long_transactions += 1;
-            }
+        if (elem > warn_latency) {
+            num_long_transactions += 1;
+        }
         }
 
         if (num_long_transactions > 0) {
-            cout << (double)num_long_transactions / data.size() << "% of transactions took longer "
+        cout << (double)num_long_transactions / data.size()
+             << "% of transactions took longer "
                 "than estimated max latency. Consider setting -m to be higher than "
-                << worst() / 1000 << " microseconds" << endl;
+             << worst() / 1000 << " microseconds" << endl;
         }
 
         sort(data.begin(), data.end());
 
         uint64_t total_time = 0;
         for (uint64_t elem : data) {
-            total_time += elem;
+        total_time += elem;
         }
 
         double best = (double)data[0] / 1.0E6;
@@ -146,10 +145,10 @@ public:
         size_t num_bytes = sizeof(uint64_t) * num_elems;
 
         while (num_bytes > 0) {
-            int ret = write(m_writeFd, to_write, num_bytes);
-            ASSERT_TRUE(ret >= 0);
-            num_bytes -= ret;
-            to_write += ret;
+        int ret = write(m_writeFd, to_write, num_bytes);
+        ASSERT_TRUE(ret >= 0);
+        num_bytes -= ret;
+        to_write += ret;
         }
     }
     void recv(ProcResults& v) {
@@ -162,10 +161,10 @@ public:
         size_t num_bytes = sizeof(uint64_t) * num_elems;
 
         while (num_bytes > 0) {
-            int ret = read(m_readFd, read_to, num_bytes);
-            ASSERT_TRUE(ret >= 0);
-            num_bytes -= ret;
-            read_to += ret;
+        int ret = read(m_readFd, read_to, num_bytes);
+        ASSERT_TRUE(ret >= 0);
+        num_bytes -= ret;
+        read_to += ret;
         }
     }
     static tuple<Pipe, Pipe> createPipePair() {
