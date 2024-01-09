@@ -78,11 +78,11 @@ bool timeout(std::chrono::duration<R, P> delay, std::function<void(void)> &&func
 }
 
 template<class R, class P, class Function, class I, class... Args>
-typename std::result_of<Function(I *, Args...)>::type
+typename std::invoke_result<Function, I *, Args...>::type
 timeoutIPC(std::chrono::duration<R, P> wait, const sp<I> &interfaceObject, Function &&func,
            Args &&... args) {
     using ::android::hardware::Status;
-    typename std::result_of<Function(I *, Args...)>::type ret{Status::ok()};
+    typename std::invoke_result<Function, I *, Args...>::type ret{Status::ok()};
     auto boundFunc = std::bind(std::forward<Function>(func),
             interfaceObject.get(), std::forward<Args>(args)...);
     bool success = timeout(wait, [&ret, &boundFunc] {
