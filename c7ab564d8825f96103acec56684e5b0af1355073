@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7b8fa7b_75305430",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 3920,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2024-01-09T20:16:53Z",
+      "side": 1,
+      "message": "Good catch!  Mind filing a bug?  With a small change to the current test, I can see the test is failing.",
+      "parentUuid": "8f124267_c4ea50a0",
+      "range": {
+        "startLine": 3920,
+        "startChar": 52,
+        "endLine": 3920,
+        "endChar": 58
+      },
+      "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42dcb172_c2da178e",
         "filename": "cmds/installd/InstalldNativeService.cpp",
         "patchSetId": 16
@@ -71,6 +95,24 @@
       "writtenOn": "2024-01-09T19:09:22Z",
       "side": 1,
       "message": "I don\u0027t think there\u0027s sufficient validation on this path before using it.  It could point to a special file, like a device node or something in `/proc` or `/sys`, where just opening it has side effects.  I think the returned error code (EPERM or ENOENT) can also be used to check for the existence of a file that the app doesn\u0027t otherwise have permission to access.",
+      "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab1a2e9_0970e1fe",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 3962,
+      "author": {
+        "id": 1042276
+      },
+      "writtenOn": "2024-01-09T20:16:53Z",
+      "side": 1,
+      "message": "What\u0027s the side effect of open? by root?\n\nRe error code, how about replacing errno in 3965 with a constant?",
+      "parentUuid": "42dcb172_c2da178e",
       "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
