@@ -70,6 +70,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68e7ddb_53471a4a",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-09T09:01:51Z",
+      "side": 1,
+      "message": "One other option is to flush the file descriptor just before talking to the driver. That way, `looper_need_return` will be true when we enter the kernel, so it\u0027s guaranteed to not go to sleep. And this codepath doesn\u0027t return EINVAL to userspace.",
+      "parentUuid": "a1a1ff49_0decf43b",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
