@@ -118,6 +118,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a469bea_91c40eef",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-09T19:05:59Z",
+      "side": 1,
+      "message": "So, only flushCommands and forget both of the changes here? That sounds safer, and I think we could merge it no problem.\n\nRe re maco, if we take the patch, we should take it like this so that we\u0027d become aware of issues during development rather than have those subtle issues happen in a case that is already 1:100,000 or similar. Otherwise, we\u0027d never get to the bottom of it.",
+      "parentUuid": "bca3b160_a72a3819",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
