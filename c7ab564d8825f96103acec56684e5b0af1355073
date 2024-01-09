@@ -115,6 +115,24 @@
       "parentUuid": "42dcb172_c2da178e",
       "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb15f819_a9bcd04d",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 3962,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-01-09T20:32:39Z",
+      "side": 1,
+      "message": "\u003e What\u0027s the side effect of open? by root?\n\nIt depends on the file.  I\u0027m just worried that there might be a file somewhere with weird behavior.  It would be best to avoid depending on every file on the system being safe to open.  Just to give another random example, opening some files (for example FIFOs) can block indefinitely.\n\n\u003e Re error code, how about replacing errno in 3965 with a constant?\n\nYes, a constant error code would be better.",
+      "parentUuid": "dab1a2e9_0970e1fe",
+      "revId": "c7ab564d8825f96103acec56684e5b0af1355073",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
