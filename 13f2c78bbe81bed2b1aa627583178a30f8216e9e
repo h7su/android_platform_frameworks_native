@@ -16,6 +16,24 @@
       "message": "This is a no-op change, and I\u0027m not sure if goto is cleaner. Things could be factored into a function, but any real reason this is needed? I think a lot of this setup code could be deleted anyway if we moved to forks like the other binder tests.",
       "revId": "13f2c78bbe81bed2b1aa627583178a30f8216e9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef269248_dd8a514a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-10T13:24:04Z",
+      "side": 1,
+      "message": "Done. Changed to if block instead of goto.",
+      "parentUuid": "abdd40b9_0764baa9",
+      "revId": "13f2c78bbe81bed2b1aa627583178a30f8216e9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
