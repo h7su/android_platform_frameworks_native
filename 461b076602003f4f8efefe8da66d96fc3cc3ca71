@@ -190,6 +190,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a8796e_fc3185d1",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1013030
+      },
+      "writtenOn": "2024-01-10T10:41:15Z",
+      "side": 1,
+      "message": "Re subtle issues, I think it depends how much soak time we have. If this were to end up in a release a month from now, I\u0027d be in favor of more narrowly scoping. But since we have more time, I\u0027d also be fine with the change as is. I think the more general concern I have is that this is just not a well-tested path, and even with this CL we may not find issues until well after the release (see the bug this CL was created for, which has been around for \u003e1 year?). Or O_NONBLOCK might be broken in weird ways on older kernels without us being aware of it, because it hasn\u0027t been used.\n\nEither way I do not have a good solution to that, beyond maybe adding more tests around O_NONBLOCK and running those on a variety of devices and kernels.",
+      "parentUuid": "78ec867c_5f01c2c3",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
