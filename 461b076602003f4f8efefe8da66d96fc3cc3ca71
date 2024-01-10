@@ -166,6 +166,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ec867c_5f01c2c3",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-10T10:21:08Z",
+      "side": 1,
+      "message": "Sorry, what I meant by \"flush\" was to trigger the [`binder_deferred_flush`](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/drivers/android/binder.c;l\u003d5914-5934;drc\u003df955e6e98c348b65772fdc1db2a9eeac3a4c3fc8) function in the Kernel by performing the flush syscall with something along the lines of `fflush(binder_fd)`.",
+      "parentUuid": "9c30ecb9_e2eec318",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
