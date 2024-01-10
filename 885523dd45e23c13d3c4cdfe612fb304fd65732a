@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231a82ab_729a8681",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-10T16:41:01Z",
+      "side": 1,
+      "message": "You\u0027ll have to update the ABI dumps, too, or just wait for https://googleplex-android-review.git.corp.google.com/q/topic:%22ahb_allocate2%22 to end up in AOSP",
+      "revId": "885523dd45e23c13d3c4cdfe612fb304fd65732a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
