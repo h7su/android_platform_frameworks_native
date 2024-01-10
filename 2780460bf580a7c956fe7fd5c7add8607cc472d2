@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bda18b9_0c3aff54",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-10T22:23:45Z",
+      "side": 1,
+      "message": "iirc this creates a distinct constant (it will have a unique address per TU) in every TU that includes this header. Use an anonymous `enum`.",
+      "revId": "2780460bf580a7c956fe7fd5c7add8607cc472d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
