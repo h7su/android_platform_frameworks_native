@@ -33,6 +33,23 @@
       "message": "(This still needs approval from a code owner, though.)",
       "revId": "634304a642f68d014799f56c2d876551e0f89d46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d55b3d6_0927ce76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-10T00:05:26Z",
+      "side": 1,
+      "message": "I know I said it before but not a fan of that next-new-thing libfmt, okay! 😊 feel free to tear it out of tests. I really think it\u0027s a waste of time to have to deal with the complexities of importing a new version of a new way of doing formatting when we have a perfectly good way of doing it from the past, and we may need to rip it out anyway to make these binaries smaller, but we\u0027ll see. It would decouple the two projects.",
+      "revId": "634304a642f68d014799f56c2d876551e0f89d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
