@@ -214,6 +214,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc681463_285d4451",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-10T19:16:52Z",
+      "side": 1,
+      "message": "It\u0027d get 2mo+ soak rn before it\u0027s in any release branch, and then it would get more soak time. Approve? I can also run binderLibTest with O_NONBLOCK\n\nfflush takes FILE*, is there another function that would call the .flush \u003d binder_flush in the kernel? for some reason I really can\u0027t find it.",
+      "parentUuid": "80a8796e_fc3185d1",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
