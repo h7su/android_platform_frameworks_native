@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e02d27_349de5aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-10T19:41:29Z",
+      "side": 1,
+      "message": "(or if you think this is right, go for it)",
+      "revId": "60a9051922474787e7a9e2325a5206b5a7122bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaad37c3_a6edecb7",
+        "filename": "libs/binder/tests/binderThroughputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-10T19:41:29Z",
+      "side": 1,
+      "message": "I thought you could still delete this",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 13
+      },
+      "revId": "60a9051922474787e7a9e2325a5206b5a7122bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f679148a_15cc5d08",
+        "filename": "libs/binder/tests/binderThroughputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-10T19:41:29Z",
+      "side": 1,
+      "message": "and then maybe this isn\u0027t needed? I\u0027m not sure.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 15
+      },
+      "revId": "60a9051922474787e7a9e2325a5206b5a7122bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
