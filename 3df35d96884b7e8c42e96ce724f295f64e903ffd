@@ -145,6 +145,30 @@
       },
       "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7491d90_319f537b",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-01-11T02:07:20Z",
+      "side": 1,
+      "message": "We shouldn\u0027t store state for verifying functionality, tests should be used for that. If we need this in the dump, then the right thing to dump would be the readerConfig. That\u0027s already getting dumped inside InputReader, so I think the information for troubleshooting should already be present.",
+      "parentUuid": "1d564e23_73912a08",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
