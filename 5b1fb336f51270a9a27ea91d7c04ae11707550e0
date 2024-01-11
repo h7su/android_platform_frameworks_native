@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f2f5e5_42cdec73",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-11T01:45:40Z",
+      "side": 1,
+      "message": "Good point. Is `STATUS_INVALID_OPERATION` the right error code?",
+      "parentUuid": "75256ac7_97119c3f",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 18
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf5acf6d_ae4d6cfd",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cea4de44_125b07c4",
+        "filename": "libs/binder/ndk/stability.cpp",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-11T01:45:40Z",
+      "side": 1,
+      "message": "Rust code calls `AIBinder_mark*Stability` so we need this file, even in Trusty. There is no vendor/system split there, so all the code is linked together statically with the same compiler flags which include `__ANDROID_VNDK__` and `__ANDROID_VENDOR__` now.\n\nThe reason for those flags is that Trusty Binder talks to Android vendor Binder, so the binders on both sides have vendor stability. Would it make sense to compile Trusty libbinder as system, but with its binders forced to vendor?",
+      "parentUuid": "cf5acf6d_ae4d6cfd",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "381e5314_3d7d784d",
         "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
         "patchSetId": 39
@@ -77,6 +125,30 @@
       "writtenOn": "2023-12-15T00:26:39Z",
       "side": 1,
       "message": "do we really need that much more API surface than libbinder_rpc_unstable or libbinder_rs? is there anyway to re-use or share those APIs, rather than creating a new RpcServer type? This is a really different API than we have there. We want this to be able to converge, right, so that eventually there is only one RpcServer? RpcServerTrusty should go away once TIPC switches to something stable upstream?",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d87d09ef_df80f4af",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 39
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-11T01:45:40Z",
+      "side": 1,
+      "message": "\u003e  is there anyway to re-use or share those APIs, rather than creating a new RpcServer type?\n\nThe thing is we have a separate `RpcServerTrusty` type in C++. I considered trying to reuse the existing Rust `RpcServer` types on top of that, but that got clunky because they\u0027re basically thin wrappers over pointers to the C++ types. It does help that they are opaque, so we could cast them to `RpcServerTrusty*`, but I\u0027m not sure that\u0027s worth it.",
+      "parentUuid": "381e5314_3d7d784d",
       "range": {
         "startLine": 50,
         "startChar": 5,
