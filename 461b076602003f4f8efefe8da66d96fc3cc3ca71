@@ -262,6 +262,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbc83a8a_5b990a63",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-11T21:07:43Z",
+      "side": 1,
+      "message": "Though from testing, I think this will return a gross error when synchronous calls are made (in the reply) or for looper threads, I think the userspace would be okay for oneway calls, but it is going to need more work.\n\nAlice - is the set nonblock really required here? does it really matter?",
+      "parentUuid": "cbcef2d0_a82954ae",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
