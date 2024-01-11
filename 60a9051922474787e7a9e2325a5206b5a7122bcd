@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "468c80fc_9830ed69",
+        "filename": "libs/binder/tests/binderThroughputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-11T09:25:33Z",
+      "side": 1,
+      "message": "With the current version, it waits for all processes to call `addService` before any of them calls `waitForService`. I think the main alternative is to remove the first wait and let `waitForService` calls start before all `addService` calls have ended.\n\nRemoving the second wait isn\u0027t great because it serves the purpose of starting all of the workers at the same time.\n\nIf that\u0027s not what you meant, then I\u0027m not sure. The current version *does* work, as I tested it.",
+      "parentUuid": "eaad37c3_a6edecb7",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 13
+      },
+      "revId": "60a9051922474787e7a9e2325a5206b5a7122bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f679148a_15cc5d08",
         "filename": "libs/binder/tests/binderThroughputTest.cpp",
         "patchSetId": 4
