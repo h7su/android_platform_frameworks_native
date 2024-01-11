@@ -157,6 +157,30 @@
       },
       "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89ba21bf_a80967d9",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 39
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-11T01:48:03Z",
+      "side": 1,
+      "message": "Oh yeah that reminds me: rpcbinder doesn\u0027t have anything for `setPerSessionRootObject`. Should it?",
+      "parentUuid": "d87d09ef_df80f4af",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
