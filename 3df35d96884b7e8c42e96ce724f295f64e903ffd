@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d366a9_9571ce83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954500
+      },
+      "writtenOn": "2024-01-11T00:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc170683_8f34e5d9",
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6db99226_39b85442",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e856fa6c_1d608beb",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1954500
+      },
+      "writtenOn": "2024-01-11T00:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6db99226_39b85442",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 102
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1509476e_78e68407",
@@ -71,6 +113,30 @@
       "writtenOn": "2023-12-04T22:51:48Z",
       "side": 1,
       "message": "Since this variable is only used in this function, can we just make it a local variable to this function? This would allow us to reduce the total state stored inside InputDevice.\n\nGoing one step further, what do you think about pulling this out into a function?\n\n```\nmAssociatedViewport \u003d findViewportByDescriptor(readerConfig, mIdentifier);\nif (mAssociatedViewport \u003d\u003d std::nullopt) {\n    mAssociatedViewport \u003d findViewportByPort(readerConfig, mIdentifier);\n}\n```\n\nwould that work?\n\nAlso OK with me if you want to do this in a separate follow-up CL to reduce the churn",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d564e23_73912a08",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1954500
+      },
+      "writtenOn": "2024-01-11T00:11:04Z",
+      "side": 1,
+      "message": "Hmmm this is useful to have in the dump as well because it helps troubleshooting and verifying functionality",
+      "parentUuid": "1509476e_78e68407",
       "range": {
         "startLine": 285,
         "startChar": 24,
