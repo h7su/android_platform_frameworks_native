@@ -169,6 +169,30 @@
       },
       "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24df92ef_7dde1f1f",
+        "filename": "services/inputflinger/reader/InputDevice.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1954500
+      },
+      "writtenOn": "2024-01-12T02:23:47Z",
+      "side": 1,
+      "message": "Ok fair point, would like to do that in a follow up CL. Since htis one is so long running already",
+      "parentUuid": "b7491d90_319f537b",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 62
+      },
+      "revId": "3df35d96884b7e8c42e96ce724f295f64e903ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
