@@ -16,6 +16,24 @@
       "message": "Usually you put `let status` after the safety comment.",
       "revId": "6c916ecf85875eb49041324ac37abfa86e599d4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d8d46c_c2806ea2",
+        "filename": "libs/nativewindow/rust/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-01-12T14:56:20Z",
+      "side": 1,
+      "message": "Unfortunately the linter doesn\u0027t recognise that.",
+      "parentUuid": "6687f33e_366ead3f",
+      "revId": "6c916ecf85875eb49041324ac37abfa86e599d4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
