@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6687f33e_366ead3f",
+        "filename": "libs/nativewindow/rust/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-12T14:55:02Z",
+      "side": 1,
+      "message": "Usually you put `let status` after the safety comment.",
+      "revId": "6c916ecf85875eb49041324ac37abfa86e599d4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
