@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07cd921e_452901e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-01-12T04:45:23Z",
+      "side": 1,
+      "message": "Siarhei, do you have any idea about presubmit failures? When I run it with ABTD (w/ atest) or locally(atest CtsInputTestCases), no failures.",
+      "revId": "bb6dd3d017009dcc4fa9b437b8844234376dcf3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
