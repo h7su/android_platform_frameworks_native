@@ -334,6 +334,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b828420_a188d899",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-12T20:44:15Z",
+      "side": 1,
+      "message": "\u003e other folks might add stuff here in the future without realizing this call might block\n\nWe could put a few more comments around, and we do need to add some more stress tests for this (processes dying during aidl_lazy_tests), but I think the priority is getting something in that will fix this 😊\n\n\u003e Yeah, we don\u0027t want the call to handlePolledCommands to block until a command arrives.\n\nThis is not true. It\u0027s fine here, which is what I posted in PS1. The only change it makes is around guarantees of how quickly lazy services will be shutdown. As long as it would unblock when a single command is sent, it\u0027s fine.\n\n\u003e Make handlePolledCommands work with O_NONBLOCK.\n\nI do think it does work, but it requires more testing btw. If we can avoid it and go with my PS1, I think it would be slower.\n\n\u003e So we could just make the extra handlePolledCommands call if and only if we\u0027ve used flushCommands to write a BC_CLEAR_DEATH_NOTIFICATION.\n\nI\u0027ll implement this if you don\u0027t like the first idea.",
+      "parentUuid": "17c018f7_2c8b3bb1",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
