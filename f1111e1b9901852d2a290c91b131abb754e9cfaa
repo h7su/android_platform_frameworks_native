@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8388d49_90d6c065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327776
+      },
+      "writtenOn": "2024-01-12T06:12:59Z",
+      "side": 1,
+      "message": "Hi @jreck@google.com, @yichichen@google.com Can we merge this CL to aosp? without this CL, playing youtube 4K@60fps and navigate UI may drop frame.",
+      "revId": "f1111e1b9901852d2a290c91b131abb754e9cfaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
