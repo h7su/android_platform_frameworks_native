@@ -16,6 +16,24 @@
       "message": "Siarhei, do you have any idea about presubmit failures? When I run it with ABTD (w/ atest) or locally(atest CtsInputTestCases), no failures.",
       "revId": "bb6dd3d017009dcc4fa9b437b8844234376dcf3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7efc27cc_18211757",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-01-12T22:55:58Z",
+      "side": 1,
+      "message": "They are likely unrelated, just retry your presubmit. Looking at the test history the flake rate is not too high (0.6%)",
+      "parentUuid": "07cd921e_452901e1",
+      "revId": "bb6dd3d017009dcc4fa9b437b8844234376dcf3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
