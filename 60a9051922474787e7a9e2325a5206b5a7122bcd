@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0093c27d_a6a7cb03",
+        "filename": "libs/binder/tests/binderThroughputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-13T00:06:09Z",
+      "side": 1,
+      "message": "waitForService will wait unconditionally. You should not need any signal-based sync points IMO. I think you could start all the servers, waitForService for all of them, and then you\u0027ll have servers setup.\n\nThis test has a lot of stuff that IMO could be deleted. See binderRpcBenchmark for a comparison, but yeah, I do not have any strong opinion.\n\n\u003e starting all of the workers at the same time.\n\nAlso I don\u0027t fully get why this matters, because we are measuring the bidner calls, not anything to do with starting them?",
+      "parentUuid": "468c80fc_9830ed69",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 13
+      },
+      "revId": "60a9051922474787e7a9e2325a5206b5a7122bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f679148a_15cc5d08",
         "filename": "libs/binder/tests/binderThroughputTest.cpp",
         "patchSetId": 4
