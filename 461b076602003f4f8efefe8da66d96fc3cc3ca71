@@ -358,6 +358,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91750d9c_a0998c8a",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-15T09:43:50Z",
+      "side": 1,
+      "message": "I think there is value having O_NONBLOCK working because it\u0027s the only way to get a fully general way to call `handlePolledCommands` without having it block. But that doesn\u0027t mean we have to use that solution here. I would be fine with merging another simpler solution here and looking in O_NONBLOCK later.",
+      "parentUuid": "9b828420_a188d899",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
