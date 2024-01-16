@@ -69,6 +69,24 @@
       "parentUuid": "5d1c06ec_b1c6f040",
       "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493d7b71_cb99c54d",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-16T15:54:47Z",
+      "side": 1,
+      "message": "One option is to define an error type that just wraps the integer. This will make `width` work with the question mark operator with catch-all error types.",
+      "parentUuid": "652d579b_2d970b7d",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
