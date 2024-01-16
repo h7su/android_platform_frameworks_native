@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdde2054_01df1c24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-16T15:01:20Z",
+      "side": 1,
+      "message": "LGTM other than the weird return type.",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807f4799_6fecc7a2",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-16T15:01:20Z",
+      "side": 1,
+      "message": "What\u0027s up with this return type?",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
