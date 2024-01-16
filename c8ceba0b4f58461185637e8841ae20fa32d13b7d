@@ -39,6 +39,30 @@
       },
       "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95954970_98cac1fd",
+        "filename": "libs/binder/IActivityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1952023
+      },
+      "writtenOn": "2024-01-16T18:11:25Z",
+      "side": 1,
+      "message": "Jing, what do you think of converting RunningAppProcessInfo to AIDL?",
+      "parentUuid": "68d81ec4_6b5dc375",
+      "range": {
+        "startLine": 285,
+        "startChar": 25,
+        "endLine": 318,
+        "endChar": 22
+      },
+      "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
