@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981f6560_25d265ae",
+        "filename": "libs/nativewindow/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-16T14:57:10Z",
+      "side": 1,
+      "message": "You don\u0027t have to say that it must be non-null when you\u0027re using the `NonNull` type.",
+      "revId": "af600c22c3ede60a601f672243d48afb7336c27a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
