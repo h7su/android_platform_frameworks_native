@@ -51,6 +51,24 @@
       "parentUuid": "807f4799_6fecc7a2",
       "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652d579b_2d970b7d",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-16T15:53:27Z",
+      "side": 1,
+      "message": "Hmm, I found two places that return errors:\n\n* [the first](https://cs.android.com/android/platform/superproject/main/+/main:hardware/libhardware/tests/hwc/cnativewindow.c;l\u003d309;drc\u003d24d1a985cba70eca151ab07d6fef76ff1ca4f483) uses standard errno codes\n* [the second](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/native/libs/gui/include/gui/IGraphicBufferProducer.h;l\u003d467-468;drc\u003d24d1a985cba70eca151ab07d6fef76ff1ca4f483;bpv\u003d1;bpt\u003d1) uses something that looks like Android error codes?",
+      "parentUuid": "5d1c06ec_b1c6f040",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
