@@ -181,6 +181,30 @@
       },
       "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c0e06d7_578cc73b",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 39
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-17T02:05:35Z",
+      "side": 1,
+      "message": "Latest update: I moved all the new Trusty modules into rpcbinder.",
+      "parentUuid": "89ba21bf_a80967d9",
+      "range": {
+        "startLine": 50,
+        "startChar": 5,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
