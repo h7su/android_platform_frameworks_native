@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ad3560e_93deb501",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-17T02:31:08Z",
+      "side": 1,
+      "message": "It\u0027s not, but it will be tested in presubmit once the test CL lands.\n\nRepeating the mocking approach in Rust will take some effort, for starters since the code checks the OS using `target_os \u003d \"trusty\"`. We could maybe replicate that with a feature, but that would take some experimenting. Could I leave it for a follow-up?",
+      "parentUuid": "f68226e9_82f5481b",
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75256ac7_97119c3f",
         "filename": "libs/binder/ndk/ibinder.cpp",
         "patchSetId": 39
