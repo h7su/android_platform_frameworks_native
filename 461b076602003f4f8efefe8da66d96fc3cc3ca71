@@ -382,6 +382,30 @@
       },
       "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0cb4f8d_1b7f8975",
+        "filename": "cmds/servicemanager/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000205
+      },
+      "writtenOn": "2024-01-17T00:31:00Z",
+      "side": 1,
+      "message": "Regarding my earlier suggestion of setting and clearing O_NONBLOCK each time here, that should only be necessary if you need to make outgoing transactions that are not one-way. service-manager should never do that anyway as it is the lowest level service we have, so setting O_NONBLOCK once and leaving it on should be fine in this case. It is not a solution that can necessarily be copied into other processes though. I think this CL is fine as a temporary workaround, but a more generic solution is needed. Either in the driver or in libbinder.",
+      "parentUuid": "91750d9c_a0998c8a",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 52
+      },
+      "revId": "461b076602003f4f8efefe8da66d96fc3cc3ca71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
