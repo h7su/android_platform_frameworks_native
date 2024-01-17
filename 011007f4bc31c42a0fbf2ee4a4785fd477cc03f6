@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32737cc6_75607d81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-01-17T21:30:08Z",
+      "side": 1,
+      "message": "Doesn\u0027t this also fix b/319284987?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "011007f4bc31c42a0fbf2ee4a4785fd477cc03f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f995c2b_a0333848",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4042,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-01-17T21:30:08Z",
+      "side": 1,
+      "message": "const int",
+      "range": {
+        "startLine": 4042,
+        "startChar": 4,
+        "endLine": 4042,
+        "endChar": 7
+      },
+      "revId": "011007f4bc31c42a0fbf2ee4a4785fd477cc03f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
