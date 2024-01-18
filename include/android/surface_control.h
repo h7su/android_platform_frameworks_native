@@ -303,7 +303,7 @@ void ASurfaceTransaction_reparent(ASurfaceTransaction* _Nonnull transaction,
 /**
  * Parameter for ASurfaceTransaction_setVisibility().
  */
-enum {
+enum AndroidSurfaceTransactionVisibility : int8_t {
     ASURFACE_TRANSACTION_VISIBILITY_HIDE = 0,
     ASURFACE_TRANSACTION_VISIBILITY_SHOW = 1,
 };
@@ -315,7 +315,7 @@ enum {
  * Available since API level 29.
  */
 void ASurfaceTransaction_setVisibility(ASurfaceTransaction* _Nonnull transaction,
-                                       ASurfaceControl* _Nonnull surface_control, int8_t visibility)
+                                       ASurfaceControl* _Nonnull surface_control, enum AndroidSurfaceTransactionVisibility visibility)
                                        __INTRODUCED_IN(29);
 
 /**
@@ -436,7 +436,7 @@ void ASurfaceTransaction_setScale(ASurfaceTransaction* _Nonnull transaction,
 /**
  * Parameter for ASurfaceTransaction_setBufferTransparency().
  */
-enum {
+enum AndroidSurfaceTransactionTransparency : int8_t {
     ASURFACE_TRANSACTION_TRANSPARENCY_TRANSPARENT = 0,
     ASURFACE_TRANSACTION_TRANSPARENCY_TRANSLUCENT = 1,
     ASURFACE_TRANSACTION_TRANSPARENCY_OPAQUE = 2,
@@ -450,7 +450,7 @@ enum {
  */
 void ASurfaceTransaction_setBufferTransparency(ASurfaceTransaction* _Nonnull transaction,
                                                ASurfaceControl* _Nonnull surface_control,
-                                               int8_t transparency)
+                                               enum AndroidSurfaceTransactionTransparency transparency)
                                                __INTRODUCED_IN(29);
 
 /**
