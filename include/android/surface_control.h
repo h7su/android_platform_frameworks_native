@@ -62,7 +62,7 @@ typedef struct ASurfaceControl ASurfaceControl;
  *
  * Available since API level 29.
  */
-ASurfaceControl* ASurfaceControl_createFromWindow(ANativeWindow* parent, const char* debug_name)
+ASurfaceControl* ASurfaceControl_createFromWindow(ANativeWindow* _Nonnull parent, const char* _Nonnull debug_name)
                                                   __INTRODUCED_IN(29);
 
 /**
@@ -70,7 +70,7 @@ ASurfaceControl* ASurfaceControl_createFromWindow(ANativeWindow* parent, const c
  *
  * Available since API level 29.
  */
-ASurfaceControl* ASurfaceControl_create(ASurfaceControl* parent, const char* debug_name)
+ASurfaceControl* ASurfaceControl_create(ASurfaceControl* _Nonnull parent, const char* _Nonnull debug_name)
                                         __INTRODUCED_IN(29);
 
 /**
@@ -81,7 +81,7 @@ ASurfaceControl* ASurfaceControl_create(ASurfaceControl* parent, const char* deb
  *
  * Available since API level 31.
  */
-void ASurfaceControl_acquire(ASurfaceControl* surface_control) __INTRODUCED_IN(31);
+void ASurfaceControl_acquire(ASurfaceControl* _Nonnull surface_control) __INTRODUCED_IN(31);
 
 /**
  * Removes a reference that was previously acquired with one of the following functions:
@@ -92,7 +92,7 @@ void ASurfaceControl_acquire(ASurfaceControl* surface_control) __INTRODUCED_IN(3
  *
  * Available since API level 29.
  */
-void ASurfaceControl_release(ASurfaceControl* surface_control) __INTRODUCED_IN(29);
+void ASurfaceControl_release(ASurfaceControl* _Nonnull surface_control) __INTRODUCED_IN(29);
 
 struct ASurfaceTransaction;
 
@@ -108,14 +108,14 @@ typedef struct ASurfaceTransaction ASurfaceTransaction;
  *
  * Available since API level 29.
  */
-ASurfaceTransaction* ASurfaceTransaction_create() __INTRODUCED_IN(29);
+ASurfaceTransaction* _Nonnull ASurfaceTransaction_create() __INTRODUCED_IN(29);
 
 /**
  * Destroys the \a transaction object.
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_delete(ASurfaceTransaction* transaction) __INTRODUCED_IN(29);
+void ASurfaceTransaction_delete(ASurfaceTransaction* _Nonnull transaction) __INTRODUCED_IN(29);
 
 /**
  * Applies the updates accumulated in \a transaction.
@@ -126,7 +126,7 @@ void ASurfaceTransaction_delete(ASurfaceTransaction* transaction) __INTRODUCED_I
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_apply(ASurfaceTransaction* transaction) __INTRODUCED_IN(29);
+void ASurfaceTransaction_apply(ASurfaceTransaction* _Nonnull transaction) __INTRODUCED_IN(29);
 
 /**
  * An opaque handle returned during a callback that can be used to query general stats and stats for
@@ -154,7 +154,7 @@ typedef struct ASurfaceTransactionStats ASurfaceTransactionStats;
  *
  * Available since API level 29.
  */
-typedef void (*ASurfaceTransaction_OnComplete)(void* context, ASurfaceTransactionStats* stats)
+typedef void (*ASurfaceTransaction_OnComplete)(void* _Nullable context, ASurfaceTransactionStats* _Nonnull stats)
                                                __INTRODUCED_IN(29);
 
 
@@ -183,7 +183,7 @@ typedef void (*ASurfaceTransaction_OnComplete)(void* context, ASurfaceTransactio
  *
  * Available since API level 31.
  */
-typedef void (*ASurfaceTransaction_OnCommit)(void* context, ASurfaceTransactionStats* stats)
+typedef void (*ASurfaceTransaction_OnCommit)(void* _Nullable context, ASurfaceTransactionStats* _Nonnull stats)
                                                __INTRODUCED_IN(31);
 
 /**
@@ -192,7 +192,7 @@ typedef void (*ASurfaceTransaction_OnCommit)(void* context, ASurfaceTransactionS
  *
  * Available since API level 29.
  */
-int64_t ASurfaceTransactionStats_getLatchTime(ASurfaceTransactionStats* surface_transaction_stats)
+int64_t ASurfaceTransactionStats_getLatchTime(ASurfaceTransactionStats* _Nonnull surface_transaction_stats)
                                               __INTRODUCED_IN(29);
 
 /**
@@ -204,7 +204,7 @@ int64_t ASurfaceTransactionStats_getLatchTime(ASurfaceTransactionStats* surface_
  *
  * Available since API level 29.
  */
-int ASurfaceTransactionStats_getPresentFenceFd(ASurfaceTransactionStats* surface_transaction_stats)
+int ASurfaceTransactionStats_getPresentFenceFd(ASurfaceTransactionStats* _Nonnull surface_transaction_stats)
                                                __INTRODUCED_IN(29);
 
 /**
@@ -217,9 +217,9 @@ int ASurfaceTransactionStats_getPresentFenceFd(ASurfaceTransactionStats* surface
  *
  * \a outASurfaceControlsSize returns the size of the ASurfaceControls array.
  */
-void ASurfaceTransactionStats_getASurfaceControls(ASurfaceTransactionStats* surface_transaction_stats,
-                                                  ASurfaceControl*** outASurfaceControls,
-                                                  size_t* outASurfaceControlsSize)
+void ASurfaceTransactionStats_getASurfaceControls(ASurfaceTransactionStats* _Nonnull surface_transaction_stats,
+                                                  ASurfaceControl* _Nonnull * _Nonnull * _Nonnull outASurfaceControls,
+                                                  size_t* _Nonnull outASurfaceControlsSize)
                                                   __INTRODUCED_IN(29);
 /**
  * Releases the array of ASurfaceControls that were returned by
@@ -227,7 +227,7 @@ void ASurfaceTransactionStats_getASurfaceControls(ASurfaceTransactionStats* surf
  *
  * Available since API level 29.
  */
-void ASurfaceTransactionStats_releaseASurfaceControls(ASurfaceControl** surface_controls)
+void ASurfaceTransactionStats_releaseASurfaceControls(ASurfaceControl* _Nonnull * _Nonnull surface_controls)
                                                       __INTRODUCED_IN(29);
 
 /**
@@ -237,8 +237,8 @@ void ASurfaceTransactionStats_releaseASurfaceControls(ASurfaceControl** surface_
  *
  * Available since API level 29.
  */
-int64_t ASurfaceTransactionStats_getAcquireTime(ASurfaceTransactionStats* surface_transaction_stats,
-                                                ASurfaceControl* surface_control)
+int64_t ASurfaceTransactionStats_getAcquireTime(ASurfaceTransactionStats* _Nonnull surface_transaction_stats,
+                                                ASurfaceControl* _Nonnull surface_control)
                                                 __INTRODUCED_IN(29);
 
 /**
@@ -264,8 +264,8 @@ int64_t ASurfaceTransactionStats_getAcquireTime(ASurfaceTransactionStats* surfac
  * Available since API level 29.
  */
 int ASurfaceTransactionStats_getPreviousReleaseFenceFd(
-                                                ASurfaceTransactionStats* surface_transaction_stats,
-                                                ASurfaceControl* surface_control)
+                                                ASurfaceTransactionStats* _Nonnull surface_transaction_stats,
+                                                ASurfaceControl* _Nonnull surface_control)
                                                 __INTRODUCED_IN(29);
 
 /**
@@ -275,7 +275,7 @@ int ASurfaceTransactionStats_getPreviousReleaseFenceFd(
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setOnComplete(ASurfaceTransaction* transaction, void* context,
+void ASurfaceTransaction_setOnComplete(ASurfaceTransaction* _Nonnull transaction, void* _Nullable context,
                                        ASurfaceTransaction_OnComplete func) __INTRODUCED_IN(29);
 
 /**
@@ -285,7 +285,7 @@ void ASurfaceTransaction_setOnComplete(ASurfaceTransaction* transaction, void* c
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setOnCommit(ASurfaceTransaction* transaction, void* context,
+void ASurfaceTransaction_setOnCommit(ASurfaceTransaction* _Nonnull transaction, void* _Nullable context,
                                     ASurfaceTransaction_OnCommit func) __INTRODUCED_IN(31);
 
 /**
@@ -296,8 +296,8 @@ void ASurfaceTransaction_setOnCommit(ASurfaceTransaction* transaction, void* con
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_reparent(ASurfaceTransaction* transaction,
-                                  ASurfaceControl* surface_control, ASurfaceControl* new_parent)
+void ASurfaceTransaction_reparent(ASurfaceTransaction* _Nonnull transaction,
+                                  ASurfaceControl* _Nonnull surface_control, ASurfaceControl* _Nullable new_parent)
                                   __INTRODUCED_IN(29);
 
 /**
@@ -314,8 +314,8 @@ enum {
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setVisibility(ASurfaceTransaction* transaction,
-                                       ASurfaceControl* surface_control, int8_t visibility)
+void ASurfaceTransaction_setVisibility(ASurfaceTransaction* _Nonnull transaction,
+                                       ASurfaceControl* _Nonnull surface_control, int8_t visibility)
                                        __INTRODUCED_IN(29);
 
 /**
@@ -327,8 +327,8 @@ void ASurfaceTransaction_setVisibility(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setZOrder(ASurfaceTransaction* transaction,
-                                   ASurfaceControl* surface_control, int32_t z_order)
+void ASurfaceTransaction_setZOrder(ASurfaceTransaction* _Nonnull transaction,
+                                   ASurfaceControl* _Nonnull surface_control, int32_t z_order)
                                    __INTRODUCED_IN(29);
 
 /**
@@ -344,8 +344,8 @@ void ASurfaceTransaction_setZOrder(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setBuffer(ASurfaceTransaction* transaction,
-                                   ASurfaceControl* surface_control, AHardwareBuffer* buffer,
+void ASurfaceTransaction_setBuffer(ASurfaceTransaction* _Nonnull transaction,
+                                   ASurfaceControl* _Nonnull surface_control, AHardwareBuffer* _Nonnull buffer,
                                    int acquire_fence_fd = -1) __INTRODUCED_IN(29);
 
 /**
@@ -356,8 +356,8 @@ void ASurfaceTransaction_setBuffer(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setColor(ASurfaceTransaction* transaction,
-                                  ASurfaceControl* surface_control, float r, float g, float b,
+void ASurfaceTransaction_setColor(ASurfaceTransaction* _Nonnull transaction,
+                                  ASurfaceControl* _Nonnull surface_control, float r, float g, float b,
                                   float alpha, ADataSpace dataspace)
                                   __INTRODUCED_IN(29);
 
@@ -381,8 +381,8 @@ void ASurfaceTransaction_setColor(ASurfaceTransaction* transaction,
  * to set different properties at different times, instead of having to specify all the desired
  * properties at once.
  */
-void ASurfaceTransaction_setGeometry(ASurfaceTransaction* transaction,
-                                     ASurfaceControl* surface_control, const ARect& source,
+void ASurfaceTransaction_setGeometry(ASurfaceTransaction* _Nonnull transaction,
+                                     ASurfaceControl* _Nonnull surface_control, const ARect& source,
                                      const ARect& destination, int32_t transform)
                                      __INTRODUCED_IN(29);
 
@@ -395,8 +395,8 @@ void ASurfaceTransaction_setGeometry(ASurfaceTransaction* transaction,
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setCrop(ASurfaceTransaction* transaction,
-                                       ASurfaceControl* surface_control, const ARect& crop)
+void ASurfaceTransaction_setCrop(ASurfaceTransaction* _Nonnull transaction,
+                                       ASurfaceControl* _Nonnull surface_control, const ARect& crop)
                                        __INTRODUCED_IN(31);
 
 /**
@@ -407,8 +407,8 @@ void ASurfaceTransaction_setCrop(ASurfaceTransaction* transaction,
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setPosition(ASurfaceTransaction* transaction,
-                                     ASurfaceControl* surface_control, int32_t x, int32_t y)
+void ASurfaceTransaction_setPosition(ASurfaceTransaction* _Nonnull transaction,
+                                     ASurfaceControl* _Nonnull surface_control, int32_t x, int32_t y)
                                      __INTRODUCED_IN(31);
 
 /**
@@ -418,8 +418,8 @@ void ASurfaceTransaction_setPosition(ASurfaceTransaction* transaction,
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setBufferTransform(ASurfaceTransaction* transaction,
-                                      ASurfaceControl* surface_control, int32_t transform)
+void ASurfaceTransaction_setBufferTransform(ASurfaceTransaction* _Nonnull transaction,
+                                      ASurfaceControl* _Nonnull surface_control, int32_t transform)
                                       __INTRODUCED_IN(31);
 
 /**
@@ -430,8 +430,8 @@ void ASurfaceTransaction_setBufferTransform(ASurfaceTransaction* transaction,
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setScale(ASurfaceTransaction* transaction,
-                                      ASurfaceControl* surface_control, float xScale, float yScale)
+void ASurfaceTransaction_setScale(ASurfaceTransaction* _Nonnull transaction,
+                                      ASurfaceControl* _Nonnull surface_control, float xScale, float yScale)
                                       __INTRODUCED_IN(31);
 /**
  * Parameter for ASurfaceTransaction_setBufferTransparency().
@@ -448,8 +448,8 @@ enum {
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setBufferTransparency(ASurfaceTransaction* transaction,
-                                               ASurfaceControl* surface_control,
+void ASurfaceTransaction_setBufferTransparency(ASurfaceTransaction* _Nonnull transaction,
+                                               ASurfaceControl* _Nonnull surface_control,
                                                int8_t transparency)
                                                __INTRODUCED_IN(29);
 
@@ -459,8 +459,8 @@ void ASurfaceTransaction_setBufferTransparency(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setDamageRegion(ASurfaceTransaction* transaction,
-                                         ASurfaceControl* surface_control, const ARect rects[],
+void ASurfaceTransaction_setDamageRegion(ASurfaceTransaction* _Nonnull transaction,
+                                         ASurfaceControl* _Nonnull surface_control, const ARect rects[],
                                          uint32_t count) __INTRODUCED_IN(29);
 
 /**
@@ -475,7 +475,7 @@ void ASurfaceTransaction_setDamageRegion(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setDesiredPresentTime(ASurfaceTransaction* transaction,
+void ASurfaceTransaction_setDesiredPresentTime(ASurfaceTransaction* _Nonnull transaction,
                                                int64_t desiredPresentTime) __INTRODUCED_IN(29);
 
 /**
@@ -485,8 +485,8 @@ void ASurfaceTransaction_setDesiredPresentTime(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setBufferAlpha(ASurfaceTransaction* transaction,
-                                        ASurfaceControl* surface_control, float alpha)
+void ASurfaceTransaction_setBufferAlpha(ASurfaceTransaction* _Nonnull transaction,
+                                        ASurfaceControl* _Nonnull surface_control, float alpha)
                                         __INTRODUCED_IN(29);
 
 /**
@@ -496,8 +496,8 @@ void ASurfaceTransaction_setBufferAlpha(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setBufferDataSpace(ASurfaceTransaction* transaction,
-                                            ASurfaceControl* surface_control, ADataSpace data_space)
+void ASurfaceTransaction_setBufferDataSpace(ASurfaceTransaction* _Nonnull transaction,
+                                            ASurfaceControl* _Nonnull surface_control, ADataSpace data_space)
                                             __INTRODUCED_IN(29);
 
 /**
@@ -508,9 +508,9 @@ void ASurfaceTransaction_setBufferDataSpace(ASurfaceTransaction* transaction,
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setHdrMetadata_smpte2086(ASurfaceTransaction* transaction,
-                                                  ASurfaceControl* surface_control,
-                                                  struct AHdrMetadata_smpte2086* metadata)
+void ASurfaceTransaction_setHdrMetadata_smpte2086(ASurfaceTransaction* _Nonnull transaction,
+                                                  ASurfaceControl* _Nonnull surface_control,
+                                                  struct AHdrMetadata_smpte2086* _Nullable metadata)
                                                   __INTRODUCED_IN(29);
 
 /**
@@ -521,9 +521,9 @@ void ASurfaceTransaction_setHdrMetadata_smpte2086(ASurfaceTransaction* transacti
  *
  * Available since API level 29.
  */
-void ASurfaceTransaction_setHdrMetadata_cta861_3(ASurfaceTransaction* transaction,
-                                                 ASurfaceControl* surface_control,
-                                                 struct AHdrMetadata_cta861_3* metadata)
+void ASurfaceTransaction_setHdrMetadata_cta861_3(ASurfaceTransaction* _Nonnull transaction,
+                                                 ASurfaceControl* _Nonnull surface_control,
+                                                 struct AHdrMetadata_cta861_3* _Nullable metadata)
                                                  __INTRODUCED_IN(29);
 
 /**
@@ -568,8 +568,8 @@ void ASurfaceTransaction_setHdrMetadata_cta861_3(ASurfaceTransaction* transactio
  *
  * Available since API level 34.
  */
-void ASurfaceTransaction_setExtendedRangeBrightness(ASurfaceTransaction* transaction,
-                                            ASurfaceControl* surface_control,
+void ASurfaceTransaction_setExtendedRangeBrightness(ASurfaceTransaction* _Nonnull transaction,
+                                            ASurfaceControl* _Nonnull surface_control,
                                             float currentBufferRatio,
                                             float desiredRatio) __INTRODUCED_IN(__ANDROID_API_U__);
 
@@ -581,8 +581,8 @@ void ASurfaceTransaction_setExtendedRangeBrightness(ASurfaceTransaction* transac
  *
  * Available since API level 30.
  */
-void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* transaction,
-                                      ASurfaceControl* surface_control, float frameRate,
+void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* _Nonnull transaction,
+                                      ASurfaceControl* _Nonnull surface_control, float frameRate,
                                       int8_t compatibility) __INTRODUCED_IN(30);
 
 /**
@@ -617,8 +617,8 @@ void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* transaction,
  *
  * Available since API level 31.
  */
-void ASurfaceTransaction_setFrameRateWithChangeStrategy(ASurfaceTransaction* transaction,
-                                      ASurfaceControl* surface_control, float frameRate,
+void ASurfaceTransaction_setFrameRateWithChangeStrategy(ASurfaceTransaction* _Nonnull transaction,
+                                      ASurfaceControl* _Nonnull surface_control, float frameRate,
                                       int8_t compatibility, int8_t changeFrameRateStrategy)
                                       __INTRODUCED_IN(31);
 
@@ -643,8 +643,8 @@ void ASurfaceTransaction_setFrameRateWithChangeStrategy(ASurfaceTransaction* tra
  *
  * Available since API level 34.
  */
-void ASurfaceTransaction_clearFrameRate(ASurfaceTransaction* transaction,
-                                        ASurfaceControl* surface_control)
+void ASurfaceTransaction_clearFrameRate(ASurfaceTransaction* _Nonnull transaction,
+                                        ASurfaceControl* _Nonnull surface_control)
                                         __INTRODUCED_IN(__ANDROID_API_U__);
 
 /**
@@ -673,8 +673,8 @@ void ASurfaceTransaction_clearFrameRate(ASurfaceTransaction* transaction,
  * \param surface_control The ASurfaceControl on which to control buffer backpressure behavior.
  * \param enableBackPressure Whether to enable back pressure.
  */
-void ASurfaceTransaction_setEnableBackPressure(ASurfaceTransaction* transaction,
-                                               ASurfaceControl* surface_control,
+void ASurfaceTransaction_setEnableBackPressure(ASurfaceTransaction* _Nonnull transaction,
+                                               ASurfaceControl* _Nonnull surface_control,
                                                bool enableBackPressure)
                                                __INTRODUCED_IN(31);
 
@@ -696,7 +696,7 @@ void ASurfaceTransaction_setEnableBackPressure(ASurfaceTransaction* transaction,
  * to the corresponding expected presentation time and deadline from the frame to be rendered. A
  * stale or invalid value will be ignored.
  */
-void ASurfaceTransaction_setFrameTimeline(ASurfaceTransaction* transaction,
+void ASurfaceTransaction_setFrameTimeline(ASurfaceTransaction* _Nonnull transaction,
                                           AVsyncId vsyncId) __INTRODUCED_IN(33);
 
 __END_DECLS
