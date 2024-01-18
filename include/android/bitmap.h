@@ -51,11 +51,11 @@ enum {
     ANDROID_BITMAP_RESULT_ALLOCATION_FAILED = -3,
 };
 
-/** Backward compatibility: this macro used to be misspelled. */
+/** Backward compatibility: this constant used to be misspelled. */
 #define ANDROID_BITMAP_RESUT_SUCCESS ANDROID_BITMAP_RESULT_SUCCESS
 
 /** Bitmap pixel format. */
-enum AndroidBitmapFormat {
+enum AndroidBitmapFormat : int32_t {
     /** No format. */
     ANDROID_BITMAP_FORMAT_NONE      = 0,
     /** Red: 8 bits, Green: 8 bits, Blue: 8 bits, Alpha: 8 bits. **/
@@ -72,8 +72,7 @@ enum AndroidBitmapFormat {
     ANDROID_BITMAP_FORMAT_RGBA_1010102 = 10,
 };
 
-/** Bitmap alpha format */
-enum {
+enum AndroidBitmapFlags : uint32_t {
     /** Pixel components are premultiplied by alpha. */
     ANDROID_BITMAP_FLAGS_ALPHA_PREMUL   = 0,
     /** Pixels are opaque. */
@@ -84,26 +83,24 @@ enum {
     ANDROID_BITMAP_FLAGS_ALPHA_MASK     = 0x3,
     /** Shift for AndroidBitmapFormat.flags to isolate the alpha. */
     ANDROID_BITMAP_FLAGS_ALPHA_SHIFT    = 0,
-};
 
-enum {
     /** If this bit is set in AndroidBitmapInfo.flags, the Bitmap uses the
       * HARDWARE Config, and its {@link AHardwareBuffer} can be retrieved via
       * {@link AndroidBitmap_getHardwareBuffer}.
       */
-    ANDROID_BITMAP_FLAGS_IS_HARDWARE = 1 << 31,
+    ANDROID_BITMAP_FLAGS_IS_HARDWARE = 1U << 31,
 };
 
 /** Bitmap info, see AndroidBitmap_getInfo(). */
 typedef struct {
     /** The bitmap width in pixels. */
-    uint32_t    width;
+    uint32_t                 width;
     /** The bitmap height in pixels. */
-    uint32_t    height;
+    uint32_t                 height;
     /** The number of byte per row. */
-    uint32_t    stride;
+    uint32_t                 stride;
     /** The bitmap pixel format. See {@link AndroidBitmapFormat} */
-    int32_t     format;
+    enum AndroidBitmapFormat format;
     /** Bitfield containing information about the bitmap.
      *
      * <p>Two bits are used to encode alpha. Use {@link ANDROID_BITMAP_FLAGS_ALPHA_MASK}
@@ -114,7 +111,7 @@ typedef struct {
      *
      * <p>These flags were introduced in API level 30.</p>
      */
-    uint32_t    flags;
+    enum AndroidBitmapFlags  flags;
 } AndroidBitmapInfo;
 
 /**
@@ -161,7 +158,7 @@ int AndroidBitmap_unlockPixels(JNIEnv* env, jobject jbitmap);
  *  Specifies the formats that can be compressed to with
  *  {@link AndroidBitmap_compress}.
  */
-enum AndroidBitmapCompressFormat {
+enum AndroidBitmapCompressFormat : int32_t {
     /**
      * Compress to the JPEG format. quality of 0 means
      * compress for the smallest size. 100 means compress for max
@@ -229,7 +226,7 @@ typedef bool (*AndroidBitmap_CompressWriteFunc)(void* userContext,
 int AndroidBitmap_compress(const AndroidBitmapInfo* info,
                            int32_t dataspace,
                            const void* pixels,
-                           int32_t format, int32_t quality,
+                           enum AndroidBitmapCompressFormat format, int32_t quality,
                            void* userContext,
                            AndroidBitmap_CompressWriteFunc fn) __INTRODUCED_IN(30);
 
