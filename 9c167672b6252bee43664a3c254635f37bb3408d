@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b62f6f63_c54f020c",
+        "filename": "libs/binder/include_rpc_unstable/binder_rpc_unstable.hpp",
+        "patchSetId": 43
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbf79219_d6a7369c",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5adabfb7_f2488631",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "Yeah I copied this from the old rpcbinder code. I think we could avoid it and implement what we need manually, especially since we\u0027re wrapping the native `RpcServerTrusty` instead of exporting it directly.\n\nI\u0027ll give it a try.",
       "parentUuid": "5adabfb7_f2488631",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda50e94_a7eb04fa",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "255f305e_fc675ff5",
       "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "136b3d13_1748545c",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a869302_a94f2324",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff300318_671e0523",
@@ -123,6 +177,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "340be247_535bb27b",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3811af27_557d4729",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6947b34_d2d06dc2",
@@ -136,6 +208,30 @@
       "writtenOn": "2024-01-17T16:58:11Z",
       "side": 1,
       "message": "This safety comment doesn\u0027t seem relevant to implementing Send? Send is about safety of transferring ownership of this to another thread.",
+      "range": {
+        "startLine": 38,
+        "startChar": 37,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2da6bc7_c93eaa95",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6947b34_d2d06dc2",
       "range": {
         "startLine": 38,
         "startChar": 37,
