@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "255f305e_fc675ff5",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T01:14:22Z",
+      "side": 1,
+      "message": "Yeah I copied this from the old rpcbinder code. I think we could avoid it and implement what we need manually, especially since we\u0027re wrapping the native `RpcServerTrusty` instead of exporting it directly.\n\nI\u0027ll give it a try.",
+      "parentUuid": "5adabfb7_f2488631",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b330d817_6eecddb5",
         "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
         "patchSetId": 43
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a869302_a94f2324",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T01:14:22Z",
+      "side": 1,
+      "message": "\u003e  Does Trusty have two non-equal c_voids?\n\nI think so, because it didn\u0027t have `std` at first. We should probably fix that now.",
+      "parentUuid": "b330d817_6eecddb5",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff300318_671e0523",
         "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
         "patchSetId": 43
@@ -65,6 +101,24 @@
       "writtenOn": "2024-01-17T16:58:11Z",
       "side": 1,
       "message": "Where are we borrowing the CRpcServer? If we\u0027re not borrowing it, why are we using foreign_type and declaring this?",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3811af27_557d4729",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T01:14:22Z",
+      "side": 1,
+      "message": "Copied from rpcbinder. I think the macro requires this second type name, but we\u0027re not using it for anything. I\u0027ll try to get rid of it.",
+      "parentUuid": "ff300318_671e0523",
       "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
