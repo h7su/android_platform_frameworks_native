@@ -257,6 +257,24 @@
       "message": "Two alternate patterns to consider here:\n1. Change per_session_cb_wrapper to take an RpcServer rather than a `*mut Box\u003cdyn PerSessionCallback\u003e\u003e`, then call the per_session_cb directly. It will then be \"used\", and you don\u0027t have a pointer",
       "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a564f6_0b8bd3c9",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-18T03:10:45Z",
+      "side": 1,
+      "message": "Looks like your comment cut off early. What was the second one?",
+      "parentUuid": "60caa26d_5bca83f4",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
