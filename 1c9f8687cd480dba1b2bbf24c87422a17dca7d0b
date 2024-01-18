@@ -87,6 +87,24 @@
       "parentUuid": "652d579b_2d970b7d",
       "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea788c1f_dc89999b",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1060289
+      },
+      "writtenOn": "2024-01-18T00:45:58Z",
+      "side": 1,
+      "message": "+1, I\u0027d prefer to avoid the error being a raw int. A custom error type would be nice, I think.\n\nI wish we had better standard ones.",
+      "parentUuid": "493d7b71_cb99c54d",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
