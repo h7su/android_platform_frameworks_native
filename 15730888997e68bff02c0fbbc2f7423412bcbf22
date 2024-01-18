@@ -33,6 +33,24 @@
       "message": "This isn\u0027t quite right, as I understand it. We create a `hwc` (in `Display::createOutputLayer`) for *all* visible layers (via `Output::collectVisibleLayers`), if the `Output` is backed by Hardware Composer (HWC).\n\nThis change would result in a new bug. If the `Output` is backed by HWC, `needsProtected` will now always be set to `false`.\n\nWhat you really want to know is whether the layer is going to be composited by the HWC or not. That information is actually contained by the `hwc` object.\n\nWhat I think you want is\n\n```\n    \u0026\u0026 (!layer-\u003egetState().hwc || layer-\u003egetState().hwc.hwcCompositionType \u003d\u003d\n        aidl::android::hardware::graphics::composer3::Composition::CLIENT);\n```\n\nThis method (`updateProtectedContentState`) is called after HWC specifies which layers should be `CLIENT` composited, so `hwcCompositionType` should be up to date. It does feel a *little* fragile, though - if we changed the ordering, this would break. So maybe we should have a test confirming the ordering?\n\nAnd we should have a test for this behavior change, too.",
       "revId": "15730888997e68bff02c0fbbc2f7423412bcbf22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6bc6b00_5564d1d8",
+        "filename": "services/surfaceflinger/CompositionEngine/src/Output.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2024-01-18T07:44:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d5dd9b2_4212debc",
+      "revId": "15730888997e68bff02c0fbbc2f7423412bcbf22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
