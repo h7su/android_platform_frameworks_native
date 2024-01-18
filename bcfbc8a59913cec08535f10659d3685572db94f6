@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ac3b28_0103da65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-18T20:23:27Z",
+      "side": 1,
+      "message": "We prefer the explicit enum where possible. It\u0027s only fairly recently that we can safely do that in a C compatible way, so most old APIs don\u0027t do that. It\u0027s required for new APIs but we don\u0027t have the time to retcon all the old stuff (and there are a few cases where the API takes a type more complicated than just the enum where it\u0027ll probably never be possible to do so).",
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "313f3b96_992d4502",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-18T20:23:27Z",
+      "side": 1,
+      "message": "It\u0027s a relatively new annotation. We require it for new code but no one has the time to add it to old APIs.",
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "824554cb_b6c401df",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-18T20:23:27Z",
+      "side": 1,
+      "message": "Hmm, this doesn\u0027t have a backing type in aosp: https://cs.android.com/android/platform/superproject/main/+/main:frameworks/native/libs/nativewindow/include/android/data_space.h;l\u003d40;drc\u003d3ad1b0d5da0a3b2b03de84efb55f2016e7942730\n\nIt does internally. I guess someone will need to cherry-pick that out before this can be merged.",
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
