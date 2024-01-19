@@ -67,16 +67,16 @@ enum ANativeWindow_LegacyFormat {
  * mirror, and clockwise 90 degree rotation, in that order. Rotations of 180
  * and 270 degrees are made up of those basic transforms.
  */
-enum ANativeWindowTransform {
-    ANATIVEWINDOW_TRANSFORM_IDENTITY            = 0x00,
-    ANATIVEWINDOW_TRANSFORM_MIRROR_HORIZONTAL   = 0x01,
-    ANATIVEWINDOW_TRANSFORM_MIRROR_VERTICAL     = 0x02,
-    ANATIVEWINDOW_TRANSFORM_ROTATE_90           = 0x04,
+enum ANativeWindowTransform : int32_t {
+    ANATIVEWINDOW_TRANSFORM_IDENTITY = 0x00,
+    ANATIVEWINDOW_TRANSFORM_MIRROR_HORIZONTAL = 0x01,
+    ANATIVEWINDOW_TRANSFORM_MIRROR_VERTICAL = 0x02,
+    ANATIVEWINDOW_TRANSFORM_ROTATE_90 = 0x04,
 
-    ANATIVEWINDOW_TRANSFORM_ROTATE_180          = ANATIVEWINDOW_TRANSFORM_MIRROR_HORIZONTAL |
-                                                  ANATIVEWINDOW_TRANSFORM_MIRROR_VERTICAL,
-    ANATIVEWINDOW_TRANSFORM_ROTATE_270          = ANATIVEWINDOW_TRANSFORM_ROTATE_180 |
-                                                  ANATIVEWINDOW_TRANSFORM_ROTATE_90,
+    ANATIVEWINDOW_TRANSFORM_ROTATE_180 =
+            ANATIVEWINDOW_TRANSFORM_MIRROR_HORIZONTAL | ANATIVEWINDOW_TRANSFORM_MIRROR_VERTICAL,
+    ANATIVEWINDOW_TRANSFORM_ROTATE_270 =
+            ANATIVEWINDOW_TRANSFORM_ROTATE_180 | ANATIVEWINDOW_TRANSFORM_ROTATE_90,
 };
 
 struct ANativeWindow;
@@ -196,7 +196,9 @@ int32_t ANativeWindow_unlockAndPost(ANativeWindow* window);
  * \param transform combination of {@link ANativeWindowTransform} flags
  * \return 0 for success, or -EINVAL if \p transform is invalid
  */
-int32_t ANativeWindow_setBuffersTransform(ANativeWindow* window, int32_t transform) __INTRODUCED_IN(26);
+int32_t ANativeWindow_setBuffersTransform(ANativeWindow* window,
+                                          enum ANativeWindowTransform transform)
+        __INTRODUCED_IN(26);
 
 /**
  * All buffers queued after this call will be associated with the dataSpace
@@ -238,7 +240,7 @@ int32_t ANativeWindow_getBuffersDataSpace(ANativeWindow* window) __INTRODUCED_IN
 int32_t ANativeWindow_getBuffersDefaultDataSpace(ANativeWindow* window) __INTRODUCED_IN(34);
 
 /** Compatibility value for ANativeWindow_setFrameRate. */
-enum ANativeWindow_FrameRateCompatibility {
+enum ANativeWindow_FrameRateCompatibility : int8_t {
     /**
      * There are no inherent restrictions on the frame rate of this window. When
      * the system selects a frame rate other than what the app requested, the
@@ -267,7 +269,8 @@ enum ANativeWindow_FrameRateCompatibility {
  *
  * Available since API level 30.
  */
-int32_t ANativeWindow_setFrameRate(ANativeWindow* window, float frameRate, int8_t compatibility)
+int32_t ANativeWindow_setFrameRate(ANativeWindow* window, float frameRate,
+                                   enum ANativeWindow_FrameRateCompatibility compatibility)
         __INTRODUCED_IN(30);
 
 /**
@@ -282,7 +285,7 @@ int32_t ANativeWindow_setFrameRate(ANativeWindow* window, float frameRate, int8_
 void ANativeWindow_tryAllocateBuffers(ANativeWindow* window) __INTRODUCED_IN(30);
 
 /** Change frame rate strategy value for ANativeWindow_setFrameRate. */
-enum ANativeWindow_ChangeFrameRateStrategy {
+enum ANativeWindow_ChangeFrameRateStrategy : int8_t {
     /**
      * Change the frame rate only if the transition is going to be seamless.
      */
@@ -340,9 +343,10 @@ enum ANativeWindow_ChangeFrameRateStrategy {
  * \return 0 for success, -EINVAL if the window, frame rate, or compatibility
  * value are invalid.
  */
-int32_t ANativeWindow_setFrameRateWithChangeStrategy(ANativeWindow* window, float frameRate,
-        int8_t compatibility, int8_t changeFrameRateStrategy)
-        __INTRODUCED_IN(31);
+int32_t ANativeWindow_setFrameRateWithChangeStrategy(
+        ANativeWindow* window, float frameRate,
+        enum ANativeWindow_FrameRateCompatibility compatibility,
+        enum ANativeWindow_ChangeFrameRateStrategy changeFrameRateStrategy) __INTRODUCED_IN(31);
 
 /**
  * Clears the frame rate which is set for this window.

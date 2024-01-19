@@ -130,7 +130,7 @@ int32_t ANativeWindow_unlockAndPost(ANativeWindow* window) {
     return window->perform(window, NATIVE_WINDOW_UNLOCK_AND_POST);
 }
 
-int32_t ANativeWindow_setBuffersTransform(ANativeWindow* window, int32_t transform) {
+int32_t ANativeWindow_setBuffersTransform(ANativeWindow* window, ANativeWindowTransform transform) {
     static_assert(ANATIVEWINDOW_TRANSFORM_MIRROR_HORIZONTAL == NATIVE_WINDOW_TRANSFORM_FLIP_H);
     static_assert(ANATIVEWINDOW_TRANSFORM_MIRROR_VERTICAL == NATIVE_WINDOW_TRANSFORM_FLIP_V);
     static_assert(ANATIVEWINDOW_TRANSFORM_ROTATE_90 == NATIVE_WINDOW_TRANSFORM_ROT_90);
@@ -218,7 +218,8 @@ int32_t ANativeWindow_getBuffersDefaultDataSpace(ANativeWindow* window) {
     return query(window, NATIVE_WINDOW_DEFAULT_DATASPACE);
 }
 
-int32_t ANativeWindow_setFrameRate(ANativeWindow* window, float frameRate, int8_t compatibility) {
+int32_t ANativeWindow_setFrameRate(ANativeWindow* window, float frameRate,
+                                   ANativeWindow_FrameRateCompatibility compatibility) {
     return ANativeWindow_setFrameRateWithChangeStrategy(window, frameRate, compatibility,
         ANATIVEWINDOW_CHANGE_FRAME_RATE_ONLY_IF_SEAMLESS);
 }
@@ -230,8 +231,9 @@ void ANativeWindow_tryAllocateBuffers(ANativeWindow* window) {
     window->perform(window, NATIVE_WINDOW_ALLOCATE_BUFFERS);
 }
 
-int32_t ANativeWindow_setFrameRateWithChangeStrategy(ANativeWindow* window, float frameRate,
-        int8_t compatibility, int8_t changeFrameRateStrategy) {
+int32_t ANativeWindow_setFrameRateWithChangeStrategy(
+        ANativeWindow* window, float frameRate, ANativeWindow_FrameRateCompatibility compatibility,
+        ANativeWindow_ChangeFrameRateStrategy changeFrameRateStrategy) {
     if (!window || !query(window, NATIVE_WINDOW_IS_VALID)) {
         return -EINVAL;
     }
