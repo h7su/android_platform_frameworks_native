@@ -275,6 +275,24 @@
       "parentUuid": "60caa26d_5bca83f4",
       "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadb1028_fa90ae06",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/src/server.rs",
+        "patchSetId": 43
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-19T02:18:24Z",
+      "side": 1,
+      "message": "Switched to `Pin\u003cBox\u003cRpcServer\u003e\u003e`.",
+      "parentUuid": "94a564f6_0b8bd3c9",
+      "revId": "9c167672b6252bee43664a3c254635f37bb3408d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
