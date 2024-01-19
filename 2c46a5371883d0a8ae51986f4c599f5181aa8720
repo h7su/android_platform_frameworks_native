@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80fbf7cf_182ccf3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2024-01-19T07:33:26Z",
+      "side": 1,
+      "message": "The OpenXR standard is an open standard to provide access to AR and VR APIs. The runtime provides an implementation of that standard, while the loader is the entry point to load the runtime. The OpenXR standard declares APIs for functionality related to rendering AR/VR content, but is not limited to rendering functionality only.\n\nThis is intended to behave a lot like the OpenGL and vulkan implementations already in Android.\n\nBecause OpenXR isn\u0027t only limited to graphics, there is an argument for putting it elsewhere, although there is enough overlap/similarity that an argument can be made for putting it in GraphicsEnv as well.",
+      "parentUuid": "07c29357_1604c52a",
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e0646d9_e930465d",
         "filename": "libs/graphicsenv/GraphicsEnv.cpp",
         "patchSetId": 2
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe74a07c_876571d1",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2024-01-19T07:33:26Z",
+      "side": 1,
+      "message": "All of the other comment blocks have a newline after the comment. See line 650 for an example.",
+      "parentUuid": "2e0646d9_e930465d",
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dc21138_128b1853",
         "filename": "libs/graphicsenv/GraphicsEnv.cpp",
         "patchSetId": 2
@@ -48,6 +84,30 @@
       "writtenOn": "2024-01-19T04:22:07Z",
       "side": 1,
       "message": "Perhaps `const std::string\u0026` is a better choice here",
+      "range": {
+        "startLine": 710,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 11
+      },
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7c96ae2_e7c95970",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2024-01-19T07:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dc21138_128b1853",
       "range": {
         "startLine": 710,
         "startChar": 0,
