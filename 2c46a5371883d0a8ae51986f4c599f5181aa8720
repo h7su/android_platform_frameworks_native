@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c29357_1604c52a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-01-19T05:48:35Z",
+      "side": 1,
+      "message": "What is the OpenXR runtime? I am not sure the graphics environment is the right place to contain this logic. Could you please provide more context?",
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e0646d9_e930465d",
