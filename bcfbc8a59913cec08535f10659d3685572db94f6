@@ -115,6 +115,30 @@
       },
       "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88392260_f3bdc42f",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T00:00:56Z",
+      "side": 1,
+      "message": "Taken care of in https://android-review.googlesource.com/c/platform/frameworks/native/+/2918226/1, which this CL now depends on.",
+      "parentUuid": "3d470d2b_299ab035",
+      "range": {
+        "startLine": 385,
+        "startChar": 84,
+        "endLine": 385,
+        "endChar": 92
+      },
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
