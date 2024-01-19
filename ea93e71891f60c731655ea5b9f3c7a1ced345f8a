@@ -39,6 +39,24 @@
       "message": "Please file a bug and attach the bug id",
       "revId": "ea93e71891f60c731655ea5b9f3c7a1ced345f8a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43909404_0166a227",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2024-01-19T07:30:35Z",
+      "side": 1,
+      "message": "I didn\u0027t run into this before, Jiyong noticed this while reviewing the OpenXR runtime linker namespace change. I\u0027m guessing this has not happened in production because these functions are usually called only once on application init.\n\nI filed https://issuetracker.google.com/u/1/issues/321123035",
+      "parentUuid": "ac166102_7b715812",
+      "revId": "ea93e71891f60c731655ea5b9f3c7a1ced345f8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
