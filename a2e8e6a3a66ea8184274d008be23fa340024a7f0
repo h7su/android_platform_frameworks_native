@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "472e5367_c3848793",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-01-19T05:47:48Z",
+      "side": 1,
+      "message": "Hello there, thank you for the contribution. This is lpy@ from the Android graphics team. I am not sure us the graphics team is informed with this work, could you please provide some context?",
+      "revId": "a2e8e6a3a66ea8184274d008be23fa340024a7f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
