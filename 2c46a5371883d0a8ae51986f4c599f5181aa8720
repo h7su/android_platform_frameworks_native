@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0646d9_e930465d",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-01-19T04:22:07Z",
+      "side": 1,
+      "message": "nit: remove this extra line",
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dc21138_128b1853",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-01-19T04:22:07Z",
+      "side": 1,
+      "message": "Perhaps `const std::string\u0026` is a better choice here",
+      "range": {
+        "startLine": 710,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 11
+      },
+      "revId": "2c46a5371883d0a8ae51986f4c599f5181aa8720",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
