@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e594cf3_8ab83dac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-01-19T04:15:47Z",
+      "side": 1,
+      "message": "Not sure why this case was not caught before. lpy@?",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "ea93e71891f60c731655ea5b9f3c7a1ced345f8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
