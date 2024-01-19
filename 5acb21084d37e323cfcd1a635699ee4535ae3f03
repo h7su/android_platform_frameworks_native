@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbec2ffe_f4479420",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-01-19T07:53:22Z",
+      "side": 1,
+      "message": "Add `Bug: 321123035`",
+      "revId": "5acb21084d37e323cfcd1a635699ee4535ae3f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ffb2d6f_82795d22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-01-19T07:53:22Z",
+      "side": 1,
+      "message": "Please remove this patch from the relation chain so that it can be submitted independently",
+      "revId": "5acb21084d37e323cfcd1a635699ee4535ae3f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
