@@ -139,6 +139,30 @@
       },
       "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c79124_df0cae23",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-19T00:03:40Z",
+      "side": 1,
+      "message": "Yeah, our auto-merger must have gotten better. I expected that to not go smoothly.",
+      "parentUuid": "88392260_f3bdc42f",
+      "range": {
+        "startLine": 385,
+        "startChar": 84,
+        "endLine": 385,
+        "endChar": 92
+      },
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
