@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ff1c78c_b2414180",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T00:07:55Z",
+      "side": 1,
+      "message": "I see, looks good. Thanks!",
+      "parentUuid": "a33ae68b_697ed574",
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67ddf05d_128f92a7",
