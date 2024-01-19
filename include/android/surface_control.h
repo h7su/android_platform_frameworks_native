@@ -382,8 +382,9 @@ void ASurfaceTransaction_setColor(ASurfaceTransaction* transaction,
  * properties at once.
  */
 void ASurfaceTransaction_setGeometry(ASurfaceTransaction* transaction,
-                                     ASurfaceControl* surface_control, const ARect& source,
-                                     const ARect& destination, int32_t transform)
+                                     ASurfaceControl* surface_control, const ARect* source,
+                                     const ARect* destination,
+                                     enum ANativeWindowTransform transform)
                                      __INTRODUCED_IN(29);
 
 /**
@@ -581,9 +582,10 @@ void ASurfaceTransaction_setExtendedRangeBrightness(ASurfaceTransaction* transac
  *
  * Available since API level 30.
  */
-void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* transaction,
+void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* _Nonnull transaction,
                                       ASurfaceControl* surface_control, float frameRate,
-                                      int8_t compatibility) __INTRODUCED_IN(30);
+                                      enum ANativeWindow_FrameRateCompatibility compatibility)
+                                      __INTRODUCED_IN(30);
 
 /**
  * Sets the intended frame rate for \a surface_control.
@@ -619,7 +621,8 @@ void ASurfaceTransaction_setFrameRate(ASurfaceTransaction* transaction,
  */
 void ASurfaceTransaction_setFrameRateWithChangeStrategy(ASurfaceTransaction* transaction,
                                       ASurfaceControl* surface_control, float frameRate,
-                                      int8_t compatibility, int8_t changeFrameRateStrategy)
+                                      enum ANativeWindow_FrameRateCompatibility compatibility,
+                                      enum ANativeWindow_ChangeFrameRateStrategy changeFrameRateStrategy)
                                       __INTRODUCED_IN(31);
 
 /**
