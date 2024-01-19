@@ -330,6 +330,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c022e7c6_8a460150",
+        "filename": "libs/graphicsenv/GraphicsEnv.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1593702
+      },
+      "writtenOn": "2024-01-19T07:16:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4f2531f6_9ffcf9e1",
+      "range": {
+        "startLine": 727,
+        "startChar": 37,
+        "endLine": 727,
+        "endChar": 63
+      },
+      "revId": "91d86eeb2d870daed032694c5ddfb69b421510ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdcc38f5_3472d746",
