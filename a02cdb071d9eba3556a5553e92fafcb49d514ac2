@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd0ff13_1a2fdaf9",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T07:53:01Z",
+      "side": 1,
+      "message": "Looks like I missed the return type annotation here, for which I\u0027ve also filed a clarification report as this API does not work for an `AndroidWindow` from a `NativeActivity`, making the entire `SurfaceTransaction`/`SurfaceControl` API only useful with a Java activity and custom view layout.\n\nhttps://issuetracker.google.com/issues/320706287",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7e0dbe3_6bf3bef8",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T07:53:01Z",
+      "side": 1,
+      "message": "Same return type annotation missing here.",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e406893_7056ada4",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T07:53:01Z",
+      "side": 1,
+      "message": "Any valid case where this could return NULL?",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0339c65d_9b5a3ab9",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-19T07:53:01Z",
+      "side": 1,
+      "message": "I am assuming that function pointer types should also have an annotation, but should it sit here or on the function parameter?",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
