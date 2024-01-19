@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33ae68b_697ed574",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-19T00:05:30Z",
+      "side": 1,
+      "message": "I just merged mine. I had thought that wouldn\u0027t go smoothly, but maybe our merge systems got better about resolving obvious conflicts?",
+      "parentUuid": "8aad5429_5cbb39fa",
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67ddf05d_128f92a7",
@@ -155,6 +173,30 @@
       "side": 1,
       "message": "Yeah, our auto-merger must have gotten better. I expected that to not go smoothly.",
       "parentUuid": "88392260_f3bdc42f",
+      "range": {
+        "startLine": 385,
+        "startChar": 84,
+        "endLine": 385,
+        "endChar": 92
+      },
+      "revId": "bcfbc8a59913cec08535f10659d3685572db94f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e12c90_a5a64d2c",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-19T00:05:30Z",
+      "side": 1,
+      "message": "(ignore that comment, wrong thread)\n\nYeah, what you did is probably the smoothest way around it.",
+      "parentUuid": "80c79124_df0cae23",
       "range": {
         "startLine": 385,
         "startChar": 84,
