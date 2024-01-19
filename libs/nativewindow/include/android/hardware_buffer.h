@@ -56,7 +56,7 @@ __BEGIN_DECLS
 /**
  * Buffer pixel formats.
  */
-enum AHardwareBuffer_Format {
+enum AHardwareBuffer_Format : int32_t {
     /**
      * Corresponding formats:
      *   Vulkan: VK_FORMAT_R8G8B8A8_UNORM
@@ -199,7 +199,7 @@ enum AHardwareBuffer_Format {
 /**
  * Buffer usage flags, specifying how the buffer will be accessed.
  */
-enum AHardwareBuffer_UsageFlags {
+enum AHardwareBuffer_UsageFlags : uint64_t {
     /**
      * The buffer will never be locked for direct CPU reads using the
      * AHardwareBuffer_lock() function. Note that reading the buffer
@@ -359,8 +359,8 @@ typedef struct AHardwareBuffer_Desc {
      * a cube map or a cube map array.
      */
     uint32_t layers;
-    uint32_t format; ///< One of AHardwareBuffer_Format.
-    uint64_t usage;  ///< Combination of AHardwareBuffer_UsageFlags.
+    enum AHardwareBuffer_Format format;
+    enum AHardwareBuffer_UsageFlags usage;  ///< Combination of AHardwareBuffer_UsageFlags.
     uint32_t stride; ///< Row stride in pixels, ignored for AHardwareBuffer_allocate()
     uint32_t rfu0;   ///< Initialize to zero, reserved for future use.
     uint64_t rfu1;   ///< Initialize to zero, reserved for future use.
@@ -485,7 +485,7 @@ void AHardwareBuffer_describe(const AHardwareBuffer* _Nonnull buffer,
  * has more than one layer. Error number if the lock fails for any other
  * reason.
  */
-int AHardwareBuffer_lock(AHardwareBuffer* _Nonnull buffer, uint64_t usage, int32_t fence,
+int AHardwareBuffer_lock(AHardwareBuffer* _Nonnull buffer, enum AHardwareBuffer_UsageFlags, int32_t fence,
                          const ARect* _Nullable rect, void* _Nullable* _Nonnull outVirtualAddress)
         __INTRODUCED_IN(26);
 
@@ -560,7 +560,7 @@ int AHardwareBuffer_recvHandleFromUnixSocket(int socketFd,
  * has more than one layer. Error number if the lock fails for any other
  * reason.
  */
-int AHardwareBuffer_lockPlanes(AHardwareBuffer* _Nonnull buffer, uint64_t usage, int32_t fence,
+int AHardwareBuffer_lockPlanes(AHardwareBuffer* _Nonnull buffer, enum AHardwareBuffer_UsageFlags usage, int32_t fence,
                                const ARect* _Nullable rect,
                                AHardwareBuffer_Planes* _Nonnull outPlanes) __INTRODUCED_IN(29);
 
@@ -596,7 +596,8 @@ int AHardwareBuffer_isSupported(const AHardwareBuffer_Desc* _Nonnull desc) __INT
  *
  * Available since API level 29.
  */
-int AHardwareBuffer_lockAndGetInfo(AHardwareBuffer* _Nonnull buffer, uint64_t usage, int32_t fence,
+int AHardwareBuffer_lockAndGetInfo(AHardwareBuffer* _Nonnull buffer,
+                                   enum AHardwareBuffer_UsageFlags usage, int32_t fence,
                                    const ARect* _Nullable rect,
                                    void* _Nullable* _Nonnull outVirtualAddress,
                                    int32_t* _Nonnull outBytesPerPixel,

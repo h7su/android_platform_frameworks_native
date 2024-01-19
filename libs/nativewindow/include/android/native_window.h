@@ -104,7 +104,7 @@ typedef struct ANativeWindow_Buffer {
     int32_t stride;
 
     /// The format of the buffer. One of AHardwareBuffer_Format.
-    int32_t format;
+    enum AHardwareBuffer_Format format;
 
     /// The actual bits.
     void* bits;
@@ -143,7 +143,7 @@ int32_t ANativeWindow_getHeight(ANativeWindow* window);
  *
  * \return a negative value on error.
  */
-int32_t ANativeWindow_getFormat(ANativeWindow* window);
+enum AHardwareBuffer_Format ANativeWindow_getFormat(ANativeWindow* window);
 
 /**
  * Change the format and size of the window buffers.
@@ -164,7 +164,7 @@ int32_t ANativeWindow_getFormat(ANativeWindow* window);
  * \return 0 for success, or a negative value on error.
  */
 int32_t ANativeWindow_setBuffersGeometry(ANativeWindow* window,
-        int32_t width, int32_t height, int32_t format);
+        int32_t width, int32_t height, enum AHardwareBuffer_Format format);
 
 /**
  * Lock the window's next drawing surface for writing.
