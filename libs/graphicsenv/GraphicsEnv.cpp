@@ -617,7 +617,8 @@ android_namespace_t* GraphicsEnv::getAngleNamespace() {
 
     auto vndkNamespace = android_get_exported_namespace("vndk");
     if (!vndkNamespace) {
-        return nullptr;
+        mAngleNamespace = nullptr;
+        return mAngleNamespace;
     }
 
     if (!linkDriverNamespaceLocked(mAngleNamespace, vndkNamespace, "")) {
