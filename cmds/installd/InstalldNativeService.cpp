@@ -815,7 +815,7 @@ static binder::Status createStorageAreaDir(const std::string& path, int32_t uid,
                                            int32_t previousUid, const std::string& seInfo,
                                            long projectIdApp) {
     bool dir_exists = access(path.c_str(), F_OK) == 0;
-
+    
     if (dir_exists && previousUid > 0 && previousUid != uid) {
         if (!chown_app_dir(path, uid, previousUid, -1)) {
             return error("Failed to chown " + path);
@@ -875,8 +875,8 @@ binder::Status InstalldNativeService::createAppDataLocked(
 
         if (!uuid) {
             // For internal storage only, create the app's storage_area directory.
-            auto path = create_data_storage_area_package_path(userId, pkgname);
-            status = createStorageAreaDir(path, uid, previousUid, seInfo, projectIdApp);
+            auto storage_area_path = create_data_storage_area_package_path(userId, pkgname);
+            status = createStorageAreaDir(storage_area_path, uid, previousUid, seInfo, projectIdApp);
             if (!status.isOk()) {
                 return status;
             }
@@ -890,7 +890,7 @@ binder::Status InstalldNativeService::createAppDataLocked(
         }
 
         // Return the inode of the app's top-level CE data directory ($data/user/$userId/$pkgName)
-        // so that we can clear its contents while CE storage is locked.
+        // so that we can clear its contents while CE storage is locked.S
         //
         // We don't need to similarly remember the inode of /data/storage_area/$userId/$pkgName,
         // since storage area encryption is applied deeper in the directory tree than CE is.
@@ -1414,6 +1414,17 @@ binder::Status InstalldNativeService::destroyAppData(const std::optional<std::st
         auto path = create_data_user_de_package_path(uuid_, userId, pkgname);
         if (rename_delete_dir_contents_and_dir(path) != 0) {
             res = error("Failed to delete " + path);
+        }
+        if (!uuid) {
+            // Delete the whole directory: this is the storage area for an app and so 
+            // destruction of the app's data will entirely remove it.
+            // This is different than the deletion of the storage area itself: when a 
+            // user is destroyed, `destroyUserData` deletes the directory contents 
+            // and vold handles deletion of the storage area itself.
+            auto storage_area_path = create_data_storage_area_package_path(userId, pkgname);
+            if (delete_dir_contents_and_dir(storage_area_path, true)) {
+                res = error("Failed to delete contents of " + storage_area_path);
+            }
         }
         if ((flags & FLAG_CLEAR_APP_DATA_KEEP_ART_PROFILES) == 0) {
             destroy_app_current_profiles(packageName, userId);
