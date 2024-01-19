@@ -295,6 +295,8 @@ public:
         return mLayerHistory.getLayerFramerate(now, id);
     }
 
+    bool updateFrameRateOverrides(GlobalSignals, Fps displayRefreshRate) EXCLUDES(mPolicyLock);
+
 private:
     friend class TestableScheduler;
 
@@ -379,7 +381,8 @@ private:
 
     GlobalSignals makeGlobalSignals() const REQUIRES(mPolicyLock);
 
-    bool updateFrameRateOverrides(GlobalSignals, Fps displayRefreshRate) REQUIRES(mPolicyLock);
+    bool updateFrameRateOverridesLocked(GlobalSignals, Fps displayRefreshRate)
+            REQUIRES(mPolicyLock);
 
     void dispatchCachedReportedMode() REQUIRES(mPolicyLock) EXCLUDES(mDisplayLock);
 
