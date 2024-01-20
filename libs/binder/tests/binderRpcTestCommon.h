@@ -299,6 +299,7 @@ public:
 // checks that all methods are implemented.
 class MyBinderRpcTestBase : public BnBinderRpcTest {
 public:
+    wp<RpcServer> server;
     int port = 0;
 
     Status sendString(const std::string& str) override {
@@ -311,6 +312,18 @@ public:
     }
     Status getClientPort(int* out) override {
         *out = port;
+        return Status::ok();
+    }
+    Status countBinders(std::vector<int32_t>* out) override {
+        sp<RpcServer> spServer = server.promote();
+        if (spServer == nullptr) {
+            return Status::fromExceptionCode(Status::EX_NULL_POINTER);
+        }
+        out->clear();
+        for (auto session : spServer->listSessions()) {
+            size_t count = session->state()->countBinders();
+            out->push_back(count);
+        }
         return Status::ok();
     }
     Status getNullBinder(sp<IBinder>* out) override {
@@ -412,23 +425,6 @@ public:
                            const std::string& value) override {
         return doCallback(callback, oneway, delayed, value);
     }
-
-protected:
-    // Generic version of countBinders that works with both
-    // RpcServer and RpcServerTrusty
-    template <typename T>
-    Status countBindersImpl(const wp<T>& server, std::vector<int32_t>* out) {
-        sp<T> spServer = server.promote();
-        if (spServer == nullptr) {
-            return Status::fromExceptionCode(Status::EX_NULL_POINTER);
-        }
-        out->clear();
-        for (auto session : spServer->listSessions()) {
-            size_t count = session->state()->countBinders();
-            out->push_back(count);
-        }
-        return Status::ok();
-    }
 };
 
 // Default implementation of MyBinderRpcTest that can be used as-is
@@ -436,10 +432,6 @@ protected:
 // the unimplemented methods
 class MyBinderRpcTestDefault : public MyBinderRpcTestBase {
 public:
-    Status countBinders(std::vector<int32_t>* /*out*/) override {
-        return Status::fromStatusT(UNKNOWN_TRANSACTION);
-    }
-
     Status die(bool /*cleanup*/) override { return Status::fromStatusT(UNKNOWN_TRANSACTION); }
 
     Status scheduleShutdown() override { return Status::fromStatusT(UNKNOWN_TRANSACTION); }
