@@ -22,12 +22,6 @@ using android::binder::unique_fd;
 
 class MyBinderRpcTestAndroid : public MyBinderRpcTestBase {
 public:
-    wp<RpcServer> server;
-
-    Status countBinders(std::vector<int32_t>* out) override {
-        return countBindersImpl(server, out);
-    }
-
     Status die(bool cleanup) override {
         if (cleanup) {
             exit(1);
