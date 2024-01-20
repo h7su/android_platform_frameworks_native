@@ -212,6 +212,12 @@ int RpcServer::handleTipcConnect(const tipc_port* port, handle_t chan, const uui
     std::array<uint8_t, RpcServer::kRpcAddressSize> addr;
     constexpr size_t addrLen = sizeof(*peer);
     memcpy(addr.data(), peer, addrLen);
+
+    if (server->mConnectionFilter != nullptr && !server->mConnectionFilter(addr.data(), addrLen)) {
+        ALOGE("Dropped client connection fd %d", chan);
+        return ERR_ACCESS_DENIED;
+    }
+
     RpcServer::establishConnection(sp<RpcServer>::fromExisting(server), std::move(transportFd),
                                    addr, addrLen, joinFn);
 
