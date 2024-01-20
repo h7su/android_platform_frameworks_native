@@ -291,7 +291,6 @@ cc_library_shared {
     srcs: [
         // Trusty-specific files
         "trusty/OS.cpp",
-        "trusty/RpcServerTrusty.cpp",
         "trusty/RpcTransportTipcTrusty.cpp",
         "trusty/TrustyStatus.cpp",
         "trusty/socket.cpp",

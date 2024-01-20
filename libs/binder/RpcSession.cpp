@@ -18,11 +18,7 @@
 
 #include <binder/RpcSession.h>
 
-#include <dlfcn.h>
 #include <inttypes.h>
-#include <netinet/tcp.h>
-#include <poll.h>
-#include <unistd.h>
 
 #include <string_view>
 
@@ -37,11 +33,19 @@
 #include "BuildFlags.h"
 #include "FdTrigger.h"
 #include "OS.h"
-#include "RpcSocketAddress.h"
 #include "RpcState.h"
 #include "RpcTransportUtils.h"
 #include "RpcWireFormat.h"
 #include "Utils.h"
+
+#ifndef __TRUSTY__
+#include <dlfcn.h>
+#include <netinet/tcp.h>
+#include <poll.h>
+#include <unistd.h>
+
+#include "RpcSocketAddress.h"
+#endif // __TRUSTY__
 
 #if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
 #include <jni.h>
@@ -140,6 +144,7 @@ RpcSession::FileDescriptorTransportMode RpcSession::getFileDescriptorTransportMo
     return mFileDescriptorTransportMode;
 }
 
+#ifndef __TRUSTY__
 status_t RpcSession::setupUnixDomainClient(const char* path) {
     return setupSocketClient(UnixSocketAddress(path));
 }
@@ -186,6 +191,7 @@ status_t RpcSession::setupInetClient(const char* addr, unsigned int port) {
     ALOGE("None of the socket address resolved for %s:%u can be added as inet client.", addr, port);
     return NAME_NOT_FOUND;
 }
+#endif // __TRUSTY__
 
 status_t RpcSession::setupPreconnectedClient(unique_fd fd, std::function<unique_fd()>&& request) {
     return setupClient([&](const std::vector<uint8_t>& sessionId, bool incoming) -> status_t {
@@ -580,6 +586,7 @@ status_t RpcSession::setupClient(const std::function<status_t(const std::vector<
     return OK;
 }
 
+#ifndef __TRUSTY__
 status_t RpcSession::setupSocketClient(const RpcSocketAddress& addr) {
     return setupClient([&](const std::vector<uint8_t>& sessionId, bool incoming) {
         return setupOneSocketConnection(addr, sessionId, incoming);
@@ -660,6 +667,7 @@ status_t RpcSession::setupOneSocketConnection(const RpcSocketAddress& addr,
     ALOGE("Ran out of retries to connect to %s", addr.toString().c_str());
     return UNKNOWN_ERROR;
 }
+#endif // __TRUSTY__
 
 status_t RpcSession::initAndAddConnection(RpcTransportFd fd, const std::vector<uint8_t>& sessionId,
                                           bool incoming) {

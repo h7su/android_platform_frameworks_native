@@ -26,7 +26,6 @@ FMTLIB_DIR := external/fmtlib
 
 MODULE_SRCS := \
 	$(LOCAL_DIR)/OS.cpp \
-	$(LOCAL_DIR)/RpcServerTrusty.cpp \
 	$(LOCAL_DIR)/RpcTransportTipcTrusty.cpp \
 	$(LOCAL_DIR)/TrustyStatus.cpp \
 	$(LOCAL_DIR)/socket.cpp \
