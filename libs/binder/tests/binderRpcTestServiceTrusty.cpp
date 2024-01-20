@@ -16,7 +16,7 @@
 
 #define TLOG_TAG "binderRpcTestService"
 
-#include <binder/RpcServerTrusty.h>
+#include <binder/RpcServer.h>
 #include <inttypes.h>
 #include <lib/tipc/tipc.h>
 #include <lk/err_ptr.h>
@@ -33,7 +33,7 @@ static int gConnectionCounter = 0;
 
 class MyBinderRpcTestTrusty : public MyBinderRpcTestDefault {
 public:
-    wp<RpcServerTrusty> server;
+    wp<RpcServer> server;
 
     Status countBinders(std::vector<int32_t>* out) override {
         return countBindersImpl(server, out);
@@ -51,7 +51,7 @@ public:
 
 struct ServerInfo {
     std::unique_ptr<std::string> port;
-    sp<RpcServerTrusty> server;
+    sp<RpcServer> server;
 };
 
 int main(void) {
@@ -63,7 +63,7 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    const auto port_acl = RpcServerTrusty::PortAcl{
+    const tipc_port_acl port_acl{
             .flags = IPC_PORT_ALLOW_NS_CONNECT | IPC_PORT_ALLOW_TA_CONNECT,
     };
 
@@ -71,26 +71,25 @@ int main(void) {
     for (auto serverVersion : testVersions()) {
         ServerInfo serverInfo{
                 .port = std::make_unique<std::string>(trustyIpcPort(serverVersion)),
+                .server = RpcServer::make(),
         };
         TLOGI("Adding service port '%s'\n", serverInfo.port->c_str());
 
         // Message size needs to be large enough to cover all messages sent by the
         // tests: SendAndGetResultBackBig sends two large strings.
         constexpr size_t max_msg_size = 4096;
-        auto server =
-                RpcServerTrusty::make(hset, serverInfo.port->c_str(),
-                                      std::shared_ptr<const RpcServerTrusty::PortAcl>(&port_acl),
-                                      max_msg_size);
-        if (server == nullptr) {
+        auto status = serverInfo.server->setupTrustyServer(hset, serverInfo.port->c_str(),
+                                                           &port_acl, max_msg_size);
+        if (status != OK) {
             return EXIT_FAILURE;
         }
 
-        serverInfo.server = server;
         if (!serverInfo.server->setProtocolVersion(serverVersion)) {
             return EXIT_FAILURE;
         }
         serverInfo.server->setPerSessionRootObject(
-                [=](wp<RpcSession> /*session*/, const void* /*addrPtr*/, size_t /*len*/) {
+                [server = sp(serverInfo.server)](wp<RpcSession> /*session*/,
+                                                 const void* /*addrPtr*/, size_t /*len*/) {
                     auto service = sp<MyBinderRpcTestTrusty>::make();
                     // Assign a unique connection identifier to service->port so
                     // getClientPort returns a unique value per connection

@@ -27,10 +27,13 @@
 #include <mutex>
 #include <thread>
 
+#ifdef TRUSTY_USERSPACE
+#include <lib/tipc/tipc_srv.h>
+#endif
+
 namespace android {
 
 class FdTrigger;
-class RpcServerTrusty;
 class RpcSocketAddress;
 
 /**
@@ -50,6 +53,7 @@ public:
     static sp<RpcServer> make(
             std::unique_ptr<RpcTransportCtxFactory> rpcTransportCtxFactory = nullptr);
 
+#ifndef __TRUSTY__
     /**
      * Creates an RPC server that bootstraps sessions using an existing
      * Unix domain socket pair.
@@ -102,6 +106,60 @@ public:
      */
     [[nodiscard]] status_t setupInetServer(const char* address, unsigned int port,
                                            unsigned int* assignedPort = nullptr);
+#endif // __TRUSTY__
+
+#ifdef TRUSTY_USERSPACE
+    /**
+     * Creates an RPC server listening on the given port and adds it to the
+     * Trusty handle set at |handleSet|.
+     *
+     * The caller is responsible for calling tipc_run_event_loop() to start
+     * the TIPC event loop after creating one or more services here.
+     */
+    status_t setupTrustyServer(tipc_hset* handleSet, std::string&& portName,
+                               const tipc_port_acl* portAcl, size_t msgMaxSize);
+
+    /*
+     * C++ equivalent to tipc_port_acl that uses safe data structures instead of
+     * raw pointers, except for |extraData| which doesn't have a good
+     * equivalent.
+     * TODO: Remove this once we update all clients to use setupTrustyServer.
+     */
+    struct TrustyPortAcl {
+        uint32_t flags;
+        std::vector<const uuid> uuids;
+        const void* extraData;
+    };
+
+    /*
+     * Backwards compatibility helper for clients that called
+     * RpcServerTrusty::make().
+     * TODO: Once all the clients are updated, we can remove this.
+     */
+    static sp<RpcServer> make(
+            tipc_hset* handleSet, std::string&& portName,
+            std::shared_ptr<const TrustyPortAcl>&& portAcl, size_t msgMaxSize,
+            std::unique_ptr<RpcTransportCtxFactory> rpcTransportCtxFactory = nullptr) {
+        std::vector<const uuid*> uuidPtrs;
+        uuidPtrs.resize(portAcl->uuids.size());
+        for (size_t i = 0; i < portAcl->uuids.size(); i++) {
+            uuidPtrs[i] = &portAcl->uuids[i];
+        }
+
+        auto srv = make(std::move(rpcTransportCtxFactory));
+        const tipc_port_acl acl{
+                .flags = portAcl->flags,
+                .uuid_num = static_cast<uint32_t>(portAcl->uuids.size()),
+                .uuids = uuidPtrs.data(),
+                .extra_data = portAcl->extraData,
+        };
+        auto status = srv->setupTrustyServer(handleSet, std::move(portName), &acl, msgMaxSize);
+        if (status != OK) {
+            return nullptr;
+        }
+        return srv;
+    }
+#endif // TRUSTY_USERSPACE
 
     /**
      * If setup*Server has been successful, return true. Otherwise return false.
@@ -241,7 +299,6 @@ public:
     ~RpcServer();
 
 private:
-    friend RpcServerTrusty;
     friend sp<RpcServer>;
     explicit RpcServer(std::unique_ptr<RpcTransportCtx> ctx);
 
@@ -284,6 +341,39 @@ private:
     std::unique_ptr<FdTrigger> mShutdownTrigger;
     RpcConditionVariable mShutdownCv;
     std::function<status_t(const RpcServer& server, RpcTransportFd* out)> mAcceptFn;
-};
 
+#ifdef TRUSTY_USERSPACE
+    // The Rpc-specific context maintained for every open TIPC channel.
+    struct TipcChannelContext {
+        sp<RpcSession> session;
+        sp<RpcSession::RpcConnection> connection;
+    };
+
+    static int handleTipcConnect(const tipc_port* port, handle_t chan, const uuid* peer,
+                                 void** ctx_p);
+    static int handleTipcMessage(const tipc_port* port, handle_t chan, void* ctx);
+    static void handleTipcDisconnect(const tipc_port* port, handle_t chan, void* ctx);
+    static void handleTipcChannelCleanup(void* ctx);
+
+    static constexpr tipc_srv_ops kTipcOps = {
+            .on_connect = &handleTipcConnect,
+            .on_message = &handleTipcMessage,
+            .on_disconnect = &handleTipcDisconnect,
+            .on_channel_cleanup = &handleTipcChannelCleanup,
+    };
+
+    // Struct that holds all the non-copyable per-port information
+    // that needs to have a stable address because mTipcPort or
+    // mTipcPortAcl point into it.
+    struct TipcPortInfo {
+        std::string mPortName;
+        std::vector<uuid> mUuids;
+        std::vector<const uuid*> mUuidPtrs;
+    };
+
+    std::unique_ptr<TipcPortInfo> mTipcPortInfo;
+    tipc_port_acl mTipcPortAcl;
+    tipc_port mTipcPort;
+#endif // TRUSTY_USERSPACE
+};
 } // namespace android

@@ -17,10 +17,6 @@
 #define LOG_TAG "RpcServer"
 
 #include <inttypes.h>
-#include <netinet/tcp.h>
-#include <poll.h>
-#include <sys/socket.h>
-#include <sys/un.h>
 
 #include <thread>
 #include <vector>
@@ -34,11 +30,21 @@
 #include "BuildFlags.h"
 #include "FdTrigger.h"
 #include "OS.h"
-#include "RpcSocketAddress.h"
 #include "RpcState.h"
 #include "RpcTransportUtils.h"
 #include "RpcWireFormat.h"
 #include "Utils.h"
+
+#ifdef __TRUSTY__
+#include "trusty/TrustyStatus.h"
+#else
+#include <netinet/tcp.h>
+#include <poll.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+
+#include "RpcSocketAddress.h"
+#endif
 
 namespace android {
 
@@ -63,6 +69,7 @@ sp<RpcServer> RpcServer::make(std::unique_ptr<RpcTransportCtxFactory> rpcTranspo
     return sp<RpcServer>::make(std::move(ctx));
 }
 
+#ifndef __TRUSTY__
 status_t RpcServer::setupUnixDomainSocketBootstrapServer(unique_fd bootstrapFd) {
     return setupExternalServer(std::move(bootstrapFd), &RpcServer::recvmsgSocketConnection);
 }
@@ -113,6 +120,145 @@ status_t RpcServer::setupInetServer(const char* address, unsigned int port,
           port);
     return UNKNOWN_ERROR;
 }
+#endif // __TRUSTY__
+
+#ifdef TRUSTY_USERSPACE
+status_t RpcServer::setupTrustyServer(tipc_hset* handleSet, std::string&& portName,
+                                      const tipc_port_acl* portAcl, size_t msgMaxSize) {
+    LOG_ALWAYS_FATAL_IF(portName.empty(), "Tipc port name should not be empty");
+    LOG_ALWAYS_FATAL_IF(mTipcPortInfo, "Trusty server already set up");
+
+    RpcMutexLockGuard _l(mLock);
+    mTipcPortInfo.reset(new TipcPortInfo{
+            .mPortName = std::move(portName),
+    });
+
+    mTipcPort.name = mTipcPortInfo->mPortName.c_str();
+    mTipcPort.msg_max_size = msgMaxSize;
+    mTipcPort.msg_queue_len = 2;
+    mTipcPort.priv = this;
+
+    // TODO(b/266741352): follow-up to prevent needing this in the future
+    // Trusty needs to be set to the latest stable version that is in prebuilts there.
+    LOG_ALWAYS_FATAL_IF(!setProtocolVersion(0));
+
+    if (portAcl) {
+        mTipcPortInfo->mUuids.resize(portAcl->uuid_num);
+        mTipcPortInfo->mUuidPtrs.resize(portAcl->uuid_num);
+        for (size_t i = 0; i < portAcl->uuid_num; i++) {
+            mTipcPortInfo->mUuids[i] = *portAcl->uuids[i];
+            mTipcPortInfo->mUuidPtrs[i] = &mTipcPortInfo->mUuids[i];
+        }
+
+        mTipcPortAcl.flags = portAcl->flags;
+        mTipcPortAcl.uuid_num = portAcl->uuid_num;
+        mTipcPortAcl.uuids = mTipcPortInfo->mUuidPtrs.data();
+        mTipcPortAcl.extra_data = portAcl->extra_data;
+
+        mTipcPort.acl = &mTipcPortAcl;
+    } else {
+        mTipcPort.acl = nullptr;
+    }
+
+    int rc = tipc_add_service(handleSet, &mTipcPort, 1, 0, &kTipcOps);
+    if (rc != NO_ERROR) {
+        ALOGE("Failed to create RpcServer: can't add service: %d", rc);
+        return statusFromTrusty(rc);
+    }
+
+    return OK;
+}
+
+int RpcServer::handleTipcConnect(const tipc_port* port, handle_t chan, const uuid* peer,
+                                 void** ctx_p) {
+    auto* server = reinterpret_cast<RpcServer*>(const_cast<void*>(port->priv));
+    server->mShutdownTrigger = FdTrigger::make();
+    server->mConnectingThreads[rpc_this_thread::get_id()] = RpcMaybeThread();
+
+    int rc = NO_ERROR;
+    auto joinFn = [&](sp<RpcSession>&& session, RpcSession::PreJoinSetupResult&& result) {
+        if (result.status != OK) {
+            rc = statusToTrusty(result.status);
+            return;
+        }
+
+        /* Save the session and connection for the other callbacks */
+        auto* channelContext = new (std::nothrow) TipcChannelContext;
+        if (channelContext == nullptr) {
+            rc = ERR_NO_MEMORY;
+            return;
+        }
+
+        channelContext->session = std::move(session);
+        channelContext->connection = std::move(result.connection);
+
+        *ctx_p = channelContext;
+    };
+
+    // We need to duplicate the channel handle here because the tipc library
+    // owns the original handle and closes is automatically on channel cleanup.
+    // We use dup() because Trusty does not have fcntl().
+    // NOLINTNEXTLINE(android-cloexec-dup)
+    handle_t chanDup = dup(chan);
+    if (chanDup < 0) {
+        return chanDup;
+    }
+    unique_fd clientFd(chanDup);
+    android::RpcTransportFd transportFd(std::move(clientFd));
+
+    std::array<uint8_t, RpcServer::kRpcAddressSize> addr;
+    constexpr size_t addrLen = sizeof(*peer);
+    memcpy(addr.data(), peer, addrLen);
+    RpcServer::establishConnection(sp<RpcServer>::fromExisting(server), std::move(transportFd),
+                                   addr, addrLen, joinFn);
+
+    return rc;
+}
+
+int RpcServer::handleTipcMessage(const tipc_port* /*port*/, handle_t /*chan*/, void* ctx) {
+    auto* channelContext = reinterpret_cast<TipcChannelContext*>(ctx);
+    LOG_ALWAYS_FATAL_IF(channelContext == nullptr,
+                        "bad state: message received on uninitialized channel");
+
+    auto& session = channelContext->session;
+    auto& connection = channelContext->connection;
+    status_t status =
+            session->state()->drainCommands(connection, session, RpcState::CommandType::ANY);
+    if (status != OK) {
+        LOG_RPC_DETAIL("Binder connection thread closing w/ status %s",
+                       statusToString(status).c_str());
+    }
+
+    return NO_ERROR;
+}
+
+void RpcServer::handleTipcDisconnect(const tipc_port* /*port*/, handle_t /*chan*/, void* ctx) {
+    auto* channelContext = reinterpret_cast<TipcChannelContext*>(ctx);
+    if (channelContext == nullptr) {
+        // Connections marked "incoming" (outgoing from the server's side)
+        // do not have a valid channel context because joinFn does not get
+        // called for them. We ignore them here.
+        return;
+    }
+
+    auto& session = channelContext->session;
+    (void)session->shutdownAndWait(false);
+}
+
+void RpcServer::handleTipcChannelCleanup(void* ctx) {
+    auto* channelContext = reinterpret_cast<TipcChannelContext*>(ctx);
+    if (channelContext == nullptr) {
+        return;
+    }
+
+    auto& session = channelContext->session;
+    auto& connection = channelContext->connection;
+    LOG_ALWAYS_FATAL_IF(!session->removeIncomingConnection(connection),
+                        "bad state: connection object guaranteed to be in list");
+
+    delete channelContext;
+}
+#endif // TRUSTY_USERSPACE
 
 void RpcServer::setMaxThreads(size_t threads) {
     LOG_ALWAYS_FATAL_IF(threads <= 0, "RpcServer is useless without threads");
@@ -186,6 +332,7 @@ std::vector<uint8_t> RpcServer::getCertificate(RpcCertificateFormat format) {
     return mCtx->getCertificate(format);
 }
 
+#ifndef __TRUSTY__
 static void joinRpcServer(sp<RpcServer>&& thiz) {
     thiz->join();
 }
@@ -300,6 +447,7 @@ void RpcServer::join() {
     }
     mShutdownCv.notify_all();
 }
+#endif // __TRUSTY__
 
 bool RpcServer::shutdown() {
     RpcMutexUniqueLock _l(mLock);
@@ -558,6 +706,7 @@ void RpcServer::establishConnection(
     joinFn(std::move(session), std::move(setupResult));
 }
 
+#ifndef __TRUSTY__
 status_t RpcServer::setupSocketServer(const RpcSocketAddress& addr) {
     LOG_RPC_DETAIL("Setting up socket server %s", addr.toString().c_str());
     LOG_ALWAYS_FATAL_IF(hasServer(), "Each RpcServer can only have one server.");
@@ -615,6 +764,7 @@ status_t RpcServer::setupRawSocketServer(unique_fd socket_fd) {
     }
     return OK;
 }
+#endif // __TRUSTY__
 
 void RpcServer::onSessionAllIncomingThreadsEnded(const sp<RpcSession>& session) {
     const std::vector<uint8_t>& id = session->mId;
@@ -656,9 +806,11 @@ status_t RpcServer::setupExternalServer(
     return OK;
 }
 
+#ifndef __TRUSTY__
 status_t RpcServer::setupExternalServer(unique_fd serverFd) {
     return setupExternalServer(std::move(serverFd), &RpcServer::acceptSocketConnection);
 }
+#endif // __TRUSTY__
 
 bool RpcServer::hasActiveRequests() {
     RpcMutexLockGuard _l(mLock);
