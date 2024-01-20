@@ -33,12 +33,6 @@ static int gConnectionCounter = 0;
 
 class MyBinderRpcTestTrusty : public MyBinderRpcTestDefault {
 public:
-    wp<RpcServer> server;
-
-    Status countBinders(std::vector<int32_t>* out) override {
-        return countBindersImpl(server, out);
-    }
-
     Status scheduleShutdown() override {
         // TODO: Trusty does not support shutting down the tipc event loop,
         // so we just terminate the service app since it is marked
