@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "818d7395_84ef1c61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T23:04:08Z",
+      "side": 1,
+      "message": "Just a heads-up: the Rust ecosystem already has most of these APIs mapped out:\n\nhttps://github.com/rust-mobile/ndk\n\nMore APIs are being added and mapped every day or improved (see open PRs) but the main blocker is currently inconsistent/incomplete documentation on the AOSP side (especially with regards to pointer ownership, threading, and callback semantics).\n\nWe haven\u0027t yet mapped the parcel APIs, could we collaborate on that?",
+      "revId": "1c9f8687cd480dba1b2bbf24c87422a17dca7d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "807f4799_6fecc7a2",
