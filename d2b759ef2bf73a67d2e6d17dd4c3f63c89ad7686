@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "978572d9_7f69cf94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-22T22:00:33Z",
+      "side": 1,
+      "message": "rebased off the other chain to break the unnecessary review dependency",
+      "revId": "d2b759ef2bf73a67d2e6d17dd4c3f63c89ad7686",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
