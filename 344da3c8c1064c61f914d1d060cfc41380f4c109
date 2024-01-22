@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e44c90a2_c6820541",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-01-22T17:36:04Z",
+      "side": 1,
+      "message": "I don\u0027t know much about the dimming threshold, but if John\u0027s happy with the new value, I support it.",
+      "revId": "344da3c8c1064c61f914d1d060cfc41380f4c109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
