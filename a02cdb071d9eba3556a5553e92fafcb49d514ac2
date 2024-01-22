@@ -159,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "446a3c01_44220c0a",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T22:59:57Z",
+      "side": 1,
+      "message": "Both, we have an API design rule that delete things should behave like the delete keyword and free() - aka, allow null.",
+      "parentUuid": "584870a3_986fdb57",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0339c65d_9b5a3ab9",
@@ -291,6 +315,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "69ac84c2_98fc56da",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 97
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c3cc661_ff87459e",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T22:59:57Z",
+      "side": 1,
+      "message": "\u003e Is it possible to represent that with these annotations, or does it only concern the input?\n\nThe annotations only cares about inputs sadly",
+      "parentUuid": "35b79612_09c57931",
       "range": {
         "startLine": 221,
         "startChar": 50,
