@@ -135,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "584870a3_986fdb57",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60739d7c_67d9b660",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0339c65d_9b5a3ab9",
@@ -225,6 +249,30 @@
       "side": 1,
       "message": "\u003e 2 of these should be nullable since you need to initialize the input to something to call it, and that initial state should be nullable (since this is only an output)\n\u003e \n\u003e `ASurfaceControl* _Nullable * _Nullable * _Nonnull` I think if I remember right on how the ordering works\n\nMakes sense to go from right to left indeed. How does this work for returned values? Before the call the value doesn\u0027t matter, after the call the function is expected to have set `*outASurfaceControls` to a non-null pointer that contains `outASurfaceControlsSize` number of non-null`ASurfaceControl*`s.\n\nIs it possible to represent that with these annotations, or does it only concern the input?",
       "parentUuid": "fd467c1b_e97c4241",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 97
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b79612_09c57931",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69ac84c2_98fc56da",
       "range": {
         "startLine": 221,
         "startChar": 50,
