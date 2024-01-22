@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4303b2c7_b68e7d61",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-01-22T17:47:43Z",
+      "side": 1,
+      "message": "Can you please elaborate what kind of \"jitter\" you were observing? Were you observing sudden color shift, or uneven video playback?",
+      "range": {
+        "startLine": 10,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "344da3c8c1064c61f914d1d060cfc41380f4c109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e44c90a2_c6820541",
