@@ -16,6 +16,23 @@
       "message": "rebased off the other chain to break the unnecessary review dependency",
       "revId": "d2b759ef2bf73a67d2e6d17dd4c3f63c89ad7686",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f6f4486_9cd37e15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-01-22T22:22:03Z",
+      "side": 1,
+      "message": "```\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:270:11: error: no matching function for call to \u0027AndroidBitmap_compress\u0027\n    err \u003d AndroidBitmap_compress(\u0026info, AndroidBitmap_getDataSpace(env, jbitmap), pixels, format,\n          ^~~~~~~~~~~~~~~~~~~~~~\nout/soong/ndk/sysroot/usr/include/android/bitmap.h:226:5: note: candidate function not viable: no known conversion from \u0027jint\u0027 (aka \u0027int\u0027) to \u0027enum AndroidBitmapCompressFormat\u0027 for 4th argument\nint AndroidBitmap_compress(const AndroidBitmapInfo* info,\n    ^\n```\n\nI think the function with this error is unused, and can be deleted rather than fixed?\n\n```\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:318:34: error: assigning to \u0027enum AndroidBitmapFlags\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.flags \u003d 3;\n                                 ^\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:330:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d -1;\n                                  ^~\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:333:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d 2;\n                                  ^\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:336:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d 3;\n                                  ^\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:339:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d 5;\n                                  ^\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:342:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d 6;\n                                  ^\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:345:35: error: assigning to \u0027enum AndroidBitmapFormat\u0027 from incompatible type \u0027int\u0027\n                mBadInfo.format \u003d 11;\n                                  ^~\n```\n\nThese are silly and it\u0027s probably okay to break source compat. The test needs to be updated to assign the enum values rather than bare ints.\n\n```\ncts/tests/tests/graphics/jni/android_graphics_cts_BitmapTest.cpp:422:15: error: no matching function for call to \u0027AndroidBitmap_compress\u0027\n        err \u003d AndroidBitmap_compress(\u0026info, dataSpace, pixels, badFormat, 100,\n              ^~~~~~~~~~~~~~~~~~~~~~\nout/soong/ndk/sysroot/usr/include/android/bitmap.h:226:5: note: candidate function not viable: no known conversion from \u0027int32_t\u0027 (aka \u0027int\u0027) to \u0027enum AndroidBitmapCompressFormat\u0027 for 4th argument\nint AndroidBitmap_compress(const AndroidBitmapInfo* info,\n    ^\n9 errors generated.\n```\n\nThis appears to be testing the behavior of the API when an invalid enum value is passed to the function. You probably need some creative casting here.\n\nIf you need to ensure that the CTS and frameworks changes are tested and submitted as a pair, set the \"topic\" field in gerrit to match for both CLs and they\u0027ll be treaded as cross-repo related changes.",
+      "revId": "d2b759ef2bf73a67d2e6d17dd4c3f63c89ad7686",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
