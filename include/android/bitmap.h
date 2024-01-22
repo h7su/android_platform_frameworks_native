@@ -26,6 +26,8 @@
 #ifndef ANDROID_BITMAP_H
 #define ANDROID_BITMAP_H
 
+#include <android/data_space.h>
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -129,7 +131,7 @@ int AndroidBitmap_getInfo(JNIEnv* env, jobject jbitmap,
  *
  * Note that {@link ADataSpace} only exposes a few values. This may return
  * {@link ADATASPACE_UNKNOWN}, even for Named ColorSpaces, if they have no
- * corresponding ADataSpace.
+ * corresponding {@link ADataSpace}.
  *
  * Available since API level 30.
  */
@@ -227,7 +229,7 @@ typedef bool (*AndroidBitmap_CompressWriteFunc)(void* userContext,
  *  @return AndroidBitmap functions result code.
  */
 int AndroidBitmap_compress(const AndroidBitmapInfo* info,
-                           int32_t dataspace,
+                           enum ADataSpace dataspace,
                            const void* pixels,
                            int32_t format, int32_t quality,
                            void* userContext,

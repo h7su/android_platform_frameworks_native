@@ -215,7 +215,7 @@ int32_t ANativeWindow_setBuffersTransform(ANativeWindow* window, int32_t transfo
  * \return 0 for success, -EINVAL if window is invalid or the dataspace is not
  * supported.
  */
-int32_t ANativeWindow_setBuffersDataSpace(ANativeWindow* window, int32_t dataSpace) __INTRODUCED_IN(28);
+int32_t ANativeWindow_setBuffersDataSpace(ANativeWindow* window, enum ADataSpace dataSpace) __INTRODUCED_IN(28);
 
 /**
  * Get the dataspace of the buffers in window.
@@ -225,7 +225,7 @@ int32_t ANativeWindow_setBuffersDataSpace(ANativeWindow* window, int32_t dataSpa
  * \return the dataspace of buffers in window, ADATASPACE_UNKNOWN is returned if
  * dataspace is unknown, or -EINVAL if window is invalid.
  */
-int32_t ANativeWindow_getBuffersDataSpace(ANativeWindow* window) __INTRODUCED_IN(28);
+enum ADataSpace ANativeWindow_getBuffersDataSpace(ANativeWindow* window) __INTRODUCED_IN(28);
 
 /**
  * Get the default dataspace of the buffers in window as set by the consumer.
@@ -235,7 +235,7 @@ int32_t ANativeWindow_getBuffersDataSpace(ANativeWindow* window) __INTRODUCED_IN
  * \return the dataspace of buffers in window, ADATASPACE_UNKNOWN is returned if
  * dataspace is unknown, or -EINVAL if window is invalid.
  */
-int32_t ANativeWindow_getBuffersDefaultDataSpace(ANativeWindow* window) __INTRODUCED_IN(34);
+enum ADataSpace ANativeWindow_getBuffersDefaultDataSpace(ANativeWindow* window) __INTRODUCED_IN(34);
 
 /** Compatibility value for ANativeWindow_setFrameRate. */
 enum ANativeWindow_FrameRateCompatibility {

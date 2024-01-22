@@ -48,6 +48,7 @@
 #define ANDROID_IMAGE_DECODER_H
 
 #include "bitmap.h"
+#include <android/data_space.h>
 #include <android/rect.h>
 #include <stdint.h>
 
@@ -355,7 +356,7 @@ int AImageDecoder_setUnpremultipliedRequired(AImageDecoder* _Nonnull decoder,
  * - {@link ANDROID_IMAGE_DECODER_INVALID_STATE}: The animation is not on
  *   the first frame.
  */
-int AImageDecoder_setDataSpace(AImageDecoder* _Nonnull decoder, int32_t dataspace)
+int AImageDecoder_setDataSpace(AImageDecoder* _Nonnull decoder, enum ADataSpace dataspace)
         __INTRODUCED_IN(30);
 
 /**
@@ -566,7 +567,7 @@ int AImageDecoderHeaderInfo_getAlphaFlags(
  *         {@link ADATASPACE_UNKNOWN}, even for Named ColorSpaces, if they have
  *         no corresponding {@link ADataSpace}.
  */
-int32_t AImageDecoderHeaderInfo_getDataSpace(
+enum ADataSpace AImageDecoderHeaderInfo_getDataSpace(
         const AImageDecoderHeaderInfo* _Nonnull) __INTRODUCED_IN(30);
 
 /**
