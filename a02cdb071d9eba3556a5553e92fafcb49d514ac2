@@ -54,6 +54,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e903f65_950ada04",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T21:50:10Z",
+      "side": 1,
+      "message": "for strict correctness this should probably be _Nullable and note that if null is returned it means malloc return null (ie, out of memory)",
+      "parentUuid": "1e406893_7056ada4",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2154cd51_0cf20d1b",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T21:50:10Z",
+      "side": 1,
+      "message": "_Nullable",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0339c65d_9b5a3ab9",
         "filename": "include/android/surface_control.h",
         "patchSetId": 1
@@ -65,6 +106,47 @@
       "writtenOn": "2024-01-19T07:53:01Z",
       "side": 1,
       "message": "I am assuming that function pointer types should also have an annotation, but should it sit here or on the function parameter?",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda6d10b_0a57b39d",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T21:50:10Z",
+      "side": 1,
+      "message": "`_Null_unspecified` for both this \u0026 the function parameter is more accurate - this API itself doesn\u0027t care and doesn\u0027t know",
+      "parentUuid": "0339c65d_9b5a3ab9",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd467c1b_e97c4241",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-01-22T21:50:10Z",
+      "side": 1,
+      "message": "2 of these should be nullable since you need to initialize the input to something to call it, and that initial state should be nullable (since this is only an output)\n\n`ASurfaceControl* _Nullable * _Nullable * _Nonnull` I think if I remember right on how the ordering works",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 97
+      },
       "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
