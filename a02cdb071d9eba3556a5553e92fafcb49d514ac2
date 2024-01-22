@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b6a7e8b_dac4f678",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:00:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0e903f65_950ada04",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2154cd51_0cf20d1b",
@@ -83,6 +101,30 @@
       "writtenOn": "2024-01-22T21:50:10Z",
       "side": 1,
       "message": "_Nullable",
+      "range": {
+        "startLine": 118,
+        "startChar": 53,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60739d7c_67d9b660",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:00:57Z",
+      "side": 1,
+      "message": "Is this by design, or simply because the current implementation only calls `delete` (which functions on non-null pointers)?",
+      "parentUuid": "2154cd51_0cf20d1b",
       "range": {
         "startLine": 118,
         "startChar": 53,
@@ -130,6 +172,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55951e2e_4e641115",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:00:57Z",
+      "side": 1,
+      "message": "How would that be written:\n\n```c\ntypedef void (* _Null_unspecified ASurfaceTransaction_OnComplete)(..);\n```\n?\n\nI\u0027d argue that the function pointer should be non-null? Maybe `ASurfaceTransaction_OnCommit _Nonnull func` works for that?",
+      "parentUuid": "eda6d10b_0a57b39d",
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd467c1b_e97c4241",
         "filename": "include/android/surface_control.h",
         "patchSetId": 1
@@ -141,6 +201,30 @@
       "writtenOn": "2024-01-22T21:50:10Z",
       "side": 1,
       "message": "2 of these should be nullable since you need to initialize the input to something to call it, and that initial state should be nullable (since this is only an output)\n\n`ASurfaceControl* _Nullable * _Nullable * _Nonnull` I think if I remember right on how the ordering works",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 97
+      },
+      "revId": "a02cdb071d9eba3556a5553e92fafcb49d514ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69ac84c2_98fc56da",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-22T22:00:57Z",
+      "side": 1,
+      "message": "\u003e 2 of these should be nullable since you need to initialize the input to something to call it, and that initial state should be nullable (since this is only an output)\n\u003e \n\u003e `ASurfaceControl* _Nullable * _Nullable * _Nonnull` I think if I remember right on how the ordering works\n\nMakes sense to go from right to left indeed. How does this work for returned values? Before the call the value doesn\u0027t matter, after the call the function is expected to have set `*outASurfaceControls` to a non-null pointer that contains `outASurfaceControlsSize` number of non-null`ASurfaceControl*`s.\n\nIs it possible to represent that with these annotations, or does it only concern the input?",
+      "parentUuid": "fd467c1b_e97c4241",
       "range": {
         "startLine": 221,
         "startChar": 50,
