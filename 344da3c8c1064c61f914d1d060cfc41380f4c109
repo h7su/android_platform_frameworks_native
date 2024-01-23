@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e249f0c5_00e0ce9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-01-23T06:58:23Z",
+      "side": 1,
+      "message": "Thank you for your reply! In order to facilitate the analysis of the issue, I provided the reproduced video and screenshot on the issue by the partner account, the link is: https://partnerissuetracker.corp.google.com/u/1/issues/321864707. In the reproduced video, it can be seen that \"jitter\" is a uneven change in the image for each frame.",
+      "parentUuid": "4303b2c7_b68e7d61",
+      "range": {
+        "startLine": 10,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "344da3c8c1064c61f914d1d060cfc41380f4c109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e44c90a2_c6820541",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-01-22T17:36:04Z",
       "side": 1,
       "message": "I don\u0027t know much about the dimming threshold, but if John\u0027s happy with the new value, I support it.",
+      "revId": "344da3c8c1064c61f914d1d060cfc41380f4c109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b51f81cb_686041c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-01-23T06:58:23Z",
+      "side": 1,
+      "message": "Thank you!",
+      "parentUuid": "e44c90a2_c6820541",
       "revId": "344da3c8c1064c61f914d1d060cfc41380f4c109",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
