@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ea2455b_dcee7e8c",
+        "filename": "libs/binder/RpcServer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T00:29:37Z",
+      "side": 1,
+      "message": "I feel like you should pick one or the other strategy with #ifdef/#ifndef Trusty stuff. Either #ifdef them all in place and don\u0027t move any code like you did here, or move *all* the code so that the you have\nBoth\nAndroid-only\nTrusty-only",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed8c8aa_60abe059",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T00:29:37Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to forward declare RpcServer since you declare it fully just below",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6330aa91_a6def36c",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T00:29:37Z",
+      "side": 1,
+      "message": "I feel like having an extra definition of the ACL struct in binder is not a good plan. Would it really be so bad to use the C structs here?",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba865df_94f7a3f8",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T00:29:37Z",
+      "side": 1,
+      "message": "Pretty sure this line can just go away? RpcServer doesn\u0027t need to be a friend of itself.",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74889f7_fbf23eb9",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T00:29:37Z",
+      "side": 1,
+      "message": "This comment is no longer accurate (\"both this class\"), but also it\u0027s unnecessary - this class has multiple data members which are uncopiable, so the copy constructor is already gone. If you want to delete them for documentation, then this should go outside the #ifdef, because `RpcServer` also doesn\u0027t have any copy constructors.\n\nAdditionally, the rationale here makes no sense - `mTrustyUuidPtrs` holds pointers, yes, but into a `shared_ptr`, not something stored inline with the class. These pointers would not be invalidated on copy, as they point to a heap allocated acl.",
+      "range": {
+        "startLine": 336,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 46
+      },
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
