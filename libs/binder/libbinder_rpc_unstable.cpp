@@ -209,6 +209,27 @@ void ARpcServer_setSupportedFileDescriptorTransportModes(
     server->setSupportedFileDescriptorTransportModes(modevec);
 }
 
+void ARpcServer_setPerSessionRootObject(ARpcServer* handle, char* cbPtr,
+                                        AIBinder* (*cbWrapper)(char*, ARpcSession*, const void*,
+                                                               size_t),
+                                        void (*cbDeleter)(char*)) {
+    std::shared_ptr<char> cbSp(cbPtr, cbDeleter);
+    handleToStrongPointer<RpcServer>(handle)->setPerSessionRootObject(
+            [cbWrapper, cbSp](wp<RpcSession> session, const void* addr, size_t addrLen) {
+                auto sessionSp = session.promote();
+                auto* aib =
+                        (*cbWrapper)(cbSp.get(), reinterpret_cast<ARpcSession*>(sessionSp.get()),
+                                     addr, addrLen);
+                auto b = AIBinder_toPlatformBinder(aib);
+
+                // We have a new sp<IBinder> backed by the same binder, so we can
+                // finally release the AIBinder* from the callback
+                AIBinder_decStrong(aib);
+
+                return b;
+            });
+}
+
 void ARpcServer_start(ARpcServer* handle) {
     handleToStrongPointer<RpcServer>(handle)->start();
 }
