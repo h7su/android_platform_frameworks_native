@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
-use crate::session::FileDescriptorTransportMode;
-use binder::{unstable_api::AsNative, SpIBinder};
+use crate::session::{FileDescriptorTransportMode, RpcSessionRef};
+use binder::{
+    unstable_api::{AIBinder, AsNative},
+    SpIBinder,
+};
 use binder_rpc_unstable_bindgen::ARpcServer;
 use foreign_types::{foreign_type, ForeignType, ForeignTypeRef};
+use libc::size_t;
+use std::ffi::{c_char, c_void};
 use std::io::{Error, ErrorKind};
 
 #[cfg(not(target_os = "trusty"))]
@@ -149,6 +154,15 @@ impl RpcServer {
     }
 }
 
+pub trait PerSessionCallback:
+    FnMut(Option<&RpcSessionRef>, &[u8]) -> Option<SpIBinder> + 'static
+{
+}
+impl<T> PerSessionCallback for T where
+    T: FnMut(Option<&RpcSessionRef>, &[u8]) -> Option<SpIBinder> + 'static
+{
+}
+
 impl RpcServerRef {
     /// Sets the list of file descriptor transport modes supported by this server.
     pub fn set_supported_file_descriptor_transport_modes(
@@ -165,6 +179,62 @@ impl RpcServerRef {
             )
         }
     }
+
+    /// Sets the per-session root object for this server.
+    /// Overrides the root object passed to the [`RpcServer`] constructors.
+    /// The first argument is a callback that gets called once per new
+    /// client session. One of its arguments is the raw address of the client.
+    /// The callback can either return a [`None`] to reject the connection,
+    /// or a new binder wrapped in [`Some`] to accept it.
+    pub fn set_per_session_root_object<F: PerSessionCallback>(&self, f: F) {
+        // SAFETY: Creates a shared_ptr over the pointer from the Box
+        // which calls the deleter when all of the references from the
+        // C++ side go out of scope.
+        unsafe {
+            binder_rpc_unstable_bindgen::ARpcServer_setPerSessionRootObject(
+                self.as_ptr(),
+                Some(per_session_callback_wrapper::<F>),
+                Box::into_raw(Box::new(f)).cast(),
+                Some(per_session_callback_deleter::<F>),
+            );
+        }
+    }
+}
+
+extern "C" fn per_session_callback_wrapper<F: PerSessionCallback>(
+    session_ptr: *mut binder_rpc_unstable_bindgen::ARpcSession,
+    addr: *const c_void,
+    addr_len: size_t,
+    cb_ptr: *mut c_char,
+) -> *mut AIBinder {
+    // SAFETY: This callback should only get called while the RpcServer is alive.
+    let cb = unsafe { &mut *cb_ptr.cast::<F>() };
+
+    // SAFETY: The pointer came out of wp<RpcSession>::promote so
+    // it is either NULL which gives us a None, or it points to a valid
+    // sp<RpcSession> which is safe to pass to from_ptr.
+    let session = unsafe { session_ptr.as_mut().map(|sess| RpcSessionRef::from_ptr(sess)) };
+
+    // SAFETY: The address should be a valid slice of addr_len bytes.
+    let addr = unsafe { std::slice::from_raw_parts(addr.cast(), addr_len) };
+
+    match cb(session, addr) {
+        Some(mut b) => {
+            // Prevent AIBinder_decStrong from being called before AIBinder_toPlatformBinder.
+            // The per-session callback in C++ is supposed to call AIBinder_decStrong on the
+            // pointer we return here.
+            let aib = b.as_native_mut().cast();
+            std::mem::forget(b);
+            aib
+        }
+        None => std::ptr::null_mut(),
+    }
+}
+
+extern "C" fn per_session_callback_deleter<F: PerSessionCallback>(cb: *mut c_char) {
+    // SAFETY: shared_ptr calls this to delete the pointer we gave it.
+    // It should only get called once the last shared reference goes away.
+    let _ = unsafe { Box::<F>::from_raw(cb.cast()) };
 }
 
 #[cfg(not(target_os = "trusty"))]
@@ -196,7 +266,7 @@ impl RpcServerRef {
 
 #[cfg(target_os = "trusty")]
 pub struct RpcServerConnection {
-    ctx: *mut std::ffi::c_void,
+    ctx: *mut c_void,
 }
 
 #[cfg(target_os = "trusty")]
