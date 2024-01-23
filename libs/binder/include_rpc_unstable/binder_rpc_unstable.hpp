@@ -87,6 +87,12 @@ void ARpcServer_setSupportedFileDescriptorTransportModes(
         const ARpcSession_FileDescriptorTransportMode modes[],
         size_t modes_len);
 
+// Sets the per-session root object callback for this RPC server.
+void ARpcServer_setPerSessionRootObject(
+        ARpcServer* handle,
+        AIBinder* (*callback)(ARpcSession*, const void*, size_t, char*),
+        char* cbArg, void (*cbArgDeleter)(char*));
+
 // Runs ARpcServer_join() in a background thread. Immediately returns.
 void ARpcServer_start(ARpcServer* server);
 
