@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac80410d_397e6f37",
+        "filename": "libs/binder/RpcServer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-23T01:36:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ea2455b_dcee7e8c",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eed8c8aa_60abe059",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-23T00:29:37Z",
       "side": 1,
       "message": "You shouldn\u0027t need to forward declare RpcServer since you declare it fully just below",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa39b8d9_27d412ec",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-23T01:36:14Z",
+      "side": 1,
+      "message": "Oh right, this used to be the other one but now I can just delete it.",
+      "parentUuid": "eed8c8aa_60abe059",
       "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "734d8d01_a589353c",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-23T01:36:14Z",
+      "side": 1,
+      "message": "Back in the original change, we had a whole discussion about avoiding lifetime issues for the pointees, e.g., the UUIDs (see https://android-review.git.corp.google.com/c/platform/frameworks/native/+/1931393/comment/6a43758a_22479655/).\n\nThe C++ structures solve that more elegantly, but I guess copying the C ones would work too (with more manual memory management). Should we still switch?",
+      "parentUuid": "6330aa91_a6def36c",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba865df_94f7a3f8",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4534942_0d10fae5",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-23T01:36:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba865df_94f7a3f8",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c74889f7_fbf23eb9",
@@ -82,6 +154,30 @@
       "writtenOn": "2024-01-23T00:29:37Z",
       "side": 1,
       "message": "This comment is no longer accurate (\"both this class\"), but also it\u0027s unnecessary - this class has multiple data members which are uncopiable, so the copy constructor is already gone. If you want to delete them for documentation, then this should go outside the #ifdef, because `RpcServer` also doesn\u0027t have any copy constructors.\n\nAdditionally, the rationale here makes no sense - `mTrustyUuidPtrs` holds pointers, yes, but into a `shared_ptr`, not something stored inline with the class. These pointers would not be invalidated on copy, as they point to a heap allocated acl.",
+      "range": {
+        "startLine": 336,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 46
+      },
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb361a3b_a63cf217",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-23T01:36:14Z",
+      "side": 1,
+      "message": "`mTipcPortAcl` holds a pointer into `mTrustyUuidPtrs.data()` which I think could change on a copy, but the rest is true.\n\nI switched to an alternative approach: wrap the \"pinned\" data in a `std::unique_ptr` to guarantee it cannot move.",
+      "parentUuid": "c74889f7_fbf23eb9",
       "range": {
         "startLine": 336,
         "startChar": 0,
