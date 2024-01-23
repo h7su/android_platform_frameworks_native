@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "589dfab7_18ea8e18",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-01-23T19:24:09Z",
+      "side": 1,
+      "message": "If this has already been discussed, we can take the previous resolution. Usually I prefer to have exactly one ground truth for where a structure is defined (so not copying the C one, but #include ing it).\n\nI un-resolved this because looking at the comment stream that was linked, it does not sound like Jiyong was suggesting that you create a C++ variant of the port acl, but rather just pass in a shared pointer variant of the port acl...",
+      "parentUuid": "734d8d01_a589353c",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba865df_94f7a3f8",
         "filename": "libs/binder/include/binder/RpcServer.h",
         "patchSetId": 3
