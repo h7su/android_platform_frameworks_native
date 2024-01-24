@@ -104,6 +104,30 @@
       },
       "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278ffaca_7aff7168",
+        "filename": "libs/binder/IActivityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1952023
+      },
+      "writtenOn": "2024-01-24T17:10:07Z",
+      "side": 1,
+      "message": "Ping? Would you be okay with leaving RunningAppProcessInfo as is, i.e. not converting to AIDL? Or do you have suggestions on how to address the issues above?",
+      "parentUuid": "13212fc9_6870af2e",
+      "range": {
+        "startLine": 285,
+        "startChar": 25,
+        "endLine": 318,
+        "endChar": 22
+      },
+      "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
