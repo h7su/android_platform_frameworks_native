@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd61eef7_7c2785ff",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-24T01:30:00Z",
+      "side": 1,
+      "message": "\u003e rather just pass in a shared pointer variant of the port acl...\n\nRight, but the port acl has its own pointers inside. If transferring ownership from the caller into RpcServer, then those are an issue too. `shared_ptr\u003ctipc_port_acl\u003e` doesn\u0027t do anything to fix that, unless I\u0027m misunderstanding what the lifetime concern was in the first place.",
+      "parentUuid": "589dfab7_18ea8e18",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba865df_94f7a3f8",
         "filename": "libs/binder/include/binder/RpcServer.h",
         "patchSetId": 3
