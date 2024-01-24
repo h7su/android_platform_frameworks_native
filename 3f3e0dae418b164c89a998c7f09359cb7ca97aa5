@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23c25ed_c3bb0ee5",
+        "filename": "libs/binder/include_rpc_unstable/binder_rpc_unstable.hpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-24T23:31:01Z",
+      "side": 1,
+      "message": "Hey I should have read this patch in detail before. This is too low level? exposing the message-level transport interface. The other APIs are above the transport layer.\n\nlibbinder_trusty should be below this surface as when it switches to an upstream transport mechanism, we want to have a single copy of the code managing the connections. This is layering inversion.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 48
+      },
+      "revId": "3f3e0dae418b164c89a998c7f09359cb7ca97aa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5138b9d_eff6e375",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-24T23:31:01Z",
+      "side": 1,
+      "message": "is there a way to avoid cutting it up like this? constexpr not possible?",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 17
+      },
+      "revId": "3f3e0dae418b164c89a998c7f09359cb7ca97aa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
