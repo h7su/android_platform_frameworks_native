@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1d9dd92_b8ac8139",
+        "filename": "libs/binder/include_rpc_unstable/binder_rpc_unstable.hpp",
+        "patchSetId": 54
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-24T23:49:45Z",
+      "side": 1,
+      "message": "I think `ARpcServer_newTrusty` needs to stay here for there to be a way to create a new `ARpcServer`. Afaict there is no other constructor, all the others are also transport-specific.\n\nShould the others go back into a separate library? Note that this is exclusive to Trusty where there is no system/vendor separation, everything gets statically linked in anyway.",
+      "parentUuid": "c23c25ed_c3bb0ee5",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 48
+      },
+      "revId": "3f3e0dae418b164c89a998c7f09359cb7ca97aa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5138b9d_eff6e375",
         "filename": "libs/binder/ndk/ibinder.cpp",
         "patchSetId": 54
