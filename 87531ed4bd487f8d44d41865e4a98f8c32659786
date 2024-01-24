@@ -87,6 +87,30 @@
       },
       "revId": "87531ed4bd487f8d44d41865e4a98f8c32659786",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1f9dd39_e8e07883",
+        "filename": "services/inputflinger/tests/InputDispatcher_test.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 6176,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-01-24T18:39:14Z",
+      "side": 1,
+      "message": "Yes, merged internally, but I would still like to hear from Hu further on this one. I suppose that we could abandon this CL, though.",
+      "parentUuid": "ce54f480_1a9694aa",
+      "range": {
+        "startLine": 6176,
+        "startChar": 46,
+        "endLine": 6176,
+        "endChar": 96
+      },
+      "revId": "87531ed4bd487f8d44d41865e4a98f8c32659786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
