@@ -46,6 +46,30 @@
       },
       "revId": "347f2f370804b958238b743a9003434def67d565",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fbd7414_889d8233",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-24T23:49:03Z",
+      "side": 1,
+      "message": "Given that the APIs are unified for clients, why do they have to be divergent for servers?",
+      "parentUuid": "7f3ee934_8bca6c6e",
+      "range": {
+        "startLine": 119,
+        "startChar": 13,
+        "endLine": 119,
+        "endChar": 30
+      },
+      "revId": "347f2f370804b958238b743a9003434def67d565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
