@@ -16,6 +16,24 @@
       "message": "Missing //SAFETY comments on the calls to Trusty-related functions. As far as I can tell all conditions for those functions are met, but they aren\u0027t documented.",
       "revId": "ad1f7e98da294cd93e555ad12aa9e2ecdf3bd82e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c21e5a3_2fe04580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 52
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-24T02:53:26Z",
+      "side": 1,
+      "message": "I added safety comments, I think I got all of them.",
+      "parentUuid": "28ce32ca_b1846bed",
+      "revId": "ad1f7e98da294cd93e555ad12aa9e2ecdf3bd82e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
