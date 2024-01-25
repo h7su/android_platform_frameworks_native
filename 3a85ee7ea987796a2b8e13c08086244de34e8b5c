@@ -141,6 +141,30 @@
       },
       "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edabac49_d841b737",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-01-25T17:55:21Z",
+      "side": 1,
+      "message": "I found that this part can be one of \"\" or \"I\". In servicemanager, let\u0027s ignore this part.",
+      "parentUuid": "dbce08fb_fa14724c",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "3a85ee7ea987796a2b8e13c08086244de34e8b5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

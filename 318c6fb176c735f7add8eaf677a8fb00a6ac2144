@@ -239,6 +239,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8732bbb7_83bbcfda",
+        "filename": "cmds/servicemanager/ServiceManager.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-01-25T17:55:21Z",
+      "side": 1,
+      "message": "Steven, I think we can proceed with this CL.",
+      "parentUuid": "1f194f95_4eead00b",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 20
+      },
+      "revId": "318c6fb176c735f7add8eaf677a8fb00a6ac2144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1335047f_287e1799",
