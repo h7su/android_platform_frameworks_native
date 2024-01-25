@@ -160,6 +160,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8dc0cd_1415c5ad",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-25T00:12:26Z",
+      "side": 1,
+      "message": "I started thinking and I\u0027m not sure we can avoid the copies if we want to transfer ownership into RpcServer. I\u0027m closing the discussion, feel free to reopen it if anyone has any suggestion.",
+      "parentUuid": "59c2023a_806db3b4",
+      "revId": "c7e1eed8e3e31e42f5072c360afd972487b10763",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba865df_94f7a3f8",

@@ -70,6 +70,30 @@
       },
       "revId": "347f2f370804b958238b743a9003434def67d565",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e48291c_1c46d2c0",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-25T00:12:26Z",
+      "side": 1,
+      "message": "The closest equivalent in `RpcServer` is `setupExternalServer` which takes a fd and an `acceptFn`. Then the main loop of a service would look something like:\n```\nint fd \u003d port_create(...);\nsp\u003cRpcServer\u003e srv \u003d RpcServer::make();\nsrv-\u003esetupExternalServer(fd, acceptTrustyConnection);\nsrv-\u003ejoin();\n```\nor `srv-\u003estart()` but on a single-threaded build that\u0027s essentially the same as `join()`.\n\nThe main issue is that Trusty is single-threaded. The `join` function is essentially a loop that continuously accepts new connections on that port, and starts a new thread for every one of them. On single-threaded builds, that\u0027s not concurrent, which means that every new connection is handled on the main thread and needs to run to completion until the next one can be accepted.\n\nThe Trusty-specific implementation works around that by using its own main event loop that handles multiple connections using callbacks. When a new connection comes in, it\u0027s added to a \"handle set\" and the main event loop calls some callbacks on it whenever something happens. The callbacks are provided by `RpcServer`.\n\nOne option could be to refactor `RpcServer` to use a more generic callback interface instead of/in addition to `join` and threads, if you\u0027d be in favor of that.",
+      "parentUuid": "0fbd7414_889d8233",
+      "range": {
+        "startLine": 119,
+        "startChar": 13,
+        "endLine": 119,
+        "endChar": 30
+      },
+      "revId": "347f2f370804b958238b743a9003434def67d565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
