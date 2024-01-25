@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbc99ba2_b2baa457",
+        "filename": "libs/binder/libbinder_rpc_unstable.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-25T09:35:31Z",
+      "side": 1,
+      "message": "I have to admit that the refcounting logic on the c++ side here is beyond me. But the Rust part looks okay.",
+      "revId": "f1e6abc158028f32ad70e06e5734f16c4736bb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c49af4_c7f86359",
+        "filename": "libs/binder/rust/rpcbinder/src/server.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-01-25T09:35:31Z",
+      "side": 1,
+      "message": "This is not wrong, but using `ManuallyDrop` here is more idiomatic.",
+      "revId": "f1e6abc158028f32ad70e06e5734f16c4736bb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
