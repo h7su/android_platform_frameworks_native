@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4be2b0_28ab2825",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-01-25T19:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "260ceaaf_e5001899",
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b65b97b_be625b63",
@@ -60,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fcab78e_6fb41235",
+        "filename": "libs/binder/Parcel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-01-25T19:24:48Z",
+      "side": 1,
+      "message": "Removed this..but this will be needed in recorded transaction. We are not referencing anything from these objects except for the offset and type.",
+      "parentUuid": "7b65b97b_be625b63",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 52
+      },
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fa00aa0_8d3a37c6",
         "filename": "libs/binder/include/binder/Parcel.h",
         "patchSetId": 1
@@ -71,6 +113,30 @@
       "writtenOn": "2023-12-15T22:16:29Z",
       "side": 1,
       "message": "a few things on this:\n- we shouldn\u0027t export it as API (note \u0027ipcObjects\u0027 is hidden)\n- almost always prefer \u0027struct Foo { size_t a; size_t b; };\u0027 over pair",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 73
+      },
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b72191e_30cf3106",
+        "filename": "libs/binder/include/binder/Parcel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-01-25T19:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fa00aa0_8d3a37c6",
       "range": {
         "startLine": 110,
         "startChar": 0,
