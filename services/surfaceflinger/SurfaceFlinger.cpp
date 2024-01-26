@@ -7680,7 +7680,10 @@ status_t SurfaceFlinger::applyRefreshRateSelectorPolicy(
     setDesiredActiveMode({preferredMode, .emitEvent = true}, force);
 
     // Update the frameRateOverride list as the display render rate might have changed
-    if (mScheduler->updateFrameRateOverrides(/*consideredSignals*/ {}, preferredMode.fps)) {
+    const bool overrideUpdated =
+            mScheduler->updateFrameRateOverrides(/*consideredSignals*/ {}, preferredMode.fps);
+    ALOGE("updateFrameRateOverrides returtned %d", overrideUpdated);
+    if (overrideUpdated) {
         triggerOnFrameRateOverridesChanged();
     }
 

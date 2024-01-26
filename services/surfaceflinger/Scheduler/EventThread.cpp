@@ -139,6 +139,8 @@ DisplayEventReceiver::Event makeModeChanged(const scheduler::FrameRateMode& mode
 
 DisplayEventReceiver::Event makeFrameRateOverrideEvent(PhysicalDisplayId displayId,
                                                        FrameRateOverride frameRateOverride) {
+    ALOGE("%s: uid: %d frameRate: %f", __func__, (int)frameRateOverride.uid,
+          frameRateOverride.frameRateHz);
     return DisplayEventReceiver::Event{
             .header =
                     DisplayEventReceiver::Event::Header{
@@ -151,6 +153,7 @@ DisplayEventReceiver::Event makeFrameRateOverrideEvent(PhysicalDisplayId display
 }
 
 DisplayEventReceiver::Event makeFrameRateOverrideFlushEvent(PhysicalDisplayId displayId) {
+    ALOGE("%s", __func__);
     return DisplayEventReceiver::Event{
             .header = DisplayEventReceiver::Event::Header{
                     .type = DisplayEventReceiver::DISPLAY_EVENT_FRAME_RATE_OVERRIDE_FLUSH,
