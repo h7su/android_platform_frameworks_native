@@ -94,6 +94,30 @@
       },
       "revId": "347f2f370804b958238b743a9003434def67d565",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a66111_31576ef0",
+        "filename": "libs/binder/include/binder/RpcServer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-01-26T02:39:42Z",
+      "side": 1,
+      "message": "I realized the `setupExternalServer` I mentioned is private, so users wouldn\u0027t be able to use it anyway.",
+      "parentUuid": "7e48291c_1c46d2c0",
+      "range": {
+        "startLine": 119,
+        "startChar": 13,
+        "endLine": 119,
+        "endChar": 30
+      },
+      "revId": "347f2f370804b958238b743a9003434def67d565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
