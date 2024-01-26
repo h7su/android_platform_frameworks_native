@@ -16,6 +16,24 @@
       "message": "Note: You\u0027re implicitly getting `Sync` as well because of the `Clone` implementation that returns a `Surface` instance _with the same pointer_ after incrementing the refcount:\n\nhttps://play.rust-lang.org/?version\u003dstable\u0026mode\u003ddebug\u0026edition\u003d2021\u0026gist\u003d71a26b7c16469aa63a9b12659a8a8c44\n\nMaybe it makes sense to explicitly add `unsafe impl Sync`?",
       "revId": "8ee0ef1f38b8a1e41ccb540cfb29f9a301f403db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8600d05_bd86a85c",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-01-26T11:15:51Z",
+      "side": 1,
+      "message": "Good point. Sent https://r.android.com/2929910.",
+      "parentUuid": "9c2cd485_48741ed4",
+      "revId": "8ee0ef1f38b8a1e41ccb540cfb29f9a301f403db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
