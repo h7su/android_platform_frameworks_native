@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb023581_3fb234b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "Great change. Love it 😊",
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401dee29_4baf798d",
+        "filename": "libs/binder/include/binder/RecordedTransaction.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "nit: rename to \"mSentDataOnly\"? we could also later switch it to std::vector or similar",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de6cfed_c706fbfa",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "you can probably use U\u0026\u0026 recordedValue and move all of them (even in the basic data case) or use std::forward to avoid needing multiple copies of the function",
+      "range": {
+        "startLine": 218,
+        "startChar": 41,
+        "endLine": 218,
+        "endChar": 80
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c6500bc_bdfe014f",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "can we avoid copy pasting all this? factor out some of the repeated bits, especially since it\u0027s copied 3 times? it\u0027s hard to see what the difference is",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 44
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d6991c_599d9d47",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "consider readlink of /proc/self/fd/\u003cnum\u003e? I think you should be able to find the location of the file and verify it is really /dev/null",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 44
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5518c899_b3b7bd8f",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "you might want to comment where this is coupled from the other file (the exact function/variable this is duplicated from)",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 46
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e8da41_781aa24e",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "nice 😊, smart",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 81
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba6fc4d_4c6ce7e5",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "why randombinder specifically? was there not anything simpler?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d516b6cd_cfcf69d2",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "Ah, you might want to do a slightly shorter string, since in most cases the corpus minimizer would minimize these anyway to make them shorter, but it makes sense to put some data there.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77d6715_34f8ed5f",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-26T23:09:34Z",
+      "side": 1,
+      "message": "I\u0027d recommend declaring this as a constant, (e.g. const std::string, so you can get the size and change it arbitrarily)",
+      "range": {
+        "startLine": 207,
+        "startChar": 13,
+        "endLine": 207,
+        "endChar": 37
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
