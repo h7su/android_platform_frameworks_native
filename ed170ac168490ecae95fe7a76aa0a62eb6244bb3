@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "888645e5_9f1bc5a9",
+        "filename": "libs/nativewindow/rust/src/surface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-01-26T11:29:25Z",
+      "side": 1,
+      "message": "Nit: I\u0027d include the word \"concurrently\" (append at the end, or in place of \"from multiple threads\").",
+      "revId": "ed170ac168490ecae95fe7a76aa0a62eb6244bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
