@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71ddf7f8_b309fab1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-01-27T07:01:02Z",
+      "side": 1,
+      "message": "Hi, @jreck@google.com, @scroggo@google.com, could you please review the patch again? Thanks!",
+      "revId": "296566ec8eee6c4c448776ec0285f927b77447f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
