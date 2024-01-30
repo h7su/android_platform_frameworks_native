@@ -33,6 +33,24 @@
       "message": "I probably shouldn\u0027t still be in OWNERS for this, but since I am... LGTM.\n\nAnd thanks for taking the time to clean up some of the tech debt here. There\u0027s definitely a bunch of stuff done poorly under schedule pressure in this code.",
       "revId": "5362e820e31bf9f336daaddd971996dd476add16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c06d6cc_d1bf1a15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-01-30T23:23:50Z",
+      "side": 1,
+      "message": "there\u0027s a sad irony that now OpenGL is stable, we could probably do all this _much_ more simply ... but that\u0027s also the reason none of us will ever have the time :-(",
+      "parentUuid": "ff483e68_ec80c47f",
+      "revId": "5362e820e31bf9f336daaddd971996dd476add16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
