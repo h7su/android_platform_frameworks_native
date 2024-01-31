@@ -199,4 +199,31 @@ status_t getBinderClientPids(BinderDebugContext context, pid_t pid, pid_t servic
     return ret;
 }
 
+status_t getBinderStateInfo(pid_t pid, std::string& stateOutput) {
+    std::ifstream ifs("/dev/binderfs/binder_logs/state");
+    if (!ifs.is_open()) {
+        ifs.open("/d/binder/state");
+        if (!ifs.is_open()) {
+            LOG(ERROR) << "Could not open /dev/binderfs/binder_logs/state. "
+                       << "Likely a permissions issue. errno: " << errno;
+            return -errno;
+        }
+    }
+
+    std::string line;
+    while (getline(ifs, line)) {
+        // The section for this pid ends with another "proc <pid>" for another
+        // process. There is only one entry per pid so we can stop looking after
+        // we've grabbed the whole section
+        if (base::StartsWith(line, "proc " + std::to_string(pid))) {
+            do {
+                stateOutput += line + '\n';
+            } while (getline(ifs, line) && !base::StartsWith(line, "proc "));
+            return OK;
+        }
+    }
+
+    return NAME_NOT_FOUND;
+}
+
 } // namespace  android
