@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6075367c_478d60b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1388190
+      },
+      "writtenOn": "2024-01-31T18:54:35Z",
+      "side": 1,
+      "message": "Thanks for the fix. Can you please add a test case in frameworks/native/services/surfaceflinger/tests/unittests/FpsTest.cpp with an example of where the existing logic fails?",
+      "revId": "e41b2e8b84ee2e9f3c48c4b4bac31b5387612daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28f0371a_88db3bd3",
+        "filename": "services/surfaceflinger/Scheduler/include/scheduler/Fps.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1388190
+      },
+      "writtenOn": "2024-01-31T18:54:35Z",
+      "side": 1,
+      "message": "Can this be `0.00001f` to avoid double conversion?",
+      "range": {
+        "startLine": 152,
+        "startChar": 77,
+        "endLine": 152,
+        "endChar": 84
+      },
+      "revId": "e41b2e8b84ee2e9f3c48c4b4bac31b5387612daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
