@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "400cf19d_abf16639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-01T21:04:31Z",
+      "side": 1,
+      "message": "Thanks, yes! Ideally this whole IActivityService code here should be converted to AIDL, but I don\u0027t have a major concern with a few methods. The Parcelable code was a lot more risky.\n\nIf possible, you might mention this issue to AM team - they should convert this whole class to AIDL.\n\nAlso, if you can add tests, that could also help make sure the APIs don\u0027t diverge.",
+      "parentUuid": "118b1da4_10b67585",
+      "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68d81ec4_6b5dc375",
         "filename": "libs/binder/IActivityManager.cpp",
         "patchSetId": 3
@@ -162,6 +180,30 @@
       "side": 1,
       "message": "Done converting to AIDL. The new AIDL file is in the other change aosp/2892580.",
       "parentUuid": "278ffaca_7aff7168",
+      "range": {
+        "startLine": 285,
+        "startChar": 25,
+        "endLine": 318,
+        "endChar": 22
+      },
+      "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f33cc6f_278c13be",
+        "filename": "libs/binder/IActivityManager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-01T21:04:31Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "43c86d3d_88a03384",
       "range": {
         "startLine": 285,
         "startChar": 25,

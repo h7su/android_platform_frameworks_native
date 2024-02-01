@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cedbb5c_13f9fb1f",
+        "filename": "libs/binder/IActivityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-01T21:04:31Z",
+      "side": 1,
+      "message": "I would say, this should be optional, since you don\u0027t need to make binder RPC calls, but it\u0027s okay too.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 43
+      },
+      "revId": "70537f922adf57833a4557b65a0637167620f7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
