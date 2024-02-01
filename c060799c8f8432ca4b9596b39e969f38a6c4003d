@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf975ba_6ef80754",
+        "filename": "libs/binder/ndk/include_ndk/android/binder_ibinder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-02-01T18:20:45Z",
+      "side": 1,
+      "message": "This part was also not happening for me. \nI would get the `onDied` callback in this case, but `onUnlink` would not be called so I was never cleaning up the cookies.\nI had to add the call from `onDied` that would call `unlinkToDeath` to cause `onUnlink` to be called.",
+      "range": {
+        "startLine": 354,
+        "startChar": 13,
+        "endLine": 354,
+        "endChar": 82
+      },
+      "revId": "c060799c8f8432ca4b9596b39e969f38a6c4003d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
