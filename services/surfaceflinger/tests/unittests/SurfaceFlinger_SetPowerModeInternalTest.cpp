@@ -17,10 +17,14 @@
 #undef LOG_TAG
 #define LOG_TAG "LibSurfaceFlingerUnittests"
 
+#include <com_android_graphics_surfaceflinger_flags.h>
+#include <common/test/FlagUtils.h>
 #include "DisplayTransactionTestHelpers.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+using namespace com::android::graphics::surfaceflinger;
 
 namespace android {
 namespace {
@@ -440,6 +444,7 @@ TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOnToUnknownPrimaryDisplay
 }
 
 TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOffToOnExternalDisplay) {
+    SET_FLAG_FOR_TEST(flags::multithreaded_present, true);
     transitionDisplayCommon<ExternalDisplayPowerCase<TransitionOffToOnVariant>>();
 }
 
@@ -448,6 +453,7 @@ TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOffToDozeSuspendExternalD
 }
 
 TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOnToOffExternalDisplay) {
+    SET_FLAG_FOR_TEST(flags::multithreaded_present, true);
     transitionDisplayCommon<ExternalDisplayPowerCase<TransitionOnToOffVariant>>();
 }
 
@@ -460,6 +466,7 @@ TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOnToDozeExternalDisplay) 
 }
 
 TEST_F(SetPowerModeInternalTest, transitionsDisplayFromDozeSuspendToDozeExternalDisplay) {
+    SET_FLAG_FOR_TEST(flags::multithreaded_present, true);
     transitionDisplayCommon<ExternalDisplayPowerCase<TransitionDozeSuspendToDozeVariant>>();
 }
 
@@ -468,10 +475,12 @@ TEST_F(SetPowerModeInternalTest, transitionsDisplayFromDozeToOnExternalDisplay) 
 }
 
 TEST_F(SetPowerModeInternalTest, transitionsDisplayFromDozeSuspendToOnExternalDisplay) {
+    SET_FLAG_FOR_TEST(flags::multithreaded_present, true);
     transitionDisplayCommon<ExternalDisplayPowerCase<TransitionDozeSuspendToOnVariant>>();
 }
 
 TEST_F(SetPowerModeInternalTest, transitionsDisplayFromOnToDozeSuspendExternalDisplay) {
+    SET_FLAG_FOR_TEST(flags::multithreaded_present, true);
     transitionDisplayCommon<ExternalDisplayPowerCase<TransitionOnToDozeSuspendVariant>>();
 }
 
