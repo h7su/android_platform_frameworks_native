@@ -349,9 +349,15 @@ binder_status_t AIBinder_linkToDeath(AIBinder* binder, AIBinder_DeathRecipient* 
  * returns STATUS_NAME_NOT_FOUND.
  *
  * This only ever needs to be called when the AIBinder_DeathRecipient remains for use with other
- * AIBinder objects. If the death recipient is deleted, all binders will automatically be unlinked.
- * If the binder dies, it will automatically unlink. If the binder is deleted, it will be
- * automatically unlinked.
+ * AIBinder objects, or when this process may remove its last reference to an AIBinder before the
+ * remote process dies. If the death recipient is deleted, all binders will automatically be
+ * unlinked. If the remote process of a binder dies, it will automatically unlink.
+ *
+ * If this process drops its last reference to an AIBinder before the remote process dies, then
+ * death recipients are not immediately unlinked. Instead, they are unlinked at some later point
+ * when this process notices that it has a death recipient whose AIBinder has gone away. In the
+ * current implementation, it will notice that when the death recipient is deleted, or when the same
+ * death recipient is linked to a new AIBinder. But exactly when it notices is subject to change.
  *
  * Be aware that it is not safe to immediately deallocate the cookie when this call returns. If you
  * need to clean up the cookie, you should do so in the onUnlinked callback, which can be set using
