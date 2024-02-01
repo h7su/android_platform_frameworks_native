@@ -15,6 +15,7 @@
 // libinput is partially built for the host (used by build time keymap validation tool)
 
 package {
+    default_team: "trendy_team_native_tools_libraries",
     // See: http://go/android-license-faq
     // A large-scale-change added 'default_applicable_licenses' to import
     // all of the 'license_kinds' from "frameworks_native_license"

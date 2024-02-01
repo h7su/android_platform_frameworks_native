@@ -1,6 +1,7 @@
 // bugreportz
 // ==========
 package {
+    default_team: "trendy_team_rubidium_sdk_runtime",
     // See: http://go/android-license-faq
     // A large-scale-change added 'default_applicable_licenses' to import
     // all of the 'license_kinds' from "frameworks_native_license"
