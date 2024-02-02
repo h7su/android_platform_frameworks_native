@@ -39,6 +39,30 @@
       },
       "revId": "c060799c8f8432ca4b9596b39e969f38a6c4003d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24861028_9a35a37e",
+        "filename": "libs/binder/ndk/include_ndk/android/binder_ibinder.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-02-02T09:41:26Z",
+      "side": 1,
+      "message": "Hmm. Looking back over your comment, you say that you skipped [this branch](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/native/libs/binder/ndk/ibinder.cpp;l\u003d413-419;drc\u003d8a5458ceee50061932d64ffed793317c6e099244) because `who` couldn\u0027t be promoted. But that seems weird to me, considering that [the caller](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/native/libs/binder/BpBinder.cpp;l\u003d547-554;drc\u003d8a5458ceee50061932d64ffed793317c6e099244) is holding a strong refcount to `this`, so I don\u0027t see why promoting it should fail.",
+      "parentUuid": "7bf975ba_6ef80754",
+      "range": {
+        "startLine": 354,
+        "startChar": 13,
+        "endLine": 354,
+        "endChar": 82
+      },
+      "revId": "c060799c8f8432ca4b9596b39e969f38a6c4003d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
