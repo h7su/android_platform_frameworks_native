@@ -142,6 +142,30 @@
       },
       "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4b9234_4a06e3ab",
+        "filename": "cmds/lshal/Lshal.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-02-02T01:19:17Z",
+      "side": 1,
+      "message": "Got it, I  thought the comment was saying it was just flushing what we\u0027ve got even if it was truncated.",
+      "parentUuid": "59aee75d_7ecb5515",
+      "range": {
+        "startLine": 235,
+        "startChar": 62,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
