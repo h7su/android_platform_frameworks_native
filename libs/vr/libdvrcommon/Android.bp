@@ -13,6 +13,7 @@
 // limitations under the License.
 
 package {
+    default_team: "trendy_team_vr",
     // See: http://go/android-license-faq
     // A large-scale-change added 'default_applicable_licenses' to import
     // all of the 'license_kinds' from "frameworks_native_license"
@@ -82,6 +83,6 @@ cc_test {
         "libgmock_main",
         "libgmock",
         "libgtest",
-	"libdvrcommon",
+        "libdvrcommon",
     ] + staticLibraries,
 }
