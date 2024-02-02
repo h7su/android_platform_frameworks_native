@@ -13,6 +13,7 @@
 // limitations under the License.
 
 package {
+    default_team: "trendy_team_android_gpu",
     // See: http://go/android-license-faq
     // A large-scale-change added 'default_applicable_licenses' to import
     // all of the 'license_kinds' from "frameworks_native_license"
@@ -45,7 +46,7 @@ cc_library_static {
     ],
     shared_libs: [
         "libui",
-        "libnativewindow"
+        "libnativewindow",
     ],
     defaults: ["hwc_tests_defaults"],
 }
@@ -61,7 +62,7 @@ cc_defaults {
         "liblog",
         "libui",
         "libutils",
-        "libnativewindow"
+        "libnativewindow",
     ],
 
     gtest: false,
