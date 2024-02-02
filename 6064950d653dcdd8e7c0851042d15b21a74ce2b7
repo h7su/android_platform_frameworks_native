@@ -22,6 +22,30 @@
       },
       "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623072f0_72b03555",
+        "filename": "cmds/lshal/Lshal.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-02T01:07:39Z",
+      "side": 1,
+      "message": "Perhaps \"causing debug information to be truncated\" is a better description?\n\nBasically, the issue is that the PipeRelay thread properly ends (~PipeRelay() is called), but the data it write()\u0027s to output stream is not flushed. Then, main() immediately calls _exit(), causing these data to be lost in the output.",
+      "parentUuid": "50975f35_51a4ee67",
+      "range": {
+        "startLine": 235,
+        "startChar": 62,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
