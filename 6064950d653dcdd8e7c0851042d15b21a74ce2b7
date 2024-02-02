@@ -94,6 +94,30 @@
       },
       "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b090e2_2b515cae",
+        "filename": "cmds/lshal/Lshal.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-02-02T01:15:07Z",
+      "side": 1,
+      "message": "\u003e  \"causing debug information to be truncated\"\n\nHmmm, we don\u0027t really want any of the debug info to be truncated during the bugreports. Is there another way to prevent that?",
+      "parentUuid": "253526f6_c598689c",
+      "range": {
+        "startLine": 235,
+        "startChar": 62,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
