@@ -70,6 +70,30 @@
       },
       "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "253526f6_c598689c",
+        "filename": "cmds/lshal/Lshal.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-02T01:13:07Z",
+      "side": 1,
+      "message": "I take that back; close() does not ensures flush(): \n\n\u003e A successful close does not guarantee that the data has been successfully saved to disk, as the kernel defers writes. It is not common for a file system to flush the buffers when the stream is closed.",
+      "parentUuid": "56e69720_42cf3b8b",
+      "range": {
+        "startLine": 235,
+        "startChar": 62,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
