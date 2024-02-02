@@ -95,6 +95,7 @@ void PipeRelay::thread(unique_fd rfd, unique_fd rfdTrigger, std::ostream* out,
             }
         }
     }
+    out->flush();
 }
 
 PipeRelay::~PipeRelay() {
