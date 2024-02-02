@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96901a83_e173cb23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952023
+      },
+      "writtenOn": "2024-02-02T22:04:41Z",
+      "side": 1,
+      "message": "Filed a bug for moving IActivityManager to AIDL. b/323579491\n\nTests being added in ag/26119968. Needs to be in a separate change since the test depends on a recent internal change to IProcessObserver (ag/26014693).",
+      "parentUuid": "400cf19d_abf16639",
+      "revId": "c8ceba0b4f58461185637e8841ae20fa32d13b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68d81ec4_6b5dc375",

@@ -22,6 +22,30 @@
       },
       "revId": "70537f922adf57833a4557b65a0637167620f7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6db4f2f_a5347de8",
+        "filename": "libs/binder/IActivityManager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1952023
+      },
+      "writtenOn": "2024-02-02T22:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cedbb5c_13f9fb1f",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 43
+      },
+      "revId": "70537f922adf57833a4557b65a0637167620f7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
