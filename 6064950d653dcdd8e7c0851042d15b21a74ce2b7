@@ -118,6 +118,30 @@
       },
       "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59aee75d_7ecb5515",
+        "filename": "cmds/lshal/Lshal.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-02T01:17:03Z",
+      "side": 1,
+      "message": "this change is the fix for that. We flush() before calling _exit() so it is no longer truncated.",
+      "parentUuid": "88b090e2_2b515cae",
+      "range": {
+        "startLine": 235,
+        "startChar": 62,
+        "endLine": 236,
+        "endChar": 38
+      },
+      "revId": "6064950d653dcdd8e7c0851042d15b21a74ce2b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
