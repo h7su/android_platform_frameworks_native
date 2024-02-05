@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ce98e0a_0db3adf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unsafe (which I was pung in for automatically) seems fine. However, I would like to suggest you consider using an `ArrayQueue` from `crossbeam` rather than trying to write your own ringbuffer. It would remove the locking issue by giving you a lock-free queue, and has a number of optimizations for space that wouldn\u0027t be especially worth performing in your own code.\n\nStylistically, the other thing to point out is that Rust structs and modules don\u0027t usually prefix names at their definition site. For example, you have defined the type:\n\n`debugstore::debug_store::debug_store_storage::DebugStoreStorage`\n\nThe usual way to do this in Rust would be\n`debugstore::storage::Storage`, possibly with a re-export as `debugstore::Storage`.\n\nIf a user needs to reference this type, the idioms there would be\n```\nuse debugstore;\ndebugstore::Storage\n```\nor\n```\nuse debugstore::Storage as DebugStoreStorage;\nDebugStoreStorage\n```\n\netc.\n\nBasically, if you need a collapsed name, it is usually on the client to specify that. Libraries can use generic names and rely in their namespacing to make it specific.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91107e5a_e287cc98",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Why do we have an `Arc` here? Why not just use `\u0026*INSTANCE` or `INSTANCE.force()`, either of which will get you a `\u0026\u0027static DebugStore`, which should be equivalently helpful without an extra heap allocation and reference count overhead.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4b98e20_e8a5b380",
         "filename": "libs/debugstore/rust/src/debug_store/core.rs",
         "patchSetId": 2
@@ -54,6 +88,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d79c236_891d5562",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_event.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c59f28_9a8f6be2",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_event.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2781b3c_e3d89eda",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021612ce_37459e0d",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d3f8dd6_1586f0a5",
         "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
         "patchSetId": 2
@@ -88,6 +190,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70cfaf62_8733c4d4",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dcfcfbe_2adce0ef",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Your design doc says a lockfree ringbuffer - why are you using a lock here?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89751d94_a86c72e3",
         "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
         "patchSetId": 2
@@ -105,6 +241,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "725b2fd4_ac18ea7a",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Consider replacing this data structure with\n\nhttps://docs.rs/crossbeam/latest/crossbeam/queue/struct.ArrayQueue.html\n\nThis `force_push` function corresponds to your `insert` function, and you could use repeated `pop` when you want to dump the buffer.\n\nThis would have the difference from your current implementation that if you dumped the buffer two times in sequence, the second dump wouldn\u0027t include events from the first dump. I don\u0027t see that specified in the design doc, but if it\u0027s important I can find you a workaround.\n\nIt\u0027s also actually lock-free unlike your current data structure, doesn\u0027t require cloning, doesn\u0027t use `Option` and so doesn\u0027t charge an extra cost per element, etc.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8738f7f8_a024279a",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "If you keep this type, it should probably be\n```\npub struct InsertOnlyRingBuffer\u003cconst CAPACITY: usize, T\u003e {\n  storage: [Option\u003cT\u003e; CAPACITY],\n  head: usize,\n}\n```\nThis will allow you to specify the ring buffer capacity at the type level, and avoid the extra indirection for a Vec.\n\nIf you needed this to be abstracted (e.g. you needed InsertOnlyRingBuffer with different max buffer sizes to be interchangeable), then `Box\u003c[T]\u003e` would probably be the correct `storage` type.\n\nIn all of these cases, you should not be storing `capacity` yourself -\n\n1. As it is now, you can do `self.storage.len()` to get capacity\n2. With the version I suggested, you can do `Self::CAPACITY` to statically access capacity\n3. With a heap allocated array (`Box\u003c[T]\u003e`) you can do do `self.storage.len()`",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd93d9e_14e4b91c",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "As above - if this ringbuffer is supposed to be lockfree, then you should have two properties:\n\n1. `InsertOnlyRingBuffer` should be `Sync` (this is true, but you need to preserve this in any update)\n2. `fn insert(\u0026self, value: T)` should work",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef5a5bb0_d4493ce1",
         "filename": "libs/debugstore/rust/src/debug_store/event_type.rs",
         "patchSetId": 2
@@ -116,6 +303,23 @@
       "writtenOn": "2024-02-05T14:25:30Z",
       "side": 1,
       "message": "AFAIU this should never happen \u0026 it\u0027s present for convenient mapping to a protobuf enum. Is that accurate? If so let\u0027s document that here to avoid any confusion.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49fb0d66_75373e73",
+        "filename": "libs/debugstore/rust/src/debug_store/mod.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-05T17:59:37Z",
+      "side": 1,
+      "message": "Why do we have an extra layer of indirection here? Is there a reason these aren\u0027t just at the root of the debug_store crate? Seems odd to have `debug_store::debug_store::`...",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
