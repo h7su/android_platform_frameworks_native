@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4b98e20_e8a5b380",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:25:30Z",
+      "side": 1,
+      "message": "Move to DebugStoreStorage alongside lock_failures?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa9a618e_39159d12",
         "filename": "libs/debugstore/rust/src/debug_store/core.rs",
         "patchSetId": 2
@@ -14,6 +31,74 @@
       "writtenOn": "2024-02-05T13:26:14Z",
       "side": 1,
       "message": "nit: Can we add docstrings for these constants?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a884b19_2b2f5dfe",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:25:30Z",
+      "side": 1,
+      "message": "The start time is logged as a realtime here, but ANR timers all use uptime. Shall we log uptime directly here instead? Since they will need to be converted to uptimes eventually?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3f8dd6_1586f0a5",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:25:30Z",
+      "side": 1,
+      "message": "nit: Can we document the 20ms max blocking time somewhere prominent?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89751d94_a86c72e3",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:25:30Z",
+      "side": 1,
+      "message": "nit: _ms suffix not needed since the units are included in the type.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef5a5bb0_d4493ce1",
+        "filename": "libs/debugstore/rust/src/debug_store/event_type.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:25:30Z",
+      "side": 1,
+      "message": "AFAIU this should never happen \u0026 it\u0027s present for convenient mapping to a protobuf enum. Is that accurate? If so let\u0027s document that here to avoid any confusion.",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
