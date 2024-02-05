@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9a618e_39159d12",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T13:26:14Z",
+      "side": 1,
+      "message": "nit: Can we add docstrings for these constants?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
