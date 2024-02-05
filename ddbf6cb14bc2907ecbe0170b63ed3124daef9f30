@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb426fe8_a5eb3a3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-05T16:38:35Z",
+      "side": 1,
+      "message": "Did you actually run the test you added? It looks like no, since you seem to be trying to call `setProtected` with no parameters (it takes a `bool`) and getting a return value (it returns `void`).\n\nYou should be able to run this test with\n\n```\natest libcompositionengine_test\n```\n\n(That should also go in the commit message, perhaps in addition to \"Manual\" that you\u0027ve already listed.) That runs the whole suite, but I think you can just run your test with something like\n\n```\natest libcompositionengine_test OutputTest#OutputUpdateProtectedContentStateTest*\n```",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d589217f_d952582b",
+        "filename": "services/surfaceflinger/CompositionEngine/tests/OutputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5019,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-05T16:38:35Z",
+      "side": 1,
+      "message": "This isn\u0027t right. `setProtected` has the following signature:\n\n```\nvoid setProtected(bool useProtected);\n```\n\nSo you\u0027ll need something like\n\n```\nEXPECT_CALL(*mRenderSurface, setProtected(false));\n```\n\nYou\u0027ll also need to make sure you initialize the `RenderSurface` such that it *is* protected to begin with, since we don\u0027t call `setProtected` unless it changed.\n\nWhich actually suggests that you need *two* tests - one should verify that it changes, and the other that verifies that it stayed the same:\n- protected stays false\n- protected changes from true to false.\n\n(I think you actually need even more tests than that, but I\u0027ll address that in a separate comment.)",
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b50ef8_d27eb5b3",
+        "filename": "services/surfaceflinger/CompositionEngine/tests/OutputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5021,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-05T16:38:35Z",
+      "side": 1,
+      "message": "For the bug you\u0027re fixing, you have this backwards - you want the layer which requires client composition to *not* be protected. Your code change makes so we only call `setProtected(true)` if protected layers require client composition.\n\nThat said, we should also have a test that goes the other direction, verifying that we *do* call `setProtected(true)` when a client-composited layer has protected content.",
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
