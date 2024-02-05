@@ -71,6 +71,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9310641b_fd0b9043",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1898965
+      },
+      "writtenOn": "2024-02-05T14:46:50Z",
+      "side": 1,
+      "message": "Can we add some tests?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89751d94_a86c72e3",
         "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
         "patchSetId": 2
