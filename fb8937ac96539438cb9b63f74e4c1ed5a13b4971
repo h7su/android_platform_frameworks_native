@@ -16,6 +16,24 @@
       "message": "Hey Prabir,\n\nWith the new PointerChoreographer work, I think this CL is no longer relevant?",
       "revId": "fb8937ac96539438cb9b63f74e4c1ed5a13b4971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6c12f8_ceb33385",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407716
+      },
+      "writtenOn": "2024-02-06T02:46:09Z",
+      "side": 1,
+      "message": "Yup, this will not be relevant after the 24Q2 release.\n\nRight now, InputManagerService in Java needs to be the only place that can change the pointer displayId for [synchronization](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/services/core/java/com/android/server/input/InputManagerService.java;l\u003d279-287;drc\u003dce60017037facc2c9e95dce95c1723063b59ce70). Adding this will break that, so I don\u0027t think we should go down this route for now.",
+      "parentUuid": "f7f9c449_32ca33d4",
+      "revId": "fb8937ac96539438cb9b63f74e4c1ed5a13b4971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
