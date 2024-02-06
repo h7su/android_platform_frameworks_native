@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f9c449_32ca33d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-02-06T01:31:44Z",
+      "side": 1,
+      "message": "Hey Prabir,\n\nWith the new PointerChoreographer work, I think this CL is no longer relevant?",
+      "revId": "fb8937ac96539438cb9b63f74e4c1ed5a13b4971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
