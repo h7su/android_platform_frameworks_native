@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e1d4fb5_a1ab4426",
+        "filename": "libs/binder/include/binder/RecordedTransaction.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "401dee29_4baf798d",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0de6cfed_c706fbfa",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-26T23:09:34Z",
       "side": 1,
       "message": "you can probably use U\u0026\u0026 recordedValue and move all of them (even in the basic data case) or use std::forward to avoid needing multiple copies of the function",
+      "range": {
+        "startLine": 218,
+        "startChar": 41,
+        "endLine": 218,
+        "endChar": 80
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49f15973_0f798bc0",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0de6cfed_c706fbfa",
       "range": {
         "startLine": 218,
         "startChar": 41,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6242f73f_09b24ce1",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c6500bc_bdfe014f",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 44
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49d6991c_599d9d47",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f3112bd_06895a11",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d6991c_599d9d47",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 44
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5518c899_b3b7bd8f",
@@ -123,6 +219,30 @@
       "writtenOn": "2024-01-26T23:09:34Z",
       "side": 1,
       "message": "you might want to comment where this is coupled from the other file (the exact function/variable this is duplicated from)",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 46
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "760fa2dd_b626243f",
+        "filename": "libs/binder/tests/binderRecordReplayTest.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "I made it to reference from same place.",
+      "parentUuid": "5518c899_b3b7bd8f",
       "range": {
         "startLine": 290,
         "startChar": 0,
@@ -179,6 +299,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "271ec01d_4dff43bd",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "RandomBinder is the only one which will be recorded as object. I was considering to add some simpler Binder class but we can mold RandomBinder in the same way.",
+      "parentUuid": "6ba6fc4d_4c6ce7e5",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d516b6cd_cfcf69d2",
@@ -202,6 +346,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "791bbc82_07f03fcc",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "This string is written based on max length provided here. https://cs.android.com/android/platform/superproject/main/+/main:frameworks/native/libs/binder/tests/parcel_fuzzer/random_binder.cpp;l\u003d73?q\u003drandom_binder.cpp \n\nThis is how it is consumed by FuzzedDataProvider: https://cs.android.com/android/platform/superproject/main/+/main:prebuilts/clang-tools/linux-x86/lib64/clang/17/include/fuzzer/FuzzedDataProvider.h;l\u003d163;drc\u003db8667c6f3e33cccd046e2f6a796573e8829068bf.\n\nOnly control that we have over ConsumeRandomLengthString is max_length which we provided. I halved this for both random_parcel and seed generation. using the same variable in tests now.",
+      "parentUuid": "d516b6cd_cfcf69d2",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c77d6715_34f8ed5f",
@@ -215,6 +383,30 @@
       "writtenOn": "2024-01-26T23:09:34Z",
       "side": 1,
       "message": "I\u0027d recommend declaring this as a constant, (e.g. const std::string, so you can get the size and change it arbitrarily)",
+      "range": {
+        "startLine": 207,
+        "startChar": 13,
+        "endLine": 207,
+        "endChar": 37
+      },
+      "revId": "3eb4bc5a93e76c732c8a280311df8f6e4c816bd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bbec722_08239bdf",
+        "filename": "libs/binder/tests/parcel_fuzzer/random_parcel_seeds.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c77d6715_34f8ed5f",
       "range": {
         "startLine": 207,
         "startChar": 13,

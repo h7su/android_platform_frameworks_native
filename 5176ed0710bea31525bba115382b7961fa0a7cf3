@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0392e0d_6fa7910f",
+        "filename": "libs/binder/Parcel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1956258
+      },
+      "writtenOn": "2024-02-06T23:34:24Z",
+      "side": 1,
+      "message": "I will follow up for this : b/322548367",
+      "parentUuid": "4fcab78e_6fb41235",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 52
+      },
+      "revId": "5176ed0710bea31525bba115382b7961fa0a7cf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fa00aa0_8d3a37c6",
