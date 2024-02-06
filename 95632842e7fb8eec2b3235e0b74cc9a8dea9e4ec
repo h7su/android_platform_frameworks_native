@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea5e851_c3a2fb8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1630008
+      },
+      "writtenOn": "2024-02-06T01:31:42Z",
+      "side": 1,
+      "message": "cc: @xiangw@google.com @priyanksingh@google.com\n\nDiscussed offline with @svv, I can cp/merge (so I can fix possible conflicts) internally (Michael\u0027s ownership will be preserved).",
+      "revId": "95632842e7fb8eec2b3235e0b74cc9a8dea9e4ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
