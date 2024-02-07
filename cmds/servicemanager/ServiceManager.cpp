@@ -111,7 +111,7 @@ static bool isVintfDeclared(const std::string& name) {
 
     bool found = forEachManifest([&](const ManifestWithDescription& mwd) {
         if (mwd.manifest->hasAidlInstance(aname.package, aname.iface, aname.instance)) {
-            ALOGI("Found %s in %s VINTF manifest.", name.c_str(), mwd.description);
+            ALOGD("Found %s in %s VINTF manifest.", name.c_str(), mwd.description);
             return true; // break
         }
         return false;  // continue
