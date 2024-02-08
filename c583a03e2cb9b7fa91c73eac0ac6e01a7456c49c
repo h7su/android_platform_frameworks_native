@@ -22,6 +22,30 @@
       },
       "revId": "c583a03e2cb9b7fa91c73eac0ac6e01a7456c49c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65753f0_26fe310e",
+        "filename": "libs/ui/DisplayIdentification.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-02-08T20:16:15Z",
+      "side": 1,
+      "message": "From the commit message:\n\n\u003e Cast std::span\u003cT\u003e::size() to size_t because the WIP std::span::size()\nhas a ptrdiff_t return type instead of size_t.\n\nThe old external/libcxx code dates from January 2019 and has a pre-standardized version of std::span. (It is still a better choice than std::basic_string_view\u003cuint8_t\u003e, though, which is now removed from libc++.)",
+      "parentUuid": "38922f15_82742a40",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "c583a03e2cb9b7fa91c73eac0ac6e01a7456c49c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
