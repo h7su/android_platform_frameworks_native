@@ -16,7 +16,8 @@
 
 #pragma once
 
-#if (!defined(__ANDROID_APEX__) && !defined(__ANDROID_VNDK__)) || defined(__TRUSTY__)
+#if (!defined(__ANDROID_APEX__) && !defined(__ANDROID_VNDK__)) || defined(__TRUSTY__) || \
+        defined(LIBBINDER_NDK_VENDOR)
 
 #include <android/binder_ibinder.h>
 #include <android/binder_parcel.h>

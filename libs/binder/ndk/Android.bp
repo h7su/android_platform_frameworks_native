@@ -32,15 +32,8 @@ license {
     ],
 }
 
-cc_library {
-    name: "libbinder_ndk",
-
-    host_supported: true,
-    recovery_available: true,
-
-    llndk: {
-        symbol_file: "libbinder_ndk.map.txt",
-    },
+cc_defaults {
+    name: "libbinder_ndk_defaults",
 
     export_include_dirs: [
         "include_cpp",
@@ -85,27 +78,6 @@ cc_library {
         "jni_headers",
     ],
 
-    target: {
-        android: {
-            // Only one copy of this library on an Android device
-            static: {
-                enabled: false,
-            },
-        },
-        linux: {
-            version_script: "libbinder_ndk.map.txt",
-        },
-        darwin: {
-            enabled: false,
-        },
-    },
-    stubs: {
-        symbol_file: "libbinder_ndk.map.txt",
-        versions: [
-            "29",
-            "30",
-        ],
-    },
     sanitize: {
         misc_undefined: ["integer"],
     },
@@ -140,6 +112,55 @@ cc_library {
         "portability*",
     ],
     afdo: true,
+}
+
+cc_library {
+    name: "libbinder_ndk",
+    defaults: [
+        "libbinder_ndk_defaults",
+    ],
+
+    host_supported: true,
+    recovery_available: true,
+
+    llndk: {
+        symbol_file: "libbinder_ndk.map.txt",
+    },
+
+    target: {
+        android: {
+            // Only one copy of this library on an Android device
+            static: {
+                enabled: false,
+            },
+        },
+        linux: {
+            version_script: "libbinder_ndk.map.txt",
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    stubs: {
+        symbol_file: "libbinder_ndk.map.txt",
+        versions: [
+            "29",
+            "30",
+        ],
+    },
+}
+
+cc_library {
+    name: "libbinder_ndk_vendor",
+    vendor: true,
+
+    defaults: [
+        "libbinder_ndk_defaults",
+    ],
+
+    cflags: [
+        "-DLIBBINDER_NDK_VENDOR",
+    ],
 }
 
 cc_library_headers {

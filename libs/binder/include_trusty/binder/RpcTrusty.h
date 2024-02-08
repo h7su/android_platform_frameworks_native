@@ -16,14 +16,17 @@
 
 #pragma once
 
+#include <android/binder_auto_utils.h>
 #include <binder/IBinder.h>
 
 namespace android {
 
-sp<IBinder> RpcTrustyConnect(const char* device, const char* port);
+sp<RpcSession> RpcTrustyConnect(const char* device, const char* port);
 
 sp<RpcSession> RpcTrustyConnectWithSessionInitializer(
         const char* device, const char* port,
         std::function<void(sp<RpcSession>&)> sessionInitializer);
+
+ndk::SpAIBinder RpcTrustyGetRootObject(const sp<RpcSession>& session);
 
 } // namespace android

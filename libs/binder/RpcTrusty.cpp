@@ -16,6 +16,8 @@
 
 #define LOG_TAG "RpcTrusty"
 
+#include <android/binder_auto_utils.h>
+#include <android/binder_libbinder.h>
 #include <binder/RpcSession.h>
 #include <binder/RpcTransportTipcAndroid.h>
 #include <binder/unique_fd.h>
@@ -41,14 +43,17 @@ sp<RpcSession> RpcTrustyConnectWithSessionInitializer(
     };
     if (status_t status = session->setupPreconnectedClient(unique_fd{}, request); status != OK) {
         ALOGE("Failed to set up Trusty client. Error: %s", statusToString(status).c_str());
-        return nullptr;
+        return {};
     }
     return session;
 }
 
-sp<IBinder> RpcTrustyConnect(const char* device, const char* port) {
-    auto session = RpcTrustyConnectWithSessionInitializer(device, port, [](auto) {});
-    return session->getRootObject();
+sp<RpcSession> RpcTrustyConnect(const char* device, const char* port) {
+    return RpcTrustyConnectWithSessionInitializer(device, port, [](auto) {});
+}
+
+ndk::SpAIBinder RpcTrustyGetRootObject(const sp<RpcSession>& session) {
+    return ndk::SpAIBinder(AIBinder_fromPlatformBinder(session->getRootObject()));
 }
 
 } // namespace android
