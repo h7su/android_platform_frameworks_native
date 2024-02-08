@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef2f4a5_e4befda9",
+        "filename": "libs/binder/RecordedTransaction.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-08T01:12:00Z",
+      "side": 1,
+      "message": "nit: and mReplyDataOnly - these should actually be the same",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 10
+      },
+      "revId": "efe5384f8418eed6a4468eb3c72008ac0181515a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd08be07_9422d73f",
+        "filename": "libs/binder/RecordedTransaction.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-08T01:12:00Z",
+      "side": 1,
+      "message": "yeah - this will be 4 in 32-bit and 8 in 64-bit, so we should keep it the same size. Otherwise, we couldn\u0027t share recordings between 32 and 64-bit.",
+      "range": {
+        "startLine": 294,
+        "startChar": 63,
+        "endLine": 294,
+        "endChar": 69
+      },
+      "revId": "efe5384f8418eed6a4468eb3c72008ac0181515a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9153b968_9a052261",
+        "filename": "libs/binder/include/binder/RecordedTransaction.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-08T01:12:00Z",
+      "side": 1,
+      "message": "This should be uint64_t to match mObjects binder_size_t. It won\u0027t matter, but still. It\u0027s also better to use uint64_t, because size_t is different sizes in different bitnesses, so that could cause the data format to change if it is directly written to disk.",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "efe5384f8418eed6a4468eb3c72008ac0181515a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc34ec1_719fdc19",
+        "filename": "libs/binder/tests/IBinderRecordReplayTest.aidl",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-08T01:12:00Z",
+      "side": 1,
+      "message": "you might want to file a separate bug to add another case with several binders and several FDs and follow-up, especially if there is any issue, as that may help detect some bugs, but it\u0027s good for now",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "efe5384f8418eed6a4468eb3c72008ac0181515a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
