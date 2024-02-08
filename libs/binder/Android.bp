@@ -564,6 +564,7 @@ cc_library {
 
     shared_libs: [
         "libbinder",
+        "libbinder_ndk_vendor",
         "liblog",
         "libtrusty",
         "libutils",
@@ -572,6 +573,10 @@ cc_library {
         "libbase",
     ],
     export_include_dirs: ["include_trusty"],
+
+    cflags: [
+        "-DLIBBINDER_NDK_VENDOR",
+    ],
 
     // Most of Android doesn't need this library and shouldn't use it,
     // so we restrict its visibility to the Trusty-specific packages.
