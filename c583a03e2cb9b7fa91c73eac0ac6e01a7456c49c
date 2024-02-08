@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38922f15_82742a40",
+        "filename": "libs/ui/DisplayIdentification.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2024-02-08T17:05:41Z",
+      "side": 1,
+      "message": "Isn\u0027t std::span::size already size_t?",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "c583a03e2cb9b7fa91c73eac0ac6e01a7456c49c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
