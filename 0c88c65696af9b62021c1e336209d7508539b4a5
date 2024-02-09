@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0fcf878_730c2c5d",
+        "filename": "libs/input/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1951823
+      },
+      "writtenOn": "2024-02-09T17:32:06Z",
+      "side": 1,
+      "message": "This should be `trendy_team_input_framework`, like it is for the tests subdirectory.\n\n```suggestion\n    default_team: \"trendy_team_input_framework\",\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 19,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
