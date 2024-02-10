@@ -826,6 +826,36 @@ static binder::Status createStorageAreaDir(const std::string& path, int32_t uid,
     if (restorecon_app_data_lazy(path, seInfo, uid, dir_exists)) {
         return error("Failed to restorecon " + path);
     }
+    if (!dir_exists) { // don't need to tag if already exists
+        // get the current se context
+        char* oldsecontext_c = nullptr;
+        if (::lgetfilecon(path.c_str(), &oldsecontext_c) < 0) {
+            PLOG(ERROR) << "Unable to read secontext for: " << path;
+        }
+        std::string oldsecontext = oldsecontext_c;
+        // update the context to tag it as a pkg directory of storage areas
+        // the context should look like: u:object_r:<current type>:...
+        // so, we split the string on ":" and replace the third string with the package dir type
+        int num_colons = 0;
+        size_t start_pos = 0;
+        while (num_colons < 2) {
+            ++start_pos;
+            start_pos = oldsecontext.find(":", start_pos);
+            if(start_pos == std::string::npos) {
+                return error("Malformed context: " + oldsecontext + " for pkdir of storage areas: " + path);
+            }
+            ++num_colons;
+        }
+        size_t end_pos = oldsecontext.find(":", start_pos + 1);
+        if(end_pos == std::string::npos) {
+            return error("Malformed context: " + oldsecontext + " for pkdir of storage areas: " + path);
+        }
+        std::string newsecontext = oldsecontext.substr(0, start_pos) 
+                    + ":storage_area_app_dir" + oldsecontext.substr(end_pos);
+        if (lsetfilecon(path.c_str(), newsecontext.c_str()) < 0) {
+            return error("Failed to lsetfilecon for pkgdir of storage areas: " + newsecontext + " for path: " + path);
+        }
+    }
     return ok();
 }
 
@@ -1419,7 +1449,7 @@ binder::Status InstalldNativeService::destroyAppData(const std::optional<std::st
             // destruction of the app's data will entirely remove it.
             // This is different than the deletion of the storage area itself: when a
             // user is destroyed, `destroyUserData` deletes the directory contents
-            // and vold handles deletion of the storage area itself.
+            // and vold handles deletion of the storage area directory itself.
             auto storage_area_path = create_data_storage_area_package_path(userId, pkgname);
             if (delete_dir_contents_and_dir(storage_area_path, true)) {
                 res = error("Failed to delete contents of " + storage_area_path);
