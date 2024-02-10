@@ -826,6 +826,11 @@ static binder::Status createStorageAreaDir(const std::string& path, int32_t uid,
     if (restorecon_app_data_lazy(path, seInfo, uid, dir_exists)) {
         return error("Failed to restorecon " + path);
     }
+    if (!dir_exists) { // don't need to tag if already exists
+        if (selinux_android_restorecon_storage_areas(false, true, path.c_str(), seInfo.c_str(), uid)) {
+            return error("Failed to restorecon with pkgdir of storage area SELinux types: " + path);
+        }
+    }
     return ok();
 }
 
