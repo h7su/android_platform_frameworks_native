@@ -16,6 +16,23 @@
       "message": "Why is this printing to the kernel log anyway?",
       "revId": "93f98fa45c1467ddcf8511369d6dbb348891ed65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c526829f_ca535d19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-10T00:07:08Z",
+      "side": 1,
+      "message": "servicemanager prints to the kernel log because it starts too early, you always lose its logs in Android. Since it\u0027s critical for many teams to understand how Android is booting up for various bugs, I moved it here in b/210919187.\n\nBtw - I know this is a happy path log, but it\u0027s quite useful. Normally, there should be about ~100 log entries from this.\n\nAre you seeing many more than this from this? It could be some process is overloading servicemanager with requests.",
+      "revId": "93f98fa45c1467ddcf8511369d6dbb348891ed65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
