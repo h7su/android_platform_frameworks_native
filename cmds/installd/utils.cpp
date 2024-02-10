@@ -159,6 +159,13 @@ std::string create_data_storage_area_package_path(userid_t user, const char* pac
     return StringPrintf("%s/%s", create_data_storage_area_path(user).c_str(), package_name);
 }
 
+std::string create_data_storage_area_fbe_keys_package_path(userid_t user,
+        const char* package_name) {
+    check_package_name(package_name);
+    return StringPrintf("%s/%s",
+        create_data_storage_area_fbe_keys_path(user).c_str(), package_name);
+}
+
 std::string create_data_path(const char* volume_uuid) {
     if (volume_uuid == nullptr) {
         return "/data";
@@ -209,6 +216,14 @@ std::string create_data_user_de_path(const char* volume_uuid, userid_t userid) {
  */
 std::string create_data_storage_area_path(userid_t userid) {
     return StringPrintf("/data/storage_area/%d", userid);
+}
+
+/**
+ * Create the path name for the FBE keys of storage areas for a certain userid.  Doesn't take a
+ * volume_uuid argument, as storage areas are currently only supported on internal storage.
+ */
+std::string create_data_storage_area_fbe_keys_path(userid_t userid) {
+    return StringPrintf("/data/misc_ce/%d/storage_area_keys", userid);
 }
 
 /**
