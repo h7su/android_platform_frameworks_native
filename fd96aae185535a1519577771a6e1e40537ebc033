@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34d6c9fa_682d84d7",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/rules.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-02-14T00:55:40Z",
+      "side": 1,
+      "message": "Should this also be in this CL? It was there in https://r.android.com/2584776.",
+      "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ad1c715_70507b4f",
         "filename": "libs/binder/trusty/rust/binder_rpc_test/service/main.rs",
         "patchSetId": 4
