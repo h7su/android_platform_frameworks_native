@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33c4749c_41e802e6",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/main.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-02-14T00:41:39Z",
+      "side": 1,
+      "message": "We should de-duplicate these.\n\nSimple approach: move the bodies into helper functions that take `port: \u0026str` as a parameter, and call the helpers from the actual tests with the different port names.\n\nA more complex approach to develop, but easier to use after: use `macro_rules!` to define a `service_test!` macro that takes the test case body and instantiates the two tests. Something like:\n```\nmacro_rules! service_test {\n  ($c_name:ident, $rust_name:ident, $body:expr) \u003d\u003e {\n     #[test] fn $c_name() { $body(get_service(SERVICE_PORT); }\n     #[test] fn $rust_name() { $body(get_service(RUST_SERVICE_PORT); }\n  }\n};\n\nservice_test!{ping, ping_rust, |srv| {\n  assert_eq!(srv.as_binder().ping_binder(), Ok(()));\n}};\n```\nThat second one might be a pain to get working, so let\u0027s go with the first one if it doesn\u0027t.",
+      "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
