@@ -33,6 +33,24 @@
       "message": "This is not wrong, but using `ManuallyDrop` here is more idiomatic.",
       "revId": "f1e6abc158028f32ad70e06e5734f16c4736bb6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "266cc311_0332c622",
+        "filename": "libs/binder/rust/rpcbinder/src/server.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-02-15T21:27:20Z",
+      "side": 1,
+      "message": "I changed this over in https://r.android.com/2695039, decided to try to get that landed first.",
+      "parentUuid": "02c49af4_c7f86359",
+      "revId": "f1e6abc158028f32ad70e06e5734f16c4736bb6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
