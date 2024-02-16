@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11469df7_6b67d84b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-02-16T22:33:05Z",
+      "side": 1,
+      "message": "The same code is in hwbinder also https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:system/libhwbinder/IPCThreadState.cpp;drc\u003d691b5f62b2cfb723ba94a37addc53cfb82e2549f;l\u003d714",
+      "revId": "1bf4291b13d726b90a5517ae1851adb06f52f7a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
