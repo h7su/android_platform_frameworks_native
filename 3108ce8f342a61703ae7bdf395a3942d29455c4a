@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f0835c_dca11b36",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/main.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-02-16T11:55:30Z",
+      "side": 1,
+      "message": "Consider adding a safety comment for this unsafe block.",
+      "revId": "3108ce8f342a61703ae7bdf395a3942d29455c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58bc46c_376d2b6c",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/service/main.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-02-16T11:55:30Z",
+      "side": 1,
+      "message": "Add a safety comment for this unsafe block.",
+      "revId": "3108ce8f342a61703ae7bdf395a3942d29455c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
