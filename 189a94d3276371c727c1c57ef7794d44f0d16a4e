@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4ef43f_661cd12d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121894
+      },
+      "writtenOn": "2024-02-17T00:01:01Z",
+      "side": 1,
+      "message": "Acknowledged\n\nFor context, the test seems to need root and relies currently on a side behavior of DeviceSetup (which root devices incorrectly), so while fixing DeviceSetup we need to specify explicitly the root setup instead. Hope that makes sense !",
+      "parentUuid": "cf245fd6_2523231e",
+      "revId": "189a94d3276371c727c1c57ef7794d44f0d16a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e93a79f1_2d9fb4ea",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-16T23:43:46Z",
       "side": 1,
       "message": "This bug seems to reference tests that aren\u0027t in `libgui`? Is there a more appropriate bug?",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "189a94d3276371c727c1c57ef7794d44f0d16a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "443ec37e_fe925c08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121894
+      },
+      "writtenOn": "2024-02-17T00:01:01Z",
+      "side": 1,
+      "message": "Sorry switched to the same issue but referencing libgui (b/325098343).",
+      "parentUuid": "e93a79f1_2d9fb4ea",
       "range": {
         "startLine": 14,
         "startChar": 5,
