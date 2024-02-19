@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29d1d4d_434d8979",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ce98e0a_0db3adf4",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91107e5a_e287cc98",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-05T17:59:37Z",
       "side": 1,
       "message": "Why do we have an `Arc` here? Why not just use `\u0026*INSTANCE` or `INSTANCE.force()`, either of which will get you a `\u0026\u0027static DebugStore`, which should be equivalently helpful without an extra heap allocation and reference count overhead.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b243d29e_97f17442",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91107e5a_e287cc98",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de955d3_7515c838",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4b98e20_e8a5b380",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa9a618e_39159d12",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-02-05T13:26:14Z",
       "side": 1,
       "message": "nit: Can we add docstrings for these constants?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61b86aac_7026e5a7",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa9a618e_39159d12",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2fd2739_69b398f6",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_event.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d79c236_891d5562",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30c59f28_9a8f6be2",
@@ -116,6 +206,24 @@
       "writtenOn": "2024-02-05T17:59:37Z",
       "side": 1,
       "message": "Unnecessary prefix",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5338ad24_db866db0",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_event.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30c59f28_9a8f6be2",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ec6085d_230f1bcf",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2781b3c_e3d89eda",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "021612ce_37459e0d",
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de38cf5f_75692b3e",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021612ce_37459e0d",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d3f8dd6_1586f0a5",
@@ -167,6 +311,24 @@
       "writtenOn": "2024-02-05T14:25:30Z",
       "side": 1,
       "message": "nit: Can we document the 20ms max blocking time somewhere prominent?",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36c1a874_45e14733",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d3f8dd6_1586f0a5",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -205,6 +367,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "534bec78_775db146",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70cfaf62_8733c4d4",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dcfcfbe_2adce0ef",
@@ -222,6 +402,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54a626d4_4bbafd64",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "This came after an offline discussion where we decided to go ahead with a simplified version in the first iteration. But since we can use a well-tested MCMP lock-free queue from crossbeam, I\u0027ll go with that.",
+      "parentUuid": "6dcfcfbe_2adce0ef",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89751d94_a86c72e3",
@@ -235,6 +433,24 @@
       "writtenOn": "2024-02-05T14:25:30Z",
       "side": 1,
       "message": "nit: _ms suffix not needed since the units are included in the type.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a856b2_b7e7ffad",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89751d94_a86c72e3",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -258,6 +474,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c3f86f2_cc84cddb",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "I only went with the current implementation -after some discussions- for simplicity. But crossbeam\u0027s Arrayqueue seems like a good choice, what workarounds do you have in mind for a repeatable dump?",
+      "parentUuid": "725b2fd4_ac18ea7a",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8738f7f8_a024279a",
         "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
         "patchSetId": 2
@@ -269,6 +503,24 @@
       "writtenOn": "2024-02-05T17:59:37Z",
       "side": 1,
       "message": "If you keep this type, it should probably be\n```\npub struct InsertOnlyRingBuffer\u003cconst CAPACITY: usize, T\u003e {\n  storage: [Option\u003cT\u003e; CAPACITY],\n  head: usize,\n}\n```\nThis will allow you to specify the ring buffer capacity at the type level, and avoid the extra indirection for a Vec.\n\nIf you needed this to be abstracted (e.g. you needed InsertOnlyRingBuffer with different max buffer sizes to be interchangeable), then `Box\u003c[T]\u003e` would probably be the correct `storage` type.\n\nIn all of these cases, you should not be storing `capacity` yourself -\n\n1. As it is now, you can do `self.storage.len()` to get capacity\n2. With the version I suggested, you can do `Self::CAPACITY` to statically access capacity\n3. With a heap allocated array (`Box\u003c[T]\u003e`) you can do do `self.storage.len()`",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c73c06_d99bc03c",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8738f7f8_a024279a",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -286,6 +538,24 @@
       "writtenOn": "2024-02-05T17:59:37Z",
       "side": 1,
       "message": "As above - if this ringbuffer is supposed to be lockfree, then you should have two properties:\n\n1. `InsertOnlyRingBuffer` should be `Sync` (this is true, but you need to preserve this in any update)\n2. `fn insert(\u0026self, value: T)` should work",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e4a2c15_4f5b5d2a",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edd93d9e_14e4b91c",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -320,6 +590,24 @@
       "writtenOn": "2024-02-05T17:59:37Z",
       "side": 1,
       "message": "Why do we have an extra layer of indirection here? Is there a reason these aren\u0027t just at the root of the debug_store crate? Seems odd to have `debug_store::debug_store::`...",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e502c3d_07d918fd",
+        "filename": "libs/debugstore/rust/src/debug_store/mod.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-19T11:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49fb0d66_75373e73",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
