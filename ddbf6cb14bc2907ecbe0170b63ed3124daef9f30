@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e6e3dc_b8951cba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2024-02-19T10:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb426fe8_a5eb3a3a",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d589217f_d952582b",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d92e997_3d0c2dfc",
+        "filename": "services/surfaceflinger/CompositionEngine/tests/OutputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5019,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2024-02-19T10:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d589217f_d952582b",
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2b50ef8_d27eb5b3",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-02-05T16:38:35Z",
       "side": 1,
       "message": "For the bug you\u0027re fixing, you have this backwards - you want the layer which requires client composition to *not* be protected. Your code change makes so we only call `setProtected(true)` if protected layers require client composition.\n\nThat said, we should also have a test that goes the other direction, verifying that we *do* call `setProtected(true)` when a client-composited layer has protected content.",
+      "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d447ac60_f655f500",
+        "filename": "services/surfaceflinger/CompositionEngine/tests/OutputTest.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 5021,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2024-02-19T10:16:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2b50ef8_d27eb5b3",
       "revId": "ddbf6cb14bc2907ecbe0170b63ed3124daef9f30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
