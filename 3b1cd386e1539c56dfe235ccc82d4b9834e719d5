@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65fb1da0_5dd8ced5",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-02-20T21:17:09Z",
+      "side": 0,
+      "message": "do you need to collapse these? part of the motivation of this was to make sure if we add a 4th/5th one, that they should actually be collapsed into a single library, so we have generic use patterns for rpc binder in VMs",
+      "range": {
+        "startLine": 667,
+        "startChar": 42,
+        "endLine": 669,
+        "endChar": 55
+      },
+      "revId": "3b1cd386e1539c56dfe235ccc82d4b9834e719d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
