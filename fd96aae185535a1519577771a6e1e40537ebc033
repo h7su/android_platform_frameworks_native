@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aeee9bd_7015f486",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/binder_rpc_test_session/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2048488
+      },
+      "writtenOn": "2024-02-20T23:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56add975_d3732b46",
+      "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff1f2631_a07f7ae8",
@@ -176,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e4eb317_e38a5367",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/rules.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2048488
+      },
+      "writtenOn": "2024-02-20T23:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd8f599d_3d8d4bdd",
+      "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ad1c715_70507b4f",
@@ -242,6 +278,24 @@
       "side": 1,
       "message": "Unified script already pulls in CL 2700753, so this file already exists before applying this CL.  If this CL *replaces* that CL. then I can add in.",
       "parentUuid": "549e4397_5604fa9b",
+      "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a56ef0d9_f01d0879",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/service/rules.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2048488
+      },
+      "writtenOn": "2024-02-20T23:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f2882f2_394b907e",
       "revId": "fd96aae185535a1519577771a6e1e40537ebc033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
