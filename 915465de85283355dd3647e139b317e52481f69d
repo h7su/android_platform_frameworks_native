@@ -22,6 +22,30 @@
       },
       "revId": "915465de85283355dd3647e139b317e52481f69d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e856ace_4807d5ab",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-02-21T01:33:01Z",
+      "side": 1,
+      "message": "Do you mean *linker* namespace? This function hides details around android_dlopen_ext in its virtue. HAL is dlopen\u0027ed in \"sphal\" linker namespace (when it\u0027s in /vendor/lib/hw) or in its own apex linker namespace (when it\u0027s in /apex/\u003cname\u003e/lib64/hw).",
+      "parentUuid": "54f55f64_67d3f629",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 5
+      },
+      "revId": "915465de85283355dd3647e139b317e52481f69d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
