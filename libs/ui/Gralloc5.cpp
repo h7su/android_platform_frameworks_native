@@ -27,6 +27,13 @@
 #include <ui/FatVector.h>
 #include <vndksupport/linker.h>
 
+#if defined(__ANDROID_VENDOR__)
+#define AT_LEAST_V_OR_202404 constexpr(__ANDROID_VENDOR_API__ >= 202404)
+#else
+// TODO(b/322384429) switch this to __ANDROID_API_V__ when V is finalized
+#define AT_LEAST_V_OR_202404 (__builtin_available(android __ANDROID_API_FUTURE__, *))
+#endif
+
 using namespace aidl::android::hardware::graphics::allocator;
 using namespace aidl::android::hardware::graphics::common;
 using namespace ::android::hardware::graphics::mapper;
@@ -84,9 +91,7 @@ static void *loadIMapperLibrary() {
         }
 
         void* so = nullptr;
-        // TODO(b/322384429) switch this to __ANDROID_API_V__ when V is finalized
-        // TODO(b/302113279) use __ANDROID_VENDOR_API__ for vendor variant
-        if (__builtin_available(android __ANDROID_API_FUTURE__, *)) {
+        if AT_LEAST_V_OR_202404 {
             so = AServiceManager_openDeclaredPassthroughHal("mapper", mapperSuffix.c_str(),
                                                             RTLD_LOCAL | RTLD_NOW);
         } else {
