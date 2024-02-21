@@ -34,6 +34,29 @@
       "parentUuid": "0fa61933_1d717edf",
       "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c973ab21_83ebd5ee",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-02-21T04:48:34Z",
+      "side": 1,
+      "message": "Do we need this?\n\nI think so (tentatively..) because we\u0027re moving away from using availability feature for LLNDK symbols.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
