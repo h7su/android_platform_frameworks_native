@@ -16,6 +16,24 @@
       "message": "Hi all,\n\nThis is an experiment for Justin\u0027s work. Please take a look.",
       "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd923b9c_9ccc3f08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-02-21T04:45:58Z",
+      "side": 1,
+      "message": "I got this error:\n```\nerror: \u0027enable_if\u0027 is a clang extension [-Werror,-Wgcc-compat]\n```\n\nDo we have a workaround for this?",
+      "parentUuid": "0fa61933_1d717edf",
+      "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
