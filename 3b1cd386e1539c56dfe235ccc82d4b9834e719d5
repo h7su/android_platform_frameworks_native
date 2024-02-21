@@ -22,6 +22,30 @@
       },
       "revId": "3b1cd386e1539c56dfe235ccc82d4b9834e719d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0f78863_abef7ae1",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-21T13:07:34Z",
+      "side": 0,
+      "message": "The aim of this change is just to make it easier to refactor code under packages/modules/Virtualization. I am not introducing any new dependencies on libbinder_rpc_unstable.\n\nAnswering your question:\n1. code under packages/modules/Virtualization/javalib/jni is jni code running on host to establish rpc binder over vsock between host app and VM.\n2. code under packages/modules/Virtualization/vm_payload is rust code in a VM to establish the same rpc binder over vsock from VM pov.\n3. code under packages/modules/Virtualization/demo_native is an example of how to start a VM from C++.\n\nI don\u0027t think that (1) and (2) can be easily done as a single library. Likewise, since (1) has a bunch of jni-specific stuff, I am not sure that (3) can easily reuse it.",
+      "parentUuid": "65fb1da0_5dd8ced5",
+      "range": {
+        "startLine": 667,
+        "startChar": 42,
+        "endLine": 669,
+        "endChar": 55
+      },
+      "revId": "3b1cd386e1539c56dfe235ccc82d4b9834e719d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
