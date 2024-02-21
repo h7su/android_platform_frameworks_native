@@ -62,6 +62,14 @@
 #endif
 
 // ---------------------------------------------------------------------------
+__attribute__ ((weak))
+extern "C" size_t BinderNumArtMutexes();
+
+size_t(*gNumThreadFun)();
+
+extern "C" void ArtSetBinderFun( size_t(*fun)() ) {
+    gNumThreadFun = fun;
+}
 
 namespace android {
 
@@ -876,6 +884,13 @@ status_t IPCThreadState::transact(int32_t handle,
             ALOGI("%s", message.c_str());
         }
     } else {
+        if (gNumThreadFun != nullptr) {
+            ALOGE("art thread installed");
+        }
+        if (gNumThreadFun != nullptr && gNumThreadFun() > 0) {
+            ALOGE("holding mutex while making synchronous binder call! may deadlock on nested call!");
+        }
+
         err = waitForResponse(nullptr, nullptr);
     }
 
