@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83d9b74_deac4273",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-21T01:54:13Z",
+      "side": 1,
+      "message": "This is the code for assigning a package\u0027s directory of storage areas with the correct SElinux type `storage_area_app_dir` -- this replaces the logic I had included in libselinux before, and also removes the need for input selectors.\n@jeffv@google.com @alanstokes@google.com @tweek@google.com",
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
