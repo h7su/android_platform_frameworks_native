@@ -1368,6 +1368,10 @@ void InputDispatcher::dropInboundEventLocked(const EventEntry& entry, DropReason
     }
 }
 
+static bool isMaySleepKeyCode(int32_t keyCode) {
+    return keyCode == AKEYCODE_POWER || keyCode == AKEYCODE_SLEEP;
+}
+
 static bool isAppSwitchKeyCode(int32_t keyCode) {
     return keyCode == AKEYCODE_HOME || keyCode == AKEYCODE_ENDCALL ||
             keyCode == AKEYCODE_APP_SWITCH;
@@ -1751,7 +1755,9 @@ bool InputDispatcher::dispatchKeyLocked(nsecs_t currentTime, std::shared_ptr<Key
                                                              : InputEventInjectionResult::FAILED);
         mReporter->reportDroppedKey(entry->id);
         // Poke user activity for undispatched keys
-        pokeUserActivityLocked(*entry);
+        if(!isMaySleepKeyCode(entry->keyCode)) {
+            pokeUserActivityLocked(*entry);
+        }
         return true;
     }
 
