@@ -57,6 +57,29 @@
       },
       "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8a1465e_8dd0e037",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-02-21T05:41:12Z",
+      "side": 1,
+      "message": "Can we use aosp/2968462 instead?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
