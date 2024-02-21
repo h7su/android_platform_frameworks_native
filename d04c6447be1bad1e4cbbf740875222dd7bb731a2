@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c073f17_14c126e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2024-02-21T10:42:59Z",
+      "side": 1,
+      "message": "https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html\n\nLooks dumb but would this work? Can we disable the -Wgcc-compat like this? \n\n```\n#define __INTRODUCED_IN_LLNDK(vendor_api_level) \\\n_Pragma(\"clang diagnostic push\") \\\n_Pragma(\"clang diagnostic ignored \\\"-Wgcc-compat\\\"\") \\\n__attribute__((enable_if(__ANDROID_VENDOR_API__ \u003e\u003d vendor_api_level))) \\\n_Pragma(\"clang diagnostic pop\"\n```",
+      "parentUuid": "fd923b9c_9ccc3f08",
+      "revId": "d04c6447be1bad1e4cbbf740875222dd7bb731a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c973ab21_83ebd5ee",
         "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
         "patchSetId": 2
