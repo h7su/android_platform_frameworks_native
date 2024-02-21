@@ -22,6 +22,19 @@
 
 __BEGIN_DECLS
 
+// TODO(b/302088370) remove this when __INTRODUCED_IN_LLNDK is available
+#ifdef __ANDROID_VENDOR__
+#undef __INTRODUCED_IN
+#define __INTRODUCED_IN(x)
+#ifndef __INTRODUCED_IN_LLNDK
+#define __INTRODUCED_IN_LLNDK(vendor_api_level)                          \
+    __attribute__((enable_if(__ANDROID_VENDOR_API__ >= vendor_api_level, \
+                             "available in vendor API level " #vendor_api_level)))
+#endif  // __INTRODUCED_IN_LLNDK
+#else   //__ANDROID_VENDOR__
+#define __INTRODUCED_IN_LLNDK(vendor_api_level)
+#endif  // __ANDROID_VENDOR__
+
 enum AServiceManager_AddServiceFlag : uint32_t {
     /**
      * This allows processes with AID_ISOLATED to get the binder of the service added.
@@ -250,8 +263,7 @@ void AServiceManager_getUpdatableApexName(const char* instance, void* context,
  * \param flag passed to dlopen()
  */
 void* AServiceManager_openDeclaredPassthroughHal(const char* interface, const char* instance,
-                                                 int flag)
-        // TODO(b/302113279) use __INTRODUCED_LLNDK for vendor variants
+                                                 int flag) __INTRODUCED_IN_LLNDK(202404)
         __INTRODUCED_IN(__ANDROID_API_V__);
 
 /**
