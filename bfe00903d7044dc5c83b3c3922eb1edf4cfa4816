@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56846c56_15462f09",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 57
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-02-21T09:20:42Z",
+      "side": 1,
+      "message": "Can this callback be called from other threads than the current thread? It looks like you should require `F` to be `Send`.\n\nAlso, can it ever happen that two threads call this callback at the same time in parallel? If so, it should be `Fn(Uuid)` instead of `FnMut(Uuid)`. If not, then the safety comment on the first line of `per_session_callback_wrapper` should explain why the mutable reference is exclusive.",
+      "revId": "bfe00903d7044dc5c83b3c3922eb1edf4cfa4816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6a558c_0f7b60ac",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 57
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-02-21T09:20:42Z",
+      "side": 1,
+      "message": "I think it would be clearer to use `drop(Box::from_raw(...))` instead of dropping it with `let _ \u003d` here.",
+      "revId": "bfe00903d7044dc5c83b3c3922eb1edf4cfa4816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
