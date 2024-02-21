@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40eb525b_a8bf28b8",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-02-21T05:47:03Z",
+      "side": 1,
+      "message": "This is a workaround for `enable_if`. Nice side-effect is that we can avoid typo in vendor api level. (I made the mistake once)",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "41ebe53af391d62eae9e56de5736b0c0b879249f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
