@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c208821b_97603e62",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-22T23:11:51Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "38db68c8_d59fcbd7",
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bd2bfe6_0f0cefc1",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-02-22T12:18:39Z",
       "side": 1,
       "message": "In which case we need to skip the rest of this?",
+      "range": {
+        "startLine": 833,
+        "startChar": 8,
+        "endLine": 833,
+        "endChar": 68
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e042f7e_fa2827ec",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-22T23:11:51Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "9bd2bfe6_0f0cefc1",
       "range": {
         "startLine": 833,
         "startChar": 8,
@@ -82,6 +124,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2939323_12c9c1d4",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-22T23:11:51Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "786cb062_b8dc5e1a",
+      "range": {
+        "startLine": 835,
+        "startChar": 13,
+        "endLine": 835,
+        "endChar": 19
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83d37ea0_1c522158",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-02-22T12:18:39Z",
       "side": 1,
       "message": "Extract this as a separate function?\nIt might eventually migrate into selinux/android.h",
+      "range": {
+        "startLine": 836,
+        "startChar": 0,
+        "endLine": 838,
+        "endChar": 96
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f5b1c6a_c230014d",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-22T23:11:51Z",
+      "side": 1,
+      "message": "Good idea",
+      "parentUuid": "83d37ea0_1c522158",
       "range": {
         "startLine": 836,
         "startChar": 0,
