@@ -158,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "137cf510_fbae47d2",
+        "filename": "libs/debugstore/rust/src/debug_store/core.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-22T15:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a884b19_2b2f5dfe",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d79c236_891d5562",
@@ -385,6 +403,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5f47863_3ebbd755",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-22T15:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9310641b_fd0b9043",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dcfcfbe_2adce0ef",
@@ -573,6 +609,24 @@
       "writtenOn": "2024-02-05T14:25:30Z",
       "side": 1,
       "message": "AFAIU this should never happen \u0026 it\u0027s present for convenient mapping to a protobuf enum. Is that accurate? If so let\u0027s document that here to avoid any confusion.",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2b002a_66a3d4a4",
+        "filename": "libs/debugstore/rust/src/debug_store/event_type.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1951730
+      },
+      "writtenOn": "2024-02-22T15:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef5a5bb0_d4493ce1",
       "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
