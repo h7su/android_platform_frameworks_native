@@ -117,6 +117,7 @@ std::vector<ParcelRead<::android::Parcel>> BINDER_PARCEL_READ_FUNCTIONS {
     },
     PARCEL_READ_NO_STATUS(size_t, allowFds),
     PARCEL_READ_NO_STATUS(size_t, hasFileDescriptors),
+    PARCEL_READ_NO_STATUS(size_t, hasStrongBinders),
     PARCEL_READ_NO_STATUS(std::vector<android::sp<android::IBinder>>, debugReadAllStrongBinders),
     PARCEL_READ_NO_STATUS(std::vector<int>, debugReadAllFileDescriptors),
     [] (const ::android::Parcel& p, FuzzedDataProvider& provider) {
@@ -350,6 +351,14 @@ std::vector<ParcelRead<::android::Parcel>> BINDER_PARCEL_READ_FUNCTIONS {
         size_t length = p.readUint32();
         bool result;
         status_t status = p.hasFileDescriptorsInRange(offset, length, &result);
+        FUZZ_LOG() << " status: " << status  << " result: " << result;
+    },
+    [] (const ::android::Parcel& p, FuzzedDataProvider& /*provider*/) {
+        FUZZ_LOG() << "about to call hasBindersInRange() with status";
+        size_t offset = p.readUint32();
+        size_t length = p.readUint32();
+        bool result;
+        status_t status = p.hasBindersInRange(offset, length, &result);
         FUZZ_LOG() << " status: " << status  << " result: " << result;
     },
     [] (const ::android::Parcel& p, FuzzedDataProvider& /*provider*/) {
