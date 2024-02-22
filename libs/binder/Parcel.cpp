@@ -100,7 +100,7 @@ using binder::unique_fd;
 #ifdef __LP64__
 static_assert(sizeof(Parcel) == 120);
 #else
-static_assert(sizeof(Parcel) == 60);
+static_assert(sizeof(Parcel) == 64);
 #endif
 
 static std::atomic<size_t> gParcelGlobalAllocCount;
@@ -216,7 +216,7 @@ status_t Parcel::flattenBinder(const sp<IBinder>& binder) {
 
     if (const auto* rpcFields = maybeRpcFields()) {
         if (binder) {
-            status_t status = writeInt32(1); // non-null
+            status_t status = writeInt32(RpcFields::TYPE_BINDER); // non-null
             if (status != OK) return status;
             uint64_t address;
             // TODO(b/167966510): need to undo this if the Parcel is not sent
@@ -226,7 +226,7 @@ status_t Parcel::flattenBinder(const sp<IBinder>& binder) {
             status = writeUint64(address);
             if (status != OK) return status;
         } else {
-            status_t status = writeInt32(0); // null
+            status_t status = writeInt32(RpcFields::TYPE_BINDER_NULL); // null
             if (status != OK) return status;
         }
         return finishFlattenBinder(binder);
@@ -459,6 +459,7 @@ status_t Parcel::setData(const uint8_t* buffer, size_t len)
         mDataSize = len;
         if (auto* kernelFields = maybeKernelFields()) {
             kernelFields->mFdsKnown = false;
+            kernelFields->mBindersKnown = false;
         }
     }
     return err;
@@ -570,6 +571,12 @@ status_t Parcel::appendFrom(const Parcel* parcel, size_t offset, size_t len) {
                         err = FDS_NOT_ALLOWED;
                     }
                 }
+
+                if (flat->hdr.type == BINDER_TYPE_BINDER || flat->hdr.type == BINDER_TYPE_HANDLE) {
+                    kernelFields->mHasBinders = kernelFields->mBindersKnown = true;
+                }
+
+                acquire_object(proc, *flat, this);
             }
         }
 #else
@@ -699,6 +706,19 @@ bool Parcel::hasFileDescriptors() const
     return kernelFields->mHasFds;
 }
 
+bool Parcel::hasStrongBinders() const {
+    if (const auto* rpcFields = maybeRpcFields()) {
+        // TODO: Avoid scanning parcel each time in rpc case.
+        scanForBinders();
+        return rpcFields->mHasBinders;
+    }
+    auto* kernelFields = maybeKernelFields();
+    if (!kernelFields->mBindersKnown) {
+        scanForBinders();
+    }
+    return kernelFields->mHasBinders;
+}
+
 std::vector<sp<IBinder>> Parcel::debugReadAllStrongBinders() const {
     std::vector<sp<IBinder>> ret;
 
@@ -756,6 +776,54 @@ std::vector<int> Parcel::debugReadAllFileDescriptors() const {
     }
 
     return ret;
+}
+
+status_t Parcel::hasBindersInRange(size_t offset, size_t len, bool* result) const {
+    if (len > INT32_MAX || offset > INT32_MAX) {
+        // Don't accept size_t values which may have come from an inadvertent conversion from a
+        // negative int.
+        return BAD_VALUE;
+    }
+    size_t limit;
+    if (__builtin_add_overflow(offset, len, &limit) || limit > mDataSize) {
+        return BAD_VALUE;
+    }
+    *result = false;
+    if (const auto* kernelFields = maybeKernelFields()) {
+#ifdef BINDER_WITH_KERNEL_IPC
+        for (size_t i = 0; i < kernelFields->mObjectsSize; i++) {
+            size_t pos = kernelFields->mObjects[i];
+            if (pos < offset) continue;
+            if (pos + sizeof(flat_binder_object) > offset + len) {
+                if (kernelFields->mObjectsSorted) {
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            const flat_binder_object* flat =
+                    reinterpret_cast<const flat_binder_object*>(mData + pos);
+            if (flat->hdr.type == BINDER_TYPE_BINDER || flat->hdr.type == BINDER_TYPE_HANDLE) {
+                *result = true;
+                break;
+            }
+        }
+#else
+        LOG_ALWAYS_FATAL("Binder kernel driver disabled at build time");
+        return INVALID_OPERATION;
+#endif // BINDER_WITH_KERNEL_IPC
+    } else if (const auto* rpcFields = maybeRpcFields()) {
+        for (uint32_t pos : rpcFields->mObjectPositions) {
+            if (offset <= pos && pos < limit) {
+                const auto* type = reinterpret_cast<const RpcFields::ObjectType*>(mData + pos);
+                if (*type == RpcFields::TYPE_BINDER) {
+                    *result = true;
+                    break;
+                }
+            }
+        }
+    }
+    return NO_ERROR;
 }
 
 status_t Parcel::hasFileDescriptorsInRange(size_t offset, size_t len, bool* result) const {
@@ -1713,6 +1781,10 @@ restart_write:
                 return FDS_NOT_ALLOWED;
             }
             kernelFields->mHasFds = kernelFields->mFdsKnown = true;
+        }
+
+        if (val.hdr.type == BINDER_TYPE_BINDER || val.hdr.type == BINDER_TYPE_HANDLE) {
+            kernelFields->mHasBinders = kernelFields->mBindersKnown = true;
         }
 
         // Need to write meta-data?
@@ -2919,9 +2991,12 @@ status_t Parcel::restartWrite(size_t desired)
         kernelFields->mObjectsSorted = false;
         kernelFields->mHasFds = false;
         kernelFields->mFdsKnown = true;
+        kernelFields->mHasBinders = false;
+        kernelFields->mBindersKnown = true;
     } else if (auto* rpcFields = maybeRpcFields()) {
         rpcFields->mObjectPositions.clear();
         rpcFields->mFds.reset();
+        rpcFields->mHasBinders = false;
     }
     mAllowFds = true;
 
@@ -3043,6 +3118,11 @@ status_t Parcel::continueWrite(size_t desired)
                     // will need to rescan because we may have lopped off the only FDs
                     kernelFields->mFdsKnown = false;
                 }
+
+                if (flat->hdr.type == BINDER_TYPE_BINDER || flat->hdr.type == BINDER_TYPE_HANDLE) {
+                    kernelFields->mBindersKnown = false;
+                }
+
                 release_object(proc, *flat, this);
             }
 
@@ -3134,6 +3214,7 @@ status_t Parcel::truncateRpcObjects(size_t newObjectsSize) {
         if (rpcFields->mFds) {
             rpcFields->mFds->clear();
         }
+        rpcFields->mHasBinders = false;
         return OK;
     }
     while (rpcFields->mObjectPositions.size() > newObjectsSize) {
@@ -3181,6 +3262,21 @@ void Parcel::scanForFds() const {
     }
     status_t status = hasFileDescriptorsInRange(0, dataSize(), &kernelFields->mHasFds);
     ALOGE_IF(status != NO_ERROR, "Error %d calling hasFileDescriptorsInRange()", status);
+    kernelFields->mFdsKnown = true;
+}
+
+void Parcel::scanForBinders() const {
+    if (auto* rpcFields = maybeRpcFields()) {
+        status_t status = hasBindersInRange(0, dataSize(), &rpcFields->mHasBinders);
+        ALOGE_IF(status != NO_ERROR, "Error %d calling hasBindersInRange()", status);
+    }
+
+    auto* kernelFields = maybeKernelFields();
+    if (kernelFields == nullptr) {
+        return;
+    }
+    status_t status = hasBindersInRange(0, dataSize(), &kernelFields->mHasBinders);
+    ALOGE_IF(status != NO_ERROR, "Error %d calling hasBindersInRange()", status);
     kernelFields->mFdsKnown = true;
 }
 

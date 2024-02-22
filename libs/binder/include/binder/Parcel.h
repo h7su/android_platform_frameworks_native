@@ -101,7 +101,9 @@ public:
     void                restoreAllowFds(bool lastValue);
 
     bool                hasFileDescriptors() const;
+    bool hasStrongBinders() const;
     status_t hasFileDescriptorsInRange(size_t offset, size_t length, bool* result) const;
+    status_t hasBindersInRange(size_t offset, size_t length, bool* result) const;
 
     // returns all binder objects in the Parcel
     std::vector<sp<IBinder>> debugReadAllStrongBinders() const;
@@ -647,6 +649,8 @@ private:
     void                freeDataNoInit();
     void                initState();
     void                scanForFds() const;
+    void scanForBinders() const;
+
     status_t            validateReadData(size_t len) const;
 
     void                updateWorkSourceRequestHeaderPosition() const;
@@ -1300,6 +1304,9 @@ private:
         mutable bool mObjectsSorted = false;
         mutable bool mFdsKnown = true;
         mutable bool mHasFds = false;
+
+        mutable bool mBindersKnown = true;
+        mutable bool mHasBinders = false;
     };
     // Fields only needed when parcelling for RPC Binder.
     struct RpcFields {
@@ -1324,7 +1331,10 @@ private:
         //
         // Boxed to save space. Lazy allocated.
         std::unique_ptr<std::vector<std::variant<binder::unique_fd, binder::borrowed_fd>>> mFds;
+
+        mutable bool mHasBinders = false;
     };
+
     std::variant<KernelFields, RpcFields> mVariantFields;
 
     // Pointer to KernelFields in mVariantFields if present.

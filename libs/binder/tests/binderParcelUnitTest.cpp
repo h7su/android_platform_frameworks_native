@@ -164,6 +164,31 @@ TEST(Parcel, AppendPlainDataPartial) {
     ASSERT_EQ(2, p2.readInt32());
 }
 
+TEST(Parcel, HasStrongBinder) {
+    sp<IBinder> b1 = sp<BBinder>::make();
+
+    Parcel p1;
+    p1.writeInt32(1);
+    p1.writeStrongBinder(b1);
+
+    ASSERT_EQ(true, p1.hasStrongBinders());
+
+    p1.setDataSize(0);
+    ASSERT_EQ(false, p1.hasStrongBinders());
+
+    Parcel p2;
+    p2.writeInt32(1);
+
+    ASSERT_EQ(false, p2.hasStrongBinders());
+
+    p2.setData(p1.data(), p1.dataBufferSize());
+    ASSERT_EQ(true, p2.hasStrongBinders());
+
+    Parcel p3;
+    p3.appendFrom(&p1, 0, p1.dataSize());
+    ASSERT_EQ(true, p2.hasStrongBinders());
+}
+
 TEST(Parcel, AppendWithBinder) {
     sp<IBinder> b1 = sp<BBinder>::make();
     sp<IBinder> b2 = sp<BBinder>::make();
