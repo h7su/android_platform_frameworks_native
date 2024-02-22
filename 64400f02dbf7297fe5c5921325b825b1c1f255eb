@@ -16,6 +16,93 @@
       "message": "This is the code for assigning a package\u0027s directory of storage areas with the correct SElinux type `storage_area_app_dir` -- this replaces the logic I had included in libselinux before, and also removes the need for input selectors.\n@jeffv@google.com @alanstokes@google.com @tweek@google.com",
       "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38db68c8_d59fcbd7",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1060831
+      },
+      "writtenOn": "2024-02-22T12:18:39Z",
+      "side": 1,
+      "message": "This looks better to me.",
+      "parentUuid": "f83d9b74_deac4273",
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bd2bfe6_0f0cefc1",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1060831
+      },
+      "writtenOn": "2024-02-22T12:18:39Z",
+      "side": 1,
+      "message": "In which case we need to skip the rest of this?",
+      "range": {
+        "startLine": 833,
+        "startChar": 8,
+        "endLine": 833,
+        "endChar": 68
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "786cb062_b8dc5e1a",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1060831
+      },
+      "writtenOn": "2024-02-22T12:18:39Z",
+      "side": 1,
+      "message": "Nit: could use string_view to avoid a copy here, I think.\n\nMore importanly: I don\u0027t see a matching freecon(), so I think you\u0027re leaking the context.",
+      "range": {
+        "startLine": 835,
+        "startChar": 13,
+        "endLine": 835,
+        "endChar": 19
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d37ea0_1c522158",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1060831
+      },
+      "writtenOn": "2024-02-22T12:18:39Z",
+      "side": 1,
+      "message": "Extract this as a separate function?\nIt might eventually migrate into selinux/android.h",
+      "range": {
+        "startLine": 836,
+        "startChar": 0,
+        "endLine": 838,
+        "endChar": 96
+      },
+      "revId": "64400f02dbf7297fe5c5921325b825b1c1f255eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
