@@ -56,6 +56,24 @@
       "message": "Seems like this was done at the top level directory in the internal branch: ag/26318513",
       "revId": "1ca13d5d42ae3234cf0b5eead2f20b0741ccb430",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9719cf_848e0060",
+        "filename": "libs/ui/tests/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1884457
+      },
+      "writtenOn": "2024-02-23T17:31:09Z",
+      "side": 1,
+      "message": "yah, i\u0027m abandoning this.",
+      "parentUuid": "7aec01c1_c44e5926",
+      "revId": "1ca13d5d42ae3234cf0b5eead2f20b0741ccb430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
