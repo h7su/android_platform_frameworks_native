@@ -1,0 +1,52 @@
+rust_defaults {
+    name: "libdebugstore_defaults",
+    srcs: ["src/lib.rs"],
+    rustlibs: [
+        "libcrossbeam_queue",
+        "libparking_lot",
+        "libonce_cell",
+        "libcxx",
+    ],
+    shared_libs: ["libutils"],
+    edition: "2021",
+}
+
+rust_ffi {
+    name: "libdebugstore_rust_ffi",
+    crate_name: "debugstore",
+    defaults: ["libdebugstore_defaults"],
+}
+
+cc_library {
+    name: "libdebugstore_cxx",
+    generated_headers: ["libdebugstore_cxx_bridge_header"],
+    generated_sources: ["libdebugstore_cxx_bridge_code"],
+    export_generated_headers: ["libdebugstore_cxx_bridge_header"],
+    shared_libs: ["libutils"],
+    whole_static_libs: ["libdebugstore_rust_ffi"],
+}
+
+rust_test {
+    name: "libdebugstore_tests",
+    defaults: ["libdebugstore_defaults"],
+    test_options: {
+        unit_test: true,
+    },
+    shared_libs: ["libdebugstore_cxx"],
+}
+
+genrule {
+    name: "libdebugstore_cxx_bridge_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header >> $(out)",
+    srcs: ["src/lib.rs"],
+    out: ["debugstore/debugstore_cxx_bridge.rs.h"],
+}
+
+genrule {
+    name: "libdebugstore_cxx_bridge_code",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["src/lib.rs"],
+    out: ["debugstore/debugstore_cxx_bridge.rs.cpp"],
+}
