@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15332b7e_15f2a5a6",
+        "filename": "libs/input/InputDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-02-23T17:58:26Z",
+      "side": 1,
+      "message": "`!apex.empty()`",
+      "range": {
+        "startLine": 107,
+        "startChar": 85,
+        "endLine": 107,
+        "endChar": 95
+      },
+      "revId": "33cc31d0468e647bc3dfa112131e4ff32cfd981f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426dee16_ecda0cc2",
+        "filename": "libs/input/InputDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-02-23T17:58:26Z",
+      "side": 1,
+      "message": "since this is now a vector, let\u0027s switch to a foreach loop here",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 58
+      },
+      "revId": "33cc31d0468e647bc3dfa112131e4ff32cfd981f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f3f970_9ac159cf",
+        "filename": "libs/input/InputDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-02-23T17:58:26Z",
+      "side": 1,
+      "message": "idk if this variable\u0027s name makes sense anymore. maybe rename to `paths`?",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 32
+      },
+      "revId": "33cc31d0468e647bc3dfa112131e4ff32cfd981f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
