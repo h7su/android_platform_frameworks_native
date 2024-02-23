@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c54cfb4_bdbe5b24",
+        "filename": "cmds/installd/InstalldNativeService.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1060831
+      },
+      "writtenOn": "2024-02-23T11:12:39Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 831,
+        "startChar": 0,
+        "endLine": 831,
+        "endChar": 117
+      },
+      "revId": "965a2de56f89af575d7afc047d5993d74e80253a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
