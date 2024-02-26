@@ -528,6 +528,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d021d15_3522d598",
+        "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-02-26T16:35:20Z",
+      "side": 1,
+      "message": "That depends on the strength of the requirements on repeated dumps.",
+      "parentUuid": "1c3f86f2_cc84cddb",
+      "revId": "737ed8587a1d0e2b7d0372e3d598c41643a316fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8738f7f8_a024279a",
         "filename": "libs/debugstore/rust/src/debug_store/debug_store_storage.rs",
         "patchSetId": 2
