@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b492db5b_a2f90ef6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-27T15:43:08Z",
+      "side": 1,
+      "message": "Oh, I guess you can already see the internal version? Please remove this section, since it doesn\u0027t actually apply to this patch.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "58d0e231849931dcbadc636c2e5b7217360d7f6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "366737c4_793434fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-27T15:43:08Z",
+      "side": 1,
+      "message": "Sorry, this conflicts with *another* internal branch. I\u0027ve uploaded a cherry-pick there, which will hopefully resolve this. In the meantime, you need to update another test in order to pass. I\u0027ve posted a comment with the required line.",
+      "revId": "58d0e231849931dcbadc636c2e5b7217360d7f6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a5a617_2869df7f",
+        "filename": "services/surfaceflinger/CompositionEngine/tests/OutputTest.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 3994,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-02-27T15:43:08Z",
+      "side": 1,
+      "message": "Oh of course. I had to fix this test internally, and you\u0027ll need to fix it here, too. You need to add the following line to this constructor:\n\n```\nEXPECT_CALL(mOutputLayer, requiresClientComposition()).WillRepeatedly(Return(true));\n```",
+      "revId": "58d0e231849931dcbadc636c2e5b7217360d7f6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
