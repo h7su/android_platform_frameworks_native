@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee7e992_93f64e0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954616
+      },
+      "writtenOn": "2024-02-27T23:12:28Z",
+      "side": 1,
+      "message": "Applied suggested changes; also added the deletion of storage area encryption keys on app uninstall.",
+      "revId": "cf5fc51aa5bf9914b77c21c6db7fa3fa235201c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
