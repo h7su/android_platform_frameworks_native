@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cfe9d208_263554ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-02-29T01:59:55Z",
+      "side": 1,
+      "message": "this will only get called when app launches, so it won\u0027t get called again unless the process dies, but it\u0027s good to have a safe check in case we make changes in the future",
+      "parentUuid": "0e594cf3_8ab83dac",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "ea93e71891f60c731655ea5b9f3c7a1ced345f8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ac166102_7b715812",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
