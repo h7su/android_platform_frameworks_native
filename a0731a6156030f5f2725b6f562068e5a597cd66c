@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82739d0b_1adb731e",
+        "filename": "cmds/installd/otapreopt_script.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1373864
+      },
+      "writtenOn": "2024-03-04T19:06:30Z",
+      "side": 1,
+      "message": "This new command isn\u0027t submitted yet. Something is missing in the topic or CL chain here?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 20
+      },
+      "revId": "a0731a6156030f5f2725b6f562068e5a597cd66c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78806ba9_f29dc33a",
+        "filename": "cmds/installd/otapreopt_script.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1373864
+      },
+      "writtenOn": "2024-03-04T19:06:30Z",
+      "side": 1,
+      "message": "Nit: Test the command directly, to make it somewhat shorter and clearer:\n```suggestion\n\nif pm art on-ota-staged --slot \"$TARGET_SLOT_SUFFIX\"; then\n```",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "a0731a6156030f5f2725b6f562068e5a597cd66c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
