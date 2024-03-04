@@ -2638,7 +2638,7 @@ CompositeResultsPerDisplay SurfaceFlinger::composite(
     }
 
     postComposition(pacesetterId, frameTargeters, presentTime);
-
+    ALOGE("Just to test the code change in this branch -----------------------------");
     const bool hadGpuComposited =
             multiDisplayUnion(mCompositionCoverage).test(CompositionCoverage::Gpu);
     mCompositionCoverage.clear();
