@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b1261a3_dab1c8fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3280768
+      },
+      "writtenOn": "2024-03-04T05:40:14Z",
+      "side": 1,
+      "message": "codelab study",
+      "revId": "89d5397c021f81ba8fc1a7369422d967e4f18640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
