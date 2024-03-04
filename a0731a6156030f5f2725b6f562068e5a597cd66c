@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6af091e_3eb00132",
+        "filename": "cmds/installd/otapreopt_script.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1373864
+      },
+      "writtenOn": "2024-03-04T20:37:40Z",
+      "side": 1,
+      "message": "Aha, ok.",
+      "parentUuid": "a2669859_c30603f5",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 20
+      },
+      "revId": "a0731a6156030f5f2725b6f562068e5a597cd66c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78806ba9_f29dc33a",
