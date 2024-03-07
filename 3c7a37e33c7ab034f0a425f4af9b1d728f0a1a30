@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ffb290a_e9fb4f74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-03-07T02:39:47Z",
+      "side": 1,
+      "message": "This CL is actually doing more than that, for example also deleting the app\u0027s storage area keys when the app is uninstalled.  Also, this CL is basically fixing the previous one, which started creating `/data/storage_area/$userId/$packageName`.  Introducing bugs and then fixing them in the same CL stack generally should be avoided.\n\nIt may make sense to just squash all the storage area related changes to installd together into one CL that\u0027s called something like \"installd: support storage areas\".\n\nIf you\u0027d like to split it up into multiple CLs instead, they should be organized in a logical way for review purposes.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 89
+      },
+      "revId": "3c7a37e33c7ab034f0a425f4af9b1d728f0a1a30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
