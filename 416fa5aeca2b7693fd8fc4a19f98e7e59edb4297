@@ -16,6 +16,23 @@
       "message": "Hi everybody 😊, ptal, thanks!",
       "revId": "416fa5aeca2b7693fd8fc4a19f98e7e59edb4297",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd36e706_d13a6019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-03-07T18:17:34Z",
+      "side": 1,
+      "message": "Please file a bug and attach the bug to the commit message above the change id:\n\n`BUG: \u003cBUG_NUMBER\u003e`",
+      "revId": "416fa5aeca2b7693fd8fc4a19f98e7e59edb4297",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
