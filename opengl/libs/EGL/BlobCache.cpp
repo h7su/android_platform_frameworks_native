@@ -93,7 +93,7 @@ BlobCache::InsertResult BlobCache::set(const void* key, size_t keySize, const vo
             std::shared_ptr<Blob> valueBlob(new Blob(value, valueSize, true));
             size_t newTotalSize = mTotalSize + keySize + valueSize;
             if (mMaxTotalSize < newTotalSize) {
-                if (isCleanable()) {
+                if (isCleanable(keySize + valueSize)) {
                     // Clean the cache and try again.
                     clean();
                     didClean = true;
@@ -116,7 +116,7 @@ BlobCache::InsertResult BlobCache::set(const void* key, size_t keySize, const vo
             std::shared_ptr<Blob> oldValueBlob(index->getValue());
             size_t newTotalSize = mTotalSize + valueSize - oldValueBlob->getSize();
             if (mMaxTotalSize < newTotalSize) {
-                if (isCleanable()) {
+                if (isCleanable(valueSize - oldValueBlob->getSize())) {
                     // Clean the cache and try again.
                     clean();
                     didClean = true;
@@ -309,8 +309,8 @@ void BlobCache::clean() {
     }
 }
 
-bool BlobCache::isCleanable() const {
-    return mTotalSize > mMaxTotalSize / 2;
+bool BlobCache::isCleanable(size_t growthSize) const {
+    return growthSize <= mMaxTotalSize / 2;
 }
 
 BlobCache::Blob::Blob(const void* data, size_t size, bool copyData)
