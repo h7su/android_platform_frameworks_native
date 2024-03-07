@@ -144,7 +144,7 @@ private:
 
     // isCleanable returns true if the cache is full enough for the clean method
     // to have some effect, and false otherwise.
-    bool isCleanable() const;
+    bool isCleanable(size_t growthSize) const;
 
     // A Blob is an immutable sized unstructured data blob.
     class Blob {
