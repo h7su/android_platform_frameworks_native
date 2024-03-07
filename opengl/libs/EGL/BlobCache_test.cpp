@@ -294,6 +294,26 @@ TEST_F(BlobCacheTest, ExceedingTotalLimitHalvesCacheSize) {
     ASSERT_EQ(maxEntries / 2 + 1, numCached);
 }
 
+TEST_F(BlobCacheTest, GrowthSizeMoreThanHalvesCacheSize) {
+    const int maxEntries = MAX_TOTAL_SIZE / 2;
+    // Make sure TotalSize is greater than MAX_TOTAL_SIZE / 2.
+    for (int i = 0; i < maxEntries; i++) {
+        uint8_t k = i;
+        ASSERT_EQ(BlobCache::InsertResult::kInserted, mBC->set(&k, 1, "x", 1));
+    }
+
+    {
+        // Make sure |key.getSize() + value.getSize() > MAX_TOTAL_SIZE / 2|.
+        enum { bufSize = maxEntries };
+        char buf[bufSize];
+        for (int i = 0; i < bufSize; i++) {
+            buf[i] = 'b';
+        }
+
+        ASSERT_EQ(BlobCache::InsertResult::kNotEnoughSpace, mBC->set("x", 1, buf, bufSize));
+    }
+}
+
 TEST_F(BlobCacheTest, InvalidKeySize) {
     ASSERT_EQ(BlobCache::InsertResult::kInvalidKeySize, mBC->set("", 0, "efgh", 4));
 }
