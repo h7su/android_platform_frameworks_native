@@ -52,6 +52,24 @@
       "parentUuid": "1d45d553_ca455c4a",
       "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "475a20d6_129f44a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1267775
+      },
+      "writtenOn": "2024-03-08T23:06:51Z",
+      "side": 1,
+      "message": "the flag `angle_in_vendor` should exist in ANGLE Android.bp and hence it\u0027s in V, but ultimately the flag is defined in ANGLE upstream so a client can safely continue using ANGLE from vendor partition when they sync with ANGLE upstream in an older OS. So the action for ANGLE clients would be:\n\n1) if they continue using ANGLE upstream on a pre-V OS, e.g. T, then when they sync ANGLE upstream next time and this flag shows up, they should set this flag as true in their own device Makefile so that ANGLE will continue being built in vendor partition;\n\n2) when they upgrade to V, then they can remove `angle_in_vendor` flag usage in their device makefile, then everything works because V OS assumes ANGLE is in system partition",
+      "parentUuid": "2ed717fd_7abb0d91",
+      "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
