@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329aa3b4_704733bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1941946
+      },
+      "writtenOn": "2024-03-08T22:35:23Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused about the commit message: the change is removing the code related to `VENDOR_ANGLE_BUILD`, but the commit message says the change removes `ANGLE in system assumptions`. Do you mean:\n\npreviously ANGLE could be built either in system or vendor partition, now that ANGLE is always built into system partition, so `VENDOR_ANGLE_BUILD` is always false?",
+      "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
