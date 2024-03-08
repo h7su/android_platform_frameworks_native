@@ -34,6 +34,24 @@
       "parentUuid": "329aa3b4_704733bb",
       "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed717fd_7abb0d91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1941946
+      },
+      "writtenOn": "2024-03-08T22:57:59Z",
+      "side": 1,
+      "message": "Thank you. I have a follow-up question: when this change https://chromium-review.googlesource.com/c/angle/angle/+/5333890 merged to aosp, isn\u0027t there going to be a flag that allows building ANGLE in vendor partition? Isn\u0027t that change going to be merged into Android V?",
+      "parentUuid": "1d45d553_ca455c4a",
+      "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
