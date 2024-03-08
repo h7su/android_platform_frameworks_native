@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4dbcb04_4ce69df9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2024-03-08T17:09:08Z",
+      "side": 1,
+      "message": "Can you describe a bit more clearly what the practical problem is you\u0027re trying to solve?  You are trying to cache a very large key/value pair and clean ends up running twice?  Or does it fail to cache?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 358
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04276f82_f1ba9385",
+        "filename": "opengl/libs/EGL/BlobCache.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2024-03-08T17:09:08Z",
+      "side": 1,
+      "message": "This only works if `isCleanable` is called after the check for `mMaxTotalSize \u003c newTotalSize`.  If called without that, it will return true practically every time.\n\nI\u0027m not even sure why we have `isCleanable`  Calling `clean` without it would just be a noop.  Does your scenario work if we just call `clean`?",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 43
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b4d8ce_4e8a0669",
+        "filename": "opengl/libs/EGL/BlobCache_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2024-03-08T17:09:08Z",
+      "side": 1,
+      "message": "What would this return before your change?",
+      "range": {
+        "startLine": 313,
+        "startChar": 43,
+        "endLine": 313,
+        "endChar": 58
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
