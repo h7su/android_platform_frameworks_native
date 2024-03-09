@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c86a21f_1d283ccf",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-09T01:33:58Z",
+      "side": 1,
+      "message": "Don\u0027t these need to specify the NDK introduction date as well as the LL-NDK introduction date?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 38
+      },
+      "revId": "62e7d755adedb566eb3a0242ba22b2b86db5e9c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
