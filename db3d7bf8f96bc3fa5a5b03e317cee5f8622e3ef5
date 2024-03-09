@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f082d8ec_121c8ff9",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-09T08:14:52Z",
+      "side": 1,
+      "message": "Perhaps a safer approach is \n\n```\n#if defined(__ANDROID_VENDOR__)\n__INTRODUCED_IN_LLNDK(202404);\n#else\n__INTRODUCED_IN(35);\n#endif\n```\n\n?",
+      "range": {
+        "startLine": 75,
+        "startChar": 55,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
