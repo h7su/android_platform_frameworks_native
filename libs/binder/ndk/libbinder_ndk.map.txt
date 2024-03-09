@@ -163,47 +163,47 @@ LIBBINDER_NDK34 { # introduced=UpsideDownCake
 
 LIBBINDER_NDK35 { # introduced=VanillaIceCream
   global:
-    APersistableBundle_readFromParcel;
-    APersistableBundle_writeToParcel;
-    APersistableBundle_new;
-    APersistableBundle_dup;
-    APersistableBundle_delete;
-    APersistableBundle_isEqual;
-    APersistableBundle_size;
-    APersistableBundle_erase;
-    APersistableBundle_putBoolean;
-    APersistableBundle_putInt;
-    APersistableBundle_putLong;
-    APersistableBundle_putDouble;
-    APersistableBundle_putString;
-    APersistableBundle_putBooleanVector;
-    APersistableBundle_putIntVector;
-    APersistableBundle_putLongVector;
-    APersistableBundle_putDoubleVector;
-    APersistableBundle_putStringVector;
-    APersistableBundle_putPersistableBundle;
-    APersistableBundle_getBoolean;
-    APersistableBundle_getInt;
-    APersistableBundle_getLong;
-    APersistableBundle_getDouble;
-    APersistableBundle_getString;
-    APersistableBundle_getBooleanVector;
-    APersistableBundle_getIntVector;
-    APersistableBundle_getLongVector;
-    APersistableBundle_getDoubleVector;
-    APersistableBundle_getStringVector;
-    APersistableBundle_getPersistableBundle;
-    APersistableBundle_getBooleanKeys;
-    APersistableBundle_getIntKeys;
-    APersistableBundle_getLongKeys;
-    APersistableBundle_getDoubleKeys;
-    APersistableBundle_getStringKeys;
-    APersistableBundle_getBooleanVectorKeys;
-    APersistableBundle_getIntVectorKeys;
-    APersistableBundle_getLongVectorKeys;
-    APersistableBundle_getDoubleVectorKeys;
-    APersistableBundle_getStringVectorKeys;
-    APersistableBundle_getPersistableBundleKeys;
+    APersistableBundle_readFromParcel; # llndk
+    APersistableBundle_writeToParcel; # llndk
+    APersistableBundle_new; # llndk
+    APersistableBundle_dup; # llndk
+    APersistableBundle_delete; # llndk
+    APersistableBundle_isEqual; # llndk
+    APersistableBundle_size; # llndk
+    APersistableBundle_erase; # llndk
+    APersistableBundle_putBoolean; # llndk
+    APersistableBundle_putInt; # llndk
+    APersistableBundle_putLong; # llndk
+    APersistableBundle_putDouble; # llndk
+    APersistableBundle_putString; # llndk
+    APersistableBundle_putBooleanVector; # llndk
+    APersistableBundle_putIntVector; # llndk
+    APersistableBundle_putLongVector; # llndk
+    APersistableBundle_putDoubleVector; # llndk
+    APersistableBundle_putStringVector; # llndk
+    APersistableBundle_putPersistableBundle; # llndk
+    APersistableBundle_getBoolean; # llndk
+    APersistableBundle_getInt; # llndk
+    APersistableBundle_getLong; # llndk
+    APersistableBundle_getDouble; # llndk
+    APersistableBundle_getString; # llndk
+    APersistableBundle_getBooleanVector; # llndk
+    APersistableBundle_getIntVector; # llndk
+    APersistableBundle_getLongVector; # llndk
+    APersistableBundle_getDoubleVector; # llndk
+    APersistableBundle_getStringVector; # llndk
+    APersistableBundle_getPersistableBundle; # llndk
+    APersistableBundle_getBooleanKeys; # llndk
+    APersistableBundle_getIntKeys; # llndk
+    APersistableBundle_getLongKeys; # llndk
+    APersistableBundle_getDoubleKeys; # llndk
+    APersistableBundle_getStringKeys; # llndk
+    APersistableBundle_getBooleanVectorKeys; # llndk
+    APersistableBundle_getIntVectorKeys; # llndk
+    APersistableBundle_getLongVectorKeys; # llndk
+    APersistableBundle_getDoubleVectorKeys; # llndk
+    APersistableBundle_getStringVectorKeys; # llndk
+    APersistableBundle_getPersistableBundleKeys; # llndk
     AServiceManager_openDeclaredPassthroughHal; # systemapi llndk
 };
 
