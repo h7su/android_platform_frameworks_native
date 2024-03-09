@@ -22,6 +22,30 @@
       },
       "revId": "62e7d755adedb566eb3a0242ba22b2b86db5e9c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1450c86d_d5c1fa47",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-03-09T01:35:58Z",
+      "side": 1,
+      "message": "I think so, and I think they might need something different in the .txt file, and they for sure need something different with the __builtin_available check as well. Hoping some of the folks in the email can help answer these questions.",
+      "parentUuid": "1c86a21f_1d283ccf",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 38
+      },
+      "revId": "62e7d755adedb566eb3a0242ba22b2b86db5e9c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
