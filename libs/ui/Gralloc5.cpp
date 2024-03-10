@@ -89,9 +89,7 @@ static void *loadIMapperLibrary() {
         }
 
         void* so = nullptr;
-        // TODO(b/322384429) switch this to __ANDROID_API_V__ when V is finalized
-        // TODO(b/302113279) use __ANDROID_VENDOR_API__ for vendor variant
-        if (__builtin_available(android __ANDROID_API_FUTURE__, *)) {
+        if ANDROID_LLNDK_AT_LEAST(202404) {
             so = AServiceManager_openDeclaredPassthroughHal("mapper", mapperSuffix.c_str(),
                                                             RTLD_LOCAL | RTLD_NOW);
         } else {
