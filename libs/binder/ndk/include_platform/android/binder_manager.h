@@ -252,9 +252,8 @@ void AServiceManager_getUpdatableApexName(const char* instance, void* context,
  * \return the result of dlopen of the specified HAL
  */
 void* AServiceManager_openDeclaredPassthroughHal(const char* interface, const char* instance,
-                                                 int flag)
-        // TODO(b/302113279) use __INTRODUCED_LLNDK for vendor variants
-        __INTRODUCED_IN(__ANDROID_API_V__);
+                                                 int flag) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Prevent lazy services without client from shutting down their process
