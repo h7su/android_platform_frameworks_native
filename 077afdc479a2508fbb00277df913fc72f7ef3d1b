@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feebf71d_36a7d49c",
+        "filename": "libs/binder/ndk/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-10T11:22:25Z",
+      "side": 1,
+      "message": "This line looks wrong. NDK is not for vendors.",
+      "revId": "077afdc479a2508fbb00277df913fc72f7ef3d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
