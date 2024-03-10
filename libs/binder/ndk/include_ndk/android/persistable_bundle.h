@@ -71,7 +71,8 @@ typedef char* _Nullable (*_Nonnull APersistableBundle_stringAllocator)(int32_t s
  *
  * \return Pointer to a new APersistableBundle
  */
-APersistableBundle* _Nullable APersistableBundle_new() __INTRODUCED_IN(__ANDROID_API_V__);
+APersistableBundle* _Nullable APersistableBundle_new() __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Create a new APersistableBundle based off an existing APersistableBundle.
@@ -85,7 +86,7 @@ APersistableBundle* _Nullable APersistableBundle_new() __INTRODUCED_IN(__ANDROID
  * \return Pointer to a new APersistableBundle
  */
 APersistableBundle* _Nullable APersistableBundle_dup(const APersistableBundle* _Nonnull pBundle)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Delete an APersistableBundle. This must always be called when finished using
@@ -96,7 +97,7 @@ APersistableBundle* _Nullable APersistableBundle_dup(const APersistableBundle* _
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_delete(APersistableBundle* _Nullable pBundle)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Check for equality of APersistableBundles.
@@ -110,7 +111,7 @@ void APersistableBundle_delete(APersistableBundle* _Nullable pBundle)
  */
 bool APersistableBundle_isEqual(const APersistableBundle* _Nonnull lhs,
                                 const APersistableBundle* _Nonnull rhs)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Read an APersistableBundle from an AParcel.
@@ -129,7 +130,7 @@ bool APersistableBundle_isEqual(const APersistableBundle* _Nonnull lhs,
  */
 binder_status_t APersistableBundle_readFromParcel(
         const AParcel* _Nonnull parcel, APersistableBundle* _Nullable* _Nonnull outPBundle)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Write an APersistableBundle to an AParcel.
@@ -149,7 +150,7 @@ binder_status_t APersistableBundle_readFromParcel(
  */
 binder_status_t APersistableBundle_writeToParcel(const APersistableBundle* _Nonnull pBundle,
                                                  AParcel* _Nonnull parcel)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get the size of an APersistableBundle. This is the number of mappings in the
@@ -162,7 +163,7 @@ binder_status_t APersistableBundle_writeToParcel(const APersistableBundle* _Nonn
  * \return number of mappings in the object
  */
 int32_t APersistableBundle_size(const APersistableBundle* _Nonnull pBundle)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Erase any entries added with the provided key.
@@ -175,7 +176,7 @@ int32_t APersistableBundle_size(const APersistableBundle* _Nonnull pBundle)
  * \return number of entries erased. Either 0 or 1.
  */
 int32_t APersistableBundle_erase(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a boolean associated with the provided key.
@@ -188,7 +189,8 @@ int32_t APersistableBundle_erase(APersistableBundle* _Nonnull pBundle, const cha
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_putBoolean(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                                   bool val) __INTRODUCED_IN(__ANDROID_API_V__);
+                                   bool val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put an int32_t associated with the provided key.
@@ -201,7 +203,8 @@ void APersistableBundle_putBoolean(APersistableBundle* _Nonnull pBundle, const c
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_putInt(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                               int32_t val) __INTRODUCED_IN(__ANDROID_API_V__);
+                               int32_t val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put an int64_t associated with the provided key.
@@ -214,7 +217,8 @@ void APersistableBundle_putInt(APersistableBundle* _Nonnull pBundle, const char*
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_putLong(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                                int64_t val) __INTRODUCED_IN(__ANDROID_API_V__);
+                                int64_t val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a double associated with the provided key.
@@ -227,7 +231,8 @@ void APersistableBundle_putLong(APersistableBundle* _Nonnull pBundle, const char
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_putDouble(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                                  double val) __INTRODUCED_IN(__ANDROID_API_V__);
+                                  double val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a string associated with the provided key.
@@ -241,7 +246,8 @@ void APersistableBundle_putDouble(APersistableBundle* _Nonnull pBundle, const ch
  * Available since API level __ANDROID_API_V__.
  */
 void APersistableBundle_putString(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                                  const char* _Nonnull val) __INTRODUCED_IN(__ANDROID_API_V__);
+                                  const char* _Nonnull val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a boolean vector associated with the provided key.
@@ -257,7 +263,8 @@ void APersistableBundle_putString(APersistableBundle* _Nonnull pBundle, const ch
  */
 void APersistableBundle_putBooleanVector(APersistableBundle* _Nonnull pBundle,
                                          const char* _Nonnull key, const bool* _Nonnull vec,
-                                         int32_t num) __INTRODUCED_IN(__ANDROID_API_V__);
+                                         int32_t num) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put an int32_t vector associated with the provided key.
@@ -273,7 +280,7 @@ void APersistableBundle_putBooleanVector(APersistableBundle* _Nonnull pBundle,
  */
 void APersistableBundle_putIntVector(APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
                                      const int32_t* _Nonnull vec, int32_t num)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put an int64_t vector associated with the provided key.
@@ -289,7 +296,8 @@ void APersistableBundle_putIntVector(APersistableBundle* _Nonnull pBundle, const
  */
 void APersistableBundle_putLongVector(APersistableBundle* _Nonnull pBundle,
                                       const char* _Nonnull key, const int64_t* _Nonnull vec,
-                                      int32_t num) __INTRODUCED_IN(__ANDROID_API_V__);
+                                      int32_t num) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a double vector associated with the provided key.
@@ -305,7 +313,8 @@ void APersistableBundle_putLongVector(APersistableBundle* _Nonnull pBundle,
  */
 void APersistableBundle_putDoubleVector(APersistableBundle* _Nonnull pBundle,
                                         const char* _Nonnull key, const double* _Nonnull vec,
-                                        int32_t num) __INTRODUCED_IN(__ANDROID_API_V__);
+                                        int32_t num) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put a string vector associated with the provided key.
@@ -322,7 +331,7 @@ void APersistableBundle_putDoubleVector(APersistableBundle* _Nonnull pBundle,
 void APersistableBundle_putStringVector(APersistableBundle* _Nonnull pBundle,
                                         const char* _Nonnull key,
                                         const char* _Nullable const* _Nullable vec, int32_t num)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Put an APersistableBundle associated with the provided key.
@@ -338,7 +347,7 @@ void APersistableBundle_putStringVector(APersistableBundle* _Nonnull pBundle,
 void APersistableBundle_putPersistableBundle(APersistableBundle* _Nonnull pBundle,
                                              const char* _Nonnull key,
                                              const APersistableBundle* _Nonnull val)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a boolean associated with the provided key.
@@ -353,7 +362,7 @@ void APersistableBundle_putPersistableBundle(APersistableBundle* _Nonnull pBundl
  */
 bool APersistableBundle_getBoolean(const APersistableBundle* _Nonnull pBundle,
                                    const char* _Nonnull key, bool* _Nonnull val)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get an int32_t associated with the provided key.
@@ -367,7 +376,8 @@ bool APersistableBundle_getBoolean(const APersistableBundle* _Nonnull pBundle,
  * \return true if a value exists for the provided key
  */
 bool APersistableBundle_getInt(const APersistableBundle* _Nonnull pBundle, const char* _Nonnull key,
-                               int32_t* _Nonnull val) __INTRODUCED_IN(__ANDROID_API_V__);
+                               int32_t* _Nonnull val) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get an int64_t associated with the provided key.
@@ -382,7 +392,7 @@ bool APersistableBundle_getInt(const APersistableBundle* _Nonnull pBundle, const
  */
 bool APersistableBundle_getLong(const APersistableBundle* _Nonnull pBundle,
                                 const char* _Nonnull key, int64_t* _Nonnull val)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a double associated with the provided key.
@@ -397,7 +407,7 @@ bool APersistableBundle_getLong(const APersistableBundle* _Nonnull pBundle,
  */
 bool APersistableBundle_getDouble(const APersistableBundle* _Nonnull pBundle,
                                   const char* _Nonnull key, double* _Nonnull val)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a string associated with the provided key.
@@ -418,7 +428,8 @@ bool APersistableBundle_getDouble(const APersistableBundle* _Nonnull pBundle,
 int32_t APersistableBundle_getString(const APersistableBundle* _Nonnull pBundle,
                                      const char* _Nonnull key, char* _Nullable* _Nonnull val,
                                      APersistableBundle_stringAllocator stringAllocator,
-                                     void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__);
+                                     void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a boolean vector associated with the provided key and place it in the
@@ -445,7 +456,7 @@ int32_t APersistableBundle_getString(const APersistableBundle* _Nonnull pBundle,
 int32_t APersistableBundle_getBooleanVector(const APersistableBundle* _Nonnull pBundle,
                                             const char* _Nonnull key, bool* _Nullable buffer,
                                             int32_t bufferSizeBytes)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get an int32_t vector associated with the provided key and place it in the
@@ -471,7 +482,8 @@ int32_t APersistableBundle_getBooleanVector(const APersistableBundle* _Nonnull p
  */
 int32_t APersistableBundle_getIntVector(const APersistableBundle* _Nonnull pBundle,
                                         const char* _Nonnull key, int32_t* _Nullable buffer,
-                                        int32_t bufferSizeBytes) __INTRODUCED_IN(__ANDROID_API_V__);
+                                        int32_t bufferSizeBytes) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get an int64_t vector associated with the provided key and place it in the
@@ -497,8 +509,8 @@ int32_t APersistableBundle_getIntVector(const APersistableBundle* _Nonnull pBund
  */
 int32_t APersistableBundle_getLongVector(const APersistableBundle* _Nonnull pBundle,
                                          const char* _Nonnull key, int64_t* _Nullable buffer,
-                                         int32_t bufferSizeBytes)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+                                         int32_t bufferSizeBytes) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a double vector associated with the provided key and place it in the
@@ -525,7 +537,7 @@ int32_t APersistableBundle_getLongVector(const APersistableBundle* _Nonnull pBun
 int32_t APersistableBundle_getDoubleVector(const APersistableBundle* _Nonnull pBundle,
                                            const char* _Nonnull key, double* _Nullable buffer,
                                            int32_t bufferSizeBytes)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get a string vector associated with the provided key and place it in the
@@ -562,7 +574,7 @@ int32_t APersistableBundle_getStringVector(const APersistableBundle* _Nonnull pB
                                            int32_t bufferSizeBytes,
                                            APersistableBundle_stringAllocator stringAllocator,
                                            void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get an APersistableBundle* associated with the provided key.
@@ -581,7 +593,7 @@ int32_t APersistableBundle_getStringVector(const APersistableBundle* _Nonnull pB
 bool APersistableBundle_getPersistableBundle(const APersistableBundle* _Nonnull pBundle,
                                              const char* _Nonnull key,
                                              APersistableBundle* _Nullable* _Nonnull outBundle)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -614,7 +626,7 @@ int32_t APersistableBundle_getBooleanKeys(const APersistableBundle* _Nonnull pBu
                                           int32_t bufferSizeBytes,
                                           APersistableBundle_stringAllocator stringAllocator,
                                           void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -645,7 +657,8 @@ int32_t APersistableBundle_getBooleanKeys(const APersistableBundle* _Nonnull pBu
 int32_t APersistableBundle_getIntKeys(const APersistableBundle* _Nonnull pBundle,
                                       char* _Nullable* _Nullable outKeys, int32_t bufferSizeBytes,
                                       APersistableBundle_stringAllocator stringAllocator,
-                                      void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__);
+                                      void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -676,7 +689,8 @@ int32_t APersistableBundle_getIntKeys(const APersistableBundle* _Nonnull pBundle
 int32_t APersistableBundle_getLongKeys(const APersistableBundle* _Nonnull pBundle,
                                        char* _Nullable* _Nullable outKeys, int32_t bufferSizeBytes,
                                        APersistableBundle_stringAllocator stringAllocator,
-                                       void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__);
+                                       void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -708,8 +722,8 @@ int32_t APersistableBundle_getDoubleKeys(const APersistableBundle* _Nonnull pBun
                                          char* _Nullable* _Nullable outKeys,
                                          int32_t bufferSizeBytes,
                                          APersistableBundle_stringAllocator stringAllocator,
-                                         void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+                                         void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -741,8 +755,8 @@ int32_t APersistableBundle_getStringKeys(const APersistableBundle* _Nonnull pBun
                                          char* _Nullable* _Nullable outKeys,
                                          int32_t bufferSizeBytes,
                                          APersistableBundle_stringAllocator stringAllocator,
-                                         void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+                                         void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__)
+        __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -775,7 +789,7 @@ int32_t APersistableBundle_getBooleanVectorKeys(const APersistableBundle* _Nonnu
                                                 int32_t bufferSizeBytes,
                                                 APersistableBundle_stringAllocator stringAllocator,
                                                 void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -808,7 +822,7 @@ int32_t APersistableBundle_getIntVectorKeys(const APersistableBundle* _Nonnull p
                                             int32_t bufferSizeBytes,
                                             APersistableBundle_stringAllocator stringAllocator,
                                             void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -841,7 +855,7 @@ int32_t APersistableBundle_getLongVectorKeys(const APersistableBundle* _Nonnull 
                                              int32_t bufferSizeBytes,
                                              APersistableBundle_stringAllocator stringAllocator,
                                              void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -873,7 +887,7 @@ int32_t APersistableBundle_getDoubleVectorKeys(const APersistableBundle* _Nonnul
                                                int32_t bufferSizeBytes,
                                                APersistableBundle_stringAllocator stringAllocator,
                                                void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -906,7 +920,7 @@ int32_t APersistableBundle_getStringVectorKeys(const APersistableBundle* _Nonnul
                                                int32_t bufferSizeBytes,
                                                APersistableBundle_stringAllocator stringAllocator,
                                                void* _Nullable context)
-        __INTRODUCED_IN(__ANDROID_API_V__);
+        __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 /**
  * Get all of the keys associated with this specific type and place it in the
@@ -937,6 +951,6 @@ int32_t APersistableBundle_getStringVectorKeys(const APersistableBundle* _Nonnul
 int32_t APersistableBundle_getPersistableBundleKeys(
         const APersistableBundle* _Nonnull pBundle, char* _Nullable* _Nullable outKeys,
         int32_t bufferSizeBytes, APersistableBundle_stringAllocator stringAllocator,
-        void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__);
+        void* _Nullable context) __INTRODUCED_IN(__ANDROID_API_V__) __INTRODUCED_IN_LLNDK(202404);
 
 __END_DECLS
