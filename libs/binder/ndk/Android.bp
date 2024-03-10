@@ -40,6 +40,7 @@ cc_library {
 
     llndk: {
         symbol_file: "libbinder_ndk.map.txt",
+        export_llndk_headers: ["libvendorsupport_llndk_headers"],
     },
 
     export_include_dirs: [
@@ -80,9 +81,11 @@ cc_library {
 
     header_libs: [
         "jni_headers",
+        "libvendorsupport_llndk_headers",
     ],
     export_header_lib_headers: [
         "jni_headers",
+        "libvendorsupport_llndk_headers",
     ],
 
     target: {
@@ -191,5 +194,6 @@ ndk_library {
     export_header_libs: [
         "libbinder_ndk_headers",
         "libbinder_ndk_helper_headers",
+        "libvendorsupport_ndk_headers",
     ],
 }
