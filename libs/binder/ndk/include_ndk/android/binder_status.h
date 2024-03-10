@@ -44,6 +44,10 @@ __BEGIN_DECLS
 #define __INTRODUCED_IN(n)
 #endif
 
+#ifndef __INTRODUCED_IN_LLNDK
+#define __INTRODUCED_IN_LLNDK(n)
+#endif
+
 #ifndef __assert
 #define __assert(a, b, c)          \
     do {                           \
