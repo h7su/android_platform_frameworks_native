@@ -70,6 +70,24 @@
       "parentUuid": "2ed717fd_7abb0d91",
       "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd708aed_75d5dc4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1941946
+      },
+      "writtenOn": "2024-03-11T18:24:17Z",
+      "side": 1,
+      "message": "Acknowledged. Discussed offline:\n\nThere are ANGLE users syncing from aosp ANGLE but uses a different Android runtime. On older Android runtime version where the angle in system partition is not supported, they would need to set the `angle_in_vendor` flag to true after this change for ANGLE to continue working on older Android runtime version.",
+      "parentUuid": "475a20d6_129f44a4",
+      "revId": "64bb9f6c9630d872f90dd32cd05611d289f75f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
