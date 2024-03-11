@@ -37,10 +37,6 @@ cc_library {
     },
 
     vendor_available: true,
-    vndk: {
-        enabled: true,
-        support_system_process: true,
-    },
     apex_available: [
         "//apex_available:platform",
         "com.android.media.swcodec",
