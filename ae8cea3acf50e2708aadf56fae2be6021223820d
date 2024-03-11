@@ -16,6 +16,24 @@
       "message": "Armelle, is this still required after we discussed everything would be moved on system during AVF summit?",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3074cac3_842f1829",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-11T00:30:40Z",
+      "side": 1,
+      "message": "+1\n\nAlso, even for the vendor VMs, wouldn\u0027t it be better to extend libbinder_ndk to have more APIs, instead of making a copy of it (libbinder_ndk_vendor) in the vendor partition?",
+      "parentUuid": "949fb0a5_fefc80e8",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
