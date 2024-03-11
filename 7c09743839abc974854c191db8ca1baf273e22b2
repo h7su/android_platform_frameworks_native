@@ -22,6 +22,30 @@
       },
       "revId": "7c09743839abc974854c191db8ca1baf273e22b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87403a7b_246eb089",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-03-11T15:47:35Z",
+      "side": 1,
+      "message": "Oh, this is still #systemapi. Hence we need INTRODUCED_IN.",
+      "parentUuid": "2aeb107c_e1d2da9e",
+      "range": {
+        "startLine": 255,
+        "startChar": 75,
+        "endLine": 255,
+        "endChar": 92
+      },
+      "revId": "7c09743839abc974854c191db8ca1baf273e22b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -63,6 +63,29 @@
       },
       "revId": "75ab63032eb8c64e389c0e447a036978c5a60ce4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5ee8f3_00d9b3c7",
+        "filename": "libs/ui/Gralloc5.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-03-11T15:47:35Z",
+      "side": 1,
+      "message": "`__ANDROID_API_V__` is not available in `__builtin_available()` yet. This should be `__ANDROID_API_FUTURE__`.",
+      "range": {
+        "startLine": 93,
+        "startChar": 30,
+        "endLine": 93,
+        "endChar": 47
+      },
+      "revId": "75ab63032eb8c64e389c0e447a036978c5a60ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
