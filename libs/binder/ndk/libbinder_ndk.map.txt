@@ -204,7 +204,49 @@ LIBBINDER_NDK35 { # introduced=VanillaIceCream
     APersistableBundle_getDoubleVectorKeys;
     APersistableBundle_getStringVectorKeys;
     APersistableBundle_getPersistableBundleKeys;
-    AServiceManager_openDeclaredPassthroughHal; # systemapi llndk
+
+    APersistableBundle_readFromParcel; # llndk=202404
+    APersistableBundle_writeToParcel; # llndk=202404
+    APersistableBundle_new; # llndk=202404
+    APersistableBundle_dup; # llndk=202404
+    APersistableBundle_delete; # llndk=202404
+    APersistableBundle_isEqual; # llndk=202404
+    APersistableBundle_size; # llndk=202404
+    APersistableBundle_erase; # llndk=202404
+    APersistableBundle_putBoolean; # llndk=202404
+    APersistableBundle_putInt; # llndk=202404
+    APersistableBundle_putLong; # llndk=202404
+    APersistableBundle_putDouble; # llndk=202404
+    APersistableBundle_putString; # llndk=202404
+    APersistableBundle_putBooleanVector; # llndk=202404
+    APersistableBundle_putIntVector; # llndk=202404
+    APersistableBundle_putLongVector; # llndk=202404
+    APersistableBundle_putDoubleVector; # llndk=202404
+    APersistableBundle_putStringVector; # llndk=202404
+    APersistableBundle_putPersistableBundle; # llndk=202404
+    APersistableBundle_getBoolean; # llndk=202404
+    APersistableBundle_getInt; # llndk=202404
+    APersistableBundle_getLong; # llndk=202404
+    APersistableBundle_getDouble; # llndk=202404
+    APersistableBundle_getString; # llndk=202404
+    APersistableBundle_getBooleanVector; # llndk=202404
+    APersistableBundle_getIntVector; # llndk=202404
+    APersistableBundle_getLongVector; # llndk=202404
+    APersistableBundle_getDoubleVector; # llndk=202404
+    APersistableBundle_getStringVector; # llndk=202404
+    APersistableBundle_getPersistableBundle; # llndk=202404
+    APersistableBundle_getBooleanKeys; # llndk=202404
+    APersistableBundle_getIntKeys; # llndk=202404
+    APersistableBundle_getLongKeys; # llndk=202404
+    APersistableBundle_getDoubleKeys; # llndk=202404
+    APersistableBundle_getStringKeys; # llndk=202404
+    APersistableBundle_getBooleanVectorKeys; # llndk=202404
+    APersistableBundle_getIntVectorKeys; # llndk=202404
+    APersistableBundle_getLongVectorKeys; # llndk=202404
+    APersistableBundle_getDoubleVectorKeys; # llndk=202404
+    APersistableBundle_getStringVectorKeys; # llndk=202404
+    APersistableBundle_getPersistableBundleKeys; # llndk=202404
+    ServiceManager_openDeclaredPassthroughHal; # systemapi llndk=202404
 };
 
 LIBBINDER_NDK_PLATFORM {
