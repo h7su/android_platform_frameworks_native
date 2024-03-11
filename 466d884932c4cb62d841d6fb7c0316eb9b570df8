@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48d410dd_1a1177c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1951823
+      },
+      "writtenOn": "2024-03-11T11:07:37Z",
+      "side": 1,
+      "message": "The change looks fine, but I don\u0027t understand the lint warning — the function is being passed a _reference_ to a `Vec`, not a `Vec` itself, so why would a new object be created?\n\n(Marking resolved since this is just for my own understanding)",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 83
+      },
+      "revId": "466d884932c4cb62d841d6fb7c0316eb9b570df8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
