@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aeb107c_e1d2da9e",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-11T08:58:07Z",
+      "side": 1,
+      "message": "@jooyung@google.com Is it correct to define this as `__ANDROID_API_V__` even though this is not for NDK?",
+      "range": {
+        "startLine": 255,
+        "startChar": 75,
+        "endLine": 255,
+        "endChar": 92
+      },
+      "revId": "7c09743839abc974854c191db8ca1baf273e22b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
