@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6179cbcb_98266f7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1945881
+      },
+      "writtenOn": "2024-03-11T13:52:37Z",
+      "side": 1,
+      "message": "See comments below.",
+      "parentUuid": "e4dbcb04_4ce69df9",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 358
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04276f82_f1ba9385",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea54628_0d1e6196",
+        "filename": "opengl/libs/EGL/BlobCache.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1945881
+      },
+      "writtenOn": "2024-03-11T13:52:37Z",
+      "side": 1,
+      "message": "`isCleanable` is only called when `newTotalSize \u003e mMaxTotalSize`. The purpose is to ensure that after calling `clean`, `newTotalSize \u003c\u003d mMaxTotalSize` (that is, after the cache is cleaned, the new cache can be inserted, otherwise it will not be cleaned), if `clean` is called directly as you describe, it may cause the **cache to be reduced and the new cache is not inserted**(triggering condition: `newTotalSize - mTotalSize \u003e mMaxTotalSize / 2`).\n\nHowever, the current `isCleanable` logic only covers the situation where `mMaxTotalSize \u003c newTotalSize \u0026\u0026 mTotalSize \u003c mMaxTotalSize / 2` does not require calling `clean`. It does not cover the abnormal situation of `mMaxTotalSize \u003c newTotalSize \u0026\u0026 mTotalSize \u003e mMaxTotalSize / 2 \u0026\u0026 newTotalSize - mTotalSize \u003e mMaxTotalSize / 2` [1], Once the same exception as [1] occurs, **the cache will be reduced and the new cache will not be inserted**.",
+      "parentUuid": "04276f82_f1ba9385",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 43
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93b4d8ce_4e8a0669",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-08T17:09:08Z",
       "side": 1,
       "message": "What would this return before your change?",
+      "range": {
+        "startLine": 313,
+        "startChar": 43,
+        "endLine": 313,
+        "endChar": 58
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9416475_c98982f4",
+        "filename": "opengl/libs/EGL/BlobCache_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1945881
+      },
+      "writtenOn": "2024-03-11T13:52:37Z",
+      "side": 1,
+      "message": "\u003e What would this return before your change?\n\nIt still return `BlobCache::InsertResult::kNotEnoughSpace`, but it will cause the cache to be emptied to half, causing the cache to be lost. It should be that after the cache is cleared, it cannot be inserted (insufficient space)",
+      "parentUuid": "93b4d8ce_4e8a0669",
       "range": {
         "startLine": 313,
         "startChar": 43,
