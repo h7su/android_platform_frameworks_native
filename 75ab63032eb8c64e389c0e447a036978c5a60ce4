@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dec34734_544ad35c",
+        "filename": "libs/binder/ndk/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-11T13:26:22Z",
+      "side": 1,
+      "message": "This will be edited by Jooyung, right?",
+      "range": {
+        "startLine": 42,
+        "startChar": 22,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "75ab63032eb8c64e389c0e447a036978c5a60ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
