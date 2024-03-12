@@ -219,8 +219,12 @@ cc_defaults {
         "-performance-move-const-arg", // b/273486801
         "portability*",
     ],
-    lto: {
-        thin: true,
+    target: {
+        android: {
+            lto: {
+                 thin: true,
+            },
+        },
     },
 }
 
