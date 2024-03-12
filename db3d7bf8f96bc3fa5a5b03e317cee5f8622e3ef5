@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3481a0bf_50ec8295",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-03-12T20:51:41Z",
+      "side": 1,
+      "message": "I\u0027m fine with doing either way. I don\u0027t understand the issues that both of the __INTRODUCED_IN calls would cause. @jooyung@google.com or @justinyun@google.com any preference?",
+      "parentUuid": "f082d8ec_121c8ff9",
+      "range": {
+        "startLine": 75,
+        "startChar": 55,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ab4a087_bbf9d4cb",
         "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
         "patchSetId": 2
