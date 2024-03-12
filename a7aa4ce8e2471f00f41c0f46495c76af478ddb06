@@ -16,6 +16,23 @@
       "message": "+Martijn for OWNERS",
       "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9a59a3_18d39a7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-03-12T08:08:31Z",
+      "side": 1,
+      "message": "Hi, NDK-API-Reviewers,\n\nThis should have been a part of Q2 freezing. 202404 LLNDK symbols are explicitly marked in map.txt. The ndkstubgen change in this topic handles them accordingly when targeting LLNDK (with --llndk flag).",
+      "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
