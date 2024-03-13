@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f52cf3f_9c2705ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-13T05:56:40Z",
+      "side": 1,
+      "message": "Justin, do you want to update this to make the bionic-side change simpler?",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f082d8ec_121c8ff9",
         "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
         "patchSetId": 2
