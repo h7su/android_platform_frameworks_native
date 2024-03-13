@@ -50,6 +50,24 @@
       "message": "historically marking something llndk _removed_ it from the NDK which isn\u0027t what we want. Is that still the case here?",
       "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1b00034_6efd946e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-03-13T03:41:48Z",
+      "side": 1,
+      "message": "Yes.\n\nBut, the other change in this topic changes how ndkstubgen works especially for those symbols introduced since 35.\n\n```\nLIBFOO {  # introduced\u003d35\n  foo;                 ; indicates foo is NDK symbol\n  foo; # llndk\u003d202404  ; indicates foo is LLNDK symbol\n}\n```\n\nSymbols with no tags will not be LLNDK automatically.",
+      "parentUuid": "e460d014_acf56379",
+      "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
