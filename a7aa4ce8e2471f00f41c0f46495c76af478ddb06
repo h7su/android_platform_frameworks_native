@@ -104,6 +104,24 @@
       "parentUuid": "6b71ea26_bef075a2",
       "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db0bba7_13bb0752",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010103
+      },
+      "writtenOn": "2024-03-13T15:55:45Z",
+      "side": 1,
+      "message": "oh I see, it\u0027s defining all the symbols twice to avoid having the lldnk\u003d override the introduced-in.\n\nUgh this is ugly :/",
+      "parentUuid": "380d7398_b373d116",
+      "revId": "a7aa4ce8e2471f00f41c0f46495c76af478ddb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
