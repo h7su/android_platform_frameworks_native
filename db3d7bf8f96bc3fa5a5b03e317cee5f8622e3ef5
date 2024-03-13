@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac0ac39c_8cf28be0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-13T10:08:49Z",
+      "side": 1,
+      "message": "I was working on another CL to solve the ndk_header problem, but @devinmoore@google.com\u0027s magic CL passed the presubmit build test for the ndk build.\nI will work on top of this CL to replace `AT_LEAST_V_OR_202404` with those from llndk-versioning.h and add a patch to Gralloc5.cpp to fix @jooyung@google.com\u0027s request.\nWith Devin\u0027s change, we don\u0027t need to add any complexity on bionic but can make it simpler.",
+      "parentUuid": "2f52cf3f_9c2705ca",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f082d8ec_121c8ff9",
         "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
         "patchSetId": 2
