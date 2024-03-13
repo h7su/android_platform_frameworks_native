@@ -22,6 +22,30 @@
       },
       "revId": "466d884932c4cb62d841d6fb7c0316eb9b570df8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "149eece0_b058846d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-03-13T23:55:11Z",
+      "side": 1,
+      "message": "I talked to mmaurer@ about this, and he reminded me that what is changing here is the API for the function itself. Callers might already have a slice (\u0026[T]), an array ([T; 20), or a Vec\u003cT\u003e, but all of those can convert to a slice (\u0026[T]) for free, while converting to a Vec would incur a cost.",
+      "parentUuid": "48d410dd_1a1177c6",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 83
+      },
+      "revId": "466d884932c4cb62d841d6fb7c0316eb9b570df8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
