@@ -101,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0acf0b24_c606a35c",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-13T07:59:06Z",
+      "side": 1,
+      "message": "That is already handled in llndk-versioning.h and bionic versioning.h by emptying one and choosing the other.\nWe may keep listing both in one line.",
+      "parentUuid": "3481a0bf_50ec8295",
+      "range": {
+        "startLine": 75,
+        "startChar": 55,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ab4a087_bbf9d4cb",
         "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
         "patchSetId": 2
