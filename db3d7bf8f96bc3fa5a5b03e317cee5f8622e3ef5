@@ -122,6 +122,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef88781_7910b909",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-03-14T18:43:30Z",
+      "side": 1,
+      "message": "From local testing, it looks like that\u0027s right! Removed aosp/3000306 from the topic.",
+      "parentUuid": "786de77c_096434b1",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70d13f70_f2ca6946",
@@ -175,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c42394_cf78956b",
+        "filename": "libs/binder/ndk/include_cpp/android/persistable_bundle_aidl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-03-14T18:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7c6c3e2_9c56d326",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32eabe45_faa1814a",
@@ -188,6 +224,30 @@
       "writtenOn": "2024-03-14T06:23:30Z",
       "side": 1,
       "message": "It will still break the ndk build that does not have this header.\n\nLet\u0027s remove this header but add it conditionally with the following change. It adds llndk-versioning.h only for vendor build, ignore otherwise.:\n\n```\n#if defined(__ANDROID_VENDOR__)\n#include \u003candroid/llndk-versioning.h\u003e\n#else\n#define __INTRODUCED_IN_LLNDK(x)\n#endif\n```",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 37
+      },
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e877dcc1_0b75f528",
+        "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2024-03-14T18:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32eabe45_faa1814a",
       "range": {
         "startLine": 20,
         "startChar": 0,
