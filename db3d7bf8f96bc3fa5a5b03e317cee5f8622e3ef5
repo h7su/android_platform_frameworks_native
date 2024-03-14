@@ -107,6 +107,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70d13f70_f2ca6946",
+        "filename": "libs/binder/ndk/include_cpp/android/persistable_bundle_aidl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-14T04:06:22Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be conditional? We don\u0027t have this header in the NDK.",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f082d8ec_121c8ff9",
         "filename": "libs/binder/ndk/include_ndk/android/persistable_bundle.h",
         "patchSetId": 2
