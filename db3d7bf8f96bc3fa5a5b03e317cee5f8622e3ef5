@@ -87,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0eb5520_97e3bdc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-14T03:59:52Z",
+      "side": 1,
+      "message": "resolving not to block this CL.",
+      "parentUuid": "ac0ac39c_8cf28be0",
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f082d8ec_121c8ff9",
@@ -219,6 +237,30 @@
       "side": 1,
       "message": "I am working on this including this CL. ( https://android-review.git.corp.google.com/q/topic:%22llndk-versioning%22 )\nI am resolving the comments there.",
       "parentUuid": "2ab4a087_bbf9d4cb",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 43
+      },
+      "revId": "db3d7bf8f96bc3fa5a5b03e317cee5f8622e3ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86c9b038_7987095c",
+        "filename": "libs/binder/ndk/include_platform/android/binder_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-14T03:59:52Z",
+      "side": 1,
+      "message": "resolving not to block this CL.",
+      "parentUuid": "7684699a_ba029a48",
       "range": {
         "startLine": 256,
         "startChar": 0,
