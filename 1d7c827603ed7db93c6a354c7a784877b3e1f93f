@@ -140,6 +140,30 @@
       },
       "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be101da3_65c0a7e8",
+        "filename": "opengl/libs/EGL/BlobCache_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1097542
+      },
+      "writtenOn": "2024-03-18T17:35:51Z",
+      "side": 1,
+      "message": "To clarify the intent of the change, can you update the test such that it would fail without your fix?\n\nIf I understand correctly, you are trying to insert an entry that is just larger than cacheSize/2, which (without changes) will never fit if the cache is exactly half full.  I don\u0027t see how changing `isCleanable` earlier will allow that entry to be cached.  It still only reduces the cache to half size.\n\nIn EGL, the limits are set such that this will never happen:\n```\n// Monolithic cache size limits.\nstatic const size_t kMaxMonolithicKeySize \u003d 12 * 1024;\nstatic const size_t kMaxMonolithicValueSize \u003d 64 * 1024;\nstatic const size_t kMaxMonolithicTotalSize \u003d 2 * 1024 * 1024;\n```\nhttps://android.googlesource.com/platform/frameworks/native/+/refs/heads/main/opengl/libs/EGL/egl_cache.cpp#32\n\nI think it would be better to clear the cache in this situation, which can be done directly after `kNotEnoughSpace` is returned.\n\nIt is debatable whether the `set` call should do that automatically, but I think that\u0027s the intent of the return code and public `clear`.",
+      "parentUuid": "c9416475_c98982f4",
+      "range": {
+        "startLine": 313,
+        "startChar": 43,
+        "endLine": 313,
+        "endChar": 58
+      },
+      "revId": "1d7c827603ed7db93c6a354c7a784877b3e1f93f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
