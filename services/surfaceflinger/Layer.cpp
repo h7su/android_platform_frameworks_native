@@ -3110,7 +3110,7 @@ bool Layer::setMatrix(const layer_state_t::matrix22_t& matrix) {
         return false;
     }
 
-    mRequestedTransform.set(matrix.dsdx, matrix.dtdy, matrix.dtdx, matrix.dsdy);
+    mRequestedTransform.set(matrix.dsdx, matrix.dtdx, matrix.dtdy, matrix.dsdy);
 
     mDrawingState.sequence++;
     mDrawingState.modified = true;
