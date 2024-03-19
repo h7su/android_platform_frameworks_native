@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22082031_b4c44ea8",
+        "filename": "libs/ui/Gralloc5.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-03-19T04:09:55Z",
+      "side": 1,
+      "message": "libui is available to apex/vendor/core/.. Are we okay to include this without guard? e.g. `#if vendor`?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "e4c48c686cf7c6f3f0777fd636caa29ccc50909d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
