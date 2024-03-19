@@ -34,6 +34,24 @@
       "parentUuid": "9d67d67e_09a78389",
       "revId": "5f588bce840580144ff21be2a578fed06e754959",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cd872f_4efe8b83",
+        "filename": "libs/binder/ndk/include_cpp/android/persistable_bundle_aidl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-19T07:12:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f28f61a6_addf8dff",
+      "revId": "5f588bce840580144ff21be2a578fed06e754959",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
