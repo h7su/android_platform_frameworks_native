@@ -16,6 +16,24 @@
       "message": "Don\u0027t you need `#define __INTRODUCED_IN_LLNDK(x)` here?",
       "revId": "5f588bce840580144ff21be2a578fed06e754959",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28f61a6_addf8dff",
+        "filename": "libs/binder/ndk/include_cpp/android/persistable_bundle_aidl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-03-19T07:11:42Z",
+      "side": 1,
+      "message": "It depends on which macro the code is using.\nThis file only uses `API_LEVEL_AT_LEAST` but not uses `__INTRODUCED_IN_LLNDK`.",
+      "parentUuid": "9d67d67e_09a78389",
+      "revId": "5f588bce840580144ff21be2a578fed06e754959",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
