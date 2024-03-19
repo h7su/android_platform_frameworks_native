@@ -17,15 +17,14 @@
 #pragma once
 
 #include <android/binder_parcel.h>
-#if defined(__ANDROID_VENDOR__)
-#include <android/llndk-versioning.h>
-#else
-#define __INTRODUCED_IN_LLNDK(x)
-#endif
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/cdefs.h>
 #include <sys/types.h>
+
+#if !defined(__ANDROID_VENDOR__) && !defined(__INTRODUCED_IN_LLNDK)
+#define __INTRODUCED_IN_LLNDK(x)
+#endif
 
 __BEGIN_DECLS
 
