@@ -34,6 +34,24 @@
       "parentUuid": "949fb0a5_fefc80e8",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff2f028_a95b297e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1856745
+      },
+      "writtenOn": "2024-03-20T00:57:06Z",
+      "side": 1,
+      "message": "This is still needed outside of the VM case.\nA vendor client (e.g. Android HAL implementation) written in Rust, interacting with a TEE via Binder RPC, mandates the AIDL Rust backend support in the vendor image (and thus that the AIDL NDK backend be used in the vendor image).",
+      "parentUuid": "3074cac3_842f1829",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
