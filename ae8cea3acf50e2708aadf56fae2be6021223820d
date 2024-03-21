@@ -88,6 +88,24 @@
       "parentUuid": "e5afb509_3f793e70",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9833a5e1_5bd54229",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-21T19:34:30Z",
+      "side": 1,
+      "message": "We don\u0027t want to add APIs at the transport level into libbinder_ndk (we want high-level service management APIs only). Trusty needs to use the vendor-specific libbinder_trusty library today. So that\u0027s why a vendor copy would be needed - in order to allow vendor to plug libbinder_trusty in without exposing such low-level APIs we can\u0027t commit to.",
+      "parentUuid": "522ca4f6_c6c01294",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
