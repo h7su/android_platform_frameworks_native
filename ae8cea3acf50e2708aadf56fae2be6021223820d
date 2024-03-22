@@ -160,6 +160,24 @@
       "parentUuid": "e04e2bf6_1bfd1b8d",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bae3ccb_18580837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-22T19:16:05Z",
+      "side": 1,
+      "message": "The reason is because RpcServer API is intentionally not in libbinder_ndk, so it\u0027s intentionally not possible to use RPC binder from libbinder_ndk alone. I also don\u0027t want to add additional platform symbols into libbinder_ndk due to b/136506169.\n\nYou and I have talked about this a lot in various other threads actually.\n\nAnyway, I\u0027ve just kicked off the project to resolve this and standardize APIs to use RPC binder. Meeting with Alice and Devin Monday, and we should share a proposal soon so we can stabilize *high level* APIs to use RPC binder services.\n\nHowever, we still will NOT create a stable RpcTransport API. So, we still need TIPC-\u003eFFA/VSOCK/equivalent before these would work for Trusty.\n\n\u003e A vendor client (e.g. Android HAL implementation) written in Rust, interacting with a TEE via Binder RPC\n\nSo to clarify, the way we\u0027d like to support this is with FFA/VSOCK in libbinder and high-level stable APIs in libbinder_ndk to use these services. This patch should still only be required because TIPC is unstable.",
+      "parentUuid": "f02ff540_122c2d5b",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
