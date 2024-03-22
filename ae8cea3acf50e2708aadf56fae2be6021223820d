@@ -106,6 +106,24 @@
       "parentUuid": "522ca4f6_c6c01294",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd6938b_2a3a6418",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-22T00:43:10Z",
+      "side": 1,
+      "message": "Let\u0027s forget about Trusty for now. Easier example: RPC binder.\n\nThe transport is set up by libbinder_rpc_unstable. It internally uses libbinder_ndk, but libbinder as well. It\u0027s not available to the vendor partition either.\n\nMy ask is to make the library (1) available outside of the system partition, and (2) drop the dependency to libbinder.\n\nIs this feasible?",
+      "parentUuid": "9833a5e1_5bd54229",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
