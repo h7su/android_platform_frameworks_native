@@ -237,6 +237,7 @@ cc_library_headers {
     host_supported: true,
 
     export_include_dirs: [
+        "include_rpc_unstable",
         "ndk/include_ndk",
         "ndk/include_platform",
         "trusty/include",
@@ -312,6 +313,8 @@ cc_library_shared {
         "ndk/parcel.cpp",
         "ndk/stability.cpp",
         "ndk/status.cpp",
+        // libbinder_rpc_unstable on Trusty
+        "libbinder_rpc_unstable.cpp",
     ],
 }
 
