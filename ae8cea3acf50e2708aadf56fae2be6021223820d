@@ -142,6 +142,24 @@
       "parentUuid": "8cd6938b_2a3a6418",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f02ff540_122c2d5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-22T01:37:01Z",
+      "side": 1,
+      "message": "I am talking about libbinder_rpc_unstable. To be clear, I want below, and it it\u0027s impossible want to understand why.\n\n```\ncc_library {\n    name: \"libbinder_rpc_unstable\",\n    vendor_available: true,\n    shared_libs: [\"libbinder_ndk\"], // no libbinder here\n}\n```\n\nor\n\n```\ncc_library {\n    name: \"libbinder_rpc_unstable\", // drop _unstable if possible\n    llndk: {\n        symbol_file: \"libbinder_rpc.map.txt\",\n    }\n    shared_libs: [\"libbinder_ndk\", \"libbinder\", ...], // libbinder can be here.\n }\n ```",
+      "parentUuid": "e04e2bf6_1bfd1b8d",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
