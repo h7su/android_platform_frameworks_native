@@ -57,6 +57,7 @@ MODULE_EXPORT_INCLUDES += \
 	$(LOCAL_DIR)/include \
 	$(LIBLOG_STUB_DIR)/include \
 	$(LIBBINDER_DIR)/include \
+	$(LIBBINDER_DIR)/include_rpc_unstable \
 	$(LIBBASE_DIR)/include \
 	$(LIBUTILS_BINDER_DIR)/include \
 	$(FMTLIB_DIR)/include \
