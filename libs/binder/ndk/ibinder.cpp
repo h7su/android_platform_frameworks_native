@@ -24,6 +24,7 @@
 #include <private/android_filesystem_config.h>
 #endif
 
+#include "../BuildFlags.h"
 #include "ibinder_internal.h"
 #include "parcel_internal.h"
 #include "status_internal.h"
@@ -227,7 +228,10 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
         sp<IResultReceiver> resultReceiver = IResultReceiver::asInterface(data.readStrongBinder());
 
         // Shell commands should only be callable by ADB.
-        uid_t uid = AIBinder_getCallingUid();
+        uid_t uid = 0;
+        if constexpr (android::kEnableKernelIpc) {
+            uid = AIBinder_getCallingUid();
+        }
         if (uid != 0 /* root */
 #ifdef AID_SHELL
             && uid != AID_SHELL
