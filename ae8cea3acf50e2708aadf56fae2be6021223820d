@@ -124,6 +124,24 @@
       "parentUuid": "9833a5e1_5bd54229",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e04e2bf6_1bfd1b8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-22T00:59:05Z",
+      "side": 1,
+      "message": "Trusty uses RPC binder, and the only reason to have libbinder_ndk_vendor would be to support the Trusty hardware-specific backend to RPC binder.\n\nI\u0027m not sure which library you\u0027re talking about that should be available outside of the system partition that should also drop the dependency to libbinder, but it\u0027s infeasible for both libbinder_rpc_unstable and libbinder_ndk.",
+      "parentUuid": "8cd6938b_2a3a6418",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
