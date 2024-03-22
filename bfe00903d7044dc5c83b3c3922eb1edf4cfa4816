@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "848224c1_1e7614d6",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 57
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-22T23:28:27Z",
+      "side": 1,
+      "message": "Technically Trusty doesn\u0027t have threads right now, but it\u0027s probably a good idea to do the right thing now and future-proof this code.",
+      "parentUuid": "56846c56_15462f09",
+      "revId": "bfe00903d7044dc5c83b3c3922eb1edf4cfa4816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a6a558c_0f7b60ac",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-21T09:20:42Z",
       "side": 1,
       "message": "I think it would be clearer to use `drop(Box::from_raw(...))` instead of dropping it with `let _ \u003d` here.",
+      "revId": "bfe00903d7044dc5c83b3c3922eb1edf4cfa4816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c10ca04_4c68a964",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 57
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-22T23:28:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a6a558c_0f7b60ac",
       "revId": "bfe00903d7044dc5c83b3c3922eb1edf4cfa4816",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
