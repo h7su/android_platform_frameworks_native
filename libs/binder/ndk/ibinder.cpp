@@ -226,6 +226,7 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
         data.readStrongBinder();  // skip over the IShellCallback
         sp<IResultReceiver> resultReceiver = IResultReceiver::asInterface(data.readStrongBinder());
 
+#ifdef BINDER_WITH_KERNEL_IPC
         // Shell commands should only be callable by ADB.
         uid_t uid = AIBinder_getCallingUid();
         if (uid != 0 /* root */
@@ -238,6 +239,7 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
             }
             return STATUS_PERMISSION_DENIED;
         }
+#endif
 
         // Check that the file descriptors are valid.
         if (in == STATUS_BAD_TYPE || out == STATUS_BAD_TYPE || err == STATUS_BAD_TYPE) {
