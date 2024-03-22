@@ -28,4 +28,10 @@ constexpr bool kEnableKernelIpc = true;
 constexpr bool kEnableKernelIpc = false;
 #endif // BINDER_WITH_KERNEL_IPC
 
+#ifdef BINDER_DISABLE_SHELL_COMMANDS
+constexpr bool kEnableShellCommands = false;
+#else
+constexpr bool kEnableShellCommands = true;
+#endif
+
 } // namespace android
