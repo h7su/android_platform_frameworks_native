@@ -766,6 +766,11 @@ status_t BBinder::onTransact(
         }
 
         case SHELL_COMMAND_TRANSACTION: {
+            if constexpr (!kEnableShellCommands) {
+                ALOGE("Shell commands are disabled");
+                return INVALID_OPERATION;
+            }
+
             int in = data.readFileDescriptor();
             int out = data.readFileDescriptor();
             int err = data.readFileDescriptor();
