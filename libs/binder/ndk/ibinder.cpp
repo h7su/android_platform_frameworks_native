@@ -211,6 +211,10 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
         binder_status_t status = getClass()->onTransact(this, code, &in, &out);
         return PruneStatusT(status);
     } else if (code == SHELL_COMMAND_TRANSACTION && getClass()->handleShellCommand != nullptr) {
+#ifdef BINDER_DISABLE_SHELL_COMMANDS
+        ALOGE("Shell commands are disabled");
+        return STATUS_INVALID_OPERATION;
+#else  // BINDER_DISABLE_SHELL_COMMANDS
         int in = data.readFileDescriptor();
         int out = data.readFileDescriptor();
         int err = data.readFileDescriptor();
@@ -253,6 +257,7 @@ status_t ABBinder::onTransact(transaction_code_t code, const Parcel& data, Parce
             resultReceiver->send(status);
         }
         return status;
+#endif  // BINDER_DISABLE_SHELL_COMMANDS
     } else {
         return BBinder::onTransact(code, data, reply, flags);
     }
