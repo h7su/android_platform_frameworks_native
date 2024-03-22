@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e785b9_edb697d2",
+        "filename": "libs/binder/include_rpc_unstable/binder_rpc_unstable.hpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-22T22:58:36Z",
+      "side": 1,
+      "message": "AIUI the concern on the other CL was that this API does not fit the layering design of the other functions. One option could be to move the Trusty-specific stuff into a separate Trusty-only library, @smoreland@google.com wdyt?",
+      "revId": "be79c2974fdd484a4e125526c5b6ba34e5069546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
