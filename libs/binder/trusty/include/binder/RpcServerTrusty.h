@@ -29,6 +29,8 @@
 
 #include <lib/tipc/tipc_srv.h>
 
+#include <binder_rpc_unstable.hpp>
+
 namespace android {
 
 /**
@@ -99,6 +101,17 @@ private:
 
         return rpcServer;
     }
+
+    friend struct ::ARpcServerTrusty;
+    friend ::ARpcServerTrusty* ::ARpcServerTrusty_new(::AIBinder*);
+    friend ::ARpcServerTrusty* ::ARpcServerTrusty_newPerSession(::AIBinder* (*)(const void*, size_t,
+                                                                                char*),
+                                                                char*, void (*)(char*));
+    friend void ::ARpcServerTrusty_delete(::ARpcServerTrusty*);
+    friend int ::ARpcServerTrusty_handleConnect(::ARpcServerTrusty*, handle_t, const uuid*, void**);
+    friend int ::ARpcServerTrusty_handleMessage(void*);
+    friend void ::ARpcServerTrusty_handleDisconnect(void*);
+    friend void ::ARpcServerTrusty_handleChannelCleanup(void*);
 
     // The Rpc-specific context maintained for every open TIPC channel.
     struct ChannelContext {
