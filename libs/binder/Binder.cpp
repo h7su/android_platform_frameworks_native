@@ -766,6 +766,10 @@ status_t BBinder::onTransact(
         }
 
         case SHELL_COMMAND_TRANSACTION: {
+#ifdef __TRUSTY__
+            ALOGE("Shell commands not supported");
+            return STATUS_INVALID_OPERATION;
+#else  // __TRUSTY
             int in = data.readFileDescriptor();
             int out = data.readFileDescriptor();
             int err = data.readFileDescriptor();
@@ -791,6 +795,7 @@ status_t BBinder::onTransact(
             }
 
             return NO_ERROR;
+#endif // __TRUSTY__
         }
 
         case SYSPROPS_TRANSACTION: {
