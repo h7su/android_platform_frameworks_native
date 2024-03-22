@@ -766,6 +766,10 @@ status_t BBinder::onTransact(
         }
 
         case SHELL_COMMAND_TRANSACTION: {
+#ifdef BINDER_DISABLE_SHELL_COMMANDS
+            ALOGE("Shell commands are disabled");
+            return INVALID_OPERATION;
+#else  // BINDER_DISABLE_SHELL_COMMANDS
             int in = data.readFileDescriptor();
             int out = data.readFileDescriptor();
             int err = data.readFileDescriptor();
@@ -791,6 +795,7 @@ status_t BBinder::onTransact(
             }
 
             return NO_ERROR;
+#endif // BINDER_DISABLE_SHELL_COMMANDS
         }
 
         case SYSPROPS_TRANSACTION: {
