@@ -178,6 +178,24 @@
       "parentUuid": "f02ff540_122c2d5b",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b01d6f9_9c238774",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-23T06:23:02Z",
+      "side": 1,
+      "message": "Your answer doesn\u0027t seem to explain why the LLNDK path (the second suggestion in my last comment) cannot be taken. Could you explain?\n\n\u003e the project to resolve this and standardize APIs to use RPC binder\n\nCool.\n\n\u003e we still will NOT create a stable RpcTransport API \n\nWhy?\n\n\u003e with FFA/VSOCK in libbinder\n\nCan that APIs be in an LLNDK library?",
+      "parentUuid": "7bae3ccb_18580837",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
