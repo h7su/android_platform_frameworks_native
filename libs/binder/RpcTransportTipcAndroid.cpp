@@ -21,6 +21,7 @@
 #include <log/log.h>
 #include <poll.h>
 #include <trusty/tipc.h>
+#include <type_traits>
 
 #include "FdTrigger.h"
 #include "RpcState.h"
@@ -79,11 +80,30 @@ public:
             const std::optional<SmallFunction<status_t()>>& altPoll,
             const std::vector<std::variant<unique_fd, borrowed_fd>>* ancillaryFds) override {
         auto writeFn = [&](iovec* iovs, size_t niovs) -> ssize_t {
-            // TODO: send ancillaryFds. For now, we just abort if anyone tries
-            // to send any.
-            LOG_ALWAYS_FATAL_IF(ancillaryFds != nullptr && !ancillaryFds->empty(),
-                                "File descriptors are not supported on Trusty yet");
-            return TEMP_FAILURE_RETRY(tipc_send(mSocket.fd.get(), iovs, niovs, nullptr, 0));
+            trusty_shm shms[MAX_SHMS];
+            ssize_t shm_count = 0;
+
+            if (ancillaryFds != nullptr && !ancillaryFds->empty()) {
+                LOG_ALWAYS_FATAL_IF(ancillaryFds->size() > MAX_SHMS,
+                                    "Received too many Trusty file descriptors.");
+                for (const auto& fdVariant : *ancillaryFds) {
+                    std::visit(
+                            [&](const auto& fd) {
+                                if constexpr (std::is_same_v<decltype(fd), unique_fd>) {
+                                    LOG_ALWAYS_FATAL_IF(!fd.ok(),
+                                                        "Received an invalid Trusty file "
+                                                        "descriptor.");
+                                    shms[shm_count++] = {fd.get(), TRUSTY_SEND_SECURE_OR_SHARE};
+                                } else if constexpr (std::is_same_v<decltype(fd), borrowed_fd>) {
+                                    shms[shm_count++] = {fd.get(), TRUSTY_SEND_SECURE_OR_SHARE};
+                                }
+                            },
+                            fdVariant);
+                }
+            }
+
+            return TEMP_FAILURE_RETRY(tipc_send(mSocket.fd.get(), iovs, niovs,
+                                                (shm_count == 0) ? nullptr : shms, shm_count));
         };
 
         status_t status = interruptableReadOrWrite(mSocket, fdTrigger, iovs, niovs, writeFn,

@@ -24,6 +24,8 @@
 
 namespace android {
 
+#define MAX_SHMS 16
+
 // RpcTransportCtxFactory for writing Trusty IPC clients in Android.
 class RpcTransportCtxFactoryTipcAndroid : public RpcTransportCtxFactory {
 public:
