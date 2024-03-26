@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bad1089_5643734d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-26T22:24:32Z",
+      "side": 1,
+      "message": "This patch is ready for review, gentle ping for a second owner.",
+      "revId": "6b97f7fce858cec5e7a343fc6e20e2a4f747602b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
