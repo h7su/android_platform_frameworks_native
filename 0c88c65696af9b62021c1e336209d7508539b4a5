@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d975adc4_5153c04a",
+        "filename": "cmds/bugreportz/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1835071
+      },
+      "writtenOn": "2024-03-26T12:29:03Z",
+      "side": 1,
+      "message": "For all the mentions yup we own these, @caditya@google.com - for now we can remove these rules from this CL and I can upload a new CL with the crumpet ownership changes",
+      "parentUuid": "0ab0fc91_ec1dd04f",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 51
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e071beea_f16ccc7b",
         "filename": "cmds/dumpstate/Android.bp",
         "patchSetId": 1
@@ -196,6 +220,30 @@
       "writtenOn": "2024-02-09T17:32:06Z",
       "side": 1,
       "message": "This should be `trendy_team_input_framework`, like it is for the tests subdirectory.\n\n```suggestion\n    default_team: \"trendy_team_input_framework\",\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 19,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b47222_40bb6460",
+        "filename": "libs/input/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1835071
+      },
+      "writtenOn": "2024-03-26T12:29:03Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "f0fcf878_730c2c5d",
       "range": {
         "startLine": 18,
         "startChar": 19,
