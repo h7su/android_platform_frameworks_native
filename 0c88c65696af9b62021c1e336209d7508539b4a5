@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ab0fc91_ec1dd04f",
+        "filename": "cmds/bugreportz/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1835071
+      },
+      "writtenOn": "2024-03-26T12:20:22Z",
+      "side": 1,
+      "message": "Seems like we should but confirming w/ Gavin to be sure - will update these accordingly\n\n(For dumpsys, I doubt)",
+      "parentUuid": "61104400_3dfeebc8",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 51
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e071beea_f16ccc7b",
         "filename": "cmds/dumpstate/Android.bp",
         "patchSetId": 1
