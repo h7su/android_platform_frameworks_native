@@ -398,6 +398,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f10da2_870ab5d1",
+        "filename": "services/sensorservice/aidl/fuzzer/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1094493
+      },
+      "writtenOn": "2024-03-26T18:13:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a483db45_df8485f7",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d028fd21_28bd9ad7",
