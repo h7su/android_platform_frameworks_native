@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61104400_3dfeebc8",
+        "filename": "cmds/bugreportz/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1765766
+      },
+      "writtenOn": "2024-03-26T11:01:44Z",
+      "side": 1,
+      "message": "That should be us. \n@ronish@google.com - can you confirm if these are owned by us as part of Bugreport?",
+      "parentUuid": "eb1f3d65_8f9e9c98",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 51
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e071beea_f16ccc7b",
         "filename": "cmds/dumpstate/Android.bp",
         "patchSetId": 1
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2dee34e4_f49553e8",
+        "filename": "cmds/dumpstate/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1765766
+      },
+      "writtenOn": "2024-03-26T11:01:44Z",
+      "side": 1,
+      "message": "@ronish@google.com",
+      "parentUuid": "e071beea_f16ccc7b",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c159054d_fd7cfea9",
         "filename": "cmds/dumpsys/tests/Android.bp",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-26T00:48:51Z",
       "side": 1,
       "message": "@corinac@google.com",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 47
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71aff66c_2034c7ba",
+        "filename": "cmds/dumpsys/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1765766
+      },
+      "writtenOn": "2024-03-26T11:01:44Z",
+      "side": 1,
+      "message": "@ronish@google.com",
+      "parentUuid": "c159054d_fd7cfea9",
       "range": {
         "startLine": 3,
         "startChar": 19,
@@ -249,6 +321,24 @@
       "writtenOn": "2024-03-26T00:48:51Z",
       "side": 1,
       "message": "@corinac@google.com Seems like this should be owned by the bugreport team as well since it\u0027s just prioritydumper tests.",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49782fbd_4d1f5c77",
+        "filename": "services/utils/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1765766
+      },
+      "writtenOn": "2024-03-26T11:01:44Z",
+      "side": 1,
+      "message": "@ronish@google.com",
+      "parentUuid": "d028fd21_28bd9ad7",
       "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
