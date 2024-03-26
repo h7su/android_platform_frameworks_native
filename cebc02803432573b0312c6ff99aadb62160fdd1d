@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7eb7ca_86372a63",
+        "filename": "libs/sensor/fuzz/bittube_fuzzer/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1094493
+      },
+      "writtenOn": "2024-03-26T18:12:58Z",
+      "side": 1,
+      "message": "`trendy_team_android_sensors` for libs/sensor files",
+      "range": {
+        "startLine": 20,
+        "startChar": 19,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "cebc02803432573b0312c6ff99aadb62160fdd1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

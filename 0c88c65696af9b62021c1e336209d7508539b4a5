@@ -382,6 +382,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a483db45_df8485f7",
+        "filename": "services/sensorservice/aidl/fuzzer/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1094493
+      },
+      "writtenOn": "2024-03-26T18:12:58Z",
+      "side": 1,
+      "message": "Yeah, `trendy_team_android_sensors` would be correct here",
+      "parentUuid": "09aa79d4_71bdfc0e",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d028fd21_28bd9ad7",
         "filename": "services/utils/tests/Android.bp",
         "patchSetId": 1
