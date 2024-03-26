@@ -3,6 +3,92 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb1f3d65_8f9e9c98",
+        "filename": "cmds/bugreportz/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This seems wrong -- @corinac@google.com, do you know which team should be responsible for bugreports?",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 51
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e071beea_f16ccc7b",
+        "filename": "cmds/dumpstate/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This seems wrong as well; should be whomever owns bugreports.\n\n@corinac@google.com",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c159054d_fd7cfea9",
+        "filename": "cmds/dumpsys/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "@corinac@google.com",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 47
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8faee0a0_ad257280",
+        "filename": "cmds/installd/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "Seems like this and `cmds/installd` should agree (either both are under resources or both are under packages).",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0fcf878_730c2c5d",
         "filename": "libs/input/Android.bp",
         "patchSetId": 1
@@ -20,6 +106,166 @@
         "endLine": 18,
         "endChar": 53
       },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89ffed56_8c256804",
+        "filename": "libs/ui/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This seems wrong, should be either window manager or CoGs.\n\n@jjaggi@google.com and @sumir@google.com Do you know who should own this?",
+      "range": {
+        "startLine": 18,
+        "startChar": 19,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c65f7c_82c59d01",
+        "filename": "opengl/tests/fillrate/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "@sumir@google.com Should this be GPU instead of CoGs? They seem to own all the other things in `opengl/tests`",
+      "range": {
+        "startLine": 2,
+        "startChar": 19,
+        "endLine": 2,
+        "endChar": 58
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc3c110b_c409c616",
+        "filename": "opengl/tests/finish/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "@sumir@google.com Another CoGs vs GPU",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ce2527_a08bb6ca",
+        "filename": "services/powermanager/benchmarks/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This should be `trendy_team_powermanager_framework`",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c1f0b0b_d2d96d4e",
+        "filename": "services/powermanager/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This should be `trendy_team_powermanager_framework`",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09aa79d4_71bdfc0e",
+        "filename": "services/sensorservice/aidl/fuzzer/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "This should probable be the sensor team. @bduddie@google.com to confirm.",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d028fd21_28bd9ad7",
+        "filename": "services/utils/tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "@corinac@google.com Seems like this should be owned by the bugreport team as well since it\u0027s just prioritydumper tests.",
+      "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5277fdee_0933e3bd",
+        "filename": "services/vr/performanced/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006497
+      },
+      "writtenOn": "2024-03-26T00:48:51Z",
+      "side": 1,
+      "message": "Should probably be the VR team, not DevTools",
       "revId": "0c88c65696af9b62021c1e336209d7508539b4a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
