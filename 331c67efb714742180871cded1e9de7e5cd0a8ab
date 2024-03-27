@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0945a9_4e0d96bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-27T23:37:46Z",
+      "side": 1,
+      "message": "With this, we can enable Android-to-Trusty binder tests in CI (C++ only for now). PTAL.",
+      "revId": "331c67efb714742180871cded1e9de7e5cd0a8ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
