@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92690997_801546df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-27T18:06:22Z",
+      "side": 1,
+      "message": "I split up https://r.android.com/c/2695039/63 into smaller CLs, this is the next patch in the stack. Ready for review.",
+      "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
