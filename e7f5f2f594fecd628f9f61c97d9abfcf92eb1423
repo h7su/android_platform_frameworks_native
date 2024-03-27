@@ -51,6 +51,24 @@
       "parentUuid": "b82a70f4_466c8bf0",
       "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8b2e4a3_25df9659",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-27T20:54:26Z",
+      "side": 1,
+      "message": "okay, do we have tests setup with this stack of changes, so we can confirm the Trusty and Android code is working together?",
+      "parentUuid": "b1fb824d_154621eb",
+      "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
