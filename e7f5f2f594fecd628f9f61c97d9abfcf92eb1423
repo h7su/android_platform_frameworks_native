@@ -33,6 +33,24 @@
       "message": "this file should be required to compile or to match the system wire protocol format. If it was missing before, did things not build? or was the wire protocol different?",
       "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1fb824d_154621eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-27T18:19:45Z",
+      "side": 1,
+      "message": "I think it\u0027s because we\u0027re not building anything against libbinder_ndk on Trusty (I couldn\u0027t find any tests for that). The Rust wrappers are the first thing that uses that code.\n\nI tried finding some tests a while ago, the only ones I could find were in the CTS.",
+      "parentUuid": "b82a70f4_466c8bf0",
+      "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
