@@ -16,6 +16,23 @@
       "message": "I split up https://r.android.com/c/2695039/63 into smaller CLs, this is the next patch in the stack. Ready for review.",
       "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82a70f4_466c8bf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-27T18:09:30Z",
+      "side": 1,
+      "message": "this file should be required to compile or to match the system wire protocol format. If it was missing before, did things not build? or was the wire protocol different?",
+      "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
