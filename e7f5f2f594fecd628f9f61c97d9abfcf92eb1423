@@ -69,6 +69,24 @@
       "parentUuid": "b1fb824d_154621eb",
       "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "955755de_6a73579d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-27T21:05:05Z",
+      "side": 1,
+      "message": "The tests are part of the stack (or at least were at some point, I need to rebase them):\n* https://r.android.com/2584776 adds a basic Rust client on Trusty. It\u0027s very minimal, but it might be useful as a smoke test. There is an open comment there whether we should also run it on Android?\n* https://r.android.com/2700753 adds a corresponding Rust test service (parts of BinderRpcTest in Rust). Same question applies: would this be useful on Android?\n* https://r.android.com/2876734 adds more of binderRpcTestService.\n\nFor starters, these would test Trusty-Trusty and Android-Android. We could also run them Trusty-Android, but libbinder_ndk_vendor might be a blocker there (if we have to run the Rust test client in vendor).",
+      "parentUuid": "c8b2e4a3_25df9659",
+      "revId": "e7f5f2f594fecd628f9f61c97d9abfcf92eb1423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
