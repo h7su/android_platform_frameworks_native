@@ -39,6 +39,30 @@
       },
       "revId": "331c67efb714742180871cded1e9de7e5cd0a8ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d018d25c_2b0239ce",
+        "filename": "libs/binder/tests/binderRpcTestCommon.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-27T23:50:09Z",
+      "side": 1,
+      "message": "It covers Trusty on itself, but not the `binderRpcToTrustyTest` which runs on Android. The scenario here is Android client, Trusty service.",
+      "parentUuid": "d5485173_5c7d6650",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "331c67efb714742180871cded1e9de7e5cd0a8ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
