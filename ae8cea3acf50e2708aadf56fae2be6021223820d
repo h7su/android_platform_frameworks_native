@@ -196,6 +196,24 @@
       "parentUuid": "7bae3ccb_18580837",
       "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbcc3c5d_b3160f6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-03-27T20:05:54Z",
+      "side": 1,
+      "message": "\u003e LLNDK path (the second suggestion in my last comment) cannot be taken. Could you explain?\n\nBecause we will not create a stable RpcTransport API, and trusty comms are not stable yet.\n\n\u003e we still will NOT create a stable RpcTransport API\n\nI have answered this many times before, and I think it may be best to put it in the doc if there are further questions so it\u0027s consolidated.\n\nHowever, the reasons are:\n- this API has changed a lot in the past to support FDs and to optimize it (io_vec). So, we expect we\u0027ll need to change it to support more features, such as supporting sharing memory over vsock, and so freezing it would make these types of changes much more complicated.\n- we don\u0027t want a bunch of code setting up threadpools and sockets in different ways. We need a centralized place that will enable us to setup connections, setup security policies for transports, allow us to change the transports, manage or combine threadpools in the future. Also stable services need to be in VINTF anyway, and that needs to reflect the transport anyway, so we should only expose the high-level API (\"here\u0027s how to get a service from a VM\") and leave the details of how we communicate with that service abstracted away and flexible.\n- YAGNI!\n\n\u003e Can that APIs be in an LLNDK library?\n\nYes, FFA/VSOCK support would be in libbinder itself, underneath the LL-NDK library.",
+      "parentUuid": "0b01d6f9_9c238774",
+      "revId": "ae8cea3acf50e2708aadf56fae2be6021223820d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
