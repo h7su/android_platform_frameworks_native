@@ -16,6 +16,24 @@
       "message": "why aren\u0027t they supported?",
       "revId": "59309b5f9547cddabd70188d015946e8967b8071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c26a7f36_ce597295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-28T01:53:33Z",
+      "side": 1,
+      "message": "I think at some point in the future they could be supported, but right now I see a few immediate blockers:\n* The only file descriptors we can send to Trusty are dmabufs. `cmd` seems to send `stdin`\u0026co instead, which wouldn\u0027t work on Trusty.\n* No support for `AIBinder_getCallingUid`, so no way to authenticate the Android side.\n* This functionality seems to be disabled in `Binder.cpp` anyway, so I assumed we didn\u0027t want it? We could support it if it\u0027s useful.",
+      "parentUuid": "e97e1646_bbd0b082",
+      "revId": "59309b5f9547cddabd70188d015946e8967b8071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
