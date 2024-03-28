@@ -52,6 +52,23 @@
       "parentUuid": "c26a7f36_ce597295",
       "revId": "59309b5f9547cddabd70188d015946e8967b8071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a4c88d5_2c5e831b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-28T22:37:31Z",
+      "side": 1,
+      "message": "Ping to keep discussion going.",
+      "revId": "59309b5f9547cddabd70188d015946e8967b8071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
