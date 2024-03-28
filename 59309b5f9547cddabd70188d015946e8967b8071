@@ -34,6 +34,24 @@
       "parentUuid": "e97e1646_bbd0b082",
       "revId": "59309b5f9547cddabd70188d015946e8967b8071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd293b5a_225b817e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-03-28T20:18:23Z",
+      "side": 1,
+      "message": "This made me wonder: do you want RPC Binder to support shell commands?\n\nAnyway, could we disable them for now, and come back later and implement them on Trusty when needed?",
+      "parentUuid": "c26a7f36_ce597295",
+      "revId": "59309b5f9547cddabd70188d015946e8967b8071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
