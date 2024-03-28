@@ -46,6 +46,30 @@
       },
       "revId": "43654e701c8ab7ef0fa64d31375e053e3012fab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f07f1c1_19779ec9",
+        "filename": "services/inputflinger/dispatcher/InputDispatcher.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 4683,
+      "author": {
+        "id": 1149384
+      },
+      "writtenOn": "2024-03-28T15:57:49Z",
+      "side": 1,
+      "message": "I briefly looked into it a little while back. The problem is that graphics team already has defined a DisplayId type, so anything we define would clash with that name. From what I remember, that displayId had a different meaning from the one we use, so we would have to use a different name.",
+      "parentUuid": "786f5240_6713affa",
+      "range": {
+        "startLine": 4683,
+        "startChar": 18,
+        "endLine": 4683,
+        "endChar": 25
+      },
+      "revId": "43654e701c8ab7ef0fa64d31375e053e3012fab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
