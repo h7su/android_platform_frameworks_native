@@ -134,6 +134,12 @@ cc_defaults {
         "-Wzero-as-null-pointer-constant",
         "-Wreorder-init-list",
         "-Wunused-const-variable",
+    ],
+}
+
+cc_defaults {
+    name: "libbinder_disable_implicit_defaults",
+    cflags: [
         "-DANDROID_BASE_UNIQUE_FD_DISABLE_IMPLICIT_CONVERSION",
         "-DANDROID_UTILS_REF_BASE_DISABLE_IMPLICIT_CONSTRUCTION",
     ],
@@ -231,8 +237,11 @@ cc_library_headers {
     host_supported: true,
 
     export_include_dirs: [
+        "ndk/include_ndk",
+        "ndk/include_platform",
         "trusty/include",
         "trusty/include_mock",
+        "trusty/ndk/include",
     ],
 
     visibility: [
@@ -298,6 +307,12 @@ cc_library_shared {
         "trusty/RpcTransportTipcTrusty.cpp",
         "trusty/TrustyStatus.cpp",
         "trusty/socket.cpp",
+        // libbinder_ndk
+        "ndk/ibinder.cpp",
+        "ndk/libbinder.cpp",
+        "ndk/parcel.cpp",
+        "ndk/stability.cpp",
+        "ndk/status.cpp",
     ],
 }
 
@@ -351,6 +366,7 @@ cc_library {
     name: "libbinder",
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
         "libbinder_kernel_defaults",
     ],
@@ -410,6 +426,7 @@ cc_library_host_shared {
 
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
     ],
 
     shared_libs: [
@@ -448,6 +465,7 @@ cc_library_static {
     vendor_available: true,
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
     ],
     visibility: [
@@ -460,6 +478,7 @@ cc_library_static {
     vendor_available: true,
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
         "libbinder_kernel_defaults",
     ],
@@ -476,6 +495,7 @@ cc_library_static {
     vendor_available: true,
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
         "libbinder_kernel_defaults",
     ],
@@ -491,6 +511,7 @@ cc_library_static {
     name: "libbinder_rpc_single_threaded",
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
         "libbinder_kernel_defaults",
     ],
@@ -506,6 +527,7 @@ cc_library_static {
     name: "libbinder_rpc_single_threaded_no_kernel",
     defaults: [
         "libbinder_common_defaults",
+        "libbinder_disable_implicit_defaults",
         "libbinder_android_defaults",
     ],
     cflags: [
