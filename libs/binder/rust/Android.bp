@@ -117,7 +117,8 @@ rust_library {
     shared_libs: [
         "libbinder_ndk_on_trusty_mock",
     ],
-    vendor: true,
+    host_supported: true,
+    vendor_available: true,
     // Lints are checked separately for libbinder_ndk_sys.
     // The Trusty mock copy pulls in extra headers that
     // don't pass the lints for the bindgen output.
