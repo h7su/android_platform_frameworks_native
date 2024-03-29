@@ -1,0 +1,83 @@
+/*
+ * Copyright (C) 2024 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_native_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_native_license"],
+}
+
+rust_library {
+    name: "libbinder_rpc_server_bindgen_sys_on_trusty_mock",
+    crate_name: "binder_rpc_server_bindgen",
+    srcs: [
+        "lib.rs",
+        ":libbinder_rpc_server_bindgen_on_trusty_mock",
+    ],
+    visibility: ["//frameworks/native/libs/binder/rust/rpcbinder:__subpackages__"],
+    defaults: [
+        "trusty_mock_defaults",
+    ],
+    rustlibs: [
+        "libbinder_ndk_sys_on_trusty_mock",
+    ],
+    shared_libs: [
+        "libbinder_on_trusty_mock",
+        "libbinder_rpc_server_cpp_on_trusty_mock",
+        "libutils",
+    ],
+    lints: "none",
+    clippy_lints: "none",
+}
+
+rust_bindgen {
+    name: "libbinder_rpc_server_bindgen_on_trusty_mock",
+    wrapper_src: "BinderBindings.hpp",
+    crate_name: "binder_rpc_server_bindgen",
+    visibility: [":__subpackages__"],
+    source_stem: "bindings",
+    defaults: [
+        "trusty_mock_defaults",
+    ],
+    bindgen_flags: [
+        "--allowlist-type",
+        "ARpcServerTrusty",
+        "--allowlist-function",
+        "ARpcServerTrusty_.*",
+    ],
+    header_libs: [
+        "trusty_mock_headers",
+    ],
+    shared_libs: [
+        "libbinder_on_trusty_mock",
+        "libutils",
+    ],
+}
+
+cc_library {
+    name: "libbinder_rpc_server_cpp_on_trusty_mock",
+    srcs: ["cpp/ARpcServerTrusty.cpp"],
+    defaults: [
+        "trusty_mock_defaults",
+    ],
+    shared_libs: [
+        "libbinder_ndk_on_trusty_mock",
+        "libbinder_on_trusty_mock",
+    ],
+}

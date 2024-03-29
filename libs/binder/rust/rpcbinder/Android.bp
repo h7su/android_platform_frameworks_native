@@ -38,6 +38,33 @@ rust_library {
     min_sdk_version: "Tiramisu",
 }
 
+rust_library {
+    name: "librpcbinder_rs_on_trusty_mock",
+    crate_name: "rpcbinder",
+    srcs: ["src/lib.rs"],
+    cfgs: [
+        "android_vendor",
+        "trusty",
+    ],
+    shared_libs: [
+        "libutils",
+    ],
+    rustlibs: [
+        "libbinder_rpc_server_bindgen_sys_on_trusty_mock",
+        "libbinder_ndk_sys_on_trusty_mock",
+        "libbinder_rpc_unstable_bindgen_sys_on_trusty_mock",
+        "libbinder_rs_on_trusty_mock",
+        "libcfg_if",
+        "libdowncast_rs",
+        "libforeign_types",
+        "liblibc",
+        "liblog_rust",
+        "libtipc_rs_on_trusty_mock",
+    ],
+    lints: "none",
+    clippy_lints: "none",
+}
+
 // Build a separate rust_library rather than depending directly on libbinder_rpc_unstable_bindgen,
 // to work around the fact that rust_bindgen targets only produce rlibs and not dylibs, which would
 // result in duplicate conflicting versions of libbinder_ndk_sys. This will hopefully be fixed in
@@ -64,6 +91,28 @@ rust_library {
         "com.android.virt",
     ],
     min_sdk_version: "Tiramisu",
+    lints: "none",
+    clippy_lints: "none",
+}
+
+rust_library {
+    name: "libbinder_rpc_unstable_bindgen_sys_on_trusty_mock",
+    crate_name: "binder_rpc_unstable_bindgen",
+    srcs: [
+        ":libbinder_rpc_unstable_bindgen_on_trusty_mock",
+    ],
+    visibility: [":__subpackages__"],
+    defaults: [
+        "trusty_mock_defaults",
+    ],
+    rustlibs: [
+        "libbinder_ndk_sys_on_trusty_mock",
+    ],
+    shared_libs: [
+        "libbinder_on_trusty_mock",
+        "libbinder_rpc_unstable",
+        "libutils",
+    ],
     lints: "none",
     clippy_lints: "none",
 }
@@ -97,6 +146,33 @@ rust_bindgen {
         "com.android.virt",
     ],
     min_sdk_version: "Tiramisu",
+}
+
+rust_bindgen {
+    name: "libbinder_rpc_unstable_bindgen_on_trusty_mock",
+    wrapper_src: "BinderBindings.hpp",
+    crate_name: "binder_rpc_unstable_bindgen",
+    visibility: [":__subpackages__"],
+    source_stem: "bindings",
+    defaults: [
+        "trusty_mock_defaults",
+    ],
+    bindgen_flags: [
+        "--blocklist-type",
+        "AIBinder",
+        "--raw-line",
+        "use binder_ndk_sys::AIBinder;",
+        "--rustified-enum",
+        "ARpcSession_FileDescriptorTransportMode",
+    ],
+    rustlibs: [
+        "libbinder_ndk_sys_on_trusty_mock",
+    ],
+    shared_libs: [
+        "libbinder_on_trusty_mock",
+        "libbinder_rpc_unstable",
+        "libutils",
+    ],
 }
 
 rust_test {

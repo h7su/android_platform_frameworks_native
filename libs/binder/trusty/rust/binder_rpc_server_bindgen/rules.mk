@@ -23,12 +23,12 @@ MODULE_SRCS := $(LOCAL_DIR)/lib.rs
 MODULE_CRATE_NAME := binder_rpc_server_bindgen
 
 MODULE_LIBRARY_DEPS += \
+	$(LIBBINDER_DIR)/trusty \
 	$(LOCAL_DIR)/cpp \
 	trusty/user/base/lib/libstdc++-trusty \
 	trusty/user/base/lib/trusty-sys \
 
-MODULE_BINDGEN_SRC_HEADER := \
-	$(LIBBINDER_DIR)/trusty/include/binder/ARpcServerTrusty.h
+MODULE_BINDGEN_SRC_HEADER := $(LOCAL_DIR)/BinderBindings.hpp
 
 MODULE_BINDGEN_FLAGS += \
 	--allowlist-type="ARpcServerTrusty" \
