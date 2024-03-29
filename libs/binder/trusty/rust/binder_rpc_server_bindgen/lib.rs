@@ -16,6 +16,12 @@
 
 //! Generated Rust bindings to binder_rpc_server
 
+#[cfg(not(target_os = "trusty"))]
+mod sys {
+    include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+}
+
+#[cfg(target_os = "trusty")]
 #[allow(bad_style)]
 mod sys {
     include!(env!("BINDGEN_INC_FILE"));
