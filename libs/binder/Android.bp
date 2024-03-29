@@ -229,7 +229,6 @@ cc_defaults {
 cc_library_headers {
     name: "trusty_mock_headers",
     host_supported: true,
-    vendor_available: true,
 
     export_include_dirs: [
         "trusty/include",
@@ -244,7 +243,6 @@ cc_library_headers {
 cc_defaults {
     name: "trusty_mock_defaults",
     host_supported: true,
-    vendor_available: true,
 
     header_libs: [
         "libbinder_headers_base",
@@ -651,6 +649,7 @@ aidl_interface {
 // TODO(b/184872979): remove once the Rust API is created.
 cc_library {
     name: "libbinder_rpc_unstable",
+    host_supported: true,
     srcs: ["libbinder_rpc_unstable.cpp"],
     shared_libs: [
         "libbase",

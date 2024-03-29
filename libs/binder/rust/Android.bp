@@ -39,6 +39,7 @@ rust_library {
     crate_name: "binder",
     srcs: ["src/lib.rs"],
     cfgs: [
+        "android_vendor",
         "trusty",
     ],
     rustlibs: [
@@ -46,7 +47,6 @@ rust_library {
         "libdowncast_rs",
         "liblibc",
     ],
-    vendor: true,
 }
 
 rust_library {
@@ -112,12 +112,13 @@ rust_library {
         ":libbinder_ndk_bindgen_on_trusty_mock",
     ],
     cfgs: [
+        "android_vendor",
         "trusty",
     ],
     shared_libs: [
         "libbinder_ndk_on_trusty_mock",
     ],
-    vendor: true,
+    host_supported: true,
     // Lints are checked separately for libbinder_ndk_sys.
     // The Trusty mock copy pulls in extra headers that
     // don't pass the lints for the bindgen output.
