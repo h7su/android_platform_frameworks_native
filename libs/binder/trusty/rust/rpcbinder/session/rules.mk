@@ -32,4 +32,8 @@ MODULE_LIBRARY_DEPS += \
 	trusty/user/base/lib/tipc/rust \
 	trusty/user/base/lib/trusty-sys \
 
+MODULE_RUSTFLAGS += \
+	--cfg 'android_vendor' \
+	--cfg 'trusty' \
+
 include make/library.mk

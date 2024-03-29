@@ -27,5 +27,4 @@ cc_library_headers {
     name: "libbinder_trusty_ndk_headers",
     export_include_dirs: ["include"],
     host_supported: true,
-    vendor_available: true,
 }
