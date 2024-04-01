@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5019eec9_82305554",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-04-01T08:26:04Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need this, because the libs won\u0027t be included in the APEX.",
+      "revId": "fe7aedd2dd165af4f889f351ced58eaaf3b21f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
