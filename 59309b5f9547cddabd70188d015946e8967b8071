@@ -69,6 +69,24 @@
       "message": "Ping to keep discussion going.",
       "revId": "59309b5f9547cddabd70188d015946e8967b8071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b209b398_2e1ff371",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-01T21:27:37Z",
+      "side": 1,
+      "message": "Is supporting them breaking something? or it won\u0027t compile? I don\u0027t see the reason to add the extra compilation complexity here.",
+      "parentUuid": "dd293b5a_225b817e",
+      "revId": "59309b5f9547cddabd70188d015946e8967b8071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
