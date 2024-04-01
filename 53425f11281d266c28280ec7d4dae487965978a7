@@ -16,6 +16,24 @@
       "message": "One alternative could be to disable this check for `!kEnableKernelIpc`, but then we risk someone using this feature without any checks. @smoreland@google.com wdyt?",
       "revId": "53425f11281d266c28280ec7d4dae487965978a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc15b11e_71fe5500",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-01T21:41:11Z",
+      "side": 1,
+      "message": "it\u0027s unclear to me if it doesn\u0027t compile or it crashes or otherwise what problem tihs is causing",
+      "parentUuid": "9c95ef22_ee071057",
+      "revId": "53425f11281d266c28280ec7d4dae487965978a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
