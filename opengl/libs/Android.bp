@@ -263,6 +263,10 @@ cc_library_shared {
     // Bug: http://b/133874658  Disable native_coverage as we investigate a
     // crash in surfaceflinger on coverage-enabled cuttlefish builds.
     native_coverage: false,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.virt",
+    ],
 }
 
 //##############################################################################
