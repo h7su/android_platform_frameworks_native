@@ -52,6 +52,24 @@
       "parentUuid": "cc15b11e_71fe5500",
       "revId": "53425f11281d266c28280ec7d4dae487965978a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e497ae80_abe0af8d",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-01T23:15:48Z",
+      "side": 1,
+      "message": "I disabled just the check, but that might be riskier than removing shell commands altogether.",
+      "parentUuid": "fb5d4942_2cf7eaf9",
+      "revId": "53425f11281d266c28280ec7d4dae487965978a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
