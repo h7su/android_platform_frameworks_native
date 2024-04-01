@@ -87,6 +87,24 @@
       "parentUuid": "dd293b5a_225b817e",
       "revId": "59309b5f9547cddabd70188d015946e8967b8071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ff1e72_c4be8767",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-01T21:32:47Z",
+      "side": 1,
+      "message": "It won\u0027t compile, at least because of `AIBinder_getCallingUid`. I could just disable that check, but is it worth it?",
+      "parentUuid": "b209b398_2e1ff371",
+      "revId": "59309b5f9547cddabd70188d015946e8967b8071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
