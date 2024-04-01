@@ -34,6 +34,24 @@
       "parentUuid": "9c95ef22_ee071057",
       "revId": "53425f11281d266c28280ec7d4dae487965978a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb5d4942_2cf7eaf9",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-01T21:44:29Z",
+      "side": 1,
+      "message": "`getCallingUid` is not available in builds that don\u0027t include `IPCThreadState.cpp`, like the Trusty and the mock copies of libbinder. That includes `libbinder_sdk`.",
+      "parentUuid": "cc15b11e_71fe5500",
+      "revId": "53425f11281d266c28280ec7d4dae487965978a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
