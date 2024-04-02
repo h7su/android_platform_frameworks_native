@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad79a40_d72fe68a",
+        "filename": "libs/binderdebug/BinderDebug.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-02T19:56:40Z",
+      "side": 1,
+      "message": "there are a few optimizations we may want to do here if there are many logs - such as streaming this directly or creating a list and joining them.",
+      "range": {
+        "startLine": 220,
+        "startChar": 16,
+        "endLine": 220,
+        "endChar": 34
+      },
+      "revId": "01a2daf1ef992e123b20a0a20469ff07c1ef350c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
