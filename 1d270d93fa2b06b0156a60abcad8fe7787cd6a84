@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9ab98a53_5bb37312",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-04-02T22:26:42Z",
+      "side": 1,
+      "message": "Thanks, I had hoped you could land all the patches _at once_ if doing one large push to make all projects in the AOSP tree compile.\n\nGlad to see you\u0027re picking this up. It feels really silly to leave this minor but still more-correct user-facing change abandoned, but I don\u0027t think many folks are randomly ready to dedicate hundreds of gigabytes and watt-hours to AOSP if they\u0027re not on that payroll 😊",
+      "parentUuid": "aa122ccd_b9cb3578",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
