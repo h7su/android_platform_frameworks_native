@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "aa122ccd_b9cb3578",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-04-02T22:22:31Z",
+      "side": 1,
+      "message": "The group of patches needs to be broken up like I\u0027m doing (which is why I just removed the topic again, which apparently I can do even if I can\u0027t _add_ one). It\u0027ll take ages to get it submitted if all these patches need to merge together. What\u0027s uploaded won\u0027t compile.\n\nFor now, I\u0027ve got it covered. It\u0027s still going to take a while because I have to deal with it between other work, but you said you don\u0027t have time to run the build yourself, and it\u0027ll never merge if you can\u0027t do that.",
+      "parentUuid": "1054384d_1e744953",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
