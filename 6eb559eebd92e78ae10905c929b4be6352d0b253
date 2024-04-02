@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac55e985_c2685b7a",
+        "filename": "libs/binder/trusty/rust/tipc-mock/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-04-02T20:34:39Z",
+      "side": 1,
+      "message": "Why is this unsafe? It\u0027s an inherent method, not a trait method, so what requirements does the caller need to uphold to call this method?",
+      "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
