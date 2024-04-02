@@ -16,6 +16,24 @@
       "message": "Why is this unsafe? It\u0027s an inherent method, not a trait method, so what requirements does the caller need to uphold to call this method?",
       "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d0779e_4f3297df",
+        "filename": "libs/binder/trusty/rust/tipc-mock/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-02T20:50:13Z",
+      "side": 1,
+      "message": "I copied the signature from the Trusty implementation at https://cs.android.com/android/platform/superproject/main/+/main:trusty/user/base/lib/tipc/rust/src/service.rs;l\u003d265.\n\nIt doesn\u0027t need to be unsafe in the mock code, but should we also change the original?",
+      "parentUuid": "ac55e985_c2685b7a",
+      "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
