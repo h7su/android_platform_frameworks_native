@@ -74,6 +74,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "01461371_f670dae8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-04-02T22:43:24Z",
+      "side": 1,
+      "message": "Unsplit commits are a no-go in my book, even if it makes it harder to apply/squash/fixup e.g. review comments when multiple changes touch the same line. Thanks for sharing your appreciation 😊\n\nThe nullability changes made sense together for functions that took a `\u0026` before, which cannot be `NULL` (and the library subsequently SEGFAULTs). A bummer that the whole file needs to be documented in one go (and probably results in a whole bunch of checked vs unchecked pointer errors downstream?).\n\n---\n\nI meant it would have been silly if it got abandoned (after sitting stale for a few months), so I\u0027m glad you\u0027re averting that, or at least slowly in between more pressing matters. It will make the consumers of the C bindings (in higher-level languages) much happier.\n\nPerhaps this allows me more time to dive in the NDK documentation, for which I\u0027ve similarly reported various issues that never get picked up. Should be easier to fix without making dependent changes across the AOSP tree.",
+      "parentUuid": "ff7a2974_8c1dacf5",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
