@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1054384d_1e744953",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-04-02T22:18:21Z",
+      "side": 1,
+      "message": "@danalbert@google.com seems like I can set the topic (after restoring): does this need to be resubmitted without the dependent nullability changes?",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
