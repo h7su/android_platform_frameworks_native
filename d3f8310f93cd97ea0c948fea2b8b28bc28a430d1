@@ -16,6 +16,47 @@
       "message": "Hi, Google team, why don\u0027t we use the 2 * offset when creating the second surface? Because the first blur has used 1 * offset. Please help CR the change, thanks!",
       "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03ec1aaf_b227b1d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-04-02T20:11:16Z",
+      "side": 1,
+      "message": "Added a new comment inline with the code, which I think makes this more clear. Let\u0027s follow along there.",
+      "parentUuid": "a90bfc56_851a9f01",
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f7c83e_96187e05",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-04-02T20:11:16Z",
+      "side": 1,
+      "message": "From [this comment](https://android-review.git.corp.google.com/c/platform/frameworks/native/+/3019150/comments/a90bfc56_851a9f01) - we already used `radiusByPasses * kInputScale` for `in_blurOffset` on line 109, so why do we start with `i \u003d\u003d 1`, effectively using the same value again?\n\nUnless I\u0027m missing something, we\u0027ve roughly used this behavior since this code was introduced in I459780d9fd408865d1d9713f37bf308f07c4fdfc, though the code has changed quite a bit since then. It *may* be that this was the behavior in `GLESRenderEngine`, though I haven\u0027t checked. ( @alecmouri@google.com, perhaps you remember?)\n\nI\u0027m not familiar with this algorithm, so I don\u0027t know whether starting with `i` of `2` is more correct (though it seems believable), but I think it would at least change the way the blur looks. @linkai@xiaomi.com, do you notice a difference in appearance or performance?\n\n@johnstiles@google.com, I think you advised me on the \"ping pong\" approach here, introduced in I7ad2438a0e5d9e437b0256eb302fe2fd44e9c093. Does this CL look right?",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
