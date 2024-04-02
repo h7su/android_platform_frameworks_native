@@ -92,6 +92,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9ad99c4a_fe1591d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-04-02T22:47:13Z",
+      "side": 1,
+      "message": "\u003e The nullability changes made sense together for functions that took a \u0026 before, which cannot be NULL (and the library subsequently SEGFAULTs). A bummer that the whole file needs to be documented in one go (and probably results in a whole bunch of checked vs unchecked pointer errors downstream?).\n\nYeah, that\u0027s the other reason I\u0027m rearranging here. The nullability annotations are by far the hardest to merge, so they\u0027re going to happen last rather than first (well, probably second to last, since I\u0027d really like to have that done before I land the reference to pointer change).\n\n\u003e I meant it would have been silly if it got abandoned (after sitting stale for a few months), so I\u0027m glad you\u0027re averting that\n\nAh, gotcha. Agreed 😊\n\n\u003e Perhaps this allows me more time to dive in the NDK documentation, for which I\u0027ve similarly reported various issues that never get picked up. Should be easier to fix without making dependent changes across the AOSP tree.\n\nYeah, plain old doc changes should be fairly easy to land, since they won\u0027t have cross-repo dependencies.",
+      "parentUuid": "01461371_f670dae8",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
