@@ -34,6 +34,24 @@
       "parentUuid": "f7d315f5_6d5ba85e",
       "revId": "896a661ddd4a989eb3b877c00a7d3abfd13bcbd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926e30ee_27176b5a",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1496421
+      },
+      "writtenOn": "2024-04-02T23:04:43Z",
+      "side": 1,
+      "message": "I\u0027d argue that `SurfaceTransactionVisibility` sounds as if it is about the `Visibility` of a transaction (which has no meaning) rather than an argument to the `SurfaceTransaction` API to change the `Visibility` of a `SurfaceControl`, just like the internally-documented doc suggests to separate them.\n\n(I guess namespaces won\u0027t work for C files though)\n\nOn the note of this API, anyone who could help me out with https://issuetracker.google.com/u/1/issues/320706287?",
+      "parentUuid": "1d75b97a_c7e53fca",
+      "revId": "896a661ddd4a989eb3b877c00a7d3abfd13bcbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
