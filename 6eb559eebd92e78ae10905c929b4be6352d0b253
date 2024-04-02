@@ -34,6 +34,24 @@
       "parentUuid": "ac55e985_c2685b7a",
       "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586c6a13_e4ce76b3",
+        "filename": "libs/binder/trusty/rust/tipc-mock/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-04-02T20:52:21Z",
+      "side": 1,
+      "message": "The original should also be changed, but need-not be in this PR. `as_ptr` methods are generally safe, it\u0027s only what you *do* with that pointer which might not be.\n\nIf you want to keep that other method `unsafe` for some reason, you need to add a doc comment to it explaining the property that the caller must uphold to call that function.",
+      "parentUuid": "a8d0779e_4f3297df",
+      "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
