@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c261260_1ede31ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-04-02T12:15:04Z",
+      "side": 1,
+      "message": "Thanks, I\u0027m not sure how this didn\u0027t get caught earlier! But rather than re-exporting the type here, how about fixing the path in the AIDL file?",
+      "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
