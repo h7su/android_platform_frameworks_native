@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa77bd21_7f11f667",
+        "filename": "libs/nativewindow/include/android/native_window.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-04-02T20:32:59Z",
+      "side": 1,
+      "message": "Reformatting was done by an auto-upload hook. Presumably `git clang-format` has been ignoring it until someone touched this enum? Either that or people skip the pre-upload hooks in this repo (if that\u0027s the case lmk and I\u0027ll delete the hook)",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
