@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ff7a2974_8c1dacf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-04-02T22:29:35Z",
+      "side": 1,
+      "message": "No, the opposite is generally true. Smaller changes are easier to land. You split up the commits which helps a lot (seriously, thank you, too few people do that, and it\u0027s making it much easier for me to pick it up and continue), but the presubmit bot picks them all up in one build, and getting everything correct across that many commits is generally difficult.\n\n\u003e It feels really silly to leave this minor but still more-correct user-facing change abandoned\n\nSee the commit I linked. The work isn\u0027t abandoned, it just moved to another change so that I can deal with the admin crap.",
+      "parentUuid": "9ab98a53_5bb37312",
+      "revId": "1d270d93fa2b06b0156a60abcad8fe7787cd6a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fa77bd21_7f11f667",
         "filename": "libs/nativewindow/include/android/native_window.h",
         "patchSetId": 2
