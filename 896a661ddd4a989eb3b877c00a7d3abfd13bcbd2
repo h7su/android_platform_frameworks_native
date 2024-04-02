@@ -16,6 +16,24 @@
       "message": "Like some enums in `ANativeWindow`, unsure if it makes sense to insert an `_` to separate the type from the enum-name? Like `ASurfaceTransaction_Visibility`.\n\nAre there any high-level guidelines that we can also retroactively apply?",
       "revId": "896a661ddd4a989eb3b877c00a7d3abfd13bcbd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d75b97a_c7e53fca",
+        "filename": "include/android/surface_control.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-04-02T22:51:37Z",
+      "side": 1,
+      "message": "The rule is a little loose (the doc is hosted internally, so copying here):\n\n\u003e “Nested” classes should also follow a `AClassName_SubType` naming convention\n\nThis certainly could be `android::SurfaceTransaction::Visibility`, but it also could be `android::SurfaceTransactionVisibility`, so /shrug.\n\nI looked around and saw a mix of both formats used in this project, so \"don\u0027t argue with existing style\" doesn\u0027t work. @jreck@google.com is more familiar with this project than I am. Maybe he has a preference.",
+      "parentUuid": "f7d315f5_6d5ba85e",
+      "revId": "896a661ddd4a989eb3b877c00a7d3abfd13bcbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
