@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a90bfc56_851a9f01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-02T06:30:37Z",
+      "side": 1,
+      "message": "Hi, Google team, why don\u0027t we use the 2 * offset when creating the second surface? Because the first blur has used 1 * offset. Please help CR the change, thanks!",
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
