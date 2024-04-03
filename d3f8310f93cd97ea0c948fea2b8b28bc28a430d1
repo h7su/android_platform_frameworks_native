@@ -140,6 +140,30 @@
       },
       "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d365cd1c_d085abab",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-03T02:30:30Z",
+      "side": 1,
+      "message": "@scroggo@google.com, thank you for your reply.\nYes, after applying this patch, I found that the blurring effect is better than before. I\u0027m not sure whether this is a custom adjustment based on Kawase algorithm on the engineering side. I can\u0027t see either of the two patches in the comments here. Could you please help me check it? Thanks!",
+      "parentUuid": "f04dc225_bf6487d5",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
