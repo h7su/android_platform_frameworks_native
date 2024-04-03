@@ -52,6 +52,24 @@
       "parentUuid": "a8d0779e_4f3297df",
       "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c955541_63c0a613",
+        "filename": "libs/binder/trusty/rust/tipc-mock/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-03T01:34:19Z",
+      "side": 1,
+      "message": "Fixed the signature here, I\u0027ll make a separate one later for the Trusty code.",
+      "parentUuid": "586c6a13_e4ce76b3",
+      "revId": "6eb559eebd92e78ae10905c929b4be6352d0b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
