@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4567103b_f1fa8194",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-03T21:04:05Z",
+      "side": 1,
+      "message": "how is this tested?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "802235bb_0960c476",
+        "filename": "libs/binder/trusty/include/binder/ARpcServerTrusty.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-03T21:04:05Z",
+      "side": 1,
+      "message": "do we need the API to be split?",
+      "range": {
+        "startLine": 27,
+        "startChar": 35,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35cad45b_ff66a9d9",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/rules.mk",
+        "patchSetId": 16
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-03T21:04:05Z",
+      "side": 1,
+      "message": "empty file?",
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
