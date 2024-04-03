@@ -16,6 +16,24 @@
       "message": "Thanks, I\u0027m not sure how this didn\u0027t get caught earlier! But rather than re-exporting the type here, how about fixing the path in the AIDL file?",
       "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95789d5b_820119b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-04-03T00:04:16Z",
+      "side": 1,
+      "message": "I thought that too, but the name looked odd to me; `nativewindow::surface::Surface`",
+      "parentUuid": "7c261260_1ede31ce",
+      "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
