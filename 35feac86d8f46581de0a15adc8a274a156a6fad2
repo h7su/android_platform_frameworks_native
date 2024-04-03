@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aeb5cec_237c40bd",
+        "filename": "libs/binder/ndk/ibinder.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-03T21:05:53Z",
+      "side": 1,
+      "message": "can you use constexpr if here instead, so it will be checked?\n\nIf the permissions can\u0027t be checked, could you always return permission denied for now?",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 29
+      },
+      "revId": "35feac86d8f46581de0a15adc8a274a156a6fad2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
