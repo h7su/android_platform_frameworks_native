@@ -71,6 +71,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90854dd7_03523048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-04-03T16:39:40Z",
+      "side": 1,
+      "message": "@rgl@google.com, is this change okay with you? From a code perspective, it\u0027s fine, but it does slightly change the behavior. [This comment](https://android-review.git.corp.google.com/c/platform/frameworks/native/+/3019150/comment/23f7c83e_96187e05/) has more details.",
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f7c83e_96187e05",
@@ -204,6 +221,30 @@
       "side": 1,
       "message": "This change seems correct to me. Existing blurs will look different, though. Is this public API?",
       "parentUuid": "1ddd38a3_ef1632cc",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dded0c7_a6237b3d",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1012974
+      },
+      "writtenOn": "2024-04-03T16:39:40Z",
+      "side": 1,
+      "message": "\u003e I can\u0027t see either of the two patches in the comments here. Could you please help me check it?\n\n\u003e FYI--the git hashes you\u0027re sending do not work for me.\n\nSorry for the confusion - these are `Change-Id`s, not git hashes. Annoyingly, they don\u0027t show here because they were made in internal Android Gerrit. Internal users (e.g. John) can find them by putting them into ag/. Here they are from gitiles:\n- https://android.googlesource.com/platform/frameworks/native/+/f4cb4a001eb33c6ceedce46b52fb29453dda3a4b\n- https://android.googlesource.com/platform/frameworks/native/+/dfc8febc3ac84a59b456428e026516376915ed36\n\n\u003e I checked in codesearch and I don\u0027t think the CL I reviewed would have changed behavior. However, it\u0027s possible that this was always wrong.\n\nAgreed on both points.\n\n\u003e This change seems correct to me.\n\nThanks for the confirmation!\n\n\u003e Existing blurs will look different, though. Is this public API?\n\nNo, not public API. This is only used by `RenderEngine`, not apps.\n\nI\u0027ve tested before and after the change and uploaded videos. Not sure if they\u0027ll be viewable externally, but they are:\n- [blur_old.mp4](http://screencast/cast/NDcwNzI4NjIyMzE1OTI5Nnw3MzQwMDMzYS1mMA)\n- [blur_new.mp4](http://screencast/cast/NjI3NjgwNjcyNTMzNzA4OHxjNTE3YWM3MS0yNg)\n\nI don\u0027t notice a significant difference. I was tempted to say the \"new\" one (i.e. with this change) looks \"blurrier\" for some frames, which is I think what you\u0027d expect. But it\u0027s hard to line up the two videos perfectly; we use a larger blur anyway the further you pull down the shade.\n\nI think we should get approval from someone on SysUI, since we\u0027re changing behavior, but this looks like a fine change to me.",
+      "parentUuid": "6dacf668_55caabcc",
       "range": {
         "startLine": 133,
         "startChar": 59,
