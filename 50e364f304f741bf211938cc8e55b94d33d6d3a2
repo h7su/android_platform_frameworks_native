@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2750755c_353ce9a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1045544
+      },
+      "writtenOn": "2024-04-04T14:12:47Z",
+      "side": 1,
+      "message": "Reviving this CL from a very old internal CL chain (Ag/16121841) where I\u0027d been working on a better implementation of the kawase blur for large radius. Not sure if using a sysprop here is considered OK form?\n\nContext: This helps testing GaussianBlur vs KawaseBlur for CLs like aosp/3019150 which claim to improve the blur algorithm and gives us a baseline of what it\u0027s supposed to look like.",
+      "revId": "50e364f304f741bf211938cc8e55b94d33d6d3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
