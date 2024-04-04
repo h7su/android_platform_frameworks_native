@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39d2cdc_82e2c1dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1045544
+      },
+      "writtenOn": "2024-04-04T14:10:20Z",
+      "side": 1,
+      "message": "Revived aosp/3027683 to help check if this gets closer than the current behaviour.",
+      "parentUuid": "90854dd7_03523048",
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f7c83e_96187e05",
@@ -293,6 +311,30 @@
       "side": 1,
       "message": "\u003e It may be that this was the behavior in GLESRenderEngine, though I haven\u0027t checked. \n\nThe patch that added this to GLESREnderEngine (patch I462de2642c0400dd31d1808fdfcf522c319fa839) did so as part of a broader performance optimization. This was probably just missed.\n\nI do want to clarify that this _is_ public api: https://developer.android.com/reference/android/view/WindowManager.LayoutParams#setBlurBehindRadius(int); however, as long as we\u0027re still respecting the same blur radius (although at first glance, this does _increase_ the radius used) it\u0027ll probably be okay from an app-compat standpoint, since we\u0027re allowed to change implementation details to fix bugs. Of course, we can still check with sysui.",
       "parentUuid": "f79c503b_7db24d71",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fce1bbc_07aa028f",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1045544
+      },
+      "writtenOn": "2024-04-04T14:10:20Z",
+      "side": 1,
+      "message": "It\u0027s not only public API with an abstract \"radius\", we ought to make sure that the radius parameter works roughly the same as View-level `RenderEffect.createBlurEffect` even if they\u0027re using different algorithms at the moment.\n\nWhen we\u0027re talking about \"better\" / \"more blurry\", have you checked if this is making the blur effect closer to GaussianBlur or less like it?",
+      "parentUuid": "19f6d8ee_b9f52176",
       "range": {
         "startLine": 133,
         "startChar": 59,
