@@ -1192,6 +1192,38 @@ VkResult EnumerateDeviceExtensionProperties(
                 VK_GOOGLE_DISPLAY_TIMING_SPEC_VERSION});
     }
 
+    ATRACE_BEGIN("driver.EnumerateDeviceExtensionProperties");
+    uint32_t driver_ext_count = 0;
+    VkResult result = data.driver.EnumerateDeviceExtensionProperties(
+        physicalDevice, pLayerName, &driver_ext_count, nullptr);
+    if (result != VK_SUCCESS && result != VK_INCOMPLETE) {
+        return result;
+    }
+
+    std::vector<VkExtensionProperties> driver_ext_props(driver_ext_count);
+    result = data.driver.EnumerateDeviceExtensionProperties(
+        physicalDevice, pLayerName, &driver_ext_count, driver_ext_props.data());
+    if (result != VK_SUCCESS && result != VK_INCOMPLETE) {
+        return result;
+    }
+
+    driver_ext_props.resize(driver_ext_count);
+    ATRACE_END();
+
+    bool has_image_compression_control_ext = false;
+    bool has_image_compression_control_swapchain_ext = false;
+    for (const VkExtensionProperties& ext : driver_ext_props) {
+        if (strcmp(ext.extensionName,
+                   VK_EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME) == 0) {
+            has_image_compression_control_ext = true;
+        } else if (
+            strcmp(ext.extensionName,
+                   VK_EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_EXTENSION_NAME) ==
+            0) {
+            has_image_compression_control_swapchain_ext = true;
+        }
+    }
+
     // Conditionally add VK_EXT_IMAGE_COMPRESSION_CONTROL* if feature and ANB
     // support is provided by the driver
     VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT
@@ -1200,15 +1232,23 @@ VkResult EnumerateDeviceExtensionProperties(
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT;
     swapchainCompFeats.pNext = nullptr;
     swapchainCompFeats.imageCompressionControlSwapchain = false;
+
     VkPhysicalDeviceImageCompressionControlFeaturesEXT imageCompFeats = {};
     imageCompFeats.sType =
         VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
-    imageCompFeats.pNext = &swapchainCompFeats;
+    imageCompFeats.pNext = nullptr;
     imageCompFeats.imageCompressionControl = false;
 
     VkPhysicalDeviceFeatures2 feats2 = {};
     feats2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
-    feats2.pNext = &imageCompFeats;
+    feats2.pNext = nullptr;
+
+    if (has_image_compression_control_ext) {
+        feats2.pNext = &imageCompFeats;
+    }
+    if (has_image_compression_control_swapchain_ext) {
+        imageCompFeats.pNext = &swapchainCompFeats;
+    }
 
     const auto& driver = GetData(physicalDevice).driver;
     if (driver.GetPhysicalDeviceFeatures2 ||
@@ -1217,8 +1257,7 @@ VkResult EnumerateDeviceExtensionProperties(
     }
 
     bool anb9 = false;
-    VkResult result =
-        GetAndroidNativeBufferSpecVersion9Support(physicalDevice, anb9);
+    result = GetAndroidNativeBufferSpecVersion9Support(physicalDevice, anb9);
 
     if (result != VK_SUCCESS && result != VK_INCOMPLETE) {
         return result;
@@ -1255,6 +1294,13 @@ VkResult EnumerateDeviceExtensionProperties(
 
         pProperties += count;
         *pPropertyCount -= count;
+    }
+
+    // enumerate driver extensions second
+    if (pProperties) {
+        for (uint32_t i = 0; i < *pPropertyCount; i++) {
+            pProperties[i] = driver_ext_props[i];
+        }
     }
 
     ATRACE_BEGIN("driver.EnumerateDeviceExtensionProperties");
