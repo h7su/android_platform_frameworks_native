@@ -54,6 +54,11 @@
  */
 #define PROPERTY_SKIA_ATRACE_ENABLED "debug.renderengine.skia_atrace_enabled"
 
+/**
+ * Switches the cross-window blur algorithm used in Skia.
+ */
+#define PROPERTY_SKIA_BLUR_ALGORITHM "debug.renderengine.skia_blur_algorithm"
+
 struct ANativeWindowBuffer;
 
 namespace android {

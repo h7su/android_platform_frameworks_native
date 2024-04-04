@@ -273,9 +273,16 @@ SkiaRenderEngine::SkiaRenderEngine(RenderEngineType type, PixelFormat pixelForma
                                    bool supportsBackgroundBlur)
       : RenderEngine(type), mDefaultPixelFormat(pixelFormat) {
     if (supportsBackgroundBlur) {
-        ALOGD("Background Blurs Enabled");
-        mBlurFilter = new KawaseBlurFilter();
+        auto const algorithm = base::GetProperty(PROPERTY_SKIA_BLUR_ALGORITHM, "");
+        if (algorithm == "gaussian") {
+            ALOGD("Background Blurs Enabled (Skia)");
+            mBlurFilter = new GaussianBlurFilter();
+        } else {
+            ALOGD("Background Blurs Enabled (Kawase)");
+            mBlurFilter = new KawaseBlurFilter();
+        }
     }
+
     mCapture = std::make_unique<SkiaCapture>();
 }
 
