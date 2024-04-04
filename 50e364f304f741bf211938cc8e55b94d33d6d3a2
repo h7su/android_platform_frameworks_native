@@ -16,6 +16,23 @@
       "message": "Reviving this CL from a very old internal CL chain (Ag/16121841) where I\u0027d been working on a better implementation of the kawase blur for large radius. Not sure if using a sysprop here is considered OK form?\n\nContext: This helps testing GaussianBlur vs KawaseBlur for CLs like aosp/3019150 which claim to improve the blur algorithm and gives us a baseline of what it\u0027s supposed to look like.",
       "revId": "50e364f304f741bf211938cc8e55b94d33d6d3a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54dc0699_b068af72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-04T15:29:57Z",
+      "side": 1,
+      "message": "normally we read the sysprop in SurfaceFlinger.cpp, and plumb the value over to the RenderEngine constructor. This alows us to test RenderEngine without fiddling with any sysprops.",
+      "revId": "50e364f304f741bf211938cc8e55b94d33d6d3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
