@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f475fee_a3ed2c0d",
+        "filename": "services/surfaceflinger/SurfaceFlinger.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 6436,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-05T18:04:10Z",
+      "side": 1,
+      "message": "fwiw, this comment is a bit misleading --- no libc has a wrapper for this, and i don\u0027t think any is likely to add one, since the _kernel_ abi isn\u0027t stable. (which is one reason to avoid having your own copy \u0026 paste of the struct!)\n\nso let me know if you\u0027d like me to remove this comment. i\u0027m not sure it\u0027s adding any value...",
+      "revId": "829eb5c48329905c3565480bacc5157cbab5e07d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
