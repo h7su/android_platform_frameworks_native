@@ -391,6 +391,30 @@
       },
       "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0ab01c_78a0146a",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1045544
+      },
+      "writtenOn": "2024-04-05T09:35:18Z",
+      "side": 1,
+      "message": "Then from your test result in the bug this looks like an improvement (which we should expect given it\u0027s making the algorithm work more like it was designed to work).\n\nThanks for doing the legwork on comparison, and for the patch!",
+      "parentUuid": "216f192e_708006d8",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
