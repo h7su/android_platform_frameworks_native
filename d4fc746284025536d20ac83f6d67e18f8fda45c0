@@ -70,6 +70,24 @@
       "parentUuid": "dcfc0b65_d6979918",
       "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa314c97_62dd220f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-04-05T09:48:24Z",
+      "side": 1,
+      "message": "Oh no. Sorry to hear that. Hope you are feeling better.\n\nI don\u0027t think we will add more public types to the module given that it\u0027s currently exclusively for Surface. I also don\u0027t think we will want provide a nested module structure under nativewindow to the clients, given that the usual interface for these were in C.\n\nThe new PS hides the surface submodule.",
+      "parentUuid": "fa68960e_ca91c39e",
+      "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
