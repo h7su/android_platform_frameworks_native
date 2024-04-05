@@ -367,6 +367,30 @@
       },
       "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "216f192e_708006d8",
+        "filename": "libs/renderengine/skia/filters/KawaseBlurFilter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-05T08:00:28Z",
+      "side": 1,
+      "message": "Hi，Google team, I created an issue tracking(b/333002945) on this patch and verified it through the SSIM algorithm in the image field. The fixed effect is closer to Gaussian blur. Could you help me check this verification? Thanks!",
+      "parentUuid": "12e002d8_aa94eeb8",
+      "range": {
+        "startLine": 133,
+        "startChar": 59,
+        "endLine": 133,
+        "endChar": 91
+      },
+      "revId": "d3f8310f93cd97ea0c948fea2b8b28bc28a430d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
