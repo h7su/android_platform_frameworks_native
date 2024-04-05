@@ -52,6 +52,24 @@
       "parentUuid": "95789d5b_820119b8",
       "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa68960e_ca91c39e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-04-05T09:01:06Z",
+      "side": 1,
+      "message": "Sorry, I\u0027ve been off sick. I don\u0027t have a strong opinion either way, but I think it should have only one public name. So if you want to re-export it as `nativewindow::Surface` then make the `surface` module private. I guess it depends whether you expect to add other types or functions to the `surface` module in future.",
+      "parentUuid": "dcfc0b65_d6979918",
+      "revId": "d4fc746284025536d20ac83f6d67e18f8fda45c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
