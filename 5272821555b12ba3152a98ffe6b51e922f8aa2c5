@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a57f0faa_d042181c",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-05T22:35:47Z",
+      "side": 1,
+      "message": "btw Tomasz, this is still pretty big - we may need to strip the symbols or try -Os or similar (if it\u0027s host). We also could build an Android version, if only for the size comparisons.",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 408,
+        "endChar": 26
+      },
+      "revId": "5272821555b12ba3152a98ffe6b51e922f8aa2c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "132c799a_07469396",
         "filename": "libs/binder/Android.bp",
         "patchSetId": 1
@@ -14,6 +37,24 @@
       "writtenOn": "2024-04-05T22:08:36Z",
       "side": 1,
       "message": "Do we risk accidentally installing these on the system partition? Actual devices shouldn\u0027t need any of them, right?",
+      "revId": "5272821555b12ba3152a98ffe6b51e922f8aa2c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c833aa6c_915d8e3a",
+        "filename": "libs/binder/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-05T22:35:47Z",
+      "side": 1,
+      "message": "Yeah, devices could accidentally include them in PRODUCT_PACKAGES. I\u0027ll change them to not be installable next time I touch this",
+      "parentUuid": "132c799a_07469396",
       "revId": "5272821555b12ba3152a98ffe6b51e922f8aa2c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
