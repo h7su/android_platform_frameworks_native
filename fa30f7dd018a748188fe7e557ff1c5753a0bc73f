@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b341ab_993c9a74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-09T11:57:27Z",
+      "side": 1,
+      "message": "Hi, Google team, I have modified the atest case. Due to the increase in the blur radius, the previous case for solid color seems to be no longer useful. I see that there isn\u0027t solid color case in the following path: frameworks/av/media/libstagefright/renderfright/tests/RenderEngineTest.cpp. So do you suggest deleting it or increasing the tolerance? Thanks!",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
