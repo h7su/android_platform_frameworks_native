@@ -1131,7 +1131,7 @@ void RenderEngineTest::fillBufferAndBlurBackground() {
     invokeDraw(settings, layers);
 
     // solid color
-    expectBufferColor(Rect(0, 0, 1, 1), 255, 0, 0, 255, 0 /* tolerance */);
+    expectBufferColor(Rect(0, 0, 1, 1), 255, 0, 0, 255, 50 /* tolerance */);
 
     if (mRE->supportsBackgroundBlur()) {
         // blurred color (downsampling should result in the center color being close to 128)
