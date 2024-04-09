@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41ee9a14_9b11443f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T00:12:42Z",
+      "side": 1,
+      "message": "I updated the command, but it requires a few other CLs to run:\n* https://r.android.com/2695039\n* https://r.android.com/2876734 and its parents\n\nThe test pass locally with all of them, and should also pass in presubmit once they land. Should I put everything in a topic?",
+      "parentUuid": "4567103b_f1fa8194",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "802235bb_0960c476",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25ee24d2_3f67c433",
+        "filename": "libs/binder/trusty/include/binder/ARpcServerTrusty.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T00:12:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand the question. Do you mean have both `_new` and `_newPerSession`? If that\u0027s the case, then we could probably get rid of `ARpcServerTrusty_new` but it might be clunky to pass in the same `AIBinder` to the per-session callback.",
+      "parentUuid": "802235bb_0960c476",
+      "range": {
+        "startLine": 27,
+        "startChar": 35,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35cad45b_ff66a9d9",
         "filename": "libs/binder/trusty/rust/binder_rpc_server/rules.mk",
         "patchSetId": 16
@@ -60,6 +108,24 @@
       "writtenOn": "2024-04-03T21:04:05Z",
       "side": 1,
       "message": "empty file?",
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04baa802_717950fb",
+        "filename": "libs/binder/trusty/rust/binder_rpc_server/rules.mk",
+        "patchSetId": 16
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T00:12:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35cad45b_ff66a9d9",
       "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
