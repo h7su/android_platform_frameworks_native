@@ -34,6 +34,24 @@
       "parentUuid": "26b341ab_993c9a74",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9995679_cfcae703",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-09T20:48:03Z",
+      "side": 1,
+      "message": "it sounds like the applied radius may be too large, if the corner of the red layer is picking up green values after blurring (the red layer is 64 pixels wide, while the blur radius is 50, so the corner opposite the green layer should _not_ be blurred).\n\nI don\u0027t recommend deleting this test case. It\u0027s intended to catch situations like where we change the effect in an unexpected way.",
+      "parentUuid": "d5c74a6d_53c334d2",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
