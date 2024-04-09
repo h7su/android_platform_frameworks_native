@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12fe641_6a1da61e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T04:24:08Z",
+      "side": 1,
+      "message": "Once https://r.android.com/3020410 lands, this code should be built on Android by `m libbinder_rs_on_trusty_mock`.",
+      "parentUuid": "8ad3560e_93deb501",
+      "revId": "5b1fb336f51270a9a27ea91d7c04ae11707550e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75256ac7_97119c3f",

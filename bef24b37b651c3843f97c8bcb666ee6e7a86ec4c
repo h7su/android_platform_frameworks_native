@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c95d74_da5cfc4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 77
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T04:24:08Z",
+      "side": 1,
+      "message": "I updated the commit message to show the command. We should also have it in presubmit shortly.",
+      "parentUuid": "07f0dcfa_fb47bb37",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "bef24b37b651c3843f97c8bcb666ee6e7a86ec4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a44ea87c_f19c3893",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-03T21:02:41Z",
       "side": 1,
       "message": "year",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "bef24b37b651c3843f97c8bcb666ee6e7a86ec4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d97643e2_77dae3cf",
+        "filename": "libs/binder/rust/rpcbinder/src/server/android.rs",
+        "patchSetId": 77
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T04:24:08Z",
+      "side": 1,
+      "message": "Technically all of this code was moved from the other file.",
+      "parentUuid": "a44ea87c_f19c3893",
       "range": {
         "startLine": 2,
         "startChar": 17,

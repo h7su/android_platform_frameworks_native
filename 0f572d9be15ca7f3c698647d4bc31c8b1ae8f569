@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30288e7b_c5e28800",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 76
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T04:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b95e135f_229e785e",
+      "revId": "0f572d9be15ca7f3c698647d4bc31c8b1ae8f569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb43eb44_68b8ac3c",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-03T16:20:44Z",
       "side": 1,
       "message": "Should be annotated as unsafe",
+      "revId": "0f572d9be15ca7f3c698647d4bc31c8b1ae8f569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e328033_89373ea2",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 76
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T04:24:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb43eb44_68b8ac3c",
       "revId": "0f572d9be15ca7f3c698647d4bc31c8b1ae8f569",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
