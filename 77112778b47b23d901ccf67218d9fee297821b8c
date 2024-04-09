@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b4dba9_51ac4d0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-09T00:03:15Z",
+      "side": 1,
+      "message": "Lost the +2 after rebasing, PTAL?",
+      "revId": "77112778b47b23d901ccf67218d9fee297821b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
