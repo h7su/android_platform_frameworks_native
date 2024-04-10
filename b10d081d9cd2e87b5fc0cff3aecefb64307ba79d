@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6c8ca4_8b75ef35",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/binder_rpc_test_session/lib.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-10T01:11:40Z",
+      "side": 1,
+      "message": "Nit: the `m_` prefix isn\u0027t usually needed in Rust, `name` should be enough.",
+      "revId": "b10d081d9cd2e87b5fc0cff3aecefb64307ba79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c59118e8_80ccef43",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/main.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-10T01:11:40Z",
+      "side": 1,
+      "message": "What is unused? You shouldn\u0027t need this.",
+      "revId": "b10d081d9cd2e87b5fc0cff3aecefb64307ba79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ccabfe5_b0c7d183",
+        "filename": "libs/binder/trusty/rust/binder_rpc_test/service/main.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-10T01:11:40Z",
+      "side": 1,
+      "message": "```suggestion\n    name: String,\n```",
+      "revId": "b10d081d9cd2e87b5fc0cff3aecefb64307ba79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
