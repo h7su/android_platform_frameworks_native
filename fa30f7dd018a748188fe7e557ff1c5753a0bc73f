@@ -52,6 +52,24 @@
       "parentUuid": "d5c74a6d_53c334d2",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122c216f_1b66eaf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-10T02:51:41Z",
+      "side": 1,
+      "message": "OK, I‘ll keep this case and modify the blur radius for the change in drawing. Thanks! cc @dupin@google.com",
+      "parentUuid": "d9995679_cfcae703",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
