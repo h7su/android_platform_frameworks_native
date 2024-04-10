@@ -423,7 +423,10 @@ void ConsumerFrameEventHistory::addQueue(const NewFrameEventsEntry& newEntry) {
     newTimestamps.requestedPresentTime = newEntry.requestedPresentTime;
     newTimestamps.acquireFence = newEntry.acquireFence;
     newTimestamps.valid = true;
-    mFrames[mQueueOffset] = newTimestamps;
+
+    if (mFrames[mQueueOffset].valid) {
+        mFrames[mQueueOffset] = newTimestamps;
+    }
 
     // Note: We avoid sending the acquire fence back to the caller since
     // they have the original one already, so there is no need to set the
