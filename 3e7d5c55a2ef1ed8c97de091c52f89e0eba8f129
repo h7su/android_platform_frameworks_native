@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd9f417a_c96a021b",
+        "filename": "libs/binder/trusty/include/binder/ARpcServerTrusty.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-10T00:56:09Z",
+      "side": 1,
+      "message": "Removed `ARpcServerTrusty_new` since the per-session one covers both cases.",
+      "parentUuid": "25ee24d2_3f67c433",
+      "range": {
+        "startLine": 27,
+        "startChar": 35,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "3e7d5c55a2ef1ed8c97de091c52f89e0eba8f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35cad45b_ff66a9d9",
