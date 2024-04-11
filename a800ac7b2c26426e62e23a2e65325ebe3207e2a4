@@ -22,6 +22,30 @@
       },
       "revId": "a800ac7b2c26426e62e23a2e65325ebe3207e2a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "932ce17f_fd7818ef",
+        "filename": "libs/binder/trusty/include/binder/ARpcServerTrusty.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-11T20:31:46Z",
+      "side": 1,
+      "message": "It\u0027s needed for both `handle_t` and `uuid` passed to `handleConnect`.",
+      "parentUuid": "e5d35ed1_630c8187",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "a800ac7b2c26426e62e23a2e65325ebe3207e2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
