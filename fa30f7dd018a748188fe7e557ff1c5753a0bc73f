@@ -88,6 +88,24 @@
       "parentUuid": "122c216f_1b66eaf4",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b55a61e_78fd3c98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-11T16:30:15Z",
+      "side": 1,
+      "message": "It\u0027s still not clear to me if this is desired.\n\nWalking through the math I think this test is failing because a blur radius of 50 touches pixels that are up to 72 pixels away.\n\nThe way that I got there is:\n\n* We start with a blur radius of 50, then transform it to 25\n* We\u0027re using 4 passes, and we downscale by 4x in each dimension. So radiusByPasses is 1.5625.\n* Then we look at the color contribution of one pixel, P, to neighboring pixels in the downscaled buffers.\n  * First pass: ceil(1.5625) \u003d 2 pixels away from P are affected\n  * Second pass: ceil(1.5625 * 2) \u003d 4 pixels away from any pixels touched by the first pass are affected. This means that 6 pixels away from P are affected\n  * Third pass. Similarly, ceil(1.5625 * 3) + 6 \u003d 11 pixels away from P are affected\n  * Fourth pass. ceil(1.5625 * 4) + 11 \u003d 18 pixels away from P are affected.\n* Then we scale the final buffer back up, which gets us an effective radius of 72.\n\nWith the original implementation, we essentially replace the last pass with another copy of the first pass, which gives us a final effective radius of 52.\n\nThis is a fairly large difference.",
+      "parentUuid": "58721905_8e54ad53",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
