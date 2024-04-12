@@ -16,6 +16,23 @@
       "message": "Hello, Could you please review this CL? Thanks.",
       "revId": "cb3816a4fd08862328d052f8eba6ed609e49d624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c667d1f_f6f850b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170688
+      },
+      "writtenOn": "2024-04-12T16:08:10Z",
+      "side": 1,
+      "message": "This should mostly be dead code that should be cleaned up soon",
+      "revId": "cb3816a4fd08862328d052f8eba6ed609e49d624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
