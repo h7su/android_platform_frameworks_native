@@ -16,6 +16,24 @@
       "message": "can this move to the trusty directory?",
       "revId": "2617c8434c52f453c1cbb627941bfc792dc5f359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd975465_93c6e521",
+        "filename": "libs/binder/rust/rpcbinder/src/server/trusty.rs",
+        "patchSetId": 87
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-12T23:03:28Z",
+      "side": 1,
+      "message": "Sure thing. I\u0027ll do it in a follow-up, if that\u0027s alright.",
+      "parentUuid": "a711dfb9_fdba3278",
+      "revId": "2617c8434c52f453c1cbb627941bfc792dc5f359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
