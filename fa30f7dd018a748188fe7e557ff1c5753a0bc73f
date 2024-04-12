@@ -106,6 +106,24 @@
       "parentUuid": "58721905_8e54ad53",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae87f991_207cfdc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-12T13:09:04Z",
+      "side": 1,
+      "message": "I verified the atest case by assuming that the blur radius is X, then the allowed blur radius by the modified algorithm is as follows:\nfloor(X / (2 * 4 * 4) + 0.5) * (1 + 2 + 3 + 4) \u003c 128 / 4 / 2\n\u003d\u003efloor(X / (2 * 4 * 4) + 0.5) \u003c 1.6\n\u003d\u003eX / (2 * 4 * 4) + 0.5 \u003c 2\n\u003d\u003eX \u003c 48\nSo X\u003d30 is safety.\n\nFirstly, the blur radius is transformed by 0.5x, and then radiusByPasses are obtained through downsampling and passes by 0.25x of twice. Then we add 0.5 to radiusByPasses and round them down. After 1x, 2x, 3x and 4x iterations, the influence range of the solid color pixel(0,0) should be constrained to 0.5x of the 0.25x down-sampling width.\nSo I think using 30 as the blur radius should be possible.",
+      "parentUuid": "0b55a61e_78fd3c98",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
