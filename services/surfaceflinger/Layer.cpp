@@ -1729,6 +1729,12 @@ bool Layer::reparent(const sp<IBinder>& newParentHandle) {
     }
 
     sp<Layer> parent = getParent();
+
+    if (parent == nullptr && newParent == nullptr) {
+        ALOGE("Parent of Layer (%s) has already been null", getName().c_str());
+        return false;
+    }
+
     if (parent != nullptr) {
         parent->removeChild(sp<Layer>::fromExisting(this));
     }
