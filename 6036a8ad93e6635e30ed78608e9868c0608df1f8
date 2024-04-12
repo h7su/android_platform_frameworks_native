@@ -16,6 +16,24 @@
       "message": "Adding comment to prevent merging until I\u0027ve actually checked that this fixes the test.",
       "revId": "6036a8ad93e6635e30ed78608e9868c0608df1f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d24575_9d22b2fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-12T12:52:50Z",
+      "side": 1,
+      "message": "Done. I\u0027ve verified that this passes with the fixed driver, and that it fails without the driver fix. Output when it fails:\n```\n[7/58] BinderLibTest#Freeze: FAILED (1ms)                                                                \n                                                    \nSTACKTRACE:                                                                                              \nframeworks/native/libs/binder/tests/binderLibTest.cpp:513: Failure\nExpected equality of these values:                                                                       \n  NO_ERROR                                          \n    Which is: 0                                                                                          \n  ret                                                                                                    \n    Which is: -11                                                                                        \nframeworks/native/libs/binder/tests/binderLibTest.cpp:515: Failure\nExpected equality of these values:            \n  -11                                          \n  IPCThreadState::self()-\u003efreeze(pid, true, 0)                                                           \n    Which is: 0                                                                                          \nframeworks/native/libs/binder/tests/binderLibTest.cpp:524: Failure\nExpected equality of these values:             \n  FAILED_TRANSACTION                             \n    Which is: -2147483646                  \n  m_server-\u003etransact(BINDER_LIB_TEST_NOP_TRANSACTION, data, \u0026reply)\n    Which is: 0                                                                                          \nframeworks/native/libs/binder/tests/binderLibTest.cpp:531: Failure\nExpected equality of these values:                                                                       \n  sync_received                                                                                          \n    Which is: 2                                                                                          \n  1                                                                                                      \nframeworks/native/libs/binder/tests/binderLibTest.cpp:534: Failure\nExpected equality of these values:                                                                       \n  NO_ERROR                                                                                               \n    Which is: 0                                                                                          \n  IPCThreadState::self()-\u003efreeze(pid, false, 0)                                                          \n    Which is: -11  \n```",
+      "parentUuid": "c4cb5239_6383ac72",
+      "revId": "6036a8ad93e6635e30ed78608e9868c0608df1f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
