@@ -33,6 +33,24 @@
       "message": "This should mostly be dead code that should be cleaned up soon",
       "revId": "cb3816a4fd08862328d052f8eba6ed609e49d624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26fc83bf_6dd8dfde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1746367
+      },
+      "writtenOn": "2024-04-13T08:30:18Z",
+      "side": 1,
+      "message": "Hi @vishnun@google.com,\nDo you mean that it will have some changes to the logic of reparent() soon? \nif so, I have not yet found any changes on other partner branches, so I was wondering if this CL can be merged if it looks good? Thanks.",
+      "parentUuid": "6c667d1f_f6f850b2",
+      "revId": "cb3816a4fd08862328d052f8eba6ed609e49d624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
