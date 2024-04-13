@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9986ad0_f3972e25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-13T21:03:16Z",
+      "side": 1,
+      "message": "this is fine but ideally we put these tests into different dirs as ownership becomes more federated.",
+      "revId": "79c1eca9b84639303f0c438131a818aee8224495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed9b02c_1c66305f",
+        "filename": "services/surfaceflinger/tests/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-13T21:03:16Z",
+      "side": 1,
+      "message": "gift ownership to melodymhsu@ too",
+      "range": {
+        "startLine": 5,
+        "startChar": 18,
+        "endLine": 5,
+        "endChar": 59
+      },
+      "revId": "79c1eca9b84639303f0c438131a818aee8224495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
