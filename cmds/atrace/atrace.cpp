@@ -68,6 +68,7 @@ using std::string;
 const char* k_traceTagsProperty = "debug.atrace.tags.enableflags";
 const char* k_userInitiatedTraceProperty = "debug.atrace.user_initiated";
 
+const char* k_traceTrackEventDepreferProperty = "debug.atrace.track_event_deprefer.flags";
 const char* k_traceAppsNumberProperty = "debug.atrace.app_number";
 const char* k_traceAppsPropertyTemplate = "debug.atrace.app_%d";
 const char* k_coreServiceCategory = "core_services";
@@ -600,6 +601,17 @@ static void clearAppProperties()
     }
 }
 
+// Set the property that's read by userspace to deprefer track_event.
+static bool setDepreferTrackEventProperty(uint64_t tags)
+{
+    std::string value = android::base::StringPrintf("%#" PRIx64, tags);
+    if (!android::base::SetProperty(k_traceTrackEventDepreferProperty, value)) {
+        fprintf(stderr, "error setting deprefer track_event system property\n");
+        return false;
+    }
+    return true;
+}
+
 // Set the system property that indicates which apps should perform
 // application-level tracing.
 static bool setAppCmdlineProperty(char* cmdline)
@@ -918,6 +930,17 @@ static void stopTrace()
     setTracingEnabled(false);
 }
 
+static bool depreferTrackEventCategories() {
+    uint64_t tags = 0;
+    for (size_t i = 0; i < arraysize(k_categories); i++) {
+        if (g_categoryEnables[i]) {
+            const TracingCategory& c = k_categories[i];
+            tags |= c.tags;
+        }
+    }
+    return setDepreferTrackEventProperty(tags);
+}
+
 // Read data from the tracing pipe and forward to stdout
 static void streamTrace()
 {
@@ -1108,6 +1131,9 @@ static void showHelp(const char *cmd)
                     "                    CPU performance, like pagecache usage.\n"
                     "  --list_categories\n"
                     "                  list the available tracing categories\n"
+                    "  --track_event_deprefer\n"
+                    "                  prefer atrace tracing over perfetto track_event for\n"
+                    "                    categories and exits immediately\n"
                     " -o filename      write the trace to the specified file instead\n"
                     "                    of stdout.\n"
             );
@@ -1252,6 +1278,7 @@ int main(int argc, char **argv)
     bool traceStop = true;
     bool traceDump = true;
     bool traceStream = false;
+    bool trackEventDeprefer = false;
     bool onlyUserspace = false;
 
     if (argc == 2 && 0 == strcmp(argv[1], "--help")) {
@@ -1270,13 +1297,14 @@ int main(int argc, char **argv)
         int ret;
         int option_index = 0;
         static struct option long_options[] = {
-            {"async_start",       no_argument, nullptr,  0 },
-            {"async_stop",        no_argument, nullptr,  0 },
-            {"async_dump",        no_argument, nullptr,  0 },
-            {"only_userspace",    no_argument, nullptr,  0 },
-            {"list_categories",   no_argument, nullptr,  0 },
-            {"stream",            no_argument, nullptr,  0 },
-            {nullptr,                       0, nullptr,  0 }
+            {"async_start",          no_argument, nullptr,  0 },
+            {"async_stop",           no_argument, nullptr,  0 },
+            {"async_dump",           no_argument, nullptr,  0 },
+            {"only_userspace",       no_argument, nullptr,  0 },
+            {"list_categories",      no_argument, nullptr,  0 },
+            {"stream",               no_argument, nullptr,  0 },
+            {"track_event_deprefer", no_argument, nullptr,  0 },
+            {nullptr,                          0, nullptr,  0 }
         };
 
         ret = getopt_long(argc, argv, "a:b:cf:k:ns:t:zo:",
@@ -1348,6 +1376,8 @@ int main(int argc, char **argv)
                 } else if (!strcmp(long_options[option_index].name, "stream")) {
                     traceStream = true;
                     traceDump = false;
+                } else if (!strcmp(long_options[option_index].name, "track_event_deprefer")) {
+                    trackEventDeprefer = true;
                 } else if (!strcmp(long_options[option_index].name, "list_categories")) {
                     listSupportedCategories();
                     exit(0);
@@ -1360,6 +1390,11 @@ int main(int argc, char **argv)
                 exit(-1);
             break;
         }
+    }
+
+    if (trackEventDeprefer) {
+        bool res = depreferTrackEventCategories();
+        exit(res ? 0 : 1);
     }
 
     if (onlyUserspace) {
