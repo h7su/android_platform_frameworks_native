@@ -124,6 +124,24 @@
       "parentUuid": "0b55a61e_78fd3c98",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c00e87_8bdbe920",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-15T22:06:34Z",
+      "side": 1,
+      "message": "I\u0027m not doubting that a radius of 30 is safe for the test, specifically.\n\nI\u0027m concerned that since this is public api and that we\u0027ve effectively increased the blur radius by 50%, that we would need to do the following to upstream this:\n\n* Verify that this is in fact correct, or if there\u0027s a different change to the Kawase implementation that needs to be made to make it closer to a Gaussian without changing the effective radius.\n* Add target SDK checks and/or documentation to the various blur apis to say that the old Android versions will use a smaller radius than intended.\n* Talk to system ui teams so that they can reassess their user journeys involving blurs.",
+      "parentUuid": "ae87f991_207cfdc3",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
