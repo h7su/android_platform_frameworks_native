@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3264f799_590a3e3c",
+        "filename": "libs/binder/aidl/android/content/pm/IPackageManagerNative.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2024-04-16T23:46:46Z",
+      "side": 1,
+      "message": "Does this method need a `userId` parameter?",
+      "range": {
+        "startLine": 53,
+        "startChar": 55,
+        "endLine": 53,
+        "endChar": 56
+      },
+      "revId": "3178cd11b9c945f286bcbe7358d86820a05302cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
