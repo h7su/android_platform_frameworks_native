@@ -46,6 +46,30 @@
       },
       "revId": "3178cd11b9c945f286bcbe7358d86820a05302cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "824d69ee_0a84e184",
+        "filename": "libs/binder/aidl/android/content/pm/IPackageManagerNative.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2024-04-17T00:21:59Z",
+      "side": 1,
+      "message": "The `Computer.getPackageUid` already checks the cross-user permission so you don\u0027t need additional checks. Since this is in a sense a new \"API\", I imagine we would want it to be more generic. Also, having a `userId` param (and the `flags` param) would make it more on par with the existing `getPackageUid` method in `IPackageManager.aidl`.",
+      "parentUuid": "c93dbc4a_2e24e667",
+      "range": {
+        "startLine": 53,
+        "startChar": 55,
+        "endLine": 53,
+        "endChar": 56
+      },
+      "revId": "3178cd11b9c945f286bcbe7358d86820a05302cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
