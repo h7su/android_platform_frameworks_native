@@ -142,6 +142,24 @@
       "parentUuid": "ae87f991_207cfdc3",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a84fa4f_51cd23d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870086
+      },
+      "writtenOn": "2024-04-17T07:08:52Z",
+      "side": 1,
+      "message": "In order not to modify the existing Android version API, could we add system properties that support improved Kawase algorithm and update them during next Android version upgrades?",
+      "parentUuid": "05c00e87_8bdbe920",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
