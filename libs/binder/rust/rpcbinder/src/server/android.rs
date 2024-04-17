@@ -147,6 +147,12 @@ impl RpcServerRef {
         }
     }
 
+    /// Sets max threads.
+    pub fn set_max_threads(&self, count: usize) {
+        // SAFETY: RpcServerRef wraps a valid pointer to an ARpcServer.
+        unsafe { binder_rpc_unstable_bindgen::ARpcServer_setMaxThreads(self.as_ptr(), count) };
+    }
+
     /// Starts a new background thread and calls join(). Returns immediately.
     pub fn start(&self) {
         // SAFETY: RpcServerRef wraps a valid pointer to an ARpcServer.
