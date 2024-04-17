@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ac1685_e829b11c",
+        "filename": "libs/binder/tests/unit_fuzzers/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-04-17T15:11:09Z",
+      "side": 1,
+      "message": "nit:\n\n```\ndescription: \"Targets the APIs of libbinder\",\n```",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 64
+      },
+      "revId": "ce96a6075cdf9accc27fbcef71e68094e2bf891b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
