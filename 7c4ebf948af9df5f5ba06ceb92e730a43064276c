@@ -33,6 +33,24 @@
       "message": "Can you expand on this comment a bit? Max threads for what?",
       "revId": "7c4ebf948af9df5f5ba06ceb92e730a43064276c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c83e869_e22ff72f",
+        "filename": "libs/binder/rust/rpcbinder/src/server/android.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1882532
+      },
+      "writtenOn": "2024-04-18T20:35:36Z",
+      "side": 1,
+      "message": "Added more details in the comments here and in the Header file.",
+      "parentUuid": "072d0e9e_c618d084",
+      "revId": "7c4ebf948af9df5f5ba06ceb92e730a43064276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
