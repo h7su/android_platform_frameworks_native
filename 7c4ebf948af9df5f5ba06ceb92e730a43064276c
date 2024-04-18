@@ -16,6 +16,23 @@
       "message": "Unsafe Rust LGTM.",
       "revId": "7c4ebf948af9df5f5ba06ceb92e730a43064276c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072d0e9e_c618d084",
+        "filename": "libs/binder/rust/rpcbinder/src/server/android.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-04-18T15:47:31Z",
+      "side": 1,
+      "message": "Can you expand on this comment a bit? Max threads for what?",
+      "revId": "7c4ebf948af9df5f5ba06ceb92e730a43064276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
