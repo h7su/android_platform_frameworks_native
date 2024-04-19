@@ -160,6 +160,24 @@
       "parentUuid": "05c00e87_8bdbe920",
       "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "522f25fe_bda6317a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470474
+      },
+      "writtenOn": "2024-04-19T14:37:30Z",
+      "side": 1,
+      "message": "I don\u0027t know how much a sysprop would help. Are you suggesting a temporary debug sysprop just for testing + verification purpoeses?\n\nI would also suggest running these CTS tests: https://cs.android.com/android/platform/superproject/main/+/main:cts/tests/framework/base/windowmanager/src/android/server/wm/other/BlurTests.java;l\u003d63;drc\u003d9c4f8fd2a9ad26a0aa2dfc78f49b69cb4ef3393b, which do exercise the blur algorithms from public apis.",
+      "parentUuid": "2a84fa4f_51cd23d0",
+      "revId": "fa30f7dd018a748188fe7e557ff1c5753a0bc73f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
