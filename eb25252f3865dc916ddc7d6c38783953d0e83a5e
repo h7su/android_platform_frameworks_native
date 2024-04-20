@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "460eed20_2a18b7e3",
+        "filename": "libs/binder/rust/rpcbinder/src/server.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-04-20T00:43:11Z",
+      "side": 1,
+      "message": "can you share the diff of this with what it was before? or is it the same?",
+      "revId": "eb25252f3865dc916ddc7d6c38783953d0e83a5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
