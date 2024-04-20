@@ -16,6 +16,24 @@
       "message": "can you share the diff of this with what it was before? or is it the same?",
       "revId": "eb25252f3865dc916ddc7d6c38783953d0e83a5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9928d688_17e9fe4f",
+        "filename": "libs/binder/rust/rpcbinder/src/server.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1809582
+      },
+      "writtenOn": "2024-04-20T00:44:32Z",
+      "side": 1,
+      "message": "It should be the same, just moved from `android.rs` back to `server.rs`. I don\u0027t know how to get git or gerrit to show that as a rename.",
+      "parentUuid": "460eed20_2a18b7e3",
+      "revId": "eb25252f3865dc916ddc7d6c38783953d0e83a5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
